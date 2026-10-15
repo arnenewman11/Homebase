@@ -1,0 +1,532 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Arnfjäll Roadmap</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: one column. Garden card on top, three-lane trail map, then each lane's phases, the two logs, and key numbers. Palette from the Arnfjäll eagle illustration: forest, teal, mustard on sand. */
+:root{
+  --bg:#f3f1e8; --surface:#fbfaf5; --ink:#1d2f29; --muted:#5c6b64; --line:#d9d6c8;
+  --forest:#24473a; --forest-soft:#e1ebe4;
+  --teal:#3f6f6a; --teal-soft:#dfecea;
+  --mustard:#c99a2e; --mustard-soft:#f4e7c4; --on-mustard:#2b2208;
+  --stone:#9d8d72; --stone-soft:#ece6da;
+  --sage:#c4d6b0;
+  --warn:#a5532a; --warn-soft:#f6e3d8;
+  --display:"Familjen Grotesk","Helvetica Neue",Arial,sans-serif;
+  --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121915; --surface:#19231e; --ink:#e8ece4; --muted:#a3b0a8; --line:#2f3d36;
+  --forest:#8fc0a8; --forest-soft:#1d3229; --teal:#86bbb3; --teal-soft:#183230;
+  --mustard:#e0b54d; --mustard-soft:#3b3015; --on-mustard:#1d1605;
+  --stone:#c2b398; --stone-soft:#2c2820; --sage:#4f6346; --warn:#e69a6f; --warn-soft:#3b2418; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121915; --surface:#19231e; --ink:#e8ece4; --muted:#a3b0a8; --line:#2f3d36;
+  --forest:#8fc0a8; --forest-soft:#1d3229; --teal:#86bbb3; --teal-soft:#183230;
+  --mustard:#e0b54d; --mustard-soft:#3b3015; --on-mustard:#1d1605;
+  --stone:#c2b398; --stone-soft:#2c2820; --sage:#4f6346; --warn:#e69a6f; --warn-soft:#3b2418; color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 56px}
+.wrap{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:36px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.08;letter-spacing:-.01em}
+h1{font-size:clamp(2.1rem,7vw,3rem);font-weight:700}
+h2{font-size:clamp(1.4rem,4.5vw,1.75rem);font-weight:700}
+h3{font-size:1.2rem;font-weight:600}
+p{margin:0;max-width:65ch}
+a{color:var(--teal);text-underline-offset:2px}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--mustard);outline-offset:2px;border-radius:4px}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+section{display:flex;flex-direction:column;gap:14px}
+.sec-head{display:flex;flex-direction:column;gap:6px;border-top:2px solid var(--forest);padding-top:12px}
+
+header{display:flex;flex-direction:column;gap:12px}
+.ridge{width:100%;height:auto;max-width:100%;display:block}
+.hero-row{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
+.hero-row > div{min-width:0}
+.ring{display:flex;align-items:center;gap:12px}
+.ring svg{width:88px;height:88px;flex:none}
+.ring .lbl{display:flex;flex-direction:column}
+.ring .big{font-family:var(--display);font-size:1.8rem;font-weight:700;line-height:1}
+.tagline{font-family:var(--display);font-weight:500;color:var(--forest)}
+
+.garden{background:var(--surface);border:2px solid var(--forest);border-radius:12px;padding:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.gfield{display:flex;flex-direction:column;gap:6px;min-width:0}
+.next{background:var(--mustard);color:var(--on-mustard);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.next .eyebrow{color:var(--on-mustard);opacity:.85}
+.next strong{font-family:var(--display);font-size:1.3rem;line-height:1.15}
+textarea{width:100%;box-sizing:border-box;min-height:84px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px;resize:vertical}
+.saved{font-family:var(--mono);font-size:.72rem;color:var(--forest)}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.lanes{display:flex;flex-direction:column;gap:10px}
+.lane{display:grid;grid-template-columns:118px 1fr;gap:10px;align-items:stretch}
+.lane-name{font-family:var(--display);font-weight:600;font-size:1rem;display:flex;align-items:center}
+.stops{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.stop{border-radius:8px;padding:8px;display:flex;flex-direction:column;gap:6px;background:var(--forest-soft);min-width:0;text-decoration:none;color:var(--ink)}
+.stop.current{outline:3px solid var(--mustard);outline-offset:-3px}
+.stop .t{font-family:var(--display);font-weight:600;font-size:.95rem;line-height:1.1}
+.stop .meter{height:6px;background:var(--surface);border-radius:3px;overflow:hidden}
+.stop .meter i{display:block;height:100%;background:var(--forest)}
+.stop .n{font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.lane.skills .stop{background:var(--teal-soft)} .lane.skills .stop .meter i{background:var(--teal)}
+.lane.business .stop{background:var(--stone-soft)} .lane.business .stop .meter i{background:var(--stone)}
+@media (max-width:620px){.lane{grid-template-columns:1fr}.stops{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.84rem;color:var(--muted)}
+
+.phase{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:12px;scroll-margin-top:16px}
+.phase.current{border:2px solid var(--forest)}
+.phase.skills.current{border-color:var(--teal)} .phase.business.current{border-color:var(--stone)}
+.phase-top{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:baseline}
+.phase-top > div{min-width:0;display:flex;flex-direction:column;gap:4px}
+.badge{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:99px;font-weight:600;background:var(--forest-soft);color:var(--forest)}
+.badge.done{background:var(--mustard-soft);color:var(--ink)}
+.milestone{display:flex;gap:8px;flex-wrap:wrap;font-size:.92rem}
+.milestone b{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tasks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.task{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:start;padding:10px 0;border-top:1px solid var(--line)}
+.task:first-child{border-top:0}
+.task .body{min-width:0;display:flex;flex-direction:column;gap:2px}
+.task .title{font-weight:600}
+.task.done .title{text-decoration:line-through;color:var(--muted)}
+.task .detail{font-size:.9rem;color:var(--muted)}
+.task .note{font-size:.88rem;color:var(--forest);font-style:italic}
+.chips{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.chip{font-family:var(--mono);font-size:.68rem;padding:2px 7px;border-radius:99px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.chip.want{border-color:var(--teal);color:var(--teal)}
+.chip.should{border-color:var(--forest);color:var(--forest)}
+.chip.log{border-color:var(--mustard);color:var(--ink);background:var(--mustard-soft)}
+.chk{width:40px;height:40px;border-radius:50%;border:2px solid var(--line);background:var(--surface);cursor:pointer;display:grid;place-items:center;padding:0}
+.chk[data-s="doing"]{border-color:var(--mustard);background:var(--mustard-soft)}
+.chk[data-s="done"]{border-color:var(--forest);background:var(--forest);color:var(--surface)}
+.chk:disabled{cursor:default}
+.chk svg{width:18px;height:18px}
+@media (max-width:520px){.task{grid-template-columns:44px 1fr}.chips{grid-column:2;justify-content:flex-start}}
+.reward{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:.92rem}
+.reward input{flex:1 1 200px;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 8px}
+
+.follow{grid-column:1/-1;background:var(--mustard-soft);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.follow h4{margin:0;font-family:var(--display);font-size:1.05rem;font-weight:600}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.fgrid label,.follow label{display:flex;flex-direction:column;gap:4px;font-size:.84rem;color:var(--muted);min-width:0}
+.follow input,.follow select,.follow textarea,form.add input,form.add select,form.add textarea{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:8px;color:var(--ink);min-width:0;box-sizing:border-box;width:100%}
+.follow textarea{min-height:56px}
+.fwide{grid-column:1/-1}
+.frow{display:flex;gap:8px;flex-wrap:wrap}
+
+form.add{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;align-items:end}
+form.add label{display:flex;flex-direction:column;gap:4px;font-size:.84rem;color:var(--muted);min-width:0}
+form.add input,form.add select,form.add textarea{background:var(--bg)}
+form.add textarea{min-height:56px}
+form.add .wide{grid-column:1/-1}
+.btn{background:var(--forest);color:var(--surface);border:0;border-radius:8px;padding:10px 16px;font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);padding:6px 12px;font-weight:400;font-size:.86rem}
+.btn.ghost.armed{color:var(--warn);border-color:var(--warn)}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.9rem}
+th,td{text-align:left;padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.empty{padding:14px;border:1px dashed var(--line);border-radius:8px;color:var(--muted);font-size:.92rem}
+.stats{display:flex;flex-wrap:wrap;gap:22px}
+.stat{display:flex;flex-direction:column}
+.stat .v{font-family:var(--display);font-weight:700;font-size:1.7rem;line-height:1}
+.notice{background:var(--warn-soft);border-radius:8px;padding:12px;font-size:.92rem}
+details{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+details summary{cursor:pointer;font-weight:600}
+details code{font-family:var(--mono);font-size:.82rem}
+details ul{padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.fact{border-left:4px solid var(--mustard);padding:4px 12px;display:flex;flex-direction:column}
+.fact .v{font-family:var(--display);font-weight:700;font-size:1.45rem}
+.fact .l{font-size:.85rem;color:var(--muted)}
+.ro-banner{background:var(--teal-soft);color:var(--ink);border-left:4px solid var(--teal);border-radius:8px;padding:8px 12px;font-size:.92rem}.ro-banner a{color:var(--ink);font-weight:700}
+</style>
+
+<div class="wrap">
+
+<header>
+  <svg class="ridge" viewBox="0 0 880 70" role="img" aria-label="Mountain ridge over a stream">
+    <circle cx="742" cy="26" r="14" fill="var(--mustard)"/>
+    <path d="M0 64 L90 30 L150 48 L240 10 L330 46 L400 24 L470 52 L560 18 L650 50 L720 34 L800 56 L880 38 L880 70 L0 70 Z" fill="var(--forest)"/>
+    <path d="M240 10 L262 24 L250 22 L240 30 L230 22 L220 24 Z" fill="var(--sand,#e6e2d3)" opacity=".9"/>
+    <path d="M560 18 L580 30 L568 28 L560 34 L552 28 L540 30 Z" fill="#e6e2d3" opacity=".9"/>
+    <path d="M0 66 Q220 58 440 66 T880 64" fill="none" stroke="var(--teal)" stroke-width="3"/>
+  </svg>
+  <span class="eyebrow">Garden card · Arnfjäll</span>
+  <div class="hero-row">
+    <div>
+      <h1>Arnfjäll Roadmap</h1>
+      <p class="tagline">calm your mind. make your space a sanctuary.</p>
+      <p class="muted" style="margin-top:6px">From a first indoor cascade fountain to your first sale in spring 2027, with maker skills and business setup alongside. Research: <a href="https://claude.ai/artifact/KAjUYKFN5MuCtKuMg1BHCZ">Arnfjäll Market Landscape</a>.</p>
+    </div>
+    <div class="ring" aria-live="polite">
+      <svg viewBox="0 0 100 100" role="img" aria-label="Overall progress">
+        <circle cx="50" cy="50" r="42" fill="none" stroke="var(--line)" stroke-width="10"/>
+        <circle id="ringArc" cx="50" cy="50" r="42" fill="none" stroke="var(--forest)" stroke-width="10" stroke-linecap="round" stroke-dasharray="0 264" transform="rotate(-90 50 50)"/>
+        <text id="ringPct" x="50" y="57" text-anchor="middle" font-family="Familjen Grotesk,sans-serif" font-weight="700" font-size="24" fill="var(--ink)">0%</text>
+      </svg>
+      <div class="lbl"><span class="big num" id="ringCount">0 / 0</span><span class="muted">steps done</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="ro-banner" role="note">Check off steps in <a href="https://claude.ai/code/artifact/fadca305-7c93-4db1-8a1a-2d83f3d57244">Homebase</a>. Status here updates each morning.</div>
+
+<div id="notice" class="notice" hidden></div>
+
+<section aria-label="Where you are">
+  <div class="garden">
+    <div class="gfield">
+      <span class="eyebrow">Status</span>
+      <h3 id="gStatus">Loading roadmap…</h3>
+      <p class="muted" id="gStatusSub">Your phases and steps will appear here.</p>
+    </div>
+    <div class="gfield">
+      <div class="next">
+        <span class="eyebrow">Next re-entry step</span>
+        <strong id="gNext">—</strong>
+        <span id="gNextSub" class="num" style="font-size:.8rem"></span>
+      </div>
+    </div>
+    <div class="gfield">
+      <label class="eyebrow" for="leftOff">Where I left off</label>
+      <textarea id="leftOff" placeholder="A sentence for future you: what you were making and what came next."></textarea>
+      <span class="saved" id="leftOffSaved" aria-live="polite"></span>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="mapH">
+  <div class="sec-head"><span class="eyebrow">Trail map</span><h2 id="mapH">Three lanes</h2></div>
+  <div class="panel">
+    <div class="lanes">
+      <div class="lane"><span class="lane-name">Fountains</span><div class="stops" id="lane-fountains"></div></div>
+      <div class="lane skills"><span class="lane-name">Maker skills</span><div class="stops" id="lane-skills"></div></div>
+      <div class="lane business"><span class="lane-name">Brand &amp; business</span><div class="stops" id="lane-business"></div></div>
+    </div>
+    <div class="legend"><span>Bar = share of steps done</span><span>Gold outline = you are here</span><span>Skills and business run alongside the fountain work</span></div>
+  </div>
+</section>
+
+<section aria-labelledby="phasesH">
+  <div class="sec-head"><span class="eyebrow">Main track</span><h2 id="phasesH">Fountains</h2></div>
+  <div class="legend">
+    <span>Status is read-only here: to do, doing, done</span>
+    <span><span class="chip should">should</span> core path</span>
+    <span><span class="chip want">want</span> fun or optional</span>
+    <span><span class="chip log">asks</span> follow-up questions when done</span>
+    <span><span class="chip">S</span> under 30 min · <span class="chip">M</span> 30–90 min · <span class="chip">L</span> 2 hrs+</span>
+  </div>
+  <div id="ph-fountains" style="display:flex;flex-direction:column;gap:14px"><div class="empty">Loading phases…</div></div>
+</section>
+
+<section aria-labelledby="skillsH">
+  <div class="sec-head"><span class="eyebrow">Side track</span><h2 id="skillsH">Maker skills</h2></div>
+  <p class="muted">Clear Creek Makerspace (about 2 miles away) covers most tools, so buy only what you use every build.</p>
+  <div id="ph-skills" style="display:flex;flex-direction:column;gap:14px"><div class="empty">Loading…</div></div>
+</section>
+
+<section aria-labelledby="bizH">
+  <div class="sec-head"><span class="eyebrow">Side track</span><h2 id="bizH">Brand &amp; business</h2></div>
+  <div id="ph-business" style="display:flex;flex-direction:column;gap:14px"><div class="empty">Loading…</div></div>
+</section>
+
+<section aria-labelledby="buildH">
+  <div class="sec-head"><span class="eyebrow">Record</span><h2 id="buildH">Build log</h2></div>
+  <p class="muted">One entry per fountain. Finishing a build step above opens this form for you; add one here anytime.</p>
+  <div class="stats" id="buildStats"></div>
+  <form class="add panel" id="buildForm">
+    <label>Date<input type="date" id="bdDate" required></label>
+    <label>Piece<input type="text" id="bdPiece" placeholder="e.g. Indoor cascade #1"></label>
+    <label>Hours<input type="number" id="bdHours" min="0" step="0.5" placeholder="8"></label>
+    <label>Materials ($)<input type="number" id="bdCost" min="0" step="1" placeholder="60"></label>
+    <label>Sound<select id="bdSound"><option value="silent">Almost silent</option><option value="soft" selected>Soft trickle</option><option value="noticeable">Noticeable</option><option value="loud">Too loud</option></select></label>
+    <label>Water lost per week<input type="text" id="bdWater" placeholder="e.g. about a cup"></label>
+    <label class="wide">What to change next time<input type="text" id="bdChange" placeholder="One line"></label>
+    <div><button class="btn" type="submit">Add build</button></div>
+  </form>
+  <div id="buildList"></div>
+</section>
+
+<section aria-labelledby="saleH">
+  <div class="sec-head"><span class="eyebrow">Record</span><h2 id="saleH">Sales log</h2></div>
+  <p class="muted">One entry per sale or serious inquiry. Stays empty until spring.</p>
+  <div class="stats" id="saleStats"></div>
+  <form class="add panel" id="saleForm">
+    <label>Date<input type="date" id="slDate" required></label>
+    <label>Piece<input type="text" id="slPiece" placeholder="e.g. Indoor cascade, oak"></label>
+    <label>Type<select id="slType"><option value="sale">Sale</option><option value="inquiry">Inquiry</option><option value="commission">Commission request</option></select></label>
+    <label>Where<select id="slWhere"><option>Market</option><option>Shop / consignment</option><option>Direct</option><option>Online</option><option>Other</option></select></label>
+    <label>Price ($)<input type="number" id="slPrice" min="0" step="1" placeholder="0"></label>
+    <label class="wide">What they liked or asked about<input type="text" id="slLiked" placeholder="One line"></label>
+    <div><button class="btn" type="submit">Add entry</button></div>
+  </form>
+  <div id="saleList"></div>
+</section>
+
+<section aria-labelledby="factsH">
+  <div class="sec-head"><span class="eyebrow">Reference</span><h2 id="factsH">Key numbers from the research</h2></div>
+  <div class="facts">
+    <div class="fact"><span class="v num">~$70</span><span class="l">Resin tabletop fountain, mass retail</span></div>
+    <div class="fact"><span class="v num">$199–230</span><span class="l">Handmade stone fountain kits online</span></div>
+    <div class="fact"><span class="v num">$175–300</span><span class="l">Price range to test (estimate)</span></div>
+    <div class="fact"><span class="v num">$60/mo</span><span class="l">Clear Creek Makerspace</span></div>
+    <div class="fact"><span class="v num">$16</span><span class="l">Colorado sales tax license, 2 years</span></div>
+    <div class="fact"><span class="v num">$200–400/yr</span><span class="l">Maker liability insurance</span></div>
+    <div class="fact"><span class="v num">$80–325</span><span class="l">Local market booth fees</span></div>
+  </div>
+</section>
+
+<details>
+  <summary>How this page stores its data</summary>
+  <p class="muted" style="margin-top:8px">Everything lives in this page's own store, so Claude can read it, add entries for you, or build a dashboard from it.</p>
+  <ul>
+    <li><code>tasks</code>: <code>id, track</code> (fountains | skills | business), <code>phase, title, detail, effort, kind, status, order, doneAt, followup</code> (build | sale | note), <code>ask, note</code></li>
+    <li><code>phases</code>: <code>id, track, name, short, label, goal, milestone, reward, order</code></li>
+    <li><code>builds</code> and <code>sales</code>: the two logs</li>
+    <li><code>meta/state</code>: <code>leftOff, leftOffAt</code></li>
+  </ul>
+</details>
+
+</div>
+
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const TRACKS = ['fountains','skills','business'];
+  const state = { tasks:[], phases:[], builds:[], sales:[], meta:{}, canEdit:false, db:null, loaded:{tasks:false,phases:false}, follow:null };
+  const CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>';
+  const DOT = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5" fill="currentColor"/></svg>';
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const nextStatus = { todo:'doing', doing:'done', done:'todo' };
+  const label = { todo:'To do', doing:'Doing', done:'Done' };
+  const today = () => { try { const d=new Date(); return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10); } catch(e){ return ''; } };
+  const SOUND = { silent:'Almost silent', soft:'Soft trickle', noticeable:'Noticeable', loud:'Too loud' };
+  const STYPE = { sale:'Sale', inquiry:'Inquiry', commission:'Commission request' };
+
+  const phaseTasks = (pid) => state.tasks.filter(t=>t.phase===pid).sort((a,b)=>(a.order||0)-(b.order||0));
+  const pct = (list) => list.length ? list.filter(t=>t.status==='done').length/list.length : 0;
+  const phasesOf = (track) => state.phases.filter(p=>p.track===track).sort((a,b)=>(a.order||0)-(b.order||0));
+  const currentPhase = (track) => phasesOf(track).find(p=>pct(phaseTasks(p.id))<1) || null;
+  function nextTask(track){ const p=currentPhase(track); if(!p) return null; const ts=phaseTasks(p.id); return ts.find(t=>t.status==='doing')||ts.find(t=>t.status!=='done')||null; }
+
+  function renderHeader(){
+    const total=state.tasks.length, done=state.tasks.filter(t=>t.status==='done').length, f=total?done/total:0;
+    $('ringArc').setAttribute('stroke-dasharray',(264*f).toFixed(1)+' 264');
+    $('ringPct').textContent=Math.round(f*100)+'%';
+    $('ringCount').textContent=done+' / '+total;
+    if(!state.loaded.tasks||!state.loaded.phases) return;
+    if(!state.phases.length){ $('gStatus').textContent='No roadmap data yet'; $('gStatusSub').textContent='Ask Claude to load the phases and steps into this page.'; return; }
+    const cp=currentPhase('fountains');
+    if(cp){ const ts=phaseTasks(cp.id), d=ts.filter(t=>t.status==='done').length; $('gStatus').textContent=cp.name; $('gStatusSub').textContent=(cp.label?cp.label+' · ':'')+d+' of '+ts.length+' steps done · Milestone: '+(cp.milestone||''); }
+    else { $('gStatus').textContent='Fountain track complete'; $('gStatusSub').textContent='Time to set the next goal.'; }
+    const nt=nextTask('fountains');
+    $('gNext').textContent=nt?nt.title:'Nothing queued';
+    $('gNextSub').textContent=nt?((nt.effort||'')+' · '+(nt.kind||'')+(nt.status==='doing'?' · in progress':'')):'';
+  }
+
+  function renderLanes(){
+    TRACKS.forEach(track=>{
+      const el=$('lane-'+track), ps=phasesOf(track), cp=currentPhase(track);
+      if(!ps.length){ el.innerHTML='<div class="empty" style="grid-column:1/-1">No stops yet</div>'; return; }
+      el.innerHTML=ps.map(p=>{ const ts=phaseTasks(p.id), f=pct(ts), d=ts.filter(t=>t.status==='done').length;
+        return '<a class="stop'+(cp&&cp.id===p.id?' current':'')+'" href="#'+esc(p.id)+'"><span class="t">'+esc(p.short||p.name)+'</span><span class="meter"><i style="width:'+Math.round(f*100)+'%"></i></span><span class="n">'+d+'/'+ts.length+'</span></a>'; }).join('');
+    });
+  }
+
+  function followPanel(t){
+    const f=state.follow, dr=(f&&f.draft)||{};
+    const v=(k,def)=>esc(dr[k]!==undefined?dr[k]:(def||''));
+    let inner='';
+    if(t.followup==='build'){
+      inner='<h4>Log this build</h4><div class="fgrid">'
+        +'<label>Piece<input data-f="piece" value="'+v('piece',t.pieceHint||'')+'"></label>'
+        +'<label>Hours<input data-f="hours" type="number" min="0" step="0.5" value="'+v('hours')+'"></label>'
+        +'<label>Materials ($)<input data-f="cost" type="number" min="0" step="1" value="'+v('cost')+'"></label>'
+        +'<label>Sound<select data-f="sound">'+Object.entries(SOUND).map(([k,l])=>'<option value="'+k+'"'+((dr.sound||'soft')===k?' selected':'')+'>'+l+'</option>').join('')+'</select></label>'
+        +'<label>Water lost per week<input data-f="water" value="'+v('water')+'" placeholder="e.g. about a cup"></label>'
+        +'<label class="fwide">What to change next time<input data-f="change" value="'+v('change')+'"></label></div>';
+    } else if(t.followup==='sale'){
+      inner='<h4>Log this sale</h4><div class="fgrid">'
+        +'<label>Piece<input data-f="piece" value="'+v('piece')+'"></label>'
+        +'<label>Where<select data-f="where">'+['Market','Shop / consignment','Direct','Online','Other'].map(o=>'<option'+((dr.where||'Market')===o?' selected':'')+'>'+o+'</option>').join('')+'</select></label>'
+        +'<label>Price ($)<input data-f="price" type="number" min="0" step="1" value="'+v('price')+'"></label>'
+        +'<label class="fwide">What did they like or ask about?<input data-f="liked" value="'+v('liked')+'"></label></div>';
+    } else {
+      inner='<label><span style="font-family:var(--display);font-size:1.05rem;font-weight:600;color:var(--ink)">'+esc(t.ask||'Anything to remember about this step?')+'</span><textarea data-f="note">'+v('note',t.note||'')+'</textarea></label>';
+    }
+    return '<div class="follow" data-follow="'+esc(t.id)+'">'+inner+'<div class="frow"><button class="btn" type="button" data-fsave="'+esc(t.id)+'">Save</button><button class="btn ghost" type="button" data-fskip>Skip</button></div><span class="saved" data-ferr></span></div>';
+  }
+
+  function taskRow(t){
+    const s=t.status||'todo', open=state.follow&&state.follow.id===t.id;
+    const fchip=t.followup?'<span class="chip log">asks</span>':'';
+    return '<li class="task'+(s==='done'?' done':'')+'">'
+      +'<button class="chk" data-id="'+esc(t.id)+'" data-s="'+s+'" disabled aria-label="'+esc(t.title)+': '+label[s]+'">'+(s==='done'?CHECK:s==='doing'?DOT:'')+'</button>'
+      +'<div class="body"><span class="title">'+esc(t.title)+'</span>'+(t.detail?'<span class="detail">'+esc(t.detail)+'</span>':'')+(t.note?'<span class="note">'+esc(t.note)+'</span>':'')+'</div>'
+      +'<div class="chips">'+fchip+'<span class="chip">'+esc(t.effort||'')+'</span><span class="chip '+esc(t.kind||'')+'">'+esc(t.kind||'')+'</span></div>'
+      +(open?followPanel(t):'')+'</li>';
+  }
+
+  function phaseCard(p){
+    const ts=phaseTasks(p.id), f=pct(ts), cp=currentPhase(p.track), done=f===1&&ts.length, cur=cp&&cp.id===p.id;
+    return '<article class="phase '+esc(p.track)+(cur?' current':'')+'" id="'+esc(p.id)+'">'
+      +'<div class="phase-top"><div><span class="eyebrow">'+esc(p.label||'')+'</span><h3>'+esc(p.name)+'</h3>'+(p.goal?'<p class="muted">'+esc(p.goal)+'</p>':'')+'</div>'
+      +'<span class="badge'+(done?' done':'')+'">'+(done?'Complete':cur?'Current':Math.round(f*100)+'% done')+'</span></div>'
+      +(p.milestone?'<div class="milestone"><b>Milestone</b><span>'+esc(p.milestone)+'</span></div>':'')
+      +'<ul class="tasks">'+(ts.length?ts.map(taskRow).join(''):'<li class="empty">No steps yet</li>')+'</ul>'
+      +'<div class="reward"><label class="eyebrow" for="rw-'+esc(p.id)+'">Reward</label><input id="rw-'+esc(p.id)+'" data-phase="'+esc(p.id)+'" value="'+esc(p.reward||'')+'" placeholder="What you get when this is done" '+(state.canEdit?'':'disabled')+'></div>'
+      +'</article>';
+  }
+
+  function captureDraft(){
+    if(!state.follow) return;
+    const el=document.querySelector('[data-follow="'+CSS.escape(state.follow.id)+'"]'); if(!el) return;
+    const d={}; el.querySelectorAll('[data-f]').forEach(i=>{ d[i.dataset.f]=i.value; });
+    state.follow.draft=d;
+  }
+
+  function renderPhases(){
+    if(!state.loaded.phases) return;
+    captureDraft();
+    const focusF=document.activeElement&&document.activeElement.dataset?document.activeElement.dataset.f:null;
+    TRACKS.forEach(track=>{
+      const ps=phasesOf(track);
+      $('ph-'+track).innerHTML=ps.length?ps.map(phaseCard).join(''):'<div class="empty">No phases yet. Ask Claude to load the roadmap.</div>';
+    });
+    if(state.follow&&focusF){ const el=document.querySelector('[data-follow="'+CSS.escape(state.follow.id)+'"] [data-f="'+focusF+'"]'); if(el) el.focus(); }
+  }
+
+  const delBtn=(coll,id)=>state.canEdit?'<button class="btn ghost" data-del="'+coll+'/'+esc(id)+'">Delete</button>':'';
+  const avg=(arr)=>arr.length?arr.reduce((s,x)=>s+x,0)/arr.length:0;
+
+  function renderBuilds(){
+    const bs=state.builds.slice().sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+    const hrs=bs.map(b=>Number(b.hours)).filter(n=>n>0), cost=bs.map(b=>Number(b.cost)).filter(n=>n>0);
+    const quiet=bs.filter(b=>b.sound==='silent'||b.sound==='soft').length;
+    $('buildStats').innerHTML='<div class="stat"><span class="v num">'+bs.length+'</span><span class="muted">builds</span></div>'
+      +'<div class="stat"><span class="v num">'+(hrs.length?avg(hrs).toFixed(1):'—')+'</span><span class="muted">avg hours</span></div>'
+      +'<div class="stat"><span class="v num">'+(cost.length?'$'+Math.round(avg(cost)):'—')+'</span><span class="muted">avg materials</span></div>'
+      +'<div class="stat"><span class="v num">'+(bs.length?quiet+'/'+bs.length:'—')+'</span><span class="muted">quiet enough</span></div>';
+    $('buildList').innerHTML=bs.length?'<div class="tbl"><table><thead><tr><th>Date</th><th>Piece</th><th>Hours</th><th>Materials</th><th>Sound</th><th>Water / wk</th><th>Change next time</th><th></th></tr></thead><tbody>'
+      +bs.map(b=>'<tr><td class="num">'+esc(b.date)+'</td><td>'+esc(b.piece)+'</td><td class="num">'+esc(b.hours||'')+'</td><td class="num">'+(b.cost?'$'+esc(b.cost):'')+'</td><td>'+esc(SOUND[b.sound]||'')+'</td><td>'+esc(b.water)+'</td><td>'+esc(b.change)+'</td><td>'+delBtn('builds',b.id)+'</td></tr>').join('')
+      +'</tbody></table></div>':'<div class="empty">No builds yet. When you mark "Build prototype 1" done, this page asks you about it.</div>';
+  }
+
+  function renderSales(){
+    const ss=state.sales.slice().sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+    const sold=ss.filter(s=>s.type==='sale'), rev=sold.reduce((t,s)=>t+(Number(s.price)||0),0);
+    const avgPrice=sold.length?rev/sold.length:0;
+    const cost=state.builds.map(b=>Number(b.cost)).filter(n=>n>0), avgCost=cost.length?avg(cost):0;
+    $('saleStats').innerHTML='<div class="stat"><span class="v num">'+sold.length+'</span><span class="muted">sold</span></div>'
+      +'<div class="stat"><span class="v num">$'+rev+'</span><span class="muted">earned</span></div>'
+      +'<div class="stat"><span class="v num">'+(sold.length?'$'+Math.round(avgPrice):'—')+'</span><span class="muted">avg price</span></div>'
+      +'<div class="stat"><span class="v num">'+(sold.length&&avgCost?'$'+Math.round(avgPrice-avgCost):'—')+'</span><span class="muted">avg price minus avg materials</span></div>'
+      +'<div class="stat"><span class="v num">'+ss.filter(s=>s.type!=='sale').length+'</span><span class="muted">inquiries and requests</span></div>';
+    $('saleList').innerHTML=ss.length?'<div class="tbl"><table><thead><tr><th>Date</th><th>Piece</th><th>Type</th><th>Where</th><th>Price</th><th>What they liked</th><th></th></tr></thead><tbody>'
+      +ss.map(s=>'<tr><td class="num">'+esc(s.date)+'</td><td>'+esc(s.piece)+'</td><td>'+esc(STYPE[s.type]||s.type)+'</td><td>'+esc(s.where)+'</td><td class="num">'+(s.price?'$'+esc(s.price):'')+'</td><td>'+esc(s.liked)+'</td><td>'+delBtn('sales',s.id)+'</td></tr>').join('')
+      +'</tbody></table></div>':'<div class="empty">No sales yet. Your first one goes here.</div>';
+  }
+
+  function renderAll(){ renderHeader(); renderLanes(); renderPhases(); renderBuilds(); renderSales(); }
+  function showNotice(msg){ const n=$('notice'); n.textContent=msg; n.hidden=false; }
+  function setFormsEnabled(on){ document.querySelectorAll('#buildForm input,#buildForm select,#buildForm button,#saleForm input,#saleForm select,#saleForm button').forEach(el=>{el.disabled=!on;}); $('leftOff').disabled=!on; }
+
+  async function init(){
+    setFormsEnabled(false);
+    $('bdDate').value=today(); $('slDate').value=today();
+    if(!window.claude||!window.claude.use){ showNotice('This page needs to be opened on claude.ai to load and save your roadmap.'); $('gStatus').textContent='Roadmap unavailable here'; return; }
+    const [db,user]=await Promise.all([claude.use('db'),claude.use('user')]);
+    if(!db){ showNotice('Roadmap data could not load in this view. Reopen the page on claude.ai.'); $('gStatus').textContent='Roadmap unavailable here'; return; }
+    state.db=db;
+    try{ state.canEdit=user?await user.canEdit():false; }catch(e){ state.canEdit=false; }
+    setFormsEnabled(state.canEdit);
+    if(!state.canEdit) $('leftOff').placeholder='Only the owner can edit this note.';
+    const sub=(coll)=>db.collection(coll).onSnapshot(snap=>{
+      state[coll]=snap.docs.map(d=>Object.assign({id:d.id},d.data()));
+      if(coll in state.loaded) state.loaded[coll]=true;
+      renderAll();
+    },err=>showNotice('Lost connection to the roadmap data ('+err.code+'). Reload the page to reconnect.'));
+    ['tasks','phases','builds','sales'].forEach(sub);
+    db.doc('meta/state').onSnapshot(s=>{
+      state.meta=s.exists?s.data():{};
+      if(document.activeElement!==$('leftOff')) $('leftOff').value=state.meta.leftOff||'';
+      $('leftOffSaved').textContent=state.meta.leftOffAt?'Saved '+new Date(state.meta.leftOffAt).toLocaleDateString():'';
+    });
+  }
+
+  async function saveFollow(id){
+    captureDraft();
+    const t=state.tasks.find(x=>x.id===id), d=(state.follow&&state.follow.draft)||{};
+    if(!t||!state.db) return;
+    const errEl=document.querySelector('[data-follow="'+CSS.escape(id)+'"] [data-ferr]');
+    try{
+      if(t.followup==='build'){
+        await state.db.collection('builds').add({date:today(),piece:(d.piece||'').trim(),hours:Number(d.hours)||0,cost:Number(d.cost)||0,sound:d.sound||'soft',water:(d.water||'').trim(),change:(d.change||'').trim(),taskId:id,createdAt:new Date().toISOString()});
+      } else if(t.followup==='sale'){
+        await state.db.collection('sales').add({date:today(),piece:(d.piece||'').trim(),type:'sale',where:d.where||'Market',price:Number(d.price)||0,liked:(d.liked||'').trim(),taskId:id,createdAt:new Date().toISOString()});
+      } else {
+        const note=(d.note||'').trim();
+        await state.db.doc('tasks/'+id).update({note,updatedAt:new Date().toISOString()});
+      }
+      state.follow=null; renderAll();
+    }catch(err){ if(errEl){ errEl.style.color='var(--warn)'; errEl.textContent=err.code==='quota_exceeded'?'The log is full. Delete old entries to add more.':'Could not save ('+err.code+'). Try again.'; } }
+  }
+
+  document.addEventListener('click',async(e)=>{
+    const fs=e.target.closest('[data-fsave]'); if(fs){ saveFollow(fs.dataset.fsave); return; }
+    if(e.target.closest('[data-fskip]')){ state.follow=null; renderPhases(); return; }
+    const chk=e.target.closest('.chk'); if(chk) return;
+    if(chk&&state.canEdit&&state.db){
+      const id=chk.dataset.id, cur=chk.dataset.s||'todo', nx=nextStatus[cur];
+      const t=state.tasks.find(x=>x.id===id);
+      if(t){ t.status=nx; if(nx==='done'&&t.followup){ state.follow={id,draft:null}; } else if(state.follow&&state.follow.id===id){ state.follow=null; } renderAll(); }
+      try{ await state.db.doc('tasks/'+id).update({status:nx,doneAt:nx==='done'?new Date().toISOString():null,updatedAt:new Date().toISOString()}); }
+      catch(err){ showNotice('Could not save that change ('+err.code+'). Try again.'); }
+      if(nx==='done'&&t&&t.followup){ const el=document.querySelector('[data-follow="'+CSS.escape(id)+'"] [data-f]'); if(el) el.focus(); }
+      return;
+    }
+    const del=e.target.closest('[data-del]');
+    if(del&&state.canEdit&&state.db){
+      if(!del.classList.contains('armed')){ del.classList.add('armed'); del.textContent='Confirm delete'; setTimeout(()=>{del.classList.remove('armed');del.textContent='Delete';},4000); return; }
+      try{ await state.db.doc(del.dataset.del).delete(); }catch(err){ showNotice('Could not delete ('+err.code+').'); }
+    }
+  });
+
+  document.addEventListener('change',async(e)=>{
+    const inp=e.target.closest('input[data-phase]');
+    if(inp&&state.canEdit&&state.db){ try{ await state.db.doc('phases/'+inp.dataset.phase).update({reward:inp.value.trim()}); }catch(err){ showNotice('Could not save the reward ('+err.code+').'); } }
+  });
+
+  $('leftOff').addEventListener('blur',async()=>{
+    if(!state.canEdit||!state.db) return;
+    const v=$('leftOff').value.trim(); if(v===(state.meta.leftOff||'')) return;
+    try{ await state.db.doc('meta/state').set({leftOff:v,leftOffAt:new Date().toISOString()}); }catch(err){ showNotice('Could not save your note ('+err.code+').'); }
+  });
+
+  $('buildForm').addEventListener('submit',async(e)=>{
+    e.preventDefault(); if(!state.canEdit||!state.db) return;
+    const row={date:$('bdDate').value,piece:$('bdPiece').value.trim(),hours:Number($('bdHours').value)||0,cost:Number($('bdCost').value)||0,sound:$('bdSound').value,water:$('bdWater').value.trim(),change:$('bdChange').value.trim(),createdAt:new Date().toISOString()};
+    try{ await state.db.collection('builds').add(row); ['bdPiece','bdHours','bdCost','bdWater','bdChange'].forEach(id=>$(id).value=''); }
+    catch(err){ showNotice(err.code==='quota_exceeded'?'The build log is full. Delete old entries to add more.':'Could not add the build ('+err.code+').'); }
+  });
+
+  $('saleForm').addEventListener('submit',async(e)=>{
+    e.preventDefault(); if(!state.canEdit||!state.db) return;
+    const row={date:$('slDate').value,piece:$('slPiece').value.trim(),type:$('slType').value,where:$('slWhere').value,price:Number($('slPrice').value)||0,liked:$('slLiked').value.trim(),createdAt:new Date().toISOString()};
+    try{ await state.db.collection('sales').add(row); ['slPiece','slPrice','slLiked'].forEach(id=>$(id).value=''); }
+    catch(err){ showNotice(err.code==='quota_exceeded'?'The sales log is full. Delete old entries to add more.':'Could not add the entry ('+err.code+').'); }
+  });
+
+  renderAll();
+  init();
+})();
+</script>
+
+</body></html>

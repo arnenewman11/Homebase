@@ -1,6 +1,6 @@
 {
  "title": "Price the remaining team lots and check the effort",
- "detail": "Large mixed lots sell for pennies a card; skip any lot that fails your hourly test.",
+ "detail": "Large mixed lots sell for $0.07–0.30/card; skip any lot that fails the $40/hr test.",
  "area": "card-sales",
  "bucket": "Productivity",
  "track": "football",
@@ -19,5 +19,11 @@
  "createdAt": "2026-10-15T10:30:00Z",
  "updatedAt": "2026-10-15T10:30:00Z",
  "changedBy": "migration",
- "demoSafe": false
+ "demoSafe": false,
+ "mirror": [
+  {
+   "roadmap": "card-sales",
+   "doc": "f2-3"
+  }
+ ]
 }

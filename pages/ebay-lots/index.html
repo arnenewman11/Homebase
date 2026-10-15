@@ -1,0 +1,420 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>eBay Lots Roadmap</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: one column. Garden card on top, track map, phase checklists, lot tracker, shipping rhythm, key numbers, data notes. */
+:root{
+  --bg:#f5f4f0; --surface:#ffffff; --ink:#1d2533; --muted:#5d6676; --line:#d9dce2;
+  --court:#1f4e8c; --court-soft:#e3ebf6; --kitchen:#2f7d5b; --kitchen-soft:#e2f1ea;
+  --ball:#e9b53c; --on-ball:#2a2108; --skill:#a3412f; --skill-soft:#f7e6e1;
+  --warn:#b5651d; --warn-soft:#f8ebde;
+  --display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12161d; --surface:#1a202a; --ink:#e8ebf0; --muted:#a0a9b8; --line:#2e3644;
+  --court:#7fb0ea; --court-soft:#1c2c44; --kitchen:#6fcf9f; --kitchen-soft:#173528;
+  --ball:#f0c55a; --on-ball:#2a2108; --skill:#e99a86; --skill-soft:#3a221c;
+  --warn:#e9a463; --warn-soft:#3a2716; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12161d; --surface:#1a202a; --ink:#e8ebf0; --muted:#a0a9b8; --line:#2e3644;
+  --court:#7fb0ea; --court-soft:#1c2c44; --kitchen:#6fcf9f; --kitchen-soft:#173528;
+  --ball:#f0c55a; --on-ball:#2a2108; --skill:#e99a86; --skill-soft:#3a221c;
+  --warn:#e9a463; --warn-soft:#3a2716; color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 56px}
+.wrap{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:36px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.05}
+h1{font-size:clamp(2.2rem,7vw,3.2rem);font-weight:800;text-transform:uppercase;letter-spacing:.01em}
+h2{font-size:clamp(1.5rem,4.5vw,1.9rem);font-weight:700;text-transform:uppercase}
+h3{font-size:1.25rem;font-weight:700}
+p{margin:0;max-width:65ch}
+a{color:var(--court)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--court);outline-offset:2px;border-radius:4px}
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+section{display:flex;flex-direction:column;gap:14px}
+.sec-head{display:flex;flex-direction:column;gap:6px;border-top:3px solid var(--ink);padding-top:12px}
+.muted{color:var(--muted)}
+/* strip = a row of nine pockets, like a binder page */
+.pocket-strip{display:grid;grid-template-columns:repeat(9,1fr);gap:4px}
+.pocket-strip i{height:10px;border-radius:2px;background:var(--court)}
+.pocket-strip i:nth-child(3n+2){background:var(--ball)}
+.pocket-strip i:nth-child(3n){background:var(--skill)}
+
+header{display:flex;flex-direction:column;gap:12px}
+.hero-row{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
+.hero-row > div{min-width:0}
+.ring{display:flex;align-items:center;gap:12px}
+.ring svg{width:92px;height:92px;flex:none}
+.ring .lbl{display:flex;flex-direction:column}
+.ring .big{font-family:var(--display);font-size:1.9rem;font-weight:800;line-height:1}
+
+.garden{background:var(--surface);border:2px solid var(--ink);border-radius:12px;padding:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.gfield{display:flex;flex-direction:column;gap:6px;min-width:0}
+.next{background:var(--ball);color:var(--on-ball);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.next .eyebrow{color:var(--on-ball);opacity:.8}
+.next strong{font-family:var(--display);font-size:1.35rem;line-height:1.1}
+textarea{width:100%;box-sizing:border-box;min-height:84px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px;resize:vertical}
+.saved{font-family:var(--mono);font-size:.72rem;color:var(--kitchen)}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.lanes{display:flex;flex-direction:column;gap:10px}
+.lane{display:grid;grid-template-columns:96px 1fr;gap:10px;align-items:stretch}
+.lane-name{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:1rem;display:flex;align-items:center}
+.stops{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:6px}
+.stop{border-radius:8px;padding:8px;display:flex;flex-direction:column;gap:6px;background:var(--court-soft);min-width:0;text-decoration:none;color:var(--ink)}
+.stop.current{outline:3px solid var(--ball);outline-offset:-3px}
+.stop .t{font-family:var(--display);font-weight:700;font-size:.98rem;line-height:1.1}
+.stop .meter{height:6px;background:var(--surface);border-radius:3px;overflow:hidden}
+.stop .meter i{display:block;height:100%;background:var(--court)}
+.stop .n{font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.lane.run .stop{background:var(--skill-soft)}
+.lane.run .stop .meter i{background:var(--skill)}
+@media (max-width:620px){.lane{grid-template-columns:1fr}}
+
+.phase{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.phase.current{border:2px solid var(--court)}
+.phase.run{border-color:var(--skill)}
+.phase-top{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:baseline}
+.phase-top > div{min-width:0;display:flex;flex-direction:column;gap:4px}
+.badge{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:99px;font-weight:600;background:var(--court-soft);color:var(--court)}
+.badge.done{background:var(--kitchen-soft);color:var(--kitchen)}
+.badge.run{background:var(--skill-soft);color:var(--skill)}
+.milestone{display:flex;gap:8px;flex-wrap:wrap;font-size:.92rem}
+.milestone b{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tasks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.task{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:start;padding:10px 0;border-top:1px solid var(--line)}
+.task:first-child{border-top:0}
+.task .body{min-width:0;display:flex;flex-direction:column;gap:2px}
+.task .title{font-weight:700}
+.task.done .title{text-decoration:line-through;color:var(--muted)}
+.task .detail{font-size:.9rem;color:var(--muted)}
+.chips{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.chip{font-family:var(--mono);font-size:.68rem;padding:2px 7px;border-radius:99px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.chip.you{border-color:var(--court);color:var(--court)}
+.chip.claude{border-color:var(--skill);color:var(--skill)}
+.chk{width:40px;height:40px;border-radius:50%;border:2px solid var(--line);background:var(--surface);cursor:pointer;display:grid;place-items:center;padding:0}
+.chk[data-s="doing"]{border-color:var(--ball);background:color-mix(in srgb,var(--ball) 30%,var(--surface))}
+.chk[data-s="done"]{border-color:var(--kitchen);background:var(--kitchen);color:var(--surface)}
+.chk:disabled{cursor:default}
+.chk svg{width:18px;height:18px}
+@media (max-width:520px){.task{grid-template-columns:44px 1fr}.chips{grid-column:2;justify-content:flex-start}}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.84rem;color:var(--muted)}
+
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.9rem}
+th,td{text-align:left;padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+td select,td input{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:4px 6px;min-width:0}
+td input{width:80px}
+tr.st-sold td,tr.st-shipped td{color:var(--muted)}
+.filters{display:flex;flex-wrap:wrap;gap:6px}
+.fbtn{background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:4px 12px;cursor:pointer;font-size:.85rem}
+.fbtn[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.empty{padding:14px;border:1px dashed var(--line);border-radius:8px;color:var(--muted);font-size:.92rem}
+.stats{display:flex;flex-wrap:wrap;gap:20px}
+.stat{display:flex;flex-direction:column}
+.stat .v{font-family:var(--display);font-weight:800;font-size:1.8rem;line-height:1}
+.notice{background:var(--warn-soft);border-radius:8px;padding:12px;font-size:.92rem}
+details{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+details summary{cursor:pointer;font-weight:700}
+details code{font-family:var(--mono);font-size:.82rem}
+details ul{padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.fact{border-left:4px solid var(--court);padding:4px 12px;display:flex;flex-direction:column}
+.fact .v{font-family:var(--display);font-weight:800;font-size:1.5rem}
+.fact .l{font-size:.85rem;color:var(--muted)}
+.ro-banner{background:var(--court-soft);color:var(--ink);border-left:4px solid var(--court);border-radius:8px;padding:8px 12px;font-size:.92rem}.ro-banner a{color:var(--ink);font-weight:700}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="pocket-strip" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <span class="eyebrow">Garden card · Card sales</span>
+  <div class="hero-row">
+    <div>
+      <h1>eBay Lots Roadmap</h1>
+      <p class="muted">75 NBA and MLB binder-page lots: sort, list, and ship by free USPS pickup twice a week. No post office trips.</p>
+    </div>
+    <div class="ring" aria-live="polite">
+      <svg viewBox="0 0 100 100" role="img" aria-label="Overall progress">
+        <circle cx="50" cy="50" r="42" fill="none" stroke="var(--line)" stroke-width="10"/>
+        <circle id="ringArc" cx="50" cy="50" r="42" fill="none" stroke="var(--kitchen)" stroke-width="10" stroke-linecap="round" stroke-dasharray="0 264" transform="rotate(-90 50 50)"/>
+        <text id="ringPct" x="50" y="57" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="800" font-size="24" fill="var(--ink)">0%</text>
+      </svg>
+      <div class="lbl"><span class="big num" id="ringCount">0 / 0</span><span class="muted">steps done</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="ro-banner" role="note">Check off steps in <a href="https://claude.ai/code/artifact/fadca305-7c93-4db1-8a1a-2d83f3d57244">Homebase</a>. Status here updates each morning.</div>
+
+<div id="notice" class="notice" hidden></div>
+
+<section aria-label="Where you are">
+  <div class="garden">
+    <div class="gfield">
+      <span class="eyebrow">Status</span>
+      <h3 id="gStatus">Loading roadmap…</h3>
+      <p class="muted" id="gStatusSub">Your phases and steps will appear here.</p>
+    </div>
+    <div class="gfield">
+      <div class="next">
+        <span class="eyebrow">Next step</span>
+        <strong id="gNext">—</strong>
+        <span id="gNextSub" class="num" style="font-size:.8rem"></span>
+      </div>
+    </div>
+    <div class="gfield">
+      <label class="eyebrow" for="leftOff">Where I left off</label>
+      <textarea id="leftOff" placeholder="A sentence for future you: what you were doing and what's next."></textarea>
+      <span class="saved" id="leftOffSaved" aria-live="polite"></span>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="mapH">
+  <div class="sec-head"><span class="eyebrow">Track map</span><h2 id="mapH">Launch, then run</h2></div>
+  <div class="panel">
+    <div class="lanes">
+      <div class="lane"><span class="lane-name">Launch</span><div class="stops" id="laneLaunch"></div></div>
+      <div class="lane run"><span class="lane-name">Run</span><div class="stops" id="laneRun"></div></div>
+    </div>
+    <div class="legend"><span>Bar = share of steps done</span><span>Yellow outline = you are here</span></div>
+  </div>
+</section>
+
+<section aria-labelledby="phasesH">
+  <div class="sec-head"><span class="eyebrow">Checklist</span><h2 id="phasesH">Phases</h2></div>
+  <div class="legend">
+    <span>Status is read-only here: to do, doing, done</span>
+    <span><span class="chip you">you</span> your step</span>
+    <span><span class="chip claude">claude</span> my step</span>
+    <span><span class="chip">S</span> under 30 min · <span class="chip">M</span> 30–90 min · <span class="chip">L</span> 2 hrs+</span>
+  </div>
+  <div id="phases" style="display:flex;flex-direction:column;gap:14px"><div class="empty">Loading phases…</div></div>
+</section>
+
+<section aria-labelledby="lotsH">
+  <div class="sec-head"><span class="eyebrow">Phase 3 onward</span><h2 id="lotsH">Lot tracker</h2></div>
+  <p class="muted">Which pages go in each lot, its price, and where it stands. Change the status as you go; add the sale price when it sells.</p>
+  <div class="stats" id="lotStats"></div>
+  <div class="filters" id="lotFilters" role="group" aria-label="Filter lots"></div>
+  <div id="lotList"><div class="empty">Loading lots…</div></div>
+</section>
+
+<section aria-labelledby="shipH">
+  <div class="sec-head"><span class="eyebrow">Phase 6</span><h2 id="shipH">Shipping rhythm</h2></div>
+  <p class="muted">Pack Monday and Thursday nights. USPS picks up from the porch Tuesday and Friday. With a 3-business-day handling time, every order fits a pickup.</p>
+  <div class="tbl panel"><table style="min-width:420px">
+    <thead><tr><th>Buyer pays on</th><th>Ship-by deadline</th><th>Goes out on</th></tr></thead>
+    <tbody>
+      <tr><td>Monday</td><td>Thursday</td><td>Tuesday pickup</td></tr>
+      <tr><td>Tuesday</td><td>Friday</td><td>Friday pickup</td></tr>
+      <tr><td>Wednesday</td><td>Monday</td><td>Friday pickup</td></tr>
+      <tr><td>Thursday</td><td>Tuesday</td><td>Friday pickup</td></tr>
+      <tr><td>Friday</td><td>Wednesday</td><td>Tuesday pickup</td></tr>
+      <tr><td>Saturday or Sunday</td><td>Wednesday or Thursday</td><td>Tuesday pickup</td></tr>
+    </tbody></table></div>
+  <p class="muted" style="font-size:.9rem">Each package: the lot's pages between two 9×12 chipboard sheets, in a gallon zip bag, in a #4 (9.5×14.5) bubble mailer. Spurs and Mavericks go in a 12×9×2 box. Sources: <a href="https://onlineshippingcalculator.com/guides/usps-free-pickup-schedule-guide">USPS free pickup rules</a> · <a href="https://parcelpath.com/ecommerce/ebay/how-long-does-ebay-seller-have-to-ship/">eBay handling time rules</a>.</p>
+</section>
+
+<section aria-labelledby="factsH">
+  <div class="sec-head"><span class="eyebrow">Reference</span><h2 id="factsH">Key numbers</h2></div>
+  <div class="facts">
+    <div class="fact"><span class="v num">75</span><span class="l">lots (49 MLB, 26 NBA)</span></div>
+    <div class="fact"><span class="v num">$3,049</span><span class="l">total asks (77% of single-card comps)</span></div>
+    <div class="fact"><span class="v num">$2,311</span><span class="l">Best Offer floors (75% of ask)</span></div>
+    <div class="fact"><span class="v num">$655–846</span><span class="l">expected gain vs. 37 whole-team lots</span></div>
+    <div class="fact"><span class="v num">$55–95/hr</span><span class="l">your labor rate on the extra work</span></div>
+    <div class="fact"><span class="v num">80214</span><span class="l">ship-from ZIP</span></div>
+  </div>
+</section>
+
+<details>
+  <summary>For the dashboard: how this page stores its data</summary>
+  <p class="muted" style="margin-top:8px">Same layout as the Video Analysis Roadmap, so the dashboard can read both the same way.</p>
+  <ul>
+    <li><code>tasks</code> — one document per step: <code>id, track</code> ("launch" | "run"), <code>phase</code>, <code>title, detail, effort</code> (S/M/L), <code>kind</code> (you/claude), <code>status</code> (todo/doing/done), <code>due, order, doneAt</code></li>
+    <li><code>phases</code> — <code>id, track, name, short, label, goal, milestone, order</code></li>
+    <li><code>meta/state</code> — <code>leftOff, leftOffAt</code></li>
+    <li><code>lots</code> — <code>team, sport, lot, pages, cards, ask, floor, oz, names, status</code> (to sort/stacked/listed/sold/shipped), <code>salePrice, order</code></li>
+  </ul>
+</details>
+
+</div>
+
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const state = { tasks: [], phases: [], lots: [], meta: {}, canEdit: false, db: null, loaded: { tasks:false, phases:false, lots:false }, filter:'all' };
+  const CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>';
+  const DOT = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5" fill="currentColor"/></svg>';
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const nextStatus = { todo:'doing', doing:'done', done:'todo' };
+  const label = { todo:'To do', doing:'Doing', done:'Done' };
+  const LOT_ST = [['todo','To sort'],['stacked','Stacked'],['listed','Listed'],['sold','Sold'],['shipped','Shipped']];
+  const money = (n) => '$' + Number(n||0).toLocaleString(undefined,{minimumFractionDigits:0,maximumFractionDigits:0});
+
+  function phaseTasks(pid){ return state.tasks.filter(t => t.phase === pid).sort((a,b)=>(a.order||0)-(b.order||0)); }
+  function pct(list){ return list.length ? list.filter(t=>t.status==='done').length / list.length : 0; }
+  function allPhases(){ return state.phases.slice().sort((a,b)=>(a.order||0)-(b.order||0)); }
+  function phasesOf(track){ return allPhases().filter(p=>p.track===track); }
+  function currentPhase(){ return allPhases().find(p => pct(phaseTasks(p.id)) < 1) || null; }
+  function nextTask(){
+    const p = currentPhase(); if(!p) return null;
+    const ts = phaseTasks(p.id);
+    return ts.find(t=>t.status==='doing') || ts.find(t=>t.status!=='done') || null;
+  }
+
+  function renderHeader(){
+    const total = state.tasks.length, done = state.tasks.filter(t=>t.status==='done').length;
+    const f = total ? done/total : 0;
+    $('ringArc').setAttribute('stroke-dasharray', (264*f).toFixed(1)+' 264');
+    $('ringPct').textContent = Math.round(f*100)+'%';
+    $('ringCount').textContent = done+' / '+total;
+    if(!state.loaded.tasks || !state.loaded.phases) return;
+    if(!state.phases.length){ $('gStatus').textContent='No roadmap data yet'; $('gStatusSub').textContent='Ask Claude to load the phases and steps.'; return; }
+    const cp = currentPhase();
+    if(cp){
+      const ts = phaseTasks(cp.id), d = ts.filter(t=>t.status==='done').length;
+      $('gStatus').textContent = cp.name;
+      $('gStatusSub').textContent = d+' of '+ts.length+' steps done · Milestone: '+(cp.milestone||'');
+    } else { $('gStatus').textContent='All phases done'; $('gStatusSub').textContent='Every lot is out the door.'; }
+    const nt = nextTask();
+    $('gNext').textContent = nt ? nt.title : 'Nothing queued';
+    $('gNextSub').textContent = nt ? [nt.effort, nt.kind, nt.due ? 'by '+nt.due : '', nt.status==='doing'?'in progress':''].filter(Boolean).join(' · ') : '';
+  }
+
+  function renderLanes(){
+    const cp = currentPhase();
+    const lane = (track, el) => {
+      const ps = phasesOf(track);
+      if(!ps.length){ el.innerHTML = '<div class="empty" style="grid-column:1/-1">No stops yet</div>'; return; }
+      el.innerHTML = ps.map(p => {
+        const ts = phaseTasks(p.id), f = pct(ts), d = ts.filter(t=>t.status==='done').length;
+        return '<a class="stop'+(cp && cp.id===p.id?' current':'')+'" href="#'+esc(p.id)+'"><span class="t">'+esc(p.short||p.name)+'</span><span class="meter"><i style="width:'+Math.round(f*100)+'%"></i></span><span class="n">'+d+'/'+ts.length+'</span></a>';
+      }).join('');
+    };
+    lane('launch', $('laneLaunch')); lane('run', $('laneRun'));
+  }
+
+  function taskRow(t){
+    const s = t.status || 'todo';
+    return '<li class="task'+(s==='done'?' done':'')+'">'
+      + '<button class="chk" data-id="'+esc(t.id)+'" data-s="'+s+'" disabled aria-label="'+esc(t.title)+': '+label[s]+'">'+(s==='done'?CHECK:s==='doing'?DOT:'')+'</button>'
+      + '<div class="body"><span class="title">'+esc(t.title)+'</span>'+(t.detail?'<span class="detail">'+esc(t.detail)+'</span>':'')+'</div>'
+      + '<div class="chips">'+(t.due?'<span class="chip">'+esc(t.due)+'</span>':'')+'<span class="chip">'+esc(t.effort||'')+'</span><span class="chip '+esc(t.kind||'')+'">'+esc(t.kind||'')+'</span></div></li>';
+  }
+
+  function phaseCard(p){
+    const ts = phaseTasks(p.id), f = pct(ts), cp = currentPhase();
+    const done = f===1 && ts.length, cur = cp && cp.id===p.id, run = p.track==='run';
+    return '<article class="phase'+(cur?' current':'')+(run?' run':'')+'" id="'+esc(p.id)+'">'
+      + '<div class="phase-top"><div><span class="eyebrow">'+esc(p.label||'')+'</span><h3>'+esc(p.name)+'</h3>'+(p.goal?'<p class="muted">'+esc(p.goal)+'</p>':'')+'</div>'
+      + '<span class="badge '+(done?'done':run?'run':'')+'">'+(done?'Complete':cur?'Current':Math.round(f*100)+'% done')+'</span></div>'
+      + (p.milestone?'<div class="milestone"><b>Milestone</b><span>'+esc(p.milestone)+'</span></div>':'')
+      + '<ul class="tasks">'+(ts.length?ts.map(taskRow).join(''):'<li class="empty">No steps yet</li>')+'</ul></article>';
+  }
+
+  function renderPhases(){
+    if(!state.loaded.phases) return;
+    const ps = allPhases();
+    $('phases').innerHTML = ps.length ? ps.map(phaseCard).join('') : '<div class="empty">No phases yet. Ask Claude to load the roadmap.</div>';
+  }
+
+  function renderLots(){
+    if(!state.loaded.lots) return;
+    const ls = state.lots.slice().sort((a,b)=>(a.order||0)-(b.order||0));
+    const cnt = (s) => ls.filter(l=>l.status===s).length;
+    const soldish = ls.filter(l=>l.status==='sold'||l.status==='shipped');
+    const rev = soldish.reduce((s,l)=>s+(Number(l.salePrice)||0),0);
+    $('lotStats').innerHTML = [
+      [ls.length,'lots'],[cnt('stacked')+cnt('listed')+soldish.length,'stacked or further'],[cnt('listed'),'listed now'],[soldish.length,'sold'],[cnt('shipped'),'shipped'],[money(rev),'sold for']
+    ].map(([v,l])=>'<div class="stat"><span class="v num">'+v+'</span><span class="muted">'+l+'</span></div>').join('');
+    const filters = [['all','All']].concat(LOT_ST);
+    $('lotFilters').innerHTML = filters.map(([k,l])=>'<button class="fbtn" data-filter="'+k+'" aria-pressed="'+(state.filter===k)+'">'+l+(k==='all'?'':' ('+cnt(k)+')')+'</button>').join('');
+    const shown = state.filter==='all' ? ls : ls.filter(l=>l.status===state.filter);
+    if(!ls.length){ $('lotList').innerHTML = '<div class="empty">No lots loaded yet.</div>'; return; }
+    if(!shown.length){ $('lotList').innerHTML = '<div class="empty">No lots with this status.</div>'; return; }
+    const dis = state.canEdit ? '' : ' disabled';
+    $('lotList').innerHTML = '<div class="tbl"><table><thead><tr><th>Team</th><th>Lot</th><th>Pages</th><th>Cards</th><th>Ask</th><th>Floor</th><th>Oz</th><th>Status</th><th>Sold $</th></tr></thead><tbody>'
+      + shown.map(l => '<tr class="st-'+esc(l.status)+'"><td><b>'+esc(l.team)+'</b><br><span class="muted" style="font-size:.82rem">'+esc(l.names||'')+'</span></td><td>'+esc(l.lot)+'</td><td class="num">'+esc(l.pages)+'</td><td class="num">'+esc(l.cards)+'</td><td class="num">$'+Number(l.ask).toFixed(2)+'</td><td class="num">$'+Number(l.floor).toFixed(2)+'</td><td class="num">'+esc(l.oz)+'</td>'
+        + '<td><select data-lot="'+esc(l.id)+'" aria-label="Status for '+esc(l.team)+' '+esc(l.lot)+'"'+dis+'>'+LOT_ST.map(([k,lb])=>'<option value="'+k+'"'+(l.status===k?' selected':'')+'>'+lb+'</option>').join('')+'</select></td>'
+        + '<td><input type="number" min="0" step="0.01" data-sale="'+esc(l.id)+'" value="'+(l.salePrice!=null?esc(l.salePrice):'')+'" aria-label="Sale price for '+esc(l.team)+' '+esc(l.lot)+'"'+dis+'></td></tr>').join('')
+      + '</tbody></table></div>';
+  }
+
+  function renderAll(){ renderHeader(); renderLanes(); renderPhases(); renderLots(); }
+  function showNotice(msg){ const n=$('notice'); n.textContent = msg; n.hidden = false; }
+
+  async function init(){
+    $('leftOff').disabled = true;
+    if(!window.claude || !window.claude.use){ showNotice('Open this page on claude.ai to load and save your roadmap.'); $('gStatus').textContent='Roadmap unavailable here'; return; }
+    const [db, user] = await Promise.all([claude.use('db'), claude.use('user')]);
+    if(!db){ showNotice('Roadmap data could not load in this view. Reopen the page on claude.ai.'); $('gStatus').textContent='Roadmap unavailable here'; return; }
+    state.db = db;
+    try { state.canEdit = user ? await user.canEdit() : false; } catch(e){ state.canEdit = false; }
+    $('leftOff').disabled = !state.canEdit;
+    if(!state.canEdit) $('leftOff').placeholder = 'Only the owner can edit this note.';
+    const sub = (coll) => db.collection(coll).onSnapshot(snap => {
+      state[coll] = snap.docs.map(d => Object.assign({ id: d.id }, d.data()));
+      state.loaded[coll] = true; renderAll();
+    }, err => showNotice('Lost connection to the roadmap data ('+err.code+'). Reload to reconnect.'));
+    sub('tasks'); sub('phases'); sub('lots');
+    db.doc('meta/state').onSnapshot(s => {
+      state.meta = s.exists ? s.data() : {};
+      if(document.activeElement !== $('leftOff')) $('leftOff').value = state.meta.leftOff || '';
+      $('leftOffSaved').textContent = state.meta.leftOffAt ? 'Saved '+new Date(state.meta.leftOffAt).toLocaleDateString() : '';
+    });
+  }
+
+  document.addEventListener('click', async (e) => {
+    const f = e.target.closest('[data-filter]');
+    if(f){ state.filter = f.dataset.filter; renderLots(); return; }
+    const chk = e.target.closest('.chk'); if(chk) return;
+    if(chk && state.canEdit && state.db){
+      const id = chk.dataset.id, nx = nextStatus[chk.dataset.s || 'todo'];
+      const t = state.tasks.find(x=>x.id===id); if(t){ t.status = nx; renderAll(); }
+      try { await state.db.doc('tasks/'+id).update({ status: nx, doneAt: nx==='done' ? new Date().toISOString() : null, updatedAt: new Date().toISOString() }); }
+      catch(err){ showNotice('Could not save that change ('+err.code+'). Try again.'); }
+    }
+  });
+
+  document.addEventListener('change', async (e) => {
+    if(!state.canEdit || !state.db) return;
+    const sel = e.target.closest('select[data-lot]');
+    if(sel){
+      try { await state.db.doc('lots/'+sel.dataset.lot).update({ status: sel.value, updatedAt: new Date().toISOString() }); }
+      catch(err){ showNotice('Could not save the status ('+err.code+').'); }
+      return;
+    }
+    const inp = e.target.closest('input[data-sale]');
+    if(inp){
+      const v = inp.value === '' ? null : Number(inp.value);
+      try { await state.db.doc('lots/'+inp.dataset.sale).update({ salePrice: v, updatedAt: new Date().toISOString() }); }
+      catch(err){ showNotice('Could not save the sale price ('+err.code+').'); }
+    }
+  });
+
+  $('leftOff').addEventListener('blur', async () => {
+    if(!state.canEdit || !state.db) return;
+    const v = $('leftOff').value.trim();
+    if(v === (state.meta.leftOff||'')) return;
+    try { await state.db.doc('meta/state').set({ leftOff: v, leftOffAt: new Date().toISOString() }); }
+    catch(err){ showNotice('Could not save your note ('+err.code+').'); }
+  });
+
+  renderAll();
+  init();
+})();
+</script>
+
+</body></html>

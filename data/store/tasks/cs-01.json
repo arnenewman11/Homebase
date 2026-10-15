@@ -20,5 +20,11 @@
  "updatedAt": "2026-10-15T10:30:00Z",
  "changedBy": "migration",
  "demoSafe": false,
- "doneAt": "2026-10-15T10:30:00Z"
+ "doneAt": "2026-10-15T10:30:00Z",
+ "mirror": [
+  {
+   "roadmap": "card-sales",
+   "doc": "c1-1"
+  }
+ ]
 }

@@ -23,5 +23,15 @@
  "doneAt": "2026-10-15T10:30:00Z",
  "mergedFrom": [
   "cs-18"
+ ],
+ "mirror": [
+  {
+   "roadmap": "ebay-lots",
+   "doc": "t12"
+  },
+  {
+   "roadmap": "card-sales",
+   "doc": "e1-1"
+  }
  ]
 }

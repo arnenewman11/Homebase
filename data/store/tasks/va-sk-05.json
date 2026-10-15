@@ -19,5 +19,11 @@
  "createdAt": "2026-10-15T10:30:00Z",
  "updatedAt": "2026-10-15T10:30:00Z",
  "changedBy": "migration",
- "demoSafe": false
+ "demoSafe": false,
+ "mirror": [
+  {
+   "roadmap": "video-analysis",
+   "doc": "va-sk-05"
+  }
+ ]
 }

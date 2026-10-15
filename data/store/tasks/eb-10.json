@@ -22,5 +22,15 @@
  "demoSafe": false,
  "mergedFrom": [
   "cs-20"
+ ],
+ "mirror": [
+  {
+   "roadmap": "ebay-lots",
+   "doc": "t10"
+  },
+  {
+   "roadmap": "card-sales",
+   "doc": "e1-3"
+  }
  ]
 }

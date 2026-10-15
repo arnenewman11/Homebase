@@ -1,0 +1,306 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Transition Zone Class</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Layout: a court-side clipboard. Header + 60-min strip, three info panels, then the run of show as drill cards with a mini court diagram each. */
+:root{
+  --bg:#eef3f0; --paper:#ffffff; --ink:#132430; --muted:#4f6370; --rule:#d3ded9;
+  --court:#2f6a93; --kitchen:#3f8a5c; --line:#ffffff; --zone:#f4e84a; --zone-ink:#4a4300;
+  --accent:#e2652a; --chip:#e3ece8;
+  --display:"Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --body:"Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1a22; --paper:#15252f; --ink:#e7efeb; --muted:#9db1ba; --rule:#26404d;
+  --court:#24577a; --kitchen:#2f6e49; --line:#dfe9e5; --zone:#e6db3c; --zone-ink:#1b1800;
+  --accent:#f07a42; --chip:#1f3441; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1a22; --paper:#15252f; --ink:#e7efeb; --muted:#9db1ba; --rule:#26404d;
+  --court:#24577a; --kitchen:#2f6e49; --line:#dfe9e5; --zone:#e6db3c; --zone-ink:#1b1800;
+  --accent:#f07a42; --chip:#1f3441; color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5}
+.wrap{max-width:1120px;margin:0 auto;padding-block:28px 56px;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));display:flex;flex-direction:column;gap:28px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.05}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+
+/* Header */
+header{display:grid;grid-template-columns:1fr auto;gap:16px 28px;align-items:end}
+header h1{font-size:clamp(40px,7vw,76px);font-weight:800;letter-spacing:-.02em}
+header h1 .z{background:var(--zone);color:var(--zone-ink);padding:0 .12em;border-radius:6px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.tag{font-size:18px;color:var(--muted);margin-top:8px;max-width:60ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+.fact{background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:6px 14px;font-weight:700;font-size:14px;white-space:nowrap}
+@media (max-width:720px){header{grid-template-columns:1fr}.facts{justify-content:flex-start}}
+
+/* 60-min strip */
+.strip{display:flex;border-radius:10px;overflow:hidden;border:2px solid var(--ink);font-size:12px;font-weight:700}
+.strip a{display:flex;flex-direction:column;justify-content:center;padding:8px 6px;min-width:0;color:var(--ink);text-decoration:none;border-right:2px solid var(--ink);background:var(--paper);overflow:hidden}
+.strip a:last-child{border-right:0}
+.strip a span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.strip a small{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:400}
+.strip a.talk{background:var(--chip)}
+.strip a.hot{background:var(--zone);color:var(--zone-ink)}
+.strip a.hot small{color:var(--zone-ink)}
+.strip a:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+@media (max-width:640px){.strip a span{display:none}}
+
+/* Panels */
+.panels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:900px){.panels{grid-template-columns:1fr}}
+.panel{background:var(--paper);border:1px solid var(--rule);border-radius:14px;padding:18px 20px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.panel h2{font-size:22px;font-weight:800}
+.panel ul,.panel ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.panel.rules{background:var(--court);color:#fff;border-color:var(--court)}
+.panel.rules .eyebrow{color:#cfe2ee}
+.panel.rules b{color:var(--zone)}
+.big1{background:var(--zone);color:var(--zone-ink);border-radius:10px;padding:10px 12px;font-weight:700;line-height:1.35}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font-size:14px}
+.three div{background:rgba(255,255,255,.12);border-radius:8px;padding:6px 8px}
+.three b{display:block;color:#fff !important}
+
+/* Legend */
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;font-size:14px;color:var(--muted)}
+.legend svg{vertical-align:middle;margin-right:4px}
+
+/* Drill cards */
+.runs{display:flex;flex-direction:column;gap:18px}
+.drill{background:var(--paper);border:1px solid var(--rule);border-radius:16px;display:grid;grid-template-columns:170px minmax(0,1fr);overflow:hidden;scroll-margin-top:12px}
+.drill .side{background:var(--chip);padding:16px 14px;display:flex;flex-direction:column;gap:10px;align-items:center;border-right:1px solid var(--rule)}
+.drill .time{font-family:var(--display);font-weight:800;font-size:26px;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.drill .side svg{width:100%;max-width:140px;height:auto}
+.drill .main{padding:18px 22px 20px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.drill h3{font-size:26px;font-weight:800}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;font-weight:700;letter-spacing:.04em;padding:3px 10px;border-radius:999px;background:var(--chip)}
+.chip.fmt{background:var(--ink);color:var(--paper)}
+.chip.goal{background:transparent;border:1px solid var(--rule);color:var(--muted)}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 22px}
+@media (max-width:760px){.drill{grid-template-columns:1fr}.drill .side{flex-direction:row;justify-content:space-between;border-right:0;border-bottom:1px solid var(--rule)}.drill .side svg{max-width:110px}.cols{grid-template-columns:1fr}}
+.blk{display:flex;flex-direction:column;gap:4px;min-width:0}
+.blk .eyebrow{color:var(--accent)}
+.blk ul,.blk ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
+.blk p{margin:0}
+.setup{background:var(--bg);border-radius:10px;padding:10px 12px;font-size:15px}
+.cue{font-family:var(--display);font-weight:800;font-size:19px;line-height:1.2}
+.cue q{quotes:"“" "”"}
+.after{border-top:2px dashed var(--rule);padding-top:10px}
+.demo{font-size:15px}
+.demo b{color:var(--court)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .demo b{color:#8cc3e6}}
+:root[data-theme="dark"] .demo b{color:#8cc3e6}
+
+footer{color:var(--muted);font-size:14px}
+@media (prefers-reduced-motion: no-preference){.strip a{transition:filter .15s}.strip a:hover{filter:brightness(.95)}}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div>
+    <div class="eyebrow">Class plan · New players · First run</div>
+    <h1>Transition <span class="z">Zone</span></h1>
+    <p class="tag" style="font-size:15px;margin-top:6px">The steps in this plan are tracked in <a href="https://claude.ai/code/artifact/fadca305-7c93-4db1-8a1a-2d83f3d57244">Homebase</a>. Check them off there.</p>
+    <p class="tag">Stop calling it No Man’s Land. It’s the pathway to the kitchen: move with purpose, manage the ball, earn your way forward.</p>
+  </div>
+  <div class="facts">
+    <span class="fact">60 min</span><span class="fact">1 court</span><span class="fact">4 players (A–D)</span><span class="fact">You + shadow instructor</span>
+  </div>
+</header>
+
+<nav class="strip" aria-label="Class timeline">
+  <a href="#d0" class="talk" style="flex:6"><span>Intro</span><small>0–6</small></a>
+  <a href="#d1" style="flex:6"><span>Warm-up</span><small>6–12</small></a>
+  <a href="#d2" style="flex:8"><span>Move–Split–Move</span><small>12–20</small></a>
+  <a href="#d3" class="hot" style="flex:10"><span>Shot Options</span><small>20–30</small></a>
+  <a href="#d4" style="flex:8"><span>Earn Your Way In</span><small>30–38</small></a>
+  <a href="#d5" style="flex:8"><span>Soft Block</span><small>38–46</small></a>
+  <a href="#d6" style="flex:5"><span>High or Low</span><small>46–51</small></a>
+  <a href="#d7" class="hot" style="flex:6"><span>Play It Out</span><small>51–57</small></a>
+  <a href="#d8" class="talk" style="flex:3"><span>Wrap</span><small>57–60</small></a>
+</nav>
+
+<section class="panels">
+  <div class="panel">
+    <div class="eyebrow">By the end, players can</div>
+    <h2>Class outcomes</h2>
+    <ul>
+      <li>Move through the zone confidently, in short controlled advances</li>
+      <li>Know where to stand and why, moving as a pair</li>
+      <li>Hit soft shots while working forward</li>
+      <li>Reset and neutralize hard balls</li>
+      <li>Make better decisions under pressure</li>
+      <li>Spot when to attack instead of just survive</li>
+      <li>Play it out in realistic transition rallies</li>
+    </ul>
+  </div>
+
+  <div class="panel rules">
+    <div class="eyebrow">Teach in the intro · repeat all hour</div>
+    <h2>Rules of the zone</h2>
+    <div class="big1">#1 goal: make the ball bounce, ideally in the kitchen. A ball that bounces in the kitchen can’t be volleyed hard at you, and buys you time to move up.</div>
+    <ol>
+      <li><b>Paddle ready.</b> Out front, chest height, tip up.</li>
+      <li><b>Stable beats fast.</b> Steps, stop, balance, then hit. Never hit while running.</li>
+      <li><b>Three ways to meet the ball:</b> volley, short hop, step back.</li>
+      <li><b>After every shot, choose one:</b></li>
+    </ol>
+    <div class="three">
+      <div><b>Forward</b>It bounced in the kitchen</div>
+      <div><b>Stay</b>Bounces deeper, or unsure</div>
+      <div><b>Back</b>Popped up, they can volley it</div>
+    </div>
+    <ol start="5"><li><b>Ball goes high, you go low.</b> Knees bent, paddle out, expect it at your feet.</li></ol>
+  </div>
+
+  <div class="panel">
+    <div class="eyebrow">Before players arrive</div>
+    <h2>Court setup</h2>
+    <ul>
+      <li><b>Basket</b> (~50–60 balls) at your kitchen line, center, net side. You feed from here all class.</li>
+      <li><b>Pickup bucket</b> at the net post on the players’ side. On-deck players collect and refill between turns.</li>
+      <li><b>Zone back edge:</b> flat cones or throw-down lines 2 ft inside the players’ baseline, both sidelines.</li>
+      <li><b>Halfway spots:</b> 4 flat markers across the zone, about 6–7 ft behind the kitchen line, for four-across drills.</li>
+      <li><b>On-deck spot</b> behind the players’ baseline.</li>
+      <li><b>Shadow instructor</b> on the players’ side sideline, ready to demo.</li>
+    </ul>
+  </div>
+</section>
+
+<div class="legend" id="legend" aria-label="Diagram key"></div>
+
+<section class="runs" id="runs"></section>
+
+<footer>Formats: <b>Four across</b> = all four players side by side, you feed in turn A→D. <b>Pair + pair</b> = one pair works on court while the other pair shadows the same footwork from the on-deck spot; swap after every trip.</footer>
+</div>
+
+<script>
+const drills = [
+ {id:"d0",time:"0–6",title:"Intro discussion",fmt:"Whole group, standing in the zone",goals:["Rules of the zone"],
+  setup:"Walk everyone onto the players’ side and stand in the zone. Point to the kitchen line and the 2‑ft cones: everything between is the transition zone.",
+  before:["Not No Man’s Land: the pathway to the kitchen. Everyone has to pass through it.","#1 goal: make it bounce, ideally in the kitchen (and why).","Walk through the rules of the zone panel above."],
+  run:["Ask: “What happens when you get stuck in here?”","Ask: “Is it worse to get stuck, or to rush in?”","Have everyone hold paddle-ready and feel it."],
+  cue:"Did it bounce in the kitchen? What did that earn you?",
+  demo:"Paddle ready vs. paddle down; forward, stay and back footwork; a quick look at volley, short hop, step back.",
+  after:"Preview the hour: move, position, meet the ball, reset, decide, play it live.",
+  dia:{p:[["A",3,36],["B",8,36],["C",12,36],["D",17,36]],c:[10,31],s:[14,31],cones:[[0,42],[20,42]]}},
+ {id:"d1",time:"6–12",title:"Baseline-to-Zone Rally",fmt:"Two pairs, straight ahead",goals:["Move confidently"],
+  setup:"A and B on one baseline, C and D on the other. Each player rallies with the player straight across. You roam the sideline.",
+  before:["Move forward in small steps.","Paddle back to ready after every shot.","As you get closer, hit softer so the ball still bounces."],
+  run:["Gentle rally, let every ball bounce. Catching and restarting is fine.","Every 90 s call “step”: everyone takes one step forward.","Stop about halfway through the zone, go back to the baseline, repeat once.","If a pair can’t keep it going, take one side yourself and feed."],
+  cue:"Paddle back to ready. Make it bounce.",
+  demo:"Rally with you for a few balls to model soft, low-bouncing shots up close.",
+  after:"The closer you get, the softer you hit.",
+  dia:{p:[["A",5,43],["B",15,43],["C",5,1],["D",15,1]],c:[21.6,20],arrows:[[5,42,5,36.5],[15,42,15,36.5],[5,2,5,7.5],[15,2,15,7.5]],b:[21.6,24.5]}},
+ {id:"d2",time:"12–20",title:"Move–Split–Move",fmt:"Four across, then pair + pair",goals:["Move confidently","Positioning and why"],
+  setup:"You at the kitchen line, center, with the basket. All four start on the players’ baseline.",
+  before:["Split step: be stopped and balanced right when the opponent hits.","Move as a pair, about 8 ft apart, side by side.","Practice all three: forward, stay, back."],
+  run:["No ball, four across (3 min): you call “forward”, “stay” or “back”, then shadow-swing. They move and land with a small hop, feet wide, paddle up, as you “contact”.","With ball, pair + pair (5 min): after each stop you feed one easy ball; they push it back soft to bounce in the kitchen. ~3 stops per trip, then swap pairs.","Freeze checks: paddle out front? Knees bent? Feet still?","Still moving when you hit = no advance next step."],
+  cue:"Stop when I hit.",
+  demo:"Split-step timing next to the players on the first trip.",
+  after:"Every movement ends the same way: stopped, balanced, paddle ready.",
+  dia:{p:[["A",6,43],["B",14,43],["C",6,46.6],["D",14,46.6]],c:[10,13.6],b:[13,13.3],s:[21.6,36],arrows:[[6,42,6,30.5],[14,42,14,30.5]]}},
+ {id:"d3",time:"20–30",title:"Shot Options: Volley, Short Hop, Step Back",fmt:"Four across on halfway markers",goals:["Shots while moving forward"],
+  setup:"A–D on the four halfway markers. You at the kitchen line with the basket.",
+  before:["Same goal for all three: a soft arc that bounces in the kitchen. Only a ball above the net gets hit down.","Volley: ball between knees and chest, reachable before it lands. Lean out, meet it in front, push. Usually move forward after.","Short hop: ball landing at your feet, no time to back up. Knees bent, face slightly open, lift right after the bounce, no backswing. Usually stay.","Step back: ball landing at your feet and you have time. Step back, let it bounce, soft lifting groundstroke. Then stay, or forward if it bounced in the kitchen."],
+  run:["Blocked (6 min): feed A→D, 2 rounds per option. Call the option before each round.","Mixed (4 min): random feeds. Player calls the option out loud, then hits, then resets to ready.","Shift markers every couple of rounds so everyone sees forehand and backhand."],
+  cue:"Lean out and push. Low and lift. Step back, let it bounce.",
+  demo:"All three shots before the blocked round, side by side with you calling them.",
+  after:"Where the ball is landing decides how you meet it. Whichever you pick, make it bounce in the kitchen.",
+  dia:{p:[["A",2.5,35.5],["B",7.5,35.5],["C",12.5,35.5],["D",17.5,35.5]],c:[10,13.6],b:[13,13.3],s:[21.6,38],cones:[[2.5,37.6],[7.5,37.6],[12.5,37.6],[17.5,37.6]],arrows:[[10,15,7.5,33.5]]}},
+ {id:"d4",time:"30–38",title:"Earn Your Way In",fmt:"Pair + pair",goals:["Shots while moving forward","Decisions under pressure"],
+  setup:"You at the kitchen line with the basket. One pair on the baseline, the other pair on deck.",
+  before:["Where your ball bounces decides your movement.","Kitchen = forward. Deeper = stay. No bounce (popped up) = stay or back, and go low."],
+  run:["Feed an easy deep ball. Player hits soft, choosing volley, short hop or step back.","Hitter calls “forward”, “stay” or “back”; the pair moves together and stops.","Pop-up: they call “low!”, drop, paddle ready. You send a medium ball at their feet.","Keep feeding until they reach the kitchen line, then swap pairs."],
+  cue:"Did it bounce in the kitchen?",
+  demo:"Join the first pair as a partner for one trip to model the calls and moving together.",
+  after:"You earn each step with a bounce in the kitchen. Staying or backing up isn’t failing; it’s how you survive to hit the next one.",
+  dia:{p:[["A",6,43],["B",14,43],["C",6,46.6],["D",14,46.6]],c:[10,13.6],b:[13,13.3],arrows:[[6,42,6,38],[6,37,6,33.5],[14,42,14,38],[14,37,14,33.5]]}},
+ {id:"d5",time:"38–46",title:"Soft Block",fmt:"Pair + pair",goals:["Reset hard balls"],
+  setup:"You at the kitchen line with the basket. One pair on the halfway markers, low and ready. On-deck pair practices the block motion without a ball.",
+  before:["A fast ball is a volley with no swing.","Paddle out front, let the ball bounce off it so it drops into the kitchen.","Starting low with the paddle ready is what makes it work."],
+  run:["Alternate medium-pace feeds between the two: paddle side first, then body.","5 balls each, then swap pairs. 2–3 rounds. Add pace only if they’re succeeding.","Last round: after each block, call forward / stay / back and move."],
+  cue:"Catch it, don’t swing.",
+  demo:"Block vs. swing on the same feed so they see the difference in where it lands.",
+  after:"If your paddle is ready, you don’t have to swing. Target: 2–3 of 5 soft and low is a win.",
+  dia:{p:[["A",6,35.5],["B",14,35.5],["C",6,46.6],["D",14,46.6]],c:[10,13.6],b:[13,13.3],s:[21.6,38],arrows:[[10,15,6.4,33.6]]}},
+ {id:"d6",time:"46–51",title:"High or Low",fmt:"Four across on halfway markers",goals:["Decisions under pressure","Attack vs. survive"],
+  setup:"A–D on the halfway markers. You at the kitchen line with the basket.",
+  before:["Read the ball before you hit.","Low (below the net): lift it soft into the kitchen, stay.","High (above the net): hit it down at feet or the middle, step in. The one time you don’t need the kitchen bounce."],
+  run:["Feed a slow mix of high and low, A→D.","Player calls “high” or “low” before contact, then does the matching shot and movement.","You confirm the call and whether low balls bounced in the kitchen."],
+  cue:"Say it, then hit it.",
+  demo:"One high and one low ball, calling it out loud first.",
+  after:"Not every ball is for attacking. Recognize the ones that are; make the rest bounce in the kitchen.",
+  dia:{p:[["A",2.5,35.5],["B",7.5,35.5],["C",12.5,35.5],["D",17.5,35.5]],c:[10,13.6],b:[13,13.3],cones:[[2.5,37.6],[7.5,37.6],[12.5,37.6],[17.5,37.6]],arrows:[[10,15,12.5,33.5]]}},
+ {id:"d7",time:"51–57",title:"Play It Out",fmt:"You vs. a pair, pairs rotate every rally",goals:["Realistic scenarios","Everything"],
+  setup:"You at the kitchen line covering your side (shadow instructor can join you to make it true doubles). One pair at the baseline, other pair on deck.",
+  before:["Put it together: paddle ready, stop before you hit, pick your shot, make it bounce in the kitchen, then forward / stay / back."],
+  run:["Cooperative (2 min): easy deep feed to start each rally; keep it going and call options out loud if needed.","Live (4 min): you set a beginner pace and punish only clear pop-ups, medium speed at their feet.","Scoring: 1 point per rally won + 1 bonus for reaching the kitchen line. Keep a running score, A/B vs. C/D.","Pause on rushing in off-balance, swinging at a fast ball, or standing tall after a pop-up."],
+  cue:"Did it bounce in the kitchen? What did that earn you?",
+  demo:"Optional partner at the kitchen with you.",
+  after:"Ask after a pause: “What should you have done?” Answer is usually “go low and get ready” or “stop and get stable.”",
+  dia:{p:[["A",6,43],["B",14,43],["C",6,46.6],["D",14,46.6]],c:[7,13.6],b:[21.6,13.5],s:[13,13.6],sOpt:true,arrows:[[6,42,6,31],[14,42,14,31]]}},
+ {id:"d8",time:"57–60",title:"Wrap-up",fmt:"Whole group",goals:["Takeaways"],
+  setup:"Gather at the net.",
+  before:["Ask: “Is it still No Man’s Land?”","Each player shares one cue they’re taking with them."],
+  run:["Make the ball bounce, ideally in the kitchen.","Paddle ready. Stop before you hit.","Volley, short hop or step back: choose by where it lands.","After every shot: forward, stay or back.","Ball goes high, you go low. Earn your way forward."],
+  cue:"Move with purpose, manage the ball, earn your way forward.",
+  demo:"",
+  after:"",
+  dia:{p:[["A",4,24],["B",8,24],["C",12,24],["D",16,24]],c:[10,27.5],s:[14,27.5]}}
+];
+
+const NS="http://www.w3.org/2000/svg";
+function court(d,label){
+  const s=[];
+  s.push(`<svg viewBox="-3 -2 26 51" xmlns="${NS}" role="img" aria-label="Court setup for ${label}">`);
+  s.push(`<defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"/></marker></defs>`);
+  s.push(`<rect x="0" y="0" width="20" height="44" fill="var(--court)" rx="0.4"/>`);
+  s.push(`<rect x="0" y="15" width="20" height="14" fill="var(--kitchen)"/>`);
+  s.push(`<rect x="0" y="29" width="20" height="13" fill="var(--zone)" opacity="0.55"/>`);
+  s.push(`<g stroke="var(--line)" stroke-width="0.25" fill="none"><rect x="0" y="0" width="20" height="44"/><line x1="0" y1="15" x2="20" y2="15"/><line x1="0" y1="29" x2="20" y2="29"/><line x1="10" y1="0" x2="10" y2="15"/><line x1="10" y1="29" x2="10" y2="44"/></g>`);
+  s.push(`<line x1="-1" y1="22" x2="21" y2="22" stroke="var(--ink)" stroke-width="0.6"/>`);
+  (d.arrows||[]).forEach(a=>s.push(`<line x1="${a[0]}" y1="${a[1]}" x2="${a[2]}" y2="${a[3]}" stroke="var(--accent)" stroke-width="0.45" stroke-dasharray="0.9 0.6" marker-end="url(#ar)"/>`));
+  (d.cones||[]).forEach(c=>s.push(`<path d="M${c[0]-0.9},${c[1]+0.7} L${c[0]},${c[1]-0.9} L${c[0]+0.9},${c[1]+0.7} z" fill="var(--accent)"/>`));
+  if(d.b) s.push(`<rect x="${d.b[0]-1.1}" y="${d.b[1]-0.9}" width="2.2" height="1.8" rx="0.3" fill="var(--paper)" stroke="var(--ink)" stroke-width="0.25"/><text x="${d.b[0]}" y="${d.b[1]+0.55}" font-size="1.4" text-anchor="middle" font-weight="700" fill="var(--ink)" font-family="sans-serif">B</text>`);
+  if(d.c) s.push(`<rect x="${d.c[0]-1.3}" y="${d.c[1]-1.3}" width="2.6" height="2.6" rx="0.4" fill="var(--ink)"/><text x="${d.c[0]}" y="${d.c[1]+0.6}" font-size="1.6" text-anchor="middle" font-weight="700" fill="var(--paper)" font-family="sans-serif">Y</text>`);
+  if(d.s) s.push(`<path d="M${d.s[0]},${d.s[1]-1.6} L${d.s[0]+1.6},${d.s[1]} L${d.s[0]},${d.s[1]+1.6} L${d.s[0]-1.6},${d.s[1]} z" fill="var(--paper)" stroke="var(--ink)" stroke-width="0.3" ${d.sOpt?'stroke-dasharray="0.5 0.4"':''}/><text x="${d.s[0]}" y="${d.s[1]+0.55}" font-size="1.4" text-anchor="middle" font-weight="700" fill="var(--ink)" font-family="sans-serif">S</text>`);
+  (d.p||[]).forEach(p=>s.push(`<circle cx="${p[1]}" cy="${p[2]}" r="1.3" fill="var(--zone)" stroke="var(--ink)" stroke-width="0.3"/><text x="${p[1]}" y="${p[2]+0.55}" font-size="1.5" text-anchor="middle" font-weight="700" fill="var(--zone-ink)" font-family="sans-serif">${p[0]}</text>`));
+  s.push(`</svg>`);
+  return s.join("");
+}
+const esc=t=>t.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const list=(arr,tag="ul")=>`<${tag}>${arr.map(x=>`<li>${esc(x)}</li>`).join("")}</${tag}>`;
+
+document.getElementById("runs").innerHTML=drills.map(d=>`
+<article class="drill" id="${d.id}">
+  <div class="side"><div class="time">${d.time}</div>${court(d.dia,d.title)}</div>
+  <div class="main">
+    <div class="chips"><span class="chip fmt">${esc(d.fmt)}</span>${d.goals.map(g=>`<span class="chip goal">${esc(g)}</span>`).join("")}</div>
+    <h3>${esc(d.title)}</h3>
+    <div class="setup"><span class="eyebrow">Setup</span> ${esc(d.setup)}</div>
+    <div class="cols">
+      <div class="blk"><span class="eyebrow">Before · teach</span>${list(d.before)}</div>
+      <div class="blk"><span class="eyebrow">How it runs</span>${list(d.run,"ol")}</div>
+    </div>
+    <div class="blk"><span class="eyebrow">During · cue</span><div class="cue"><q>${esc(d.cue)}</q></div></div>
+    ${d.demo?`<div class="blk demo"><span class="eyebrow">Shadow instructor</span><p><b>Demo:</b> ${esc(d.demo)}</p></div>`:""}
+    ${d.after?`<div class="blk after"><span class="eyebrow">After · takeaway</span><p>${esc(d.after)}</p></div>`:""}
+  </div>
+</article>`).join("");
+
+const mini=(inner)=>`<svg width="22" height="22" viewBox="-2 -2 4 4" aria-hidden="true">${inner}</svg>`;
+document.getElementById("legend").innerHTML=[
+ [mini(`<circle r="1.3" fill="var(--zone)" stroke="var(--ink)" stroke-width="0.3"/>`),"Player A–D"],
+ [mini(`<rect x="-1.3" y="-1.3" width="2.6" height="2.6" rx="0.4" fill="var(--ink)"/>`),"You (Y)"],
+ [mini(`<path d="M0,-1.6 L1.6,0 L0,1.6 L-1.6,0 z" fill="var(--paper)" stroke="var(--ink)" stroke-width="0.3"/>`),"Shadow instructor (S)"],
+ [mini(`<rect x="-1.1" y="-0.9" width="2.2" height="1.8" rx="0.3" fill="var(--paper)" stroke="var(--ink)" stroke-width="0.25"/>`),"Ball basket (B)"],
+ [mini(`<path d="M-0.9,0.7 L0,-0.9 L0.9,0.7 z" fill="var(--accent)"/>`),"Cone / marker"],
+ [mini(`<rect x="-1.6" y="-1.6" width="3.2" height="3.2" fill="var(--zone)" opacity=".55"/>`),"Transition zone"],
+ [mini(`<line x1="-1.6" y1="0" x2="1.6" y2="0" stroke="var(--accent)" stroke-width="0.45" stroke-dasharray="0.9 0.6"/>`),"Movement / feed"]
+].map(([s,t])=>`<span>${s}${t}</span>`).join("")+`<span>Your side is the top of each court.</span>`;
+</script>
+
+</body></html>

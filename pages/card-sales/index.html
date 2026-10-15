@@ -1,0 +1,584 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Card Sales Roadmap</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: one column. Garden card + cash goal on top, three-lane track map, each lane's phases, cash and time logs, key numbers. Palette from card stock: cream, navy ink, foil red, gold, turf green. */
+:root{
+  --bg:#f4f1e9; --surface:#fcfbf7; --ink:#16223a; --muted:#5b6474; --line:#dad5c7;
+  --navy:#1f3a68; --navy-soft:#e1e8f3;
+  --foil:#b3363f; --foil-soft:#f6e1e2;
+  --turf:#2f6b45; --turf-soft:#e0eee5;
+  --gold:#c99a22; --gold-soft:#f5e8c4; --on-gold:#2a2005;
+  --warn:#a5532a; --warn-soft:#f6e3d8;
+  --display:"Saira Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#10141d; --surface:#171d29; --ink:#e7eaf1; --muted:#a0a8b8; --line:#2c3445;
+  --navy:#8eb0e8; --navy-soft:#1b2a45; --foil:#ec8a90; --foil-soft:#3a1d22;
+  --turf:#7fc79a; --turf-soft:#183324; --gold:#e3b84e; --gold-soft:#3a2f12; --on-gold:#1d1604;
+  --warn:#e69a6f; --warn-soft:#3b2418; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10141d; --surface:#171d29; --ink:#e7eaf1; --muted:#a0a8b8; --line:#2c3445;
+  --navy:#8eb0e8; --navy-soft:#1b2a45; --foil:#ec8a90; --foil-soft:#3a1d22;
+  --turf:#7fc79a; --turf-soft:#183324; --gold:#e3b84e; --gold-soft:#3a2f12; --on-gold:#1d1604;
+  --warn:#e69a6f; --warn-soft:#3b2418; color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 56px}
+.wrap{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:36px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.04}
+h1{font-size:clamp(2.2rem,7vw,3.2rem);font-weight:800;text-transform:uppercase;letter-spacing:.01em}
+h2{font-size:clamp(1.5rem,4.5vw,1.9rem);font-weight:700;text-transform:uppercase}
+h3{font-size:1.28rem;font-weight:700}
+p{margin:0;max-width:65ch}
+a{color:var(--navy);text-underline-offset:2px}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:4px}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+section{display:flex;flex-direction:column;gap:14px}
+.sec-head{display:flex;flex-direction:column;gap:6px;border-top:3px solid var(--ink);padding-top:12px}
+
+header{display:flex;flex-direction:column;gap:12px}
+.binder{width:100%;max-width:100%;height:auto;display:block}
+.hero-row{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
+.hero-row > div{min-width:0}
+.ring{display:flex;align-items:center;gap:12px}
+.ring svg{width:92px;height:92px;flex:none}
+.ring .lbl{display:flex;flex-direction:column}
+.ring .big{font-family:var(--display);font-size:1.9rem;font-weight:800;line-height:1}
+
+.garden{background:var(--surface);border:2px solid var(--ink);border-radius:12px;padding:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.gfield{display:flex;flex-direction:column;gap:6px;min-width:0}
+.next{background:var(--gold);color:var(--on-gold);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.next .eyebrow{color:var(--on-gold);opacity:.85}
+.next strong{font-family:var(--display);font-size:1.35rem;line-height:1.1}
+textarea{width:100%;box-sizing:border-box;min-height:84px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px;resize:vertical}
+.saved{font-family:var(--mono);font-size:.72rem;color:var(--turf)}
+
+.goal{grid-column:1/-1;display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--line);padding-top:14px}
+.goal-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:baseline}
+.goal-top strong{font-family:var(--display);font-size:1.6rem;line-height:1}
+.gbar{position:relative;height:16px;background:var(--bg);border:1px solid var(--line);border-radius:99px;overflow:hidden}
+.gbar i{position:absolute;top:0;bottom:0;left:0;display:block}
+.gbar .c{background:var(--navy)} .gbar .e{background:var(--foil)} .gbar .f{background:var(--turf)} .gbar .o{background:var(--gold)}
+.gmark{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--ink)}
+.gscale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.key{display:flex;flex-wrap:wrap;gap:12px;font-size:.84rem;color:var(--muted)}
+.key span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:10px;height:10px;border-radius:2px;display:inline-block}
+
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.lanes{display:flex;flex-direction:column;gap:10px}
+.lane{display:grid;grid-template-columns:104px 1fr;gap:10px;align-items:stretch}
+.lane-name{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:1rem;display:flex;align-items:center}
+.stops{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.stop{border-radius:8px;padding:8px;display:flex;flex-direction:column;gap:6px;background:var(--navy-soft);min-width:0;text-decoration:none;color:var(--ink)}
+.stop.current{outline:3px solid var(--gold);outline-offset:-3px}
+.stop .t{font-family:var(--display);font-weight:700;font-size:.98rem;line-height:1.1}
+.stop .meter{height:6px;background:var(--surface);border-radius:3px;overflow:hidden}
+.stop .meter i{display:block;height:100%;background:var(--navy)}
+.stop .n{font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.lane.ebay .stop{background:var(--foil-soft)} .lane.ebay .stop .meter i{background:var(--foil)}
+.lane.football .stop{background:var(--turf-soft)} .lane.football .stop .meter i{background:var(--turf)}
+@media (max-width:620px){.lane{grid-template-columns:1fr}.stops{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.84rem;color:var(--muted)}
+
+.phase{background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--navy);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:12px;scroll-margin-top:16px}
+.phase.ebay{border-left-color:var(--foil)} .phase.football{border-left-color:var(--turf)}
+.phase.current{box-shadow:0 0 0 2px var(--gold)}
+.phase-top{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:baseline}
+.phase-top > div{min-width:0;display:flex;flex-direction:column;gap:4px}
+.badge{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:99px;font-weight:600;background:var(--navy-soft);color:var(--navy)}
+.badge.done{background:var(--gold-soft);color:var(--ink)}
+.badge.cur{background:var(--gold);color:var(--on-gold)}
+.milestone{display:flex;gap:8px;flex-wrap:wrap;font-size:.92rem}
+.milestone b{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tasks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.task{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:start;padding:10px 0;border-top:1px solid var(--line)}
+.task:first-child{border-top:0}
+.task .body{min-width:0;display:flex;flex-direction:column;gap:2px;overflow-wrap:anywhere}
+.task .title{font-weight:700}
+.task.done .title{text-decoration:line-through;color:var(--muted)}
+.task .detail{font-size:.9rem;color:var(--muted)}
+.task .note{font-size:.88rem;color:var(--turf);font-style:italic}
+.chips{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.chip{font-family:var(--mono);font-size:.68rem;padding:2px 7px;border-radius:99px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.chip.should{border-color:var(--navy);color:var(--navy)}
+.chip.want{border-color:var(--turf);color:var(--turf)}
+.chip.claude{border-color:var(--foil);color:var(--foil)}
+.chip.log{border-color:var(--gold);color:var(--ink);background:var(--gold-soft)}
+.chip.due{border-style:dashed}
+.chk{width:40px;height:40px;border-radius:50%;border:2px solid var(--line);background:var(--surface);cursor:pointer;display:grid;place-items:center;padding:0}
+.chk[data-s="doing"]{border-color:var(--gold);background:var(--gold-soft)}
+.chk[data-s="done"]{border-color:var(--turf);background:var(--turf);color:var(--surface)}
+.chk:disabled{cursor:default}
+.chk svg{width:18px;height:18px}
+@media (max-width:520px){.task{grid-template-columns:44px 1fr}.chips{grid-column:2;justify-content:flex-start}}
+.reward{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:.92rem}
+.reward input{flex:1 1 200px;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 8px}
+.lanelink{font-size:.92rem}
+
+.follow{grid-column:1/-1;background:var(--gold-soft);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.follow h4{margin:0;font-family:var(--display);font-size:1.1rem;font-weight:700}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.fgrid label,.follow label{display:flex;flex-direction:column;gap:4px;font-size:.84rem;color:var(--muted);min-width:0}
+.follow input,.follow select,.follow textarea,form.add input,form.add select{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:8px;color:var(--ink);min-width:0;box-sizing:border-box;width:100%}
+.follow textarea{min-height:56px}
+.fwide{grid-column:1/-1}
+.frow{display:flex;gap:8px;flex-wrap:wrap}
+
+form.add{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;align-items:end}
+form.add label{display:flex;flex-direction:column;gap:4px;font-size:.84rem;color:var(--muted);min-width:0}
+form.add input,form.add select{background:var(--bg)}
+form.add .wide{grid-column:1/-1}
+.btn{background:var(--ink);color:var(--bg);border:0;border-radius:8px;padding:10px 16px;font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);padding:6px 12px;font-weight:400;font-size:.86rem}
+.btn.ghost.armed{color:var(--warn);border-color:var(--warn)}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:.9rem}
+th,td{text-align:left;padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.empty{padding:14px;border:1px dashed var(--line);border-radius:8px;color:var(--muted);font-size:.92rem}
+.stats{display:flex;flex-wrap:wrap;gap:22px}
+.stat{display:flex;flex-direction:column}
+.stat .v{font-family:var(--display);font-weight:800;font-size:1.8rem;line-height:1}
+.ok{color:var(--turf)} .low{color:var(--warn)}
+.notice{background:var(--warn-soft);border-radius:8px;padding:12px;font-size:.92rem}
+details{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+details summary{cursor:pointer;font-weight:700}
+details code{font-family:var(--mono);font-size:.82rem}
+details ul{padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.fact{border-left:4px solid var(--gold);padding:4px 12px;display:flex;flex-direction:column}
+.fact .v{font-family:var(--display);font-weight:800;font-size:1.5rem}
+.fact .l{font-size:.85rem;color:var(--muted)}
+.ro-banner{background:var(--navy-soft);color:var(--ink);border-left:4px solid var(--navy);border-radius:8px;padding:8px 12px;font-size:.92rem}.ro-banner a{color:var(--ink);font-weight:700}
+</style>
+
+<div class="wrap">
+
+<header>
+  <svg class="binder" viewBox="0 0 880 56" role="img" aria-label="A row of trading cards in a binder page">
+    <rect x="0" y="4" width="880" height="48" rx="6" fill="var(--surface)" stroke="var(--line)"/>
+    <g>
+      <rect x="14" y="10" width="86" height="36" rx="3" fill="var(--navy)"/>
+      <rect x="112" y="10" width="86" height="36" rx="3" fill="var(--foil)"/>
+      <rect x="210" y="10" width="86" height="36" rx="3" fill="var(--turf)"/>
+      <rect x="308" y="10" width="86" height="36" rx="3" fill="var(--gold)"/>
+      <rect x="406" y="10" width="86" height="36" rx="3" fill="var(--navy)"/>
+      <rect x="504" y="10" width="86" height="36" rx="3" fill="var(--foil)"/>
+      <rect x="602" y="10" width="86" height="36" rx="3" fill="var(--turf)"/>
+      <rect x="700" y="10" width="86" height="36" rx="3" fill="var(--gold)"/>
+      <rect x="798" y="10" width="68" height="36" rx="3" fill="var(--navy)"/>
+    </g>
+    <path d="M14 40 L866 40" stroke="var(--surface)" stroke-width="2" opacity=".55"/>
+  </svg>
+  <span class="eyebrow">Garden card · Card sales</span>
+  <div class="hero-row">
+    <div>
+      <h1>Card Sales Roadmap</h1>
+      <p class="muted">Every channel in one place: COMC singles, the eBay team lots and the football cards, aimed at $5–10k by early 2027. Step-by-step eBay checklist: <a href="https://claude.ai/artifact/7wAM1xmcKpc8uo2aJrmUoP">eBay Lots Roadmap</a> · Card calls: <a href="https://claude.ai/code/artifact/ae63e9b4-edbc-4211-ade5-6f3fd5761e18">Card Decision Log</a>.</p>
+    </div>
+    <div class="ring" aria-live="polite">
+      <svg viewBox="0 0 100 100" role="img" aria-label="Overall progress">
+        <circle cx="50" cy="50" r="42" fill="none" stroke="var(--line)" stroke-width="10"/>
+        <circle id="ringArc" cx="50" cy="50" r="42" fill="none" stroke="var(--turf)" stroke-width="10" stroke-linecap="round" stroke-dasharray="0 264" transform="rotate(-90 50 50)"/>
+        <text id="ringPct" x="50" y="57" text-anchor="middle" font-family="Saira Condensed,sans-serif" font-weight="800" font-size="24" fill="var(--ink)">0%</text>
+      </svg>
+      <div class="lbl"><span class="big num" id="ringCount">0 / 0</span><span class="muted">steps done</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="ro-banner" role="note">Check off steps in <a href="https://claude.ai/code/artifact/fadca305-7c93-4db1-8a1a-2d83f3d57244">Homebase</a>. Status here updates each morning.</div>
+
+<div id="notice" class="notice" hidden></div>
+
+<section aria-label="Where you are">
+  <div class="garden">
+    <div class="gfield">
+      <span class="eyebrow">Status</span>
+      <h3 id="gStatus">Loading roadmap…</h3>
+      <p class="muted" id="gStatusSub">Your phases and steps will appear here.</p>
+    </div>
+    <div class="gfield">
+      <div class="next">
+        <span class="eyebrow">Next re-entry step</span>
+        <strong id="gNext">—</strong>
+        <span id="gNextSub" class="num" style="font-size:.8rem"></span>
+      </div>
+    </div>
+    <div class="gfield">
+      <label class="eyebrow" for="leftOff">Where I left off</label>
+      <textarea id="leftOff" placeholder="A sentence for future you: what you were doing and what came next."></textarea>
+      <span class="saved" id="leftOffSaved" aria-live="polite"></span>
+    </div>
+    <div class="goal">
+      <div class="goal-top"><span class="eyebrow">Cash goal · net received</span><strong class="num" id="goalNet">$0</strong></div>
+      <div class="gbar" id="gbar" role="img" aria-label="Net cash received toward the $10,000 goal"></div>
+      <div class="gscale"><span>$0</span><span>$5k goal</span><span>$10k stretch</span></div>
+      <div class="key"><span><i class="sw" style="background:var(--navy)"></i>COMC</span><span><i class="sw" style="background:var(--foil)"></i>eBay lots</span><span><i class="sw" style="background:var(--turf)"></i>Football</span><span><i class="sw" style="background:var(--gold)"></i>Other</span><span>Counts only money that reached your bank (cash-outs and eBay payouts).</span></div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="mapH">
+  <div class="sec-head"><span class="eyebrow">Track map</span><h2 id="mapH">Three lanes</h2></div>
+  <div class="panel">
+    <div class="lanes">
+      <div class="lane comc"><span class="lane-name">COMC singles</span><div class="stops" id="lane-comc"></div></div>
+      <div class="lane ebay"><span class="lane-name">eBay lots</span><div class="stops" id="lane-ebay"></div></div>
+      <div class="lane football"><span class="lane-name">Football</span><div class="stops" id="lane-football"></div></div>
+    </div>
+    <div class="legend"><span>Bar = share of steps done</span><span>Gold outline = you are here</span><span>The lanes run at the same time</span></div>
+  </div>
+</section>
+
+<section aria-labelledby="comcH">
+  <div class="sec-head"><span class="eyebrow">Lane 1</span><h2 id="comcH">COMC singles</h2></div>
+  <div class="legend">
+    <span>Status is read-only here: to do, doing, done</span>
+    <span><span class="chip should">should</span> core path</span>
+    <span><span class="chip want">want</span> optional</span>
+    <span><span class="chip claude">claude</span> Claude does it</span>
+    <span><span class="chip log">asks</span> asks a follow-up when done</span>
+    <span><span class="chip">S</span> under 30 min · <span class="chip">M</span> 30–90 min · <span class="chip">L</span> 2 hrs+</span>
+  </div>
+  <div id="ph-comc" style="display:flex;flex-direction:column;gap:14px"><div class="empty">Loading phases…</div></div>
+</section>
+
+<section aria-labelledby="ebayH">
+  <div class="sec-head"><span class="eyebrow">Lane 2</span><h2 id="ebayH">eBay team lots</h2></div>
+  <p class="muted lanelink">Milestones only. The day-by-day checklist, supplies list and lot tracker live in the <a href="https://claude.ai/artifact/7wAM1xmcKpc8uo2aJrmUoP">eBay Lots Roadmap</a>.</p>
+  <div id="ph-ebay" style="display:flex;flex-direction:column;gap:14px"><div class="empty">Loading…</div></div>
+</section>
+
+<section aria-labelledby="fbH">
+  <div class="sec-head"><span class="eyebrow">Lane 3</span><h2 id="fbH">Football</h2></div>
+  <p class="muted">Option B: pull the 2025 rookies and color parallels into their own small lots, sell the rest as team lots, and sell the hits separately.</p>
+  <div id="ph-football" style="display:flex;flex-direction:column;gap:14px"><div class="empty">Loading…</div></div>
+</section>
+
+<section aria-labelledby="cashH">
+  <div class="sec-head"><span class="eyebrow">Record</span><h2 id="cashH">Cash log</h2></div>
+  <p class="muted">One entry per payout or batch of sales. "Net" is what you keep after fees. Marking a cash step done above opens this form for you.</p>
+  <div class="stats" id="cashStats"></div>
+  <form class="add panel" id="cashForm">
+    <label>Date<input type="date" id="caDate" required></label>
+    <label>Channel<select id="caChan"><option value="comc">COMC</option><option value="ebay">eBay lots</option><option value="football">Football</option><option value="other">Other (shop, consignment)</option></select></label>
+    <label>Type<select id="caType"><option value="payout">Payout to bank</option><option value="sale">Sale (still in store credit)</option></select></label>
+    <label>What sold<input type="text" id="caWhat" placeholder="e.g. 3 lots, or Flagg auction"></label>
+    <label>Gross ($)<input type="number" id="caGross" min="0" step="0.01" placeholder="0"></label>
+    <label>Net ($)<input type="number" id="caNet" min="0" step="0.01" placeholder="0"></label>
+    <div><button class="btn" type="submit">Add entry</button></div>
+  </form>
+  <div id="cashList"></div>
+</section>
+
+<section aria-labelledby="timeH">
+  <div class="sec-head"><span class="eyebrow">Record</span><h2 id="timeH">Time log</h2></div>
+  <p class="muted">Rough minutes per session, so each channel can be checked against your ~$40/hr bar.</p>
+  <div class="stats" id="timeStats"></div>
+  <form class="add panel" id="timeForm">
+    <label>Date<input type="date" id="tmDate" required></label>
+    <label>Channel<select id="tmChan"><option value="comc">COMC</option><option value="ebay">eBay lots</option><option value="football">Football</option><option value="other">Other</option></select></label>
+    <label>What you did<input type="text" id="tmWhat" placeholder="e.g. pack night, 6 lots"></label>
+    <label>Minutes<input type="number" id="tmMin" min="0" step="5" placeholder="45"></label>
+    <div><button class="btn" type="submit">Add session</button></div>
+  </form>
+  <div id="timeList"></div>
+</section>
+
+<section aria-labelledby="factsH">
+  <div class="sec-head"><span class="eyebrow">Reference</span><h2 id="factsH">Key numbers</h2></div>
+  <div class="facts">
+    <div class="fact"><span class="v num">$5–10k</span><span class="l">Cash goal, within a couple of months</span></div>
+    <div class="fact"><span class="v num">~$5,850</span><span class="l">Market value of the 135 live COMC cards (Oct 13)</span></div>
+    <div class="fact"><span class="v num">~710</span><span class="l">Cards still in COMC processing, due by Jan 5, 2027</span></div>
+    <div class="fact"><span class="v num">85.5%</span><span class="l">COMC fixed-price net after 5% fee and 10% cash-out</span></div>
+    <div class="fact"><span class="v num">4% + 10%</span><span class="l">COMC auction (store credit), then cash-out</span></div>
+    <div class="fact"><span class="v num">70–80%</span><span class="l">Lowest acceptable net for any fast-sale method</span></div>
+    <div class="fact"><span class="v num">75 / $3,049</span><span class="l">eBay lot drafts / total ask (3,132 cards)</span></div>
+    <div class="fact"><span class="v num">~$2,600</span><span class="l">eBay net if every lot sells at ask (13.25% + $0.40 fees)</span></div>
+    <div class="fact"><span class="v num">$0.42–1.06</span><span class="l">Football lot $/card at 10–49 cards (median range)</span></div>
+    <div class="fact"><span class="v num">~$40/hr</span><span class="l">Your effort bar for extra work</span></div>
+  </div>
+</section>
+
+<details>
+  <summary>How this page stores its data</summary>
+  <p class="muted" style="margin-top:8px">Everything lives in this page's own store, so Claude can read it, tick steps off, add log entries for you, or feed a dashboard from it.</p>
+  <ul>
+    <li><code>tasks</code>: <code>id, track</code> (comc | ebay | football), <code>phase, title, detail, effort</code> (S/M/L), <code>kind</code> (should/want), <code>who</code> (you/claude), <code>due, status</code> (todo/doing/done), <code>order, doneAt, followup</code> (cash | note), <code>ask, note</code></li>
+    <li><code>phases</code>: <code>id, track, name, short, label, goal, milestone, reward, order</code></li>
+    <li><code>cash</code>: <code>date, channel, type</code> (payout/sale), <code>what, gross, net</code></li>
+    <li><code>time</code>: <code>date, channel, what, minutes</code></li>
+    <li><code>meta/state</code>: <code>leftOff, leftOffAt</code></li>
+  </ul>
+</details>
+
+</div>
+
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const TRACKS = ['comc','ebay','football'];
+  const CH = { comc:'COMC', ebay:'eBay lots', football:'Football', other:'Other' };
+  const state = { tasks:[], phases:[], cash:[], time:[], meta:{}, canEdit:false, db:null, loaded:{tasks:false,phases:false}, follow:null };
+  const CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>';
+  const DOT = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5" fill="currentColor"/></svg>';
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const nextStatus = { todo:'doing', doing:'done', done:'todo' };
+  const label = { todo:'To do', doing:'Doing', done:'Done' };
+  const today = () => { try { const d=new Date(); return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10); } catch(e){ return ''; } };
+  const money = (n) => '$'+Math.round(Number(n)||0).toLocaleString();
+  const fmtDue = (d) => { if(!d) return ''; try { return new Date(d+'T12:00:00').toLocaleDateString(undefined,{month:'short',day:'numeric'}); } catch(e){ return d; } };
+
+  const phaseTasks = (pid) => state.tasks.filter(t=>t.phase===pid).sort((a,b)=>(a.order||0)-(b.order||0));
+  const pct = (list) => list.length ? list.filter(t=>t.status==='done').length/list.length : 0;
+  const phasesOf = (track) => state.phases.filter(p=>p.track===track).sort((a,b)=>(a.order||0)-(b.order||0));
+  const currentPhase = (track) => phasesOf(track).find(p=>pct(phaseTasks(p.id))<1) || null;
+  function openTasksIn(track){ const p=currentPhase(track); if(!p) return []; return phaseTasks(p.id).filter(t=>t.status!=='done'); }
+  function nextTask(){
+    // earliest-due open step across every lane's current phase, preferring ones already in progress, then your own steps
+    const all = TRACKS.flatMap(openTasksIn);
+    if(!all.length) return null;
+    const doing = all.filter(t=>t.status==='doing');
+    const pool = doing.length ? doing : all;
+    return pool.slice().sort((a,b)=>{
+      const da=a.due||'9999', dbb=b.due||'9999'; if(da!==dbb) return da<dbb?-1:1;
+      if((a.who==='you')!==(b.who==='you')) return a.who==='you'?-1:1;
+      return (a.order||0)-(b.order||0);
+    })[0];
+  }
+
+  function renderHeader(){
+    const total=state.tasks.length, done=state.tasks.filter(t=>t.status==='done').length, f=total?done/total:0;
+    $('ringArc').setAttribute('stroke-dasharray',(264*f).toFixed(1)+' 264');
+    $('ringPct').textContent=Math.round(f*100)+'%';
+    $('ringCount').textContent=done+' / '+total;
+    renderGoal();
+    if(!state.loaded.tasks||!state.loaded.phases) return;
+    if(!state.phases.length){ $('gStatus').textContent='No roadmap data yet'; $('gStatusSub').textContent='Ask Claude to load the phases and steps into this page.'; return; }
+    const parts = TRACKS.map(tr=>{ const cp=currentPhase(tr); return cp ? (CH[tr]+': '+(cp.short||cp.name)) : (CH[tr]+': complete'); });
+    const cc = currentPhase('comc');
+    $('gStatus').textContent = cc ? cc.name : 'COMC lane complete';
+    $('gStatusSub').textContent = parts.join(' · ');
+    const nt=nextTask();
+    $('gNext').textContent=nt?nt.title:'Nothing queued';
+    $('gNextSub').textContent=nt?[CH[nt.track], nt.effort, nt.who==='claude'?'Claude':'you', nt.due?'due '+fmtDue(nt.due):'', nt.status==='doing'?'in progress':''].filter(Boolean).join(' · '):'';
+  }
+
+  function renderGoal(){
+    const pay = state.cash.filter(c=>c.type==='payout');
+    const by = { comc:0, ebay:0, football:0, other:0 };
+    pay.forEach(c=>{ const k = by[c.channel]!==undefined ? c.channel : 'other'; by[k]+=Number(c.net)||0; });
+    const tot = by.comc+by.ebay+by.football+by.other, max=10000;
+    $('goalNet').textContent = money(tot)+(tot>=10000?' · stretch reached':tot>=5000?' · goal reached':' of $5,000');
+    let x=0, html='';
+    [['comc','c'],['ebay','e'],['football','f'],['other','o']].forEach(([k,cls])=>{ const w=Math.min(by[k],Math.max(0,max-x))/max*100; if(w>0){ html+='<i class="'+cls+'" style="left:'+(x/max*100).toFixed(2)+'%;width:'+w.toFixed(2)+'%"></i>'; } x+=by[k]; });
+    html+='<span class="gmark" style="left:50%"></span>';
+    $('gbar').innerHTML=html;
+    $('gbar').setAttribute('aria-label','Net received '+money(tot)+' toward the $5,000 goal and $10,000 stretch');
+  }
+
+  function renderLanes(){
+    TRACKS.forEach(track=>{
+      const el=$('lane-'+track), ps=phasesOf(track), cp=currentPhase(track);
+      if(!ps.length){ el.innerHTML='<div class="empty" style="grid-column:1/-1">No stops yet</div>'; return; }
+      el.innerHTML=ps.map(p=>{ const ts=phaseTasks(p.id), f=pct(ts), d=ts.filter(t=>t.status==='done').length;
+        return '<a class="stop'+(cp&&cp.id===p.id?' current':'')+'" href="#'+esc(p.id)+'"><span class="t">'+esc(p.short||p.name)+'</span><span class="meter"><i style="width:'+Math.round(f*100)+'%"></i></span><span class="n">'+d+'/'+ts.length+'</span></a>'; }).join('');
+    });
+  }
+
+  function followPanel(t){
+    const f=state.follow, dr=(f&&f.draft)||{};
+    const v=(k,def)=>esc(dr[k]!==undefined?dr[k]:(def||''));
+    let inner='';
+    if(t.followup==='cash'){
+      const ch = dr.channel || t.track;
+      inner='<h4>'+esc(t.ask||'Log the money from this step')+'</h4><div class="fgrid">'
+        +'<label>Channel<select data-f="channel">'+Object.entries(CH).map(([k,l])=>'<option value="'+k+'"'+(ch===k?' selected':'')+'>'+l+'</option>').join('')+'</select></label>'
+        +'<label>Type<select data-f="type"><option value="payout"'+((dr.type||'payout')==='payout'?' selected':'')+'>Payout to bank</option><option value="sale"'+(dr.type==='sale'?' selected':'')+'>Sale (store credit)</option></select></label>'
+        +'<label>What sold<input data-f="what" value="'+v('what')+'"></label>'
+        +'<label>Gross ($)<input data-f="gross" type="number" min="0" step="0.01" value="'+v('gross')+'"></label>'
+        +'<label>Net ($)<input data-f="net" type="number" min="0" step="0.01" value="'+v('net')+'"></label></div>';
+    } else {
+      inner='<label><span style="font-family:var(--display);font-size:1.1rem;font-weight:700;color:var(--ink)">'+esc(t.ask||'Anything to remember about this step?')+'</span><textarea data-f="note">'+v('note',t.note||'')+'</textarea></label>';
+    }
+    return '<div class="follow" data-follow="'+esc(t.id)+'">'+inner+'<div class="frow"><button class="btn" type="button" data-fsave="'+esc(t.id)+'">Save</button><button class="btn ghost" type="button" data-fskip>Skip</button></div><span class="saved" data-ferr></span></div>';
+  }
+
+  function taskRow(t){
+    const s=t.status||'todo', open=state.follow&&state.follow.id===t.id;
+    const chips=(t.followup?'<span class="chip log">asks</span>':'')
+      +(t.due&&s!=='done'?'<span class="chip due">'+esc(fmtDue(t.due))+'</span>':'')
+      +'<span class="chip">'+esc(t.effort||'')+'</span>'
+      +(t.who==='claude'?'<span class="chip claude">claude</span>':'')
+      +'<span class="chip '+esc(t.kind||'')+'">'+esc(t.kind||'')+'</span>';
+    return '<li class="task'+(s==='done'?' done':'')+'">'
+      +'<button class="chk" data-id="'+esc(t.id)+'" data-s="'+s+'" disabled aria-label="'+esc(t.title)+': '+label[s]+'">'+(s==='done'?CHECK:s==='doing'?DOT:'')+'</button>'
+      +'<div class="body"><span class="title">'+esc(t.title)+'</span>'+(t.detail?'<span class="detail">'+esc(t.detail)+'</span>':'')+(t.note?'<span class="note">'+esc(t.note)+'</span>':'')+'</div>'
+      +'<div class="chips">'+chips+'</div>'
+      +(open?followPanel(t):'')+'</li>';
+  }
+
+  function phaseCard(p){
+    const ts=phaseTasks(p.id), f=pct(ts), cp=currentPhase(p.track), done=f===1&&ts.length, cur=cp&&cp.id===p.id;
+    return '<article class="phase '+esc(p.track)+(cur?' current':'')+'" id="'+esc(p.id)+'">'
+      +'<div class="phase-top"><div><span class="eyebrow">'+esc(p.label||'')+'</span><h3>'+esc(p.name)+'</h3>'+(p.goal?'<p class="muted">'+esc(p.goal)+'</p>':'')+'</div>'
+      +'<span class="badge'+(done?' done':cur?' cur':'')+'">'+(done?'Complete':cur?'Current':Math.round(f*100)+'% done')+'</span></div>'
+      +(p.milestone?'<div class="milestone"><b>Milestone</b><span>'+esc(p.milestone)+'</span></div>':'')
+      +'<ul class="tasks">'+(ts.length?ts.map(taskRow).join(''):'<li class="empty">No steps yet</li>')+'</ul>'
+      +'<div class="reward"><label class="eyebrow" for="rw-'+esc(p.id)+'">Reward</label><input id="rw-'+esc(p.id)+'" data-phase="'+esc(p.id)+'" value="'+esc(p.reward||'')+'" placeholder="What you get when this is done" '+(state.canEdit?'':'disabled')+'></div>'
+      +'</article>';
+  }
+
+  function captureDraft(){
+    if(!state.follow) return;
+    const el=document.querySelector('[data-follow="'+CSS.escape(state.follow.id)+'"]'); if(!el) return;
+    const d={}; el.querySelectorAll('[data-f]').forEach(i=>{ d[i.dataset.f]=i.value; });
+    state.follow.draft=d;
+  }
+
+  function renderPhases(){
+    if(!state.loaded.phases) return;
+    captureDraft();
+    const focusF=document.activeElement&&document.activeElement.dataset?document.activeElement.dataset.f:null;
+    TRACKS.forEach(track=>{
+      const ps=phasesOf(track);
+      $('ph-'+track).innerHTML=ps.length?ps.map(phaseCard).join(''):'<div class="empty">No phases yet. Ask Claude to load the roadmap.</div>';
+    });
+    if(state.follow&&focusF){ const el=document.querySelector('[data-follow="'+CSS.escape(state.follow.id)+'"] [data-f="'+focusF+'"]'); if(el) el.focus(); }
+  }
+
+  const delBtn=(coll,id)=>state.canEdit?'<button class="btn ghost" data-del="'+coll+'/'+esc(id)+'">Delete</button>':'';
+
+  function netBy(type){ const o={comc:0,ebay:0,football:0,other:0}; state.cash.filter(c=>!type||c.type===type).forEach(c=>{ const k=o[c.channel]!==undefined?c.channel:'other'; o[k]+=Number(c.net)||0; }); return o; }
+  function minsBy(){ const o={comc:0,ebay:0,football:0,other:0}; state.time.forEach(t=>{ const k=o[t.channel]!==undefined?t.channel:'other'; o[k]+=Number(t.minutes)||0; }); return o; }
+
+  function renderCash(){
+    const cs=state.cash.slice().sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+    const pay=netBy('payout'), sold=netBy(null);
+    const payTot=Object.values(pay).reduce((s,x)=>s+x,0), soldTot=Object.values(sold).reduce((s,x)=>s+x,0);
+    $('cashStats').innerHTML='<div class="stat"><span class="v num">'+money(payTot)+'</span><span class="muted">paid out to bank</span></div>'
+      +'<div class="stat"><span class="v num">'+money(soldTot)+'</span><span class="muted">all net logged (incl. store credit)</span></div>'
+      +['comc','ebay','football'].map(k=>'<div class="stat"><span class="v num">'+money(sold[k])+'</span><span class="muted">'+CH[k]+'</span></div>').join('');
+    $('cashList').innerHTML=cs.length?'<div class="tbl"><table><thead><tr><th>Date</th><th>Channel</th><th>Type</th><th>What sold</th><th>Gross</th><th>Net</th><th></th></tr></thead><tbody>'
+      +cs.map(c=>'<tr><td class="num">'+esc(c.date)+'</td><td>'+esc(CH[c.channel]||c.channel)+'</td><td>'+(c.type==='payout'?'Payout':'Sale')+'</td><td>'+esc(c.what)+'</td><td class="num">'+(c.gross?'$'+esc(c.gross):'')+'</td><td class="num">'+(c.net?'$'+esc(c.net):'')+'</td><td>'+delBtn('cash',c.id)+'</td></tr>').join('')
+      +'</tbody></table></div>':'<div class="empty">No money logged yet. The first COMC auction hammers and eBay lot sales go here.</div>';
+  }
+
+  function renderTime(){
+    const ts=state.time.slice().sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+    const m=minsBy(), net=netBy(null);
+    const rate=(k)=>{ const h=m[k]/60; if(!h) return '—'; return money(net[k]/h)+'/hr'; };
+    const cls=(k)=>{ const h=m[k]/60; if(!h) return ''; return net[k]/h>=40?'ok':'low'; };
+    const totMin=Object.values(m).reduce((s,x)=>s+x,0);
+    $('timeStats').innerHTML='<div class="stat"><span class="v num">'+(totMin/60).toFixed(1)+'</span><span class="muted">hours logged</span></div>'
+      +['comc','ebay','football'].map(k=>'<div class="stat"><span class="v num '+cls(k)+'">'+rate(k)+'</span><span class="muted">'+CH[k]+' · '+(m[k]/60).toFixed(1)+' h</span></div>').join('');
+    $('timeList').innerHTML=ts.length?'<div class="tbl"><table><thead><tr><th>Date</th><th>Channel</th><th>What you did</th><th>Minutes</th><th></th></tr></thead><tbody>'
+      +ts.map(t=>'<tr><td class="num">'+esc(t.date)+'</td><td>'+esc(CH[t.channel]||t.channel)+'</td><td>'+esc(t.what)+'</td><td class="num">'+esc(t.minutes||'')+'</td><td>'+delBtn('time',t.id)+'</td></tr>').join('')
+      +'</tbody></table></div>':'<div class="empty">No sessions yet. Time a couple of pack nights first; that number decides whether the lots clear $40/hr.</div>';
+  }
+
+  function renderAll(){ renderHeader(); renderLanes(); renderPhases(); renderCash(); renderTime(); }
+  function showNotice(msg){ const n=$('notice'); n.textContent=msg; n.hidden=false; }
+  function setFormsEnabled(on){ document.querySelectorAll('#cashForm input,#cashForm select,#cashForm button,#timeForm input,#timeForm select,#timeForm button').forEach(el=>{el.disabled=!on;}); $('leftOff').disabled=!on; }
+
+  async function init(){
+    setFormsEnabled(false);
+    $('caDate').value=today(); $('tmDate').value=today();
+    if(!window.claude||!window.claude.use){ showNotice('This page needs to be opened on claude.ai to load and save your roadmap.'); $('gStatus').textContent='Roadmap unavailable here'; return; }
+    const [db,user]=await Promise.all([claude.use('db'),claude.use('user')]);
+    if(!db){ showNotice('Roadmap data could not load in this view. Reopen the page on claude.ai.'); $('gStatus').textContent='Roadmap unavailable here'; return; }
+    state.db=db;
+    try{ state.canEdit=user?await user.canEdit():false; }catch(e){ state.canEdit=false; }
+    setFormsEnabled(state.canEdit);
+    if(!state.canEdit) $('leftOff').placeholder='Only the owner can edit this note.';
+    const sub=(coll)=>db.collection(coll).onSnapshot(snap=>{
+      state[coll]=snap.docs.map(d=>Object.assign({id:d.id},d.data()));
+      if(coll in state.loaded) state.loaded[coll]=true;
+      renderAll();
+    },err=>showNotice('Lost connection to the roadmap data ('+err.code+'). Reload the page to reconnect.'));
+    ['tasks','phases','cash','time'].forEach(sub);
+    db.doc('meta/state').onSnapshot(s=>{
+      state.meta=s.exists?s.data():{};
+      if(document.activeElement!==$('leftOff')) $('leftOff').value=state.meta.leftOff||'';
+      $('leftOffSaved').textContent=state.meta.leftOffAt?'Saved '+new Date(state.meta.leftOffAt).toLocaleDateString():'';
+    });
+  }
+
+  async function saveFollow(id){
+    captureDraft();
+    const t=state.tasks.find(x=>x.id===id), d=(state.follow&&state.follow.draft)||{};
+    if(!t||!state.db) return;
+    const errEl=document.querySelector('[data-follow="'+CSS.escape(id)+'"] [data-ferr]');
+    try{
+      if(t.followup==='cash'){
+        await state.db.collection('cash').add({date:today(),channel:d.channel||t.track,type:d.type||'payout',what:(d.what||'').trim(),gross:Number(d.gross)||0,net:Number(d.net)||0,taskId:id,createdAt:new Date().toISOString()});
+      } else {
+        await state.db.doc('tasks/'+id).update({note:(d.note||'').trim(),updatedAt:new Date().toISOString()});
+      }
+      state.follow=null; renderAll();
+    }catch(err){ if(errEl){ errEl.style.color='var(--warn)'; errEl.textContent=err.code==='quota_exceeded'?'The log is full. Delete old entries to add more.':'Could not save ('+err.code+'). Try again.'; } }
+  }
+
+  document.addEventListener('click',async(e)=>{
+    const fs=e.target.closest('[data-fsave]'); if(fs){ saveFollow(fs.dataset.fsave); return; }
+    if(e.target.closest('[data-fskip]')){ state.follow=null; renderPhases(); return; }
+    const chk=e.target.closest('.chk'); if(chk) return;
+    if(chk&&state.canEdit&&state.db){
+      const id=chk.dataset.id, cur=chk.dataset.s||'todo', nx=nextStatus[cur];
+      const t=state.tasks.find(x=>x.id===id);
+      if(t){ t.status=nx; if(nx==='done'&&t.followup){ state.follow={id,draft:null}; } else if(state.follow&&state.follow.id===id){ state.follow=null; } renderAll(); }
+      try{ await state.db.doc('tasks/'+id).update({status:nx,doneAt:nx==='done'?new Date().toISOString():null,updatedAt:new Date().toISOString()}); }
+      catch(err){ showNotice('Could not save that change ('+err.code+'). Try again.'); }
+      if(nx==='done'&&t&&t.followup){ const el=document.querySelector('[data-follow="'+CSS.escape(id)+'"] [data-f]'); if(el) el.focus(); }
+      return;
+    }
+    const del=e.target.closest('[data-del]');
+    if(del&&state.canEdit&&state.db){
+      if(!del.classList.contains('armed')){ del.classList.add('armed'); del.textContent='Confirm delete'; setTimeout(()=>{del.classList.remove('armed');del.textContent='Delete';},4000); return; }
+      try{ await state.db.doc(del.dataset.del).delete(); }catch(err){ showNotice('Could not delete ('+err.code+').'); }
+    }
+  });
+
+  document.addEventListener('change',async(e)=>{
+    const inp=e.target.closest('input[data-phase]');
+    if(inp&&state.canEdit&&state.db){ try{ await state.db.doc('phases/'+inp.dataset.phase).update({reward:inp.value.trim()}); }catch(err){ showNotice('Could not save the reward ('+err.code+').'); } }
+  });
+
+  $('leftOff').addEventListener('blur',async()=>{
+    if(!state.canEdit||!state.db) return;
+    const v=$('leftOff').value.trim(); if(v===(state.meta.leftOff||'')) return;
+    try{ await state.db.doc('meta/state').set({leftOff:v,leftOffAt:new Date().toISOString()}); }catch(err){ showNotice('Could not save your note ('+err.code+').'); }
+  });
+
+  $('cashForm').addEventListener('submit',async(e)=>{
+    e.preventDefault(); if(!state.canEdit||!state.db) return;
+    const row={date:$('caDate').value,channel:$('caChan').value,type:$('caType').value,what:$('caWhat').value.trim(),gross:Number($('caGross').value)||0,net:Number($('caNet').value)||0,createdAt:new Date().toISOString()};
+    try{ await state.db.collection('cash').add(row); ['caWhat','caGross','caNet'].forEach(id=>$(id).value=''); }
+    catch(err){ showNotice(err.code==='quota_exceeded'?'The cash log is full. Delete old entries to add more.':'Could not add the entry ('+err.code+').'); }
+  });
+
+  $('timeForm').addEventListener('submit',async(e)=>{
+    e.preventDefault(); if(!state.canEdit||!state.db) return;
+    const row={date:$('tmDate').value,channel:$('tmChan').value,what:$('tmWhat').value.trim(),minutes:Number($('tmMin').value)||0,createdAt:new Date().toISOString()};
+    try{ await state.db.collection('time').add(row); ['tmWhat','tmMin'].forEach(id=>$(id).value=''); }
+    catch(err){ showNotice(err.code==='quota_exceeded'?'The time log is full. Delete old entries to add more.':'Could not add the session ('+err.code+').'); }
+  });
+
+  renderAll();
+  init();
+})();
+</script>
+
+</body></html>

@@ -1,6 +1,6 @@
 {
  "title": "Time a few pack nights in the time log",
- "detail": "Decides whether the lots clear your hourly bar.",
+ "detail": "Decides whether the lots clear your ~$40/hr bar.",
  "area": "card-sales",
  "bucket": "Productivity",
  "track": "ebay",
@@ -19,5 +19,11 @@
  "createdAt": "2026-10-15T10:30:00Z",
  "updatedAt": "2026-10-15T10:30:00Z",
  "changedBy": "migration",
- "demoSafe": false
+ "demoSafe": false,
+ "mirror": [
+  {
+   "roadmap": "card-sales",
+   "doc": "e3-2"
+  }
+ ]
 }

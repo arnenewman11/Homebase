@@ -1,0 +1,475 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Video Analysis Roadmap</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: one column. Garden card (where you are) on top, then the two-lane track map, then each phase's checklist, the skills lane, and the logs. */
+:root{
+  --bg:#f3f6f4; --surface:#ffffff; --ink:#15302a; --muted:#56706a; --line:#d3ddd8;
+  --court:#1f5e8c; --court-soft:#e3edf5; --kitchen:#2f7d5b; --kitchen-soft:#e2f1ea;
+  --ball:#c7d22a; --ball-ink:#4a5200; --skill:#7a4fa3; --skill-soft:#efe7f7;
+  --warn:#b5651d; --warn-soft:#f8ebde; --on-ball:#22280a;
+  --display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1a17; --surface:#16241f; --ink:#e4efe9; --muted:#9ab3aa; --line:#2b3d37;
+  --court:#6fb0e3; --court-soft:#17304a; --kitchen:#6fcf9f; --kitchen-soft:#173528;
+  --ball:#d9e44a; --ball-ink:#e6ef7a; --skill:#c3a1e6; --skill-soft:#2b2140;
+  --warn:#e9a463; --warn-soft:#3a2716; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1a17; --surface:#16241f; --ink:#e4efe9; --muted:#9ab3aa; --line:#2b3d37;
+  --court:#6fb0e3; --court-soft:#17304a; --kitchen:#6fcf9f; --kitchen-soft:#173528;
+  --ball:#d9e44a; --ball-ink:#e6ef7a; --skill:#c3a1e6; --skill-soft:#2b2140;
+  --warn:#e9a463; --warn-soft:#3a2716; color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 56px}
+.wrap{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:36px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.05}
+h1{font-size:clamp(2.2rem,7vw,3.2rem);font-weight:800;text-transform:uppercase;letter-spacing:.01em}
+h2{font-size:clamp(1.5rem,4.5vw,1.9rem);font-weight:700;text-transform:uppercase}
+h3{font-size:1.25rem;font-weight:700}
+p{margin:0;max-width:65ch}
+a{color:var(--court)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--court);outline-offset:2px;border-radius:4px}
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+section{display:flex;flex-direction:column;gap:14px}
+.sec-head{display:flex;flex-direction:column;gap:6px;border-top:3px solid var(--ink);padding-top:12px}
+.muted{color:var(--muted)}
+.court-strip{height:10px;border-radius:2px;background:linear-gradient(90deg,var(--court) 0 42%,var(--bg) 42% 42.6%,var(--kitchen) 42.6% 57.4%,var(--ink) 57.4% 58%,var(--kitchen) 58% 72.8%,var(--bg) 72.8% 73.4%,var(--court) 73.4%)}
+
+header{display:flex;flex-direction:column;gap:12px}
+.hero-row{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
+.hero-row > div{min-width:0}
+.ring{display:flex;align-items:center;gap:12px}
+.ring svg{width:92px;height:92px;flex:none}
+.ring .lbl{display:flex;flex-direction:column}
+.ring .big{font-family:var(--display);font-size:1.9rem;font-weight:800;line-height:1}
+
+/* garden card */
+.garden{background:var(--surface);border:2px solid var(--ink);border-radius:12px;padding:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.gfield{display:flex;flex-direction:column;gap:6px;min-width:0}
+.next{background:var(--ball);color:var(--on-ball);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.next .eyebrow{color:var(--on-ball);opacity:.8}
+.next strong{font-family:var(--display);font-size:1.35rem;line-height:1.1}
+textarea{width:100%;box-sizing:border-box;min-height:84px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px;resize:vertical}
+.saved{font-family:var(--mono);font-size:.72rem;color:var(--kitchen)}
+
+/* track map */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.lanes{display:flex;flex-direction:column;gap:10px}
+.lane{display:grid;grid-template-columns:96px 1fr;gap:10px;align-items:stretch}
+.lane-name{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:1rem;display:flex;align-items:center}
+.stops{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.stop{border-radius:8px;padding:8px;display:flex;flex-direction:column;gap:6px;background:var(--court-soft);min-width:0;text-decoration:none;color:var(--ink)}
+.stop.current{outline:3px solid var(--ball);outline-offset:-3px}
+.stop .t{font-family:var(--display);font-weight:700;font-size:.98rem;line-height:1.1}
+.stop .meter{height:6px;background:var(--surface);border-radius:3px;overflow:hidden}
+.stop .meter i{display:block;height:100%;background:var(--court)}
+.stop .n{font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.lane.skills .stop{background:var(--skill-soft)}
+.lane.skills .stop .meter i{background:var(--skill)}
+@media (max-width:620px){.lane{grid-template-columns:1fr}.stops{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* phases */
+.phase{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.phase.current{border:2px solid var(--court)}
+.phase.skill{border-color:var(--skill)}
+.phase-top{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:baseline}
+.phase-top > div{min-width:0;display:flex;flex-direction:column;gap:4px}
+.badge{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:99px;font-weight:600;background:var(--court-soft);color:var(--court)}
+.badge.done{background:var(--kitchen-soft);color:var(--kitchen)}
+.badge.skill{background:var(--skill-soft);color:var(--skill)}
+.milestone{display:flex;gap:8px;flex-wrap:wrap;font-size:.92rem}
+.milestone b{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tasks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.task{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:start;padding:10px 0;border-top:1px solid var(--line)}
+.task:first-child{border-top:0}
+.task .body{min-width:0;display:flex;flex-direction:column;gap:2px}
+.task .title{font-weight:700}
+.task.done .title{text-decoration:line-through;color:var(--muted)}
+.task .detail{font-size:.9rem;color:var(--muted)}
+.chips{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+.chip{font-family:var(--mono);font-size:.68rem;padding:2px 7px;border-radius:99px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.chip.want{border-color:var(--skill);color:var(--skill)}
+.chip.should{border-color:var(--court);color:var(--court)}
+.chk{width:40px;height:40px;border-radius:50%;border:2px solid var(--line);background:var(--surface);cursor:pointer;display:grid;place-items:center;padding:0}
+.chk[data-s="doing"]{border-color:var(--ball);background:color-mix(in srgb,var(--ball) 30%,var(--surface))}
+.chk[data-s="done"]{border-color:var(--kitchen);background:var(--kitchen);color:var(--surface)}
+.chk:disabled{cursor:default}
+.chk svg{width:18px;height:18px}
+@media (max-width:520px){.task{grid-template-columns:44px 1fr}.chips{grid-column:2;justify-content:flex-start}}
+.reward{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:.92rem}
+.reward input{flex:1 1 200px;min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 8px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.84rem;color:var(--muted)}
+
+/* logs */
+form.add{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;align-items:end}
+form.add label{display:flex;flex-direction:column;gap:4px;font-size:.84rem;color:var(--muted);min-width:0}
+form.add input,form.add select,form.add textarea{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px;color:var(--ink);min-width:0;box-sizing:border-box;width:100%}
+form.add textarea{min-height:60px}
+form.add .wide{grid-column:1/-1}
+.btn{background:var(--ink);color:var(--bg);border:0;border-radius:8px;padding:10px 16px;font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);padding:4px 10px;font-weight:400;font-size:.82rem}
+.btn.ghost.armed{color:var(--warn);border-color:var(--warn)}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:.9rem}
+th,td{text-align:left;padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.empty{padding:14px;border:1px dashed var(--line);border-radius:8px;color:var(--muted);font-size:.92rem}
+.stats{display:flex;flex-wrap:wrap;gap:20px}
+.stat{display:flex;flex-direction:column}
+.stat .v{font-family:var(--display);font-weight:800;font-size:1.8rem;line-height:1}
+.notice{background:var(--warn-soft);border-radius:8px;padding:12px;font-size:.92rem}
+details{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+details summary{cursor:pointer;font-weight:700}
+details code{font-family:var(--mono);font-size:.82rem}
+details ul{padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.fact{border-left:4px solid var(--court);padding:4px 12px;display:flex;flex-direction:column}
+.fact .v{font-family:var(--display);font-weight:800;font-size:1.5rem}
+.fact .l{font-size:.85rem;color:var(--muted)}
+.ro-banner{background:var(--court-soft);color:var(--ink);border-left:4px solid var(--court);border-radius:8px;padding:8px 12px;font-size:.92rem}.ro-banner a{color:var(--ink);font-weight:700}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="court-strip" aria-hidden="true"></div>
+  <span class="eyebrow">Garden card · Video analysis</span>
+  <div class="hero-row">
+    <div>
+      <h1>Video Analysis Roadmap</h1>
+      <p class="muted">Four phases to a paid review service, plus a video-skills track you can reuse elsewhere. Research: <a href="https://claude.ai/artifact/Lbe6DaTyxZBbsxF6b3ac2A">Pickleball Video Analysis Landscape</a>.</p>
+    </div>
+    <div class="ring" aria-live="polite">
+      <svg viewBox="0 0 100 100" role="img" aria-label="Overall progress" id="ring">
+        <circle cx="50" cy="50" r="42" fill="none" stroke="var(--line)" stroke-width="10"/>
+        <circle id="ringArc" cx="50" cy="50" r="42" fill="none" stroke="var(--kitchen)" stroke-width="10" stroke-linecap="round" stroke-dasharray="0 264" transform="rotate(-90 50 50)"/>
+        <text id="ringPct" x="50" y="57" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="800" font-size="24" fill="var(--ink)">0%</text>
+      </svg>
+      <div class="lbl"><span class="big num" id="ringCount">0 / 0</span><span class="muted">steps done</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="ro-banner" role="note">Check off steps in <a href="https://claude.ai/code/artifact/fadca305-7c93-4db1-8a1a-2d83f3d57244">Homebase</a>. Status here updates each morning.</div>
+
+<div id="notice" class="notice" hidden></div>
+
+<section aria-labelledby="gardenH">
+  <h2 id="gardenH" class="sr" hidden>Where you are</h2>
+  <div class="garden">
+    <div class="gfield">
+      <span class="eyebrow">Status</span>
+      <h3 id="gStatus">Loading roadmap…</h3>
+      <p class="muted" id="gStatusSub">Your phases and steps will appear here.</p>
+    </div>
+    <div class="gfield">
+      <div class="next">
+        <span class="eyebrow">Next re-entry step</span>
+        <strong id="gNext">—</strong>
+        <span id="gNextSub" class="num" style="font-size:.8rem"></span>
+      </div>
+    </div>
+    <div class="gfield">
+      <label class="eyebrow" for="leftOff">Where I left off</label>
+      <textarea id="leftOff" placeholder="A sentence for future you: what you were doing and what you'd planned next."></textarea>
+      <span class="saved" id="leftOffSaved" aria-live="polite"></span>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="mapH">
+  <div class="sec-head"><span class="eyebrow">Track map</span><h2 id="mapH">Two lanes</h2></div>
+  <div class="panel">
+    <div class="lanes">
+      <div class="lane"><span class="lane-name">Service</span><div class="stops" id="laneMain"></div></div>
+      <div class="lane skills"><span class="lane-name">Video skills</span><div class="stops" id="laneSkills"></div></div>
+    </div>
+    <div class="legend"><span>Bar = share of steps done</span><span>Yellow outline = you are here</span><span>Skills run alongside any phase</span></div>
+  </div>
+</section>
+
+<section aria-labelledby="phasesH">
+  <div class="sec-head"><span class="eyebrow">Service track</span><h2 id="phasesH">Phases</h2></div>
+  <div class="legend">
+    <span>Status is read-only here: to do, doing, done</span>
+    <span><span class="chip should">should</span> core path</span>
+    <span><span class="chip want">want</span> fun or optional</span>
+    <span><span class="chip">S</span> under 30 min · <span class="chip">M</span> 30–90 min · <span class="chip">L</span> 2 hrs+</span>
+  </div>
+  <div id="phases" style="display:flex;flex-direction:column;gap:14px">
+    <div class="empty">Loading phases…</div>
+  </div>
+</section>
+
+<section aria-labelledby="skillsH">
+  <div class="sec-head"><span class="eyebrow">Side track</span><h2 id="skillsH">Video skills</h2></div>
+  <p class="muted">Markup, overlays, commentary and editing. Useful for reviews, class content and anything else you film. Kinovea runs on Windows; on a Mac use OnForm or DaVinci Resolve for markup.</p>
+  <div id="skills" style="display:flex;flex-direction:column;gap:14px"><div class="empty">Loading skills…</div></div>
+</section>
+
+<section aria-labelledby="logH">
+  <div class="sec-head"><span class="eyebrow">Phase 1 tool</span><h2 id="logH">AI vs. me log</h2></div>
+  <p class="muted">Write your own read of a game first, then record what each tool caught. Over time this shows where your eye is strongest and what to lean on the AI for.</p>
+  <div class="stats" id="logStats"></div>
+  <form class="add panel" id="logForm">
+    <label>Game date<input type="date" id="lgDate" required></label>
+    <label>Game / level<input type="text" id="lgGame" placeholder="e.g. 3.5 doubles, rec play"></label>
+    <label>Tools run<select id="lgTools"><option>PB Vision</option><option>SwingVision</option><option>Both</option></select></label>
+    <label class="wide">What I caught<textarea id="lgMe" placeholder="Patterns, technique, decisions"></textarea></label>
+    <label class="wide">What the AI caught that I missed<textarea id="lgAi"></textarea></label>
+    <label class="wide">What the AI missed or got wrong<textarea id="lgMiss"></textarea></label>
+    <label class="wide">Coaching takeaway<input type="text" id="lgTake" placeholder="One line"></label>
+    <div><button class="btn" type="submit">Add log entry</button></div>
+  </form>
+  <div id="logList"></div>
+</section>
+
+<section aria-labelledby="revH">
+  <div class="sec-head"><span class="eyebrow">Phases 2–4</span><h2 id="revH">Review tracker</h2></div>
+  <div class="stats" id="revStats"></div>
+  <form class="add panel" id="revForm">
+    <label>Date<input type="date" id="rvDate" required></label>
+    <label>Player (initials)<input type="text" id="rvWho" maxlength="12" placeholder="e.g. JM"></label>
+    <label>Type<select id="rvType"><option value="free">Free</option><option value="paid">Paid</option><option value="bundle">Bundle with lesson</option></select></label>
+    <label>Price ($)<input type="number" id="rvPrice" min="0" step="1" placeholder="0"></label>
+    <label>Minutes spent<input type="number" id="rvMin" min="0" step="5" placeholder="60"></label>
+    <label>Testimonial<select id="rvTesti"><option value="no">Not yet</option><option value="asked">Asked</option><option value="yes">Received</option></select></label>
+    <div><button class="btn" type="submit">Add review</button></div>
+  </form>
+  <div id="revList"></div>
+</section>
+
+<section aria-labelledby="factsH">
+  <div class="sec-head"><span class="eyebrow">Reference</span><h2 id="factsH">Key numbers from the research</h2></div>
+  <div class="facts">
+    <div class="fact"><span class="v num">$39.99</span><span class="l">PB Vision, 300 minutes</span></div>
+    <div class="fact"><span class="v num">$14.99/mo</span><span class="l">SwingVision</span></div>
+    <div class="fact"><span class="v num">$29.99/mo</span><span class="l">OnForm Coach, 14-day trial</span></div>
+    <div class="fact"><span class="v num">$15–$149</span><span class="l">Human review market</span></div>
+    <div class="fact"><span class="v num">$40–75</span><span class="l">Suggested launch price</span></div>
+    <div class="fact"><span class="v num">$250/yr</span><span class="l">DUPR Coach (optional)</span></div>
+  </div>
+</section>
+
+<details>
+  <summary>For the dashboard: how this page stores its data</summary>
+  <p class="muted" style="margin-top:8px">Action items live in this page's shared store, so another page can read them instead of keeping a copy.</p>
+  <ul>
+    <li><code>tasks</code> — one document per step: <code>id, track</code> ("service" | "skills"), <code>phase</code>, <code>title, detail, effort</code> (S/M/L), <code>kind</code> (should/want), <code>status</code> (todo/doing/done), <code>order, doneAt</code></li>
+    <li><code>phases</code> — <code>id, track, name, goal, milestone, reward, order</code></li>
+    <li><code>meta/state</code> — <code>leftOff, leftOffAt</code></li>
+    <li><code>logs</code> and <code>reviews</code> — the two trackers above</li>
+  </ul>
+</details>
+
+</div>
+
+<script>
+(function(){
+  const $ = (id) => document.getElementById(id);
+  const state = { tasks: [], phases: [], logs: [], reviews: [], meta: {}, canEdit: false, db: null, loaded: { tasks:false, phases:false } };
+  const CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>';
+  const DOT = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5" fill="currentColor"/></svg>';
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const nextStatus = { todo:'doing', doing:'done', done:'todo' };
+  const label = { todo:'To do', doing:'Doing', done:'Done' };
+
+  function phaseTasks(pid){ return state.tasks.filter(t => t.phase === pid).sort((a,b)=>(a.order||0)-(b.order||0)); }
+  function pct(list){ return list.length ? list.filter(t=>t.status==='done').length / list.length : 0; }
+  function phasesOf(track){ return state.phases.filter(p=>p.track===track).sort((a,b)=>(a.order||0)-(b.order||0)); }
+  function currentPhase(track){ return phasesOf(track).find(p => pct(phaseTasks(p.id)) < 1) || null; }
+  function nextTask(track){
+    const p = currentPhase(track); if(!p) return null;
+    const ts = phaseTasks(p.id);
+    return ts.find(t=>t.status==='doing') || ts.find(t=>t.status!=='done') || null;
+  }
+
+  function renderHeader(){
+    const total = state.tasks.length, done = state.tasks.filter(t=>t.status==='done').length;
+    const f = total ? done/total : 0;
+    $('ringArc').setAttribute('stroke-dasharray', (264*f).toFixed(1)+' 264');
+    $('ringPct').textContent = Math.round(f*100)+'%';
+    $('ringCount').textContent = done+' / '+total;
+    const cp = currentPhase('service');
+    if(!state.loaded.tasks || !state.loaded.phases){ return; }
+    if(!state.phases.length){
+      $('gStatus').textContent = 'No roadmap data yet';
+      $('gStatusSub').textContent = 'Ask Claude to load the phases and steps into this page.';
+      return;
+    }
+    if(cp){
+      const ts = phaseTasks(cp.id), d = ts.filter(t=>t.status==='done').length;
+      $('gStatus').textContent = cp.name;
+      $('gStatusSub').textContent = d+' of '+ts.length+' steps done · Milestone: '+(cp.milestone||'');
+    } else {
+      $('gStatus').textContent = 'All service phases done';
+      $('gStatusSub').textContent = 'Time to set the next goal.';
+    }
+    const nt = nextTask('service');
+    $('gNext').textContent = nt ? nt.title : 'Nothing queued';
+    $('gNextSub').textContent = nt ? ((nt.effort||'')+' · '+(nt.kind||'')+(nt.status==='doing'?' · in progress':'')) : '';
+  }
+
+  function renderLanes(){
+    const lane = (track, el) => {
+      const ps = phasesOf(track), cp = currentPhase(track);
+      if(!ps.length){ el.innerHTML = '<div class="empty" style="grid-column:1/-1">No stops yet</div>'; return; }
+      el.innerHTML = ps.map(p => {
+        const ts = phaseTasks(p.id), f = pct(ts), d = ts.filter(t=>t.status==='done').length;
+        return '<a class="stop'+(cp && cp.id===p.id?' current':'')+'" href="#'+esc(p.id)+'"><span class="t">'+esc(p.short||p.name)+'</span><span class="meter"><i style="width:'+Math.round(f*100)+'%"></i></span><span class="n">'+d+'/'+ts.length+'</span></a>';
+      }).join('');
+    };
+    lane('service', $('laneMain')); lane('skills', $('laneSkills'));
+  }
+
+  function taskRow(t){
+    const s = t.status || 'todo';
+    return '<li class="task'+(s==='done'?' done':'')+'">'
+      + '<button class="chk" data-id="'+esc(t.id)+'" data-s="'+s+'" disabled aria-label="'+esc(t.title)+': '+label[s]+'">'+(s==='done'?CHECK:s==='doing'?DOT:'')+'</button>'
+      + '<div class="body"><span class="title">'+esc(t.title)+'</span>'+(t.detail?'<span class="detail">'+esc(t.detail)+'</span>':'')+'</div>'
+      + '<div class="chips"><span class="chip">'+esc(t.effort||'')+'</span><span class="chip '+esc(t.kind||'')+'">'+esc(t.kind||'')+'</span></div></li>';
+  }
+
+  function phaseCard(p, isSkill){
+    const ts = phaseTasks(p.id), f = pct(ts), cp = currentPhase(p.track);
+    const done = f===1 && ts.length;
+    const cur = cp && cp.id===p.id;
+    return '<article class="phase'+(cur?' current':'')+(isSkill?' skill':'')+'" id="'+esc(p.id)+'">'
+      + '<div class="phase-top"><div><span class="eyebrow">'+esc(p.label||'')+'</span><h3>'+esc(p.name)+'</h3>'+(p.goal?'<p class="muted">'+esc(p.goal)+'</p>':'')+'</div>'
+      + '<span class="badge '+(done?'done':isSkill?'skill':'')+'">'+(done?'Complete':cur?'Current':Math.round(f*100)+'% done')+'</span></div>'
+      + (p.milestone?'<div class="milestone"><b>Milestone</b><span>'+esc(p.milestone)+'</span></div>':'')
+      + '<ul class="tasks">'+(ts.length?ts.map(taskRow).join(''):'<li class="empty">No steps yet</li>')+'</ul>'
+      + '<div class="reward"><label class="eyebrow" for="rw-'+esc(p.id)+'">Reward</label><input id="rw-'+esc(p.id)+'" data-phase="'+esc(p.id)+'" value="'+esc(p.reward||'')+'" placeholder="What you get when this is done" '+(state.canEdit?'':'disabled')+'></div>'
+      + '</article>';
+  }
+
+  function renderPhases(){
+    if(!state.loaded.phases) return;
+    const sp = phasesOf('service'), kp = phasesOf('skills');
+    $('phases').innerHTML = sp.length ? sp.map(p=>phaseCard(p,false)).join('') : '<div class="empty">No phases yet. Ask Claude to load the roadmap.</div>';
+    $('skills').innerHTML = kp.length ? kp.map(p=>phaseCard(p,true)).join('') : '<div class="empty">No skill levels yet.</div>';
+  }
+
+  function delBtn(coll, id){ return state.canEdit ? '<button class="btn ghost" data-del="'+coll+'/'+esc(id)+'">Delete</button>' : ''; }
+
+  function renderLogs(){
+    const ls = state.logs.slice().sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+    $('logStats').innerHTML = '<div class="stat"><span class="v num">'+ls.length+'</span><span class="muted">games logged</span></div>'
+      + '<div class="stat"><span class="v num">'+ls.filter(l=>l.aiCaught).length+'</span><span class="muted">with AI catches you missed</span></div>'
+      + '<div class="stat"><span class="v num">'+ls.filter(l=>l.aiMissed).length+'</span><span class="muted">with AI misses</span></div>';
+    $('logList').innerHTML = ls.length ? '<div class="tbl"><table><thead><tr><th>Date</th><th>Game</th><th>Tools</th><th>I caught</th><th>AI caught</th><th>AI missed</th><th>Takeaway</th><th></th></tr></thead><tbody>'
+      + ls.map(l=>'<tr><td class="num">'+esc(l.date)+'</td><td>'+esc(l.game)+'</td><td>'+esc(l.tools)+'</td><td>'+esc(l.meCaught)+'</td><td>'+esc(l.aiCaught)+'</td><td>'+esc(l.aiMissed)+'</td><td>'+esc(l.takeaway)+'</td><td>'+delBtn('logs',l.id)+'</td></tr>').join('')
+      + '</tbody></table></div>' : '<div class="empty">No games logged yet. After you film your first game, add your read here before looking at the AI stats.</div>';
+  }
+
+  function renderReviews(){
+    const rs = state.reviews.slice().sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+    const paid = rs.filter(r=>r.type!=='free');
+    const rev = paid.reduce((s,r)=>s+(Number(r.price)||0),0);
+    const mins = rs.filter(r=>Number(r.minutes)>0);
+    const avg = mins.length ? Math.round(mins.reduce((s,r)=>s+Number(r.minutes),0)/mins.length) : 0;
+    $('revStats').innerHTML = '<div class="stat"><span class="v num">'+rs.length+'</span><span class="muted">reviews done</span></div>'
+      + '<div class="stat"><span class="v num">'+paid.length+'</span><span class="muted">paid</span></div>'
+      + '<div class="stat"><span class="v num">$'+rev+'</span><span class="muted">earned</span></div>'
+      + '<div class="stat"><span class="v num">'+(avg?avg+' min':'—')+'</span><span class="muted">avg time (goal: under 60)</span></div>'
+      + '<div class="stat"><span class="v num">'+rs.filter(r=>r.testimonial==='yes').length+'</span><span class="muted">testimonials</span></div>';
+    const tl = { free:'Free', paid:'Paid', bundle:'Bundle' }, te = { no:'Not yet', asked:'Asked', yes:'Received' };
+    $('revList').innerHTML = rs.length ? '<div class="tbl"><table><thead><tr><th>Date</th><th>Player</th><th>Type</th><th>Price</th><th>Minutes</th><th>Testimonial</th><th></th></tr></thead><tbody>'
+      + rs.map(r=>'<tr><td class="num">'+esc(r.date)+'</td><td>'+esc(r.who)+'</td><td>'+esc(tl[r.type]||r.type)+'</td><td class="num">$'+esc(r.price||0)+'</td><td class="num">'+esc(r.minutes||'')+'</td><td>'+esc(te[r.testimonial]||'')+'</td><td>'+delBtn('reviews',r.id)+'</td></tr>').join('')
+      + '</tbody></table></div>' : '<div class="empty">No reviews yet. Your free practice reviews in Phase 2 go here.</div>';
+  }
+
+  function renderAll(){ renderHeader(); renderLanes(); renderPhases(); renderLogs(); renderReviews(); }
+
+  function showNotice(msg){ const n=$('notice'); n.textContent = msg; n.hidden = false; }
+
+  function setFormsEnabled(on){
+    document.querySelectorAll('#logForm input,#logForm select,#logForm textarea,#logForm button,#revForm input,#revForm select,#revForm button').forEach(el=>{ el.disabled = !on; });
+    $('leftOff').disabled = !on;
+  }
+
+  async function init(){
+    setFormsEnabled(false);
+    try { const d = new Date(); const iso = d.toISOString().slice(0,10); $('lgDate').value = iso; $('rvDate').value = iso; } catch(e){}
+    if(!window.claude || !window.claude.use){ showNotice('This page needs to be opened on claude.ai to load and save your roadmap.'); $('gStatus').textContent='Roadmap unavailable here'; return; }
+    const [db, user] = await Promise.all([claude.use('db'), claude.use('user')]);
+    if(!db){ showNotice('Roadmap data could not load in this view. Reopen the page on claude.ai.'); $('gStatus').textContent='Roadmap unavailable here'; return; }
+    state.db = db;
+    try { state.canEdit = user ? await user.canEdit() : false; } catch(e){ state.canEdit = false; }
+    setFormsEnabled(state.canEdit);
+    if(!state.canEdit){ $('leftOff').placeholder = 'Only the owner can edit this note.'; }
+
+    const sub = (coll, key) => db.collection(coll).onSnapshot(snap => {
+      state[key] = snap.docs.map(d => Object.assign({ id: d.id }, d.data()));
+      if(key in state.loaded) state.loaded[key] = true;
+      renderAll();
+    }, err => { showNotice('Lost connection to the roadmap data ('+err.code+'). Reload the page to reconnect.'); });
+    sub('tasks','tasks'); sub('phases','phases'); sub('logs','logs'); sub('reviews','reviews');
+    db.doc('meta/state').onSnapshot(s => {
+      state.meta = s.exists ? s.data() : {};
+      if(document.activeElement !== $('leftOff')) $('leftOff').value = state.meta.leftOff || '';
+      $('leftOffSaved').textContent = state.meta.leftOffAt ? 'Saved '+new Date(state.meta.leftOffAt).toLocaleDateString() : '';
+    });
+  }
+
+  document.addEventListener('click', async (e) => {
+    const chk = e.target.closest('.chk'); if(chk) return;
+    if(chk && state.canEdit && state.db){
+      const id = chk.dataset.id, cur = chk.dataset.s || 'todo', nx = nextStatus[cur];
+      const t = state.tasks.find(x=>x.id===id);
+      if(t){ t.status = nx; renderAll(); }
+      try { await state.db.doc('tasks/'+id).update({ status: nx, doneAt: nx==='done' ? new Date().toISOString() : null, updatedAt: new Date().toISOString() }); }
+      catch(err){ showNotice('Could not save that change ('+err.code+'). Try again.'); }
+      return;
+    }
+    const del = e.target.closest('[data-del]');
+    if(del && state.canEdit && state.db){
+      if(!del.classList.contains('armed')){ del.classList.add('armed'); del.textContent = 'Confirm delete'; setTimeout(()=>{ del.classList.remove('armed'); del.textContent='Delete'; }, 4000); return; }
+      try { await state.db.doc(del.dataset.del).delete(); } catch(err){ showNotice('Could not delete ('+err.code+').'); }
+    }
+  });
+
+  document.addEventListener('change', async (e) => {
+    const inp = e.target.closest('input[data-phase]');
+    if(inp && state.canEdit && state.db){
+      try { await state.db.doc('phases/'+inp.dataset.phase).update({ reward: inp.value.trim() }); }
+      catch(err){ showNotice('Could not save the reward ('+err.code+').'); }
+    }
+  });
+
+  $('leftOff').addEventListener('blur', async () => {
+    if(!state.canEdit || !state.db) return;
+    const v = $('leftOff').value.trim();
+    if(v === (state.meta.leftOff||'')) return;
+    try { await state.db.doc('meta/state').set({ leftOff: v, leftOffAt: new Date().toISOString() }); }
+    catch(err){ showNotice('Could not save your note ('+err.code+').'); }
+  });
+
+  $('logForm').addEventListener('submit', async (e) => {
+    e.preventDefault(); if(!state.canEdit || !state.db) return;
+    const row = { date:$('lgDate').value, game:$('lgGame').value.trim(), tools:$('lgTools').value, meCaught:$('lgMe').value.trim(), aiCaught:$('lgAi').value.trim(), aiMissed:$('lgMiss').value.trim(), takeaway:$('lgTake').value.trim(), createdAt:new Date().toISOString() };
+    try { await state.db.collection('logs').add(row); ['lgGame','lgMe','lgAi','lgMiss','lgTake'].forEach(id=>$(id).value=''); }
+    catch(err){ showNotice(err.code==='quota_exceeded' ? 'The log is full. Delete old entries to add more.' : 'Could not add the entry ('+err.code+').'); }
+  });
+
+  $('revForm').addEventListener('submit', async (e) => {
+    e.preventDefault(); if(!state.canEdit || !state.db) return;
+    const row = { date:$('rvDate').value, who:$('rvWho').value.trim(), type:$('rvType').value, price:Number($('rvPrice').value)||0, minutes:Number($('rvMin').value)||0, testimonial:$('rvTesti').value, createdAt:new Date().toISOString() };
+    try { await state.db.collection('reviews').add(row); ['rvWho','rvPrice','rvMin'].forEach(id=>$(id).value=''); }
+    catch(err){ showNotice(err.code==='quota_exceeded' ? 'The tracker is full. Delete old entries to add more.' : 'Could not add the review ('+err.code+').'); }
+  });
+
+  renderAll();
+  init();
+})();
+</script>
+
+</body></html>
