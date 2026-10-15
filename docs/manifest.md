@@ -78,7 +78,7 @@ The link claude.ai/artifact/T6Q1xGbQoY5bwtia4LXNDY is the same AI Builder Roadma
 | Google Calendar | Read; create draft events | Invites, deletes, edits to existing events |
 | Google Drive | Write exports to the Homebase folder; read the blueprint | Share, trash, other folders |
 | Google Sheets | Dakboard feed tabs `events`, `tasks`, `meta` | Sharing, `priorities` tab |
-| Todoist | Add "Pay … bill" tasks (refresh only) | Everything else |
+| Todoist | Not used by Homebase (finance review reads it only) | Everything |
 
 Open item: every scheduled task currently has all connectors attached. Trim each task's connectors in its settings to match this table.
 
@@ -99,6 +99,8 @@ Open item: every scheduled task currently has all connectors attached. Trim each
 The daily sort files confident items (`changedBy: router`) and leaves unsure ones in the inbox with `suggestedArea` for a one-tap confirm.
 
 ## Decisions log
+
+- 2026-10-15: Bills that aren't on autopay become Homebase tasks in Money & admin (`bill-<payee>-<due>`), not Todoist. Autopay bills (incl. mortgage, Verizon), platform-handled sales and receipts are never tasks.
 
 - 2026-10-15: Points, levels and rewards cut. Homebase shows progress bars and done counts only. One reminder kept (Oct 22) to revisit goals and measures; the Oct 29 and Nov 5 reminders are paused.
 
