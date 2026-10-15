@@ -183,6 +183,9 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
 .meter{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted)}
 .meter .track{flex:1;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
 .meter .fill{height:100%;background:var(--slate);width:0;transition:width .4s}
+.area-row{display:flex;flex-direction:column;gap:6px;padding:12px 0;border-bottom:1px solid var(--line)}
+.area-row:last-child{border-bottom:0}
+.area-row .linkbtn{align-self:flex-start}
 .nudge{margin:0;font-size:13px;font-weight:600;color:var(--chip-bill-fg);background:var(--chip-bill-bg);border-radius:12px;padding:10px 12px}
 /* video analysis roadmap card */
 .vtrack{display:flex;flex-direction:column;gap:10px;padding-top:12px;border-top:1px solid var(--line)}
@@ -280,6 +283,12 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
     <div id="hbTasks"></div>
     <div id="pendingWins"></div>
     <p class="sub" style="font-size:12px;padding-top:8px">Finances: coming after your accounts thread.</p>
+  </section>
+
+  <section class="card" aria-label="Roadmaps" style="gap:4px">
+    <div class="row" style="margin-bottom:2px"><h2>Roadmaps</h2><span class="sub">next step in each</span></div>
+    <p class="sub" style="font-size:12px;margin:0">Video analysis and Arnfjäll have their own cards below.</p>
+    <div id="roadmapAreas"><p class="sub" style="font-size:14px">Loading your roadmaps…</p></div>
   </section>
 
   <section aria-label="Learn &amp; Play" style="display:flex;flex-direction:column;gap:12px">
@@ -650,6 +659,58 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
   const EFFORT = { S:'Under 30 min', M:'30–90 min', L:'2 hrs+' };
   const byOrder = (a,b) => (a.order ?? 0) - (b.order ?? 0);
 
+  // ---- canonical task store: tasks / phases / areas / logs in this page's db ----
+  const STORE = { tasks:new Map(), phases:new Map(), areas:new Map(), logs:[], gotT:false, gotP:false, gotA:false };
+  const DEDICATED = new Set(['video-analysis','arnfjall','homebase','money-admin']);
+  const kindOf = t => t.type === 'want-do' ? 'want' : 'should';
+  function deriveFromStore(){
+    const pick = area => new Map([...STORE.tasks.values()].filter(t => t.area === area && t.status !== 'dropped').map(t => [t.id, Object.assign({}, t, { kind: kindOf(t) })]));
+    const pickP = area => new Map([...STORE.phases.values()].filter(p => p.area === area).map(p => [p.id, Object.assign({ short: p.name }, p)]));
+    VA.tasks = pick('video-analysis'); VA.phases = pickP('video-analysis'); VA.gotT = STORE.gotT; VA.gotP = STORE.gotP;
+    ARN.tasks = pick('arnfjall'); ARN.phases = pickP('arnfjall');
+    HBT.clear();
+    [...STORE.tasks.values()].filter(t => t.area === 'homebase' || t.area === 'money-admin').forEach(t => HBT.set(t.id, { id:t.id, title:t.title, meta:t.detail, area: t.area === 'money-admin' ? 'Money & admin' : 'Homebase', status:t.status, order:t.order }));
+    const lg = STORE.logs, n = (a, ty) => lg.filter(l => l.area === a && l.type === ty).length;
+    VA.counts = { logs: n('video-analysis','game'), reviews: n('video-analysis','review') };
+    ARN.counts = { builds: n('arnfjall','build'), sales: n('arnfjall','sale') };
+    renderVA(); renderArn(); renderHbTasks(); renderAreas();
+  }
+  async function setTask(id, patch){
+    if (!dbRef) throw { code:'offline' };
+    await dbRef.doc('tasks/' + id).update(Object.assign({}, patch, { updatedAt: new Date().toISOString(), changedBy: 'you' }));
+  }
+  async function saveDetails(id, area, type, f){
+    const now = new Date(), date = localYmd(now);
+    try { await setTask(id, { details: Object.assign({ type, date }, f) }); } catch (_) { toast('Couldn\'t save those details'); }
+    if ((type === 'game' || type === 'review') && dbRef) {
+      const key = id + '-' + now.toISOString().replace(/[^0-9]/g,'').slice(0,12);
+      try { await dbRef.doc('logs/' + key).set({ area, taskId:id, type, date, fields:f, at: now.toISOString() }); } catch (_) { toast('Couldn\'t save that log entry'); }
+    }
+  }
+  function renderAreas(){
+    const box = $('#roadmapAreas'); if (!box || !STORE.gotT || !STORE.gotA) return;
+    const pOrd = id => { const p = STORE.phases.get(id); return p && typeof p.order === 'number' ? p.order : 99; };
+    const areas = [...STORE.areas.entries()].map(([id,a]) => Object.assign({ id }, a)).filter(a => a.active !== false && !DEDICATED.has(a.id)).sort(byOrder);
+    box.innerHTML = areas.map(a => {
+      const ts = [...STORE.tasks.values()].filter(t => t.area === a.id && t.status !== 'dropped');
+      const d = ts.filter(t => t.status === 'done').length, pct = ts.length ? Math.round(d / ts.length * 100) : 0;
+      const open = ts.filter(t => t.status !== 'done').sort((x,y) => (y.status === 'doing') - (x.status === 'doing') || pOrd(x.phase) - pOrd(y.phase) || (x.order||0) - (y.order||0));
+      const nx = open[0], ph = nx && STORE.phases.get(nx.phase), src = (a.sourceUrls || [])[0];
+      return '<div class="area-row"><div class="row"><strong>'+esc(a.name)+'</strong><span class="sub num">'+d+' of '+ts.length+' done</span></div>'
+        + '<div class="meter" aria-hidden="true"><div class="track"><div class="fill" style="width:'+pct+'%"></div></div></div>'
+        + (nx ? '<div class="item" style="border-bottom:0;padding:2px 0 0"><p>'+esc(nx.title)+'<small>'+esc((ph ? ph.name + ' · ' : '') + (EFFORT[nx.effort] || ''))+'</small></p>'+(vaOwner ? '<button class="btn solid" data-task-done="'+esc(nx.id)+'">Done</button>' : '')+'</div>' : '<p class="sub" style="font-size:13px">Every step is done.</p>')
+        + (src ? '<a class="linkbtn" href="'+esc(src)+'">Open the plan</a>' : '')
+        + '</div>';
+    }).join('');
+  }
+  document.addEventListener('click', async e => {
+    const b = e.target.closest('[data-task-done]'); if (!b) return;
+    const t = STORE.tasks.get(b.dataset.taskDone); if (!t) return;
+    b.disabled = true;
+    try { await setTask(t.id, { status:'done', doneAt: new Date().toISOString() }); gain(XP_BY_EFFORT[t.effort] || 10, 'step done'); }
+    catch (err) { b.disabled = false; toast('Couldn\'t save that check-off. Try again.'); }
+  });
+
   function vaShell(inner){
     return '<div class="card"><div class="ghead"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40"><path d="M20 36V19" stroke="var(--sage-deep)" stroke-width="2.5" stroke-linecap="round"/><path d="M20 23c-7 0-10-5-10-10 6 0 10 4 10 10z" fill="var(--slate)"/><path d="M20 19c0-6 3-10 10-10 0 6-4 10-10 10z" fill="var(--sage)"/></svg>'
       + '<div><p class="gname">Video analysis</p><p class="sub">Pickleball video review service</p></div></div>' + inner + '</div>';
@@ -695,22 +756,21 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
   function renderVA(){
     const box = $('#va');
     if (!vaDb) {
-      box.innerHTML = vaShell('<p class="left">Your Video Analysis Roadmap shows up here when this page is open in Claude.</p><div class="btns"><a class="btn" href="'+ROADMAP+'">Full task list</a></div>');
+      box.innerHTML = vaShell('<p class="left">Your Video Analysis steps show up here when this page is open in Claude.</p><div class="btns"><a class="btn" href="'+ROADMAP+'">Open the plan</a></div>');
       return;
     }
     if (!VA.gotT || !VA.gotP) { box.innerHTML = vaShell('<p class="left">Loading your roadmap…</p>'); return; }
     if (!VA.tasks.size) {
-      box.innerHTML = vaShell('<p class="left">Waiting for the first sync from your Video Analysis Roadmap. It runs every morning at 6:50.</p><div class="btns">'+(vaOwner?'<button class="btn solid" data-va-sync>Sync now</button>':'')+'<a class="btn" href="'+ROADMAP+'">Full task list</a></div>'+(vaMsg.sync?'<p class="vmsg'+(vaMsg.sync.err?' err':'')+'" role="status">'+esc(vaMsg.sync.text)+'</p>':''));
+      box.innerHTML = vaShell('<p class="left">No Video Analysis steps in Homebase yet.</p><div class="btns"><a class="btn" href="'+ROADMAP+'">Open the plan</a></div>');
       return;
     }
     const left = VA.state && VA.state.leftOff;
-    let inner = '<p class="left"><span>Left off:</span> '+(left ? esc(left) : 'no note yet. Add one in the roadmap.')+(VA.state && VA.state.leftOffAt ? ' <span class="sub">('+esc(fmtWhen(VA.state.leftOffAt))+')</span>' : '')+'</p>';
+    let inner = '<p class="left"><span>Left off:</span> '+(left ? esc(left) : 'no note yet.')+(VA.state && VA.state.leftOffAt ? ' <span class="sub">('+esc(fmtWhen(VA.state.leftOffAt))+')</span>' : '')+'</p>';
     inner += trackHTML('service','Service');
     inner += trackHTML('skills','Skills');
     const c = VA.counts || {};
-    inner += '<div class="vfoot"><span class="num">AI vs. me log: '+(c.logs ?? 0)+' · Reviews: '+(c.reviews ?? 0)+'</span><span>'+(c.syncedAt ? 'Synced '+esc(fmtWhen(c.syncedAt)) : 'Not synced yet')+(vaOwner?' · <button class="linkbtn" data-va-sync>Sync now</button>':'')+'</span></div>';
-    if (vaMsg.sync) inner += '<p class="vmsg'+(vaMsg.sync.err?' err':'')+'" role="status">'+esc(vaMsg.sync.text)+'</p>';
-    inner += '<div class="btns"><a class="btn" href="'+ROADMAP+'">Full task list</a></div>';
+    inner += '<div class="vfoot"><span class="num">AI vs. me log: '+(c.logs ?? 0)+' · Reviews: '+(c.reviews ?? 0)+'</span><span>Checked off here, saved in Homebase</span></div>';
+    inner += '<div class="btns"><a class="btn" href="'+ROADMAP+'">Open the plan</a></div>';
     box.innerHTML = vaShell(inner);
   }
 
@@ -740,14 +800,14 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
     const t = VA.tasks.get(id); if (!t || !vaOwner) return;
     const now = new Date().toISOString();
     try {
-      await vaDb.doc('va_tasks/' + id).update({ status:'done', doneAt: now, pendingWriteBack: true });
+      await setTask(id, { status:'done', doneAt: now });
     } catch (e) {
-      vaMsg[t.track] = { err:true, text:'Couldn\'t save that check-off here (' + (e && e.code || 'error') + '). Try again.' }; renderVA(); return;
+      vaMsg[t.track] = { err:true, text:'Couldn\'t save that check-off (' + (e && e.code || 'error') + '). Try again.' }; renderVA(); return;
     }
     const type = typeFor(id, t.track), xp = XP_BY_EFFORT[t.effort] || 10;
     openSheet({ kicker:'Done · details earn +' + xp + ' XP', title:t.title, type,
-      onSave: f => { gain(xp, 'roadmap step done'); sendWriteBack({ id, status:'done', srcVersion:t.srcVersion, details:{ type, date: localYmd(new Date()), fields:f } }, t.track); },
-      onLater: () => { addPending('rm-' + id, { kind:'roadmap', taskId:id, type, title:t.title, xp, track:t.track }); sendWriteBack({ id, status:'done', srcVersion:t.srcVersion }, t.track); }
+      onSave: f => { gain(xp, 'roadmap step done'); saveDetails(id, 'video-analysis', type, f); },
+      onLater: () => { addPending('rm-' + id, { kind:'roadmap', area:'video-analysis', taskId:id, type, title:t.title, xp, track:t.track }); }
     });
   }
 
@@ -761,8 +821,6 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
 
   $('#va').addEventListener('click', e => {
     const d = e.target.closest('[data-va-done]'); if (d) { d.disabled = true; markDone(d.dataset.vaDone); return; }
-    const r = e.target.closest('[data-va-resend]'); if (r) { const t = VA.tasks.get(r.dataset.vaResend); if (t) sendWriteBack({ id:t.id, status:t.status, srcVersion:t.srcVersion }, t.track); return; }
-    if (e.target.closest('[data-va-sync]')) syncNow();
   });
 
   function renderSubstack(feed){
@@ -804,7 +862,7 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
     garden:   { name:'Garden step', dest:'Your next step becomes this card\'s "left off".', f:[['did','What you did','',1],['next','Next tiny step','Under 15 minutes']] }
   };
   const TYPE_OF = { 'p1-01':'tool','p1-02':'game','p1-03':'game','p1-04':'tool','p1-05':'tool','p1-06':'game','p1-07':'game','p1-08':'tool','p2-01':'build','p2-02':'build','p2-03':'tool','p2-04':'outreach','p2-05':'review','p2-06':'outreach','p3-01':'decision','p3-02':'build','p3-03':'outreach','p3-04':'review','p3-05':'tool','p4-01':'decision','p4-02':'decision','p4-03':'build','p4-04':'build' };
-  function typeFor(id, track){ return TYPE_OF[id] || (track === 'skills' ? 'skill' : 'build'); }
+  function typeFor(id, track){ return TYPE_OF[String(id).replace(/^va-/,'')] || (track === 'skills' ? 'skill' : 'build'); }
 
   let sheetCfg = null;
   function openSheet(cfg){
@@ -841,7 +899,7 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
     openSheet({ kicker:'Details earn +' + p.xp + ' XP', title:p.title, type:p.type,
       onSave: f => {
         gain(p.xp || 10, 'details filled in');
-        if (p.kind === 'roadmap') sendWriteBack({ id:p.taskId, details:{ type:p.type, date: (p.at||'').slice(0,10) || localYmd(new Date()), fields:f } }, p.track || 'service');
+        if (p.kind === 'roadmap') saveDetails(p.taskId, p.area || 'video-analysis', p.type, f);
         else saveGarden(p.area, f);
         clearPending(p.id);
       }
@@ -1169,11 +1227,11 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
       h += '<div class="vphases" aria-hidden="true">'+segs+'</div><div class="vlabels">'+labels+'</div>';
       h += '<p class="sub" style="font-size:13px">Milestone: '+esc(cur.milestone)+(cur.reward ? ' → '+esc(cur.reward) : '')+'</p>';
     } else h += '<p class="left">Every fountain step is done.</p>';
-    if (nx) h += '<div class="vnext"><div class="tags"><span class="tag'+(nx.kind==='want'?' want':'')+'">'+(nx.kind==='want'?'Optional':'Core')+'</span><span class="tag">'+esc(EFFORT[nx.effort] || nx.effort || '')+'</span>'+(nx.status==='doing'?'<span class="tag doing">In progress</span>':'')+'</div><p class="t">'+esc(nx.title)+'</p>'+(nx.detail ? '<p class="d">'+esc(nx.detail)+'</p>' : '')+'</div>';
+    if (nx) h += '<div class="vnext"><div class="tags"><span class="tag'+(nx.kind==='want'?' want':'')+'">'+(nx.kind==='want'?'Optional':'Core')+'</span><span class="tag">'+esc(EFFORT[nx.effort] || nx.effort || '')+'</span>'+(nx.status==='doing'?'<span class="tag doing">In progress</span>':'')+'</div><p class="t">'+esc(nx.title)+'</p>'+(nx.detail ? '<p class="d">'+esc(nx.detail)+'</p>' : '')+(vaOwner ? '<div class="btns"><button class="btn solid" data-task-done="'+esc(nx.id)+'">Mark done · +'+(XP_BY_EFFORT[nx.effort]||10)+' XP</button></div>' : '')+'</div>';
     const sk = arnNext('skills'), bz = arnNext('business');
     if (sk || bz) h += '<p class="sub" style="font-size:13px">Alongside: '+[sk ? 'Skills · '+esc(sk.title) : '', bz ? 'Business · '+esc(bz.title) : ''].filter(Boolean).join(' &nbsp;|&nbsp; ')+'</p>';
     const c = ARN.counts || {};
-    h += '<div class="vfoot"><span class="num">Builds: '+(c.builds ?? 0)+' · Sales: '+(c.sales ?? 0)+'</span><a href="'+ARN_URL+'">Full roadmap · check off steps there</a></div></div>';
+    h += '<div class="vfoot"><span class="num">Builds: '+(c.builds ?? 0)+' · Sales: '+(c.sales ?? 0)+'</span><a href="'+ARN_URL+'">Open the plan</a></div></div>';
     $('#arnLive').innerHTML = h;
   }
 
@@ -1185,9 +1243,8 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
   $('#hbTasks').addEventListener('click', e => {
     const b = e.target.closest('[data-hbt]'); if (!b) return;
     const t = HBT.get(b.dataset.hbt); if (!t) return;
-    const data = Object.assign({}, t, { status:'done', doneAt:new Date().toISOString() }); delete data.id;
-    HBT.set(t.id, Object.assign({ id:t.id }, data)); persist('hbtasks/' + t.id, data);
-    gain(10, 'task done'); renderHbTasks();
+    b.disabled = true;
+    setTask(t.id, { status:'done', doneAt:new Date().toISOString() }).then(() => gain(10, 'task done')).catch(() => { b.disabled = false; toast('Couldn\'t save that. Try again.'); });
   });
 
   async function liveInit(db){
@@ -1203,11 +1260,6 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
     db.doc('feeds/inbox').onSnapshot(s => { FEED.inbox = s.exists ? s.data() : null; renderInbox(); }, () => {});
     db.doc('feeds/briefing').onSnapshot(s => { FEED.briefing = s.exists ? s.data() : null; renderBriefing(); }, () => {});
     db.doc('feeds/wildcard').onSnapshot(s => { FEED.wildcard = s.exists ? s.data() : null; buildQuests(); }, () => {});
-    db.collection('arn_tasks').onSnapshot(s => { ARN.tasks = new Map(s.docs.map(d => [d.id, Object.assign({ id:d.id }, d.data())])); renderArn(); }, () => {});
-    db.collection('arn_phases').onSnapshot(s => { ARN.phases = new Map(s.docs.map(d => [d.id, Object.assign({ id:d.id }, d.data())])); renderArn(); }, () => {});
-    db.doc('arn_meta/state').onSnapshot(s => { ARN.state = s.exists ? s.data() : null; renderArn(); }, () => {});
-    db.doc('arn_meta/counts').onSnapshot(s => { ARN.counts = s.exists ? s.data() : null; renderArn(); }, () => {});
-    db.collection('hbtasks').onSnapshot(s => { HBT.clear(); s.docs.forEach(d => HBT.set(d.id, Object.assign({ id:d.id }, d.data()))); renderHbTasks(); }, () => {});
     db.collection('skips').onSnapshot(s => { SKIPS.clear(); s.docs.forEach(d => SKIPS.set(d.id, d.data())); if (!$('#s-wind').hidden) renderSkips(); }, () => {});
     db.collection('quickDone').onSnapshot(s => { s.docs.forEach(d => QUICK_DONE.add(String(d.data().id || d.id))); renderInbox(); }, () => {});
   }
@@ -1222,16 +1274,17 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
     try { vaOwner = user ? !!(await user.isOwner()) : false; } catch (_) { vaOwner = false; }
     if (!db) { renderVA(); return; }
     vaDb = db; renderVA();
-    const onErr = () => { vaMsg.sync = { err:true, text:'Lost the live connection to your roadmap copy. Reload the page to reconnect.' }; renderVA(); };
-    db.collection('va_tasks').onSnapshot(s => { VA.tasks = new Map(s.docs.map(d => [d.id, Object.assign({ id:d.id }, d.data())])); VA.gotT = true; renderVA(); }, onErr);
-    db.collection('va_phases').onSnapshot(s => { VA.phases = new Map(s.docs.map(d => [d.id, Object.assign({ id:d.id }, d.data())])); VA.gotP = true; renderVA(); }, onErr);
-    db.doc('va_meta/state').onSnapshot(s => { VA.state = s.exists ? s.data() : null; renderVA(); }, onErr);
-    db.doc('va_meta/counts').onSnapshot(s => { VA.counts = s.exists ? s.data() : null; renderVA(); }, onErr);
+    const onErr = () => toast('Lost the live connection to your tasks. Reload the page to reconnect.');
+    const asMap = s => new Map(s.docs.map(d => [d.id, Object.assign({ id:d.id }, d.data())]));
+    db.collection('tasks').onSnapshot(s => { STORE.tasks = asMap(s); STORE.gotT = true; deriveFromStore(); }, onErr);
+    db.collection('phases').onSnapshot(s => { STORE.phases = asMap(s); STORE.gotP = true; deriveFromStore(); }, onErr);
+    db.collection('areas').onSnapshot(s => { STORE.areas = asMap(s); STORE.gotA = true; deriveFromStore(); }, onErr);
+    db.collection('logs').onSnapshot(s => { STORE.logs = s.docs.map(d => d.data()); deriveFromStore(); }, () => {});
     db.doc('feeds/substack').onSnapshot(s => renderSubstack(s.exists ? s.data() : null), () => {});
     dbRef = db;
     liveInit(db);
     db.collection('pending').onSnapshot(s => { PENDING = s.docs.map(d => Object.assign({ id:d.id }, d.data())).sort((a,b) => String(a.at).localeCompare(String(b.at))); renderPending(); }, () => {});
-    db.collection('garden').onSnapshot(s => { s.docs.forEach(d => { const g = d.data(), el = $('#left-' + d.id); if (el && g.leftOff) el.innerHTML = '<span>Left off:</span> ' + esc(g.leftOff); }); }, () => {});
+    db.collection('garden').onSnapshot(s => { s.docs.forEach(d => { const g = d.data(), el = $('#left-' + d.id); if (el && g.leftOff) el.innerHTML = '<span>Left off:</span> ' + esc(g.leftOff); if (d.id === 'video-analysis') { VA.state = { leftOff: g.leftOff, leftOffAt: g.at }; renderVA(); } if (d.id === 'arnefjall') { ARN.state = { leftOff: g.leftOff }; } }); }, () => {});
   })();
 
   renderXP(); renderQuests();
