@@ -1,0 +1,11 @@
+{
+  "detail": "Cancel the other before it renews.",
+  "effort": "S",
+  "kind": "should",
+  "order": 8,
+  "phase": "p1",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Pick which AI tool to keep",
+  "track": "service"
+}

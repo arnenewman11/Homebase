@@ -1,0 +1,13 @@
+{
+  "ask": "Roughly how much did you spend, and where?",
+  "detail": "Wood, slate pieces, small tub, pump, LED strip, sealer, stones.",
+  "effort": "M",
+  "followup": "note",
+  "kind": "should",
+  "order": 4,
+  "phase": "f1",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Buy materials for two prototypes",
+  "track": "fountains"
+}

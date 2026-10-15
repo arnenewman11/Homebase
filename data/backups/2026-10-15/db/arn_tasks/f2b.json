@@ -1,0 +1,13 @@
+{
+  "ask": "How did it sound, and how much water did it lose?",
+  "detail": "Quiet-room sound, splash, and water lost.",
+  "effort": "M",
+  "followup": "note",
+  "kind": "should",
+  "order": 2,
+  "phase": "f2",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Run it for a week and listen",
+  "track": "fountains"
+}

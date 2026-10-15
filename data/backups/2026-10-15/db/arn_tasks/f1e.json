@@ -1,0 +1,11 @@
+{
+  "detail": "Keep one batch running from here on.",
+  "effort": "S",
+  "kind": "want",
+  "order": 5,
+  "phase": "f1",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Start a tumbler batch for the base stones",
+  "track": "fountains"
+}

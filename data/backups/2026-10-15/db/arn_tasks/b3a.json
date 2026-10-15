@@ -1,0 +1,10 @@
+{
+  "effort": "S",
+  "kind": "should",
+  "order": 1,
+  "phase": "b3",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Set up a way to take card payments",
+  "track": "business"
+}

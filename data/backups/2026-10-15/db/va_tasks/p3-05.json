@@ -1,0 +1,11 @@
+{
+  "detail": "$29.99/month, or switch to the free desktop tools.",
+  "effort": "S",
+  "kind": "should",
+  "order": 5,
+  "phase": "p3",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Decide on the OnForm paid plan",
+  "track": "service"
+}

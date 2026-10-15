@@ -1,0 +1,13 @@
+{
+  "ask": "Which wood did you pick, and why?",
+  "detail": "Both work indoors once sealed.",
+  "effort": "S",
+  "followup": "note",
+  "kind": "should",
+  "order": 2,
+  "phase": "f1",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Choose the wood: aspen or white oak",
+  "track": "fountains"
+}

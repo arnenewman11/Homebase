@@ -1,0 +1,13 @@
+{
+  "ask": "Which did you choose?",
+  "detail": "A local market, a consignment shop, or directly to people you know.",
+  "effort": "S",
+  "followup": "note",
+  "kind": "should",
+  "order": 1,
+  "phase": "f4",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Choose the first place to sell",
+  "track": "fountains"
+}

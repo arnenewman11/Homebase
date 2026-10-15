@@ -1,0 +1,1241 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Homebase</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: one phone-width column, three screens switched by a bottom bar; colors from the living room (sage wall, oak, rug clay & mustard, wood-block blues) */
+:root{
+  --ground:#EFEBE4; --card:#F8F5EF; --card-rest:#F3F0E9; --line:#E2DDD3; --soft:#E8E3DA;
+  --ink:#262A24; --muted:#5B6157;
+  --sage:#5E6656; --sage-deep:#474E42; --oak:#A9714A; --clay:#B9735E; --mustard:#C9A548;
+  --slate:#4F7287; --navy:#233243; --on-dark:#F8F5EF;
+  --chip-bill-bg:#F1E5C6; --chip-bill-fg:#6B5517;
+  --chip-sold-bg:#DCE6EC; --chip-sold-fg:#2E4A5C;
+  --chip-rent-bg:#E5EAE0; --chip-rent-fg:#3E4A36;
+  --font:'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --ground:#1C2420; --card:#252E29; --card-rest:#212925; --line:#34403A; --soft:#2E3833;
+  --ink:#ECE8E0; --muted:#A9B0A4;
+  --sage:#8A9A7C; --sage-deep:#B7C4A7; --oak:#C99068; --clay:#D08F79; --mustard:#D9B95E;
+  --slate:#7EA2B8; --navy:#162029; --on-dark:#F3EFE8;
+  --chip-bill-bg:#4A3F1E; --chip-bill-fg:#F1DFA8;
+  --chip-sold-bg:#22394A; --chip-sold-fg:#C6DCEA;
+  --chip-rent-bg:#2F3B2B; --chip-rent-fg:#CFDCC4;
+  color-scheme:dark } }
+:root[data-theme="dark"]{
+  --ground:#1C2420; --card:#252E29; --card-rest:#212925; --line:#34403A; --soft:#2E3833;
+  --ink:#ECE8E0; --muted:#A9B0A4;
+  --sage:#8A9A7C; --sage-deep:#B7C4A7; --oak:#C99068; --clay:#D08F79; --mustard:#D9B95E;
+  --slate:#7EA2B8; --navy:#162029; --on-dark:#F3EFE8;
+  --chip-bill-bg:#4A3F1E; --chip-bill-fg:#F1DFA8;
+  --chip-sold-bg:#22394A; --chip-sold-fg:#C6DCEA;
+  --chip-rent-bg:#2F3B2B; --chip-rent-fg:#CFDCC4;
+  color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.4}
+a{color:var(--slate)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--slate);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:460px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:0 120px}
+.screen{display:flex;flex-direction:column;gap:20px}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0}
+h1,h2{margin:0;text-wrap:balance}
+h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
+.row{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.sub{margin:0;font-size:13px;color:var(--muted)}
+.card{background:var(--card);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.card.rest{background:var(--card-rest)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:999px;border:0;font-weight:600;font-size:14px;cursor:pointer;text-decoration:none;background:var(--soft);color:var(--sage-deep)}
+.btn.solid{background:var(--sage-deep);color:var(--card)}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+
+/* header band after the rug */
+.band{position:relative;margin-left:calc(-1 * max(16px, env(safe-area-inset-left, 0px)));margin-right:calc(-1 * max(16px, env(safe-area-inset-right, 0px)));height:150px;margin-bottom:-6px}
+.band i{position:absolute;inset:0;display:block}
+.band .a{background:var(--sage);clip-path:polygon(0 0,100% 0,100% 40%,0 100%)}
+.band .b{background:var(--clay);clip-path:polygon(0 100%,100% 40%,100% 74%,46% 100%)}
+.band .c{background:var(--mustard);clip-path:polygon(46% 100%,100% 74%,100% 100%)}
+.band .t{position:absolute;left:max(16px, env(safe-area-inset-left, 0px));top:22px;color:#F8F5EF}
+.band .t p{margin:0;font-size:13px;font-weight:600;opacity:.9}
+.band .t h1{font-size:30px;font-weight:800;letter-spacing:-.02em}
+
+/* XP */
+.blocks{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:3px;height:22px}
+.blocks span{border-radius:3px;transition:opacity .4s}
+.blocks span:nth-child(odd){transform:skewY(-4deg)}
+.blocks span:nth-child(even){transform:skewY(3deg)}
+
+/* weather */
+.hours{display:flex;gap:4px;overflow-x:auto;padding-bottom:2px}
+.hours div{flex:0 0 44px;text-align:center;font-size:12px;color:var(--muted)}
+.hours b{display:block;margin-top:4px;font-size:15px;color:var(--ink)}
+.ten{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.ten div{background:var(--ground);border-radius:12px;padding:8px 4px;text-align:center;font-size:12px;color:var(--muted)}
+.ten b{display:block;font-size:13px;color:var(--ink);margin-top:2px}
+
+/* schedule */
+.ev{display:flex;gap:12px;align-items:center}
+.ev .tm{width:48px;font-size:13px;font-weight:700;color:var(--sage-deep);margin:0}
+.ev .bar{width:4px;align-self:stretch;border-radius:2px}
+.ev p{margin:0}
+.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;padding-top:12px;border-top:1px solid var(--line)}
+.week div{text-align:center;font-size:12px;color:var(--muted);padding:4px 0;border-radius:10px}
+.week div.today{background:var(--sage-deep);color:var(--card)}
+.week span{display:block;font-size:10px;letter-spacing:2px;margin-top:3px}
+
+/* quest pebbles */
+.quest{display:flex;align-items:center;gap:14px;width:100%;text-align:left;border:0;padding:16px;background:var(--card);border-radius:26px 30px 24px 32px;transition:background .25s, transform .18s, opacity .18s;touch-action:pan-y;user-select:none}
+.pebble{min-height:44px}
+.pebble{flex:0 0 46px;height:42px;border-radius:48% 52% 45% 55% / 55% 48% 52% 45%;background:var(--line);display:flex;align-items:center;justify-content:center;transition:background .25s}
+.pebble svg{opacity:0;transition:opacity .2s}
+.quest.done .pebble svg{opacity:1}
+.quest .k{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.quest .ti{display:block;font-size:16px;font-weight:700;line-height:1.25;margin-top:2px}
+.quest .me{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.quest .xp{font-size:13px;font-weight:700;flex:0 0 auto}
+.qbody{flex:1;min-width:0}
+
+/* inbox */
+.item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.item p{margin:0;flex:1;min-width:0;font-size:14px}
+.item small{display:block;font-size:12px;color:var(--muted)}
+.chip{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:600;flex:0 0 auto}
+.finlink{display:flex;align-items:center;justify-content:space-between;min-height:52px;text-decoration:none;color:var(--ink);font-weight:600;background:none;border:0;width:100%;cursor:pointer;padding:0}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:10px}
+
+/* garden */
+.ghead{display:flex;align-items:center;gap:12px}
+.ghead p{margin:0}
+.gname{font-size:16px;font-weight:700}
+.goal{display:flex;flex-direction:column;gap:8px;background:var(--ground);border-radius:14px;padding:12px}
+.goal .row{font-size:12px;font-weight:700;color:var(--sage-deep)}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}
+.steps i{height:8px;border-radius:3px;background:var(--line);display:block}
+.steplabels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;font-size:11px;line-height:1.3;color:var(--muted)}
+.mini{display:flex;justify-content:space-between;gap:10px;background:var(--ground);border-radius:14px;padding:10px 12px;font-size:13px}
+.mini b{color:var(--sage-deep)}
+.left{margin:0;font-size:14px}
+.left span{color:var(--muted)}
+
+/* briefing */
+.brief{padding:10px 0;border-bottom:1px solid var(--line)}
+.brief:last-child{border-bottom:0}
+.brief .eyebrow{color:var(--slate)}
+.brief p{margin:4px 0 0;font-size:14px}
+
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.tiles a{border-radius:20px;padding:14px 12px;min-height:84px;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;color:#F8F5EF}
+.tiles b{font-size:15px}
+.tiles span{font-size:12px}
+.usual{font-size:14px;line-height:2;margin:0}
+
+/* morning */
+.morning{background:var(--navy);color:var(--on-dark);border-radius:28px;padding:40px 22px 28px;position:relative;overflow:hidden;min-height:620px;display:flex;flex-direction:column;gap:24px;margin-top:16px}
+.morning .hills{position:absolute;left:0;right:0;bottom:0;height:190px}
+.morning .hills i{position:absolute;inset:0}
+.morning h1{font-size:32px;line-height:1.1;font-weight:800;letter-spacing:-.02em}
+.morning .note{margin:0;color:#C7D1D9;font-size:14px}
+.mopt{display:flex;align-items:center;gap:14px;width:100%;min-height:72px;text-align:left;border:0;cursor:pointer;padding:14px 18px;background:#F3EFE8;color:#233243;border-radius:26px 32px 24px 30px;position:relative}
+.mopt b{display:block;font-size:17px}
+.mopt span.m{display:block;font-size:13px;color:#4A5868}
+.mopt .p{flex:0 0 42px;height:38px;border-radius:48% 52% 45% 55% / 55% 48% 52% 45%}
+.back{position:relative;background:#F3EFE8;color:#233243;border-radius:24px;padding:22px;display:flex;flex-direction:column;gap:12px}
+.back p{margin:0}
+.back .btn{background:#233243;color:#F3EFE8}
+.mfoot{position:relative;margin-top:auto;display:flex;flex-direction:column;gap:4px;font-size:13px;color:#C7D1D9}
+.mfoot button{background:none;border:0;padding:0;color:#F1E5C6;text-decoration:underline;cursor:pointer;text-align:left;min-height:32px}
+
+/* finance */
+.area{background:var(--card);border-radius:22px;overflow:hidden}
+.area button.h{display:flex;align-items:center;gap:14px;width:100%;min-height:64px;padding:14px 18px;border:0;background:transparent;cursor:pointer;text-align:left}
+.area .nm{display:block;font-size:16px;font-weight:700}
+.area .st{display:block;font-size:13px;color:var(--muted)}
+.area .cta{font-size:13px;font-weight:600;color:var(--slate)}
+.area .rows{padding:0 18px 16px 46px;display:flex;flex-direction:column;gap:8px}
+.area .r{display:flex;justify-content:space-between;gap:12px;font-size:14px;padding-top:8px;border-top:1px solid var(--line)}
+.area .r span{color:var(--muted)}
+.needs{box-shadow:inset 0 0 0 2px var(--chip-bill-bg)}
+
+/* bottom bar + toast */
+.tabbar{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:center;gap:6px;padding:10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));background:var(--card);border-top:1px solid var(--line);z-index:10}
+.tabbar button{flex:1;max-width:140px;min-height:44px;border:0;border-radius:999px;background:transparent;font-weight:700;font-size:14px;color:var(--muted);cursor:pointer}
+.tabbar button[aria-selected="true"]{background:var(--sage-deep);color:var(--card)}
+.toast{position:fixed;left:50%;top:calc(16px + env(safe-area-inset-top, 0px));transform:translateX(-50%) translateY(-120%);background:var(--navy);color:#F8F5EF;padding:12px 20px;border-radius:999px;font-weight:700;z-index:20;transition:transform .3s;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.toast.on{transform:translateX(-50%) translateY(0)}
+.sample{font-size:12px;color:var(--muted);text-align:center;margin:12px 0 0}
+
+/* video */
+.ytabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}
+.ytabs button{flex:0 0 auto;min-height:40px;padding:0 14px;border-radius:999px;border:0;background:var(--soft);color:var(--sage-deep);font-weight:600;font-size:13px;cursor:pointer}
+.ytabs button[aria-selected="true"]{background:var(--sage-deep);color:var(--card)}
+.thumb{aspect-ratio:16/9;max-width:100%;width:100%;border-radius:14px;position:relative;overflow:hidden;background:#233243}
+.thumb i{position:absolute;inset:0}
+.thumb .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:52px;height:52px;border-radius:50%;background:rgba(248,245,239,.92);display:flex;align-items:center;justify-content:center}
+.thumb .len{position:absolute;right:8px;bottom:8px;background:rgba(20,26,22,.8);color:#F8F5EF;font-size:12px;font-weight:700;padding:2px 7px;border-radius:6px}
+.vt{margin:0;font-size:16px;font-weight:700}
+.vm{margin:0;font-size:13px;color:var(--muted)}
+.alt{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 0 0;border-top:1px solid var(--line);font-size:14px}
+.alt p{margin:0;min-width:0}
+.meter{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted)}
+.meter .track{flex:1;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.meter .fill{height:100%;background:var(--slate);width:0;transition:width .4s}
+.nudge{margin:0;font-size:13px;font-weight:600;color:var(--chip-bill-fg);background:var(--chip-bill-bg);border-radius:12px;padding:10px 12px}
+/* video analysis roadmap card */
+.vtrack{display:flex;flex-direction:column;gap:10px;padding-top:12px;border-top:1px solid var(--line)}
+.vtrack h3{margin:0;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--slate)}
+.vphases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+.vphases .seg{height:8px;border-radius:3px;background:var(--line);overflow:hidden}
+.vphases .seg span{display:block;height:100%;background:var(--slate)}
+.vphases .seg.cur{outline:2px solid var(--slate);outline-offset:1px}
+.vlabels{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;font-size:11px;line-height:1.3;color:var(--muted)}
+.vlabels b{color:var(--ink)}
+.vnext{background:var(--ground);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:6px}
+.vnext .t{margin:0;font-size:16px;font-weight:700}
+.vnext .d{margin:0;font-size:13px;color:var(--muted)}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{display:inline-flex;align-items:center;height:22px;padding:0 9px;border-radius:999px;font-size:11px;font-weight:700;background:var(--soft);color:var(--sage-deep)}
+.tag.want{background:var(--chip-bill-bg);color:var(--chip-bill-fg)}
+.tag.doing{background:var(--chip-sold-bg);color:var(--chip-sold-fg)}
+.vmsg{margin:0;font-size:13px;border-radius:12px;padding:8px 12px;background:var(--soft);color:var(--sage-deep)}
+.vmsg.err{background:var(--chip-bill-bg);color:var(--chip-bill-fg)}
+.vfoot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.linkbtn{background:none;border:0;padding:0;min-height:32px;color:var(--slate);font-weight:600;font-size:13px;text-decoration:underline;cursor:pointer}
+/* completion sheet */
+.sheet{position:fixed;inset:0;z-index:30;background:rgba(20,26,22,.45);display:flex;align-items:flex-end;justify-content:center}
+.sheet .panel{background:var(--card);color:var(--ink);width:100%;max-width:460px;border-radius:24px 24px 0 0;padding:20px max(16px, env(safe-area-inset-right, 0px)) calc(20px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));display:flex;flex-direction:column;gap:12px;max-height:85vh;overflow:auto}
+.sheet h2{font-size:19px}
+.field{display:flex;flex-direction:column;gap:4px}
+.field label{font-size:13px;font-weight:600}
+.field input,.field textarea{font:inherit;font-size:16px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--ground);color:var(--ink);width:100%}
+.field textarea{min-height:64px;resize:vertical}
+.btn[disabled]{opacity:.5;cursor:default}
+/* wind down */
+.opt{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:0;cursor:pointer;padding:12px;background:var(--ground);color:var(--ink);border-radius:14px;min-height:48px}
+.opt[aria-pressed="true"]{background:var(--chip-rent-bg);box-shadow:inset 0 0 0 2px var(--sage-deep)}
+.opt .ck{width:20px;height:20px;border-radius:50%;border:2px solid var(--sage-deep);flex:0 0 auto}
+.opt[aria-pressed="true"] .ck{background:var(--sage-deep)}
+.opt span.m{display:block;font-size:12px;color:var(--muted)}
+.bucket{display:flex;flex-direction:column;gap:8px}
+.bucket h3{margin:0;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--slate)}
+.night{background:var(--navy);color:var(--on-dark);border-radius:24px;padding:22px;display:flex;flex-direction:column;gap:12px}
+.night p{margin:0}
+.tabbar button.glow{box-shadow:inset 0 0 0 2px var(--mustard)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="wrap">
+
+<!-- TODAY -->
+<section class="screen" id="s-today" aria-label="Today">
+  <div class="band" aria-hidden="false">
+    <i class="a"></i><i class="b"></i><i class="c"></i>
+    <div class="t"><p id="hDate"></p><h1 id="hGreet">Hello.</h1></div>
+  </div>
+
+
+  <section class="card" aria-label="Schedule">
+    <div class="row"><h2>Today</h2><span class="sub" id="calCount"></span></div>
+    <div id="calToday" style="display:flex;flex-direction:column;gap:10px"><p class="sub" style="font-size:14px">Loading your calendar…</p></div>
+    <div class="week" id="calWeek"></div>
+  </section>
+
+  <section aria-label="Today's picks" style="display:flex;flex-direction:column;gap:12px">
+    <div class="row"><h2>Today's picks</h2><span class="sub num" id="qcount">0 of 3</span></div>
+    <div id="quests" style="display:flex;flex-direction:column;gap:12px"></div>
+    <p class="sub" id="bonus" style="text-align:center"></p>
+  </section>
+
+  <section class="card" aria-label="Your level">
+    <div class="row"><strong>Your level: <span id="lvl">7</span></strong><span class="sub num" id="xpt"></span></div>
+    <div class="blocks" id="blocks" aria-hidden="true"></div>
+    <p class="sub">Everything you finish on this page earns XP: today's picks, inbox items, re-entry steps, deliberate reading. Fill the bar to level up. XP never goes down.</p>
+    <p class="sub" id="reward" style="font-weight:600;color:var(--sage-deep)"></p>
+  </section>
+
+  <div class="tiles" aria-label="Read and listen">
+    <a href="https://read.amazon.com/" style="background:#5E6656"><b>Kindle</b><span>Read 15 min</span></a>
+    <a href="https://www.audible.com/" style="background:#8A5733"><b>Audible</b><span>Walk + listen</span></a>
+    <a href="https://open.spotify.com/" style="background:#3F5F73"><b>Spotify</b><span>Focus mix</span></a>
+  </div>
+
+  <section class="card" aria-label="Weather">
+    <div class="row" style="align-items:center">
+      <div><p class="eyebrow">Wheat Ridge</p><p class="num" id="wxTemp" style="margin:2px 0 0;font-size:34px;font-weight:800">–</p></div>
+      <p class="sub" id="wxNote" style="max-width:190px;text-align:right;font-size:14px">The forecast arrives with the next refresh.</p>
+    </div>
+    <div class="hours num" id="wxHours"></div>
+    <div class="ten num" id="ten" hidden></div>
+    <button class="btn" id="tenBtn" style="align-self:flex-start">Show 10-day forecast</button>
+  </section>
+
+  <section class="card" aria-label="Productivity" style="gap:4px">
+    <div class="row" style="margin-bottom:6px"><h2>Productivity</h2><span class="sub">from your inbox</span></div>
+    <div id="inboxWins"><p class="sub" style="font-size:14px">Your inbox is scanned every few hours. Action items show up here.</p></div>
+    <div id="hbTasks"></div>
+    <div id="pendingWins"></div>
+    <p class="sub" style="font-size:12px;padding-top:8px">Finances: coming after your accounts thread.</p>
+  </section>
+
+  <section aria-label="Learn &amp; Play" style="display:flex;flex-direction:column;gap:12px">
+    <div class="row"><h2>Learn &amp; Play</h2><span class="sub">7 growing · 1 resting</span></div>
+    <div id="va"></div>
+
+    <div class="card">
+      <div class="ghead"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40"><path d="M20 36V22" stroke="var(--sage-deep)" stroke-width="2.5" stroke-linecap="round"/><path d="M20 24c-6 0-9-4-9-9 6 0 9 3 9 9z" fill="var(--slate)"/><path d="M20 22c0-6 3-9 9-9 0 5-3 9-9 9z" fill="#7E9A97"/></svg>
+        <div><p class="gname">AI consulting path</p><p class="sub">Level 4 · growing · 16 hrs/week</p></div></div>
+      <p class="left" id="left-ai"><span>Left off:</span> committed to a 90-day test, validation first. Roadmap update, conversation script and offer sheet are waiting on your yes.</p>
+      <div class="goal">
+        <div class="row"><span>90-day test</span><span>Go/no-go: early Dec</span></div>
+        <div class="steps"><i style="background:var(--slate)"></i><i></i><i></i></div>
+        <div class="steplabels"><span>~30 hrs fluency + your workshop</span><span>20 owner conversations</span><span>3 paid commitments → Major reward</span></div>
+      </div>
+      <div class="btns"><button class="btn solid" data-garden="ai" data-gxp="15" data-gtitle="List 5 owners to ask">15 min: list 5 owners to ask</button><a class="btn" href="https://claude.ai/artifact/T6Q1xGbQoY5bwtia4LXNDY">Roadmap</a></div>
+    </div>
+
+    <div class="card">
+      <div class="ghead"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40"><path d="M20 36V24" stroke="var(--sage-deep)" stroke-width="2.5" stroke-linecap="round"/><path d="M20 26c-5 0-8-3-8-8 5 0 8 3 8 8z" fill="var(--mustard)"/><path d="M20 24c0-5 3-8 8-8 0 5-3 8-8 8z" fill="#B7C4A7"/></svg>
+        <div><p class="gname">Startup advisor &amp; boards</p><p class="sub">Climate tech · Level 2 · growing</p></div></div>
+      <p class="left" id="left-advisor"><span>Left off:</span> program list, board routes and a draft advisor one-pager are ready. The one-pager is waiting on your feedback.</p>
+      <div class="goal">
+        <div class="row"><span>Next up</span><span>NVC outreach: Oct–Nov</span></div>
+        <div class="steps"><i style="background:var(--mustard);opacity:.5"></i><i></i><i></i></div>
+        <div class="steplabels"><span>One-pager finalized</span><span>Innosphere application in</span><span>First mentor match or seat</span></div>
+      </div>
+      <div class="btns"><button class="btn solid" data-garden="advisor" data-gxp="10" data-gtitle="Fix one line of the one-pager">10 min: fix one line</button><a class="btn" href="https://claude.ai/code/artifact/aa57b3ce-ef7d-4392-a943-2baa8e08639b">Plan doc</a></div>
+    </div>
+
+    <div class="card">
+      <div class="ghead"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40"><path d="M20 36V18" stroke="var(--sage-deep)" stroke-width="2.5" stroke-linecap="round"/><path d="M20 22c-8 0-11-6-11-11 7 0 11 4 11 11z" fill="var(--sage)"/><path d="M20 18c0-7 4-12 12-12 0 7-4 12-12 12z" fill="#8A9A72"/></svg>
+        <div><p class="gname">Pickleball coaching</p><p class="sub">Level 6 · growing</p></div></div>
+      <p class="left" id="left-pickleball"><span>Left off:</span> building the New to Pickleball series on the RPO framework.</p>
+      <div class="mini"><span>Train 3× this week → rest day + a treat</span></div>
+      <div class="btns"><button class="btn solid" data-garden="pickleball" data-gxp="15" data-gtitle="Pickleball step">Log a step</button></div>
+    </div>
+
+    <div class="card">
+      <div class="ghead"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40"><path d="M20 36V20" stroke="var(--sage-deep)" stroke-width="2.5" stroke-linecap="round"/><path d="M20 24c-7 0-10-5-10-10 6 0 10 4 10 10z" fill="var(--oak)"/><path d="M20 20c0-6 3-10 10-10 0 6-4 10-10 10z" fill="#C98B4E"/></svg>
+        <div><p class="gname">Card selling</p><p class="sub">Level 5 · growing</p></div></div>
+      <p class="left" id="left-cards"><span>Left off:</span> not set yet.</p>
+      <div class="btns"><button class="btn solid" data-garden="cards" data-gxp="10" data-gtitle="Card selling step">Log a step</button></div>
+    </div>
+
+    <div class="card">
+      <div class="ghead"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40"><path d="M20 36V30" stroke="var(--sage-deep)" stroke-width="2.5" stroke-linecap="round"/><path d="M20 31c-3 0-5-2-5-5 3 0 5 2 5 5z" fill="#97ADA0"/></svg>
+        <div><p class="gname">Denver outings</p><p class="sub">Level 1 · seedling</p></div></div>
+      <p class="left">Concerts, comedy, markets, classes, meetups. Every pick doubles as a date idea.</p>
+    </div>
+
+    <div class="card rest">
+      <div class="ghead"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40"><ellipse cx="20" cy="30" rx="10" ry="7" fill="#B5AFA4"/><ellipse cx="17" cy="28" rx="3" ry="1.5" fill="#CFC9BE"/></svg>
+        <div><p class="gname">Disc golf</p><p class="sub">Level 3 · resting 18 days</p></div></div>
+      <p class="left" id="left-discgolf"><span>Left off:</span> not set yet.</p>
+      <div class="mini"><span>Hit your TechDisc spin and speed target → new disc</span></div>
+      <div class="btns"><button class="btn solid" data-garden="discgolf" data-gxp="20" data-gtitle="10-min putting session">Wake it up: 10-min putting</button></div>
+    </div>
+
+    <div class="card">
+      <div class="ghead"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40"><path d="M20 36V24" stroke="var(--sage-deep)" stroke-width="2.5" stroke-linecap="round"/><path d="M20 26c-5 0-8-3-8-8 5 0 8 3 8 8z" fill="#B9A08C"/><path d="M20 24c0-5 3-8 8-8 0 5-3 8-8 8z" fill="#8A9A72"/></svg>
+        <div><p class="gname">Arnfjäll</p><p class="sub">Stone, wood &amp; moss fountains · Level 2 · growing</p></div></div>
+      <p class="left" id="left-arnefjall"><span>Left off:</span> built the Arnfjäll Roadmap on Oct 14 and chose a small indoor wood-frame cascade fountain as the first build. No roadmap steps checked off yet.</p>
+      <div id="arnLive"></div>
+      <div class="goal" id="arnStatic">
+        <div class="row"><span>First build</span><span>Craft Market Prep: Oct 21</span></div>
+        <div class="steps"><i></i><i></i><i></i></div>
+        <div class="steplabels"><span>Parts in hand for prototype 1</span><span>Prototype 2 runs a quiet week</span><span>3–5 pieces + 4 strong photos → new supplies</span></div>
+      </div>
+      <p class="sub" style="font-size:13px">Open questions: aspen or white oak? Price ($175–300)? Where to sell first?</p>
+      <div class="btns"><button class="btn solid" data-garden="arnefjall" data-gxp="10" data-gtitle="Look up Clear Creek Makerspace hours and woodshop class dates">10 min: look up makerspace class dates</button></div>
+    </div>
+  </section>
+
+  <section aria-label="Watch next" style="display:flex;flex-direction:column;gap:12px">
+    <div class="row"><h2>Watch next</h2><span class="sub">coming soon</span></div>
+    <div class="card"><p class="sub" style="font-size:14px">Pickleball, AI, focus, disc golf and other-interest picks turn on once you name your favorite channels.</p></div>
+  </section>
+
+  <section class="card" aria-label="Catch-up" style="gap:0">
+    <div style="margin-bottom:6px"><h2>The 60-second catch-up</h2><p class="sub">Read it here. No need to go anywhere.</p></div>
+    <div id="briefing"><p class="sub" style="font-size:14px">The catch-up arrives with the next refresh.</p></div>
+  </section>
+
+  <section aria-label="Deliberate time" style="display:flex;flex-direction:column;gap:12px">
+    <div class="row"><h2>Deliberate time</h2><span class="sub">earns XP</span></div>
+    <div class="card" id="substack" style="gap:4px"><p class="eyebrow">New on Substack</p><p class="sub">Loading your subscriptions…</p></div>  </section>
+
+  <section aria-label="The usual places" style="display:flex;flex-direction:column;gap:6px">
+    <p class="eyebrow">The usual places</p>
+    <p class="usual"><a href="https://www.on3.com/teams/north-carolina-tar-heels/">Inside Carolina</a> · <a href="https://247sports.com/college/north-carolina/">247 UNC</a> · <a href="https://www.pinstripealley.com/">Pinstripe Alley</a> · <a href="https://www.reddit.com/">Reddit</a> · <a href="https://www.youtube.com/">YouTube</a> · <a href="https://www.comc.com/">COMC</a> · <a href="https://www.ebay.com/">eBay</a></p>
+  </section>
+  <p class="sample" id="refreshNote">Refreshes around 6, 9, 12, 3 and 6.</p>
+</section>
+
+<!-- MORNING -->
+<section class="screen" id="s-morning" aria-label="Morning" hidden>
+  <div class="morning">
+    <div class="hills" aria-hidden="true">
+      <i style="background:#2C4A61;clip-path:polygon(0 40%,100% 0,100% 100%,0 100%)"></i>
+      <i style="background:#3D627C;clip-path:polygon(0 75%,100% 45%,100% 100%,0 100%)"></i>
+      <i style="background:#C98B4E;clip-path:polygon(0 100%,100% 82%,100% 100%)"></i>
+    </div>
+    <div style="position:relative;display:flex;flex-direction:column;gap:10px">
+      <p class="note" id="mWx">Good morning.</p>
+      <h1>The day's waiting outside, not in here.</h1>
+      <p class="note" style="font-size:15px">Pick one. Come back after and it counts.</p>
+    </div>
+    <div id="mopts" style="position:relative;display:flex;flex-direction:column;gap:12px">
+      <button class="mopt" data-pick="Walk Ollie outside"><span class="p" style="background:#5E6656"></span><span style="flex:1"><b>Walk Ollie outside</b><span class="m">15 min loop · sun is up</span></span><strong style="color:#3D627C">+15</strong></button>
+      <button class="mopt" data-pick="Coffee on the patio"><span class="p" style="background:#A9714A"></span><span style="flex:1"><b>Coffee on the patio</b><span class="m">No screen, just the cup</span></span><strong style="color:#3D627C">+15</strong></button>
+      <button class="mopt" data-pick="Read 15 pages"><span class="p" style="background:#C9A548"></span><span style="flex:1"><b>Read 15 pages</b><span class="m">Kindle or paper</span></span><strong style="color:#3D627C">+15</strong></button>
+    </div>
+    <div class="back" id="mback" hidden>
+      <p class="eyebrow" style="color:#3D627C">Good call</p>
+      <p style="font-size:22px;font-weight:800" id="mpicked"></p>
+      <p style="color:#4A5868">Put the phone down. When you're back, tap below to bank +15 XP and open today.</p>
+      <button class="btn" id="mdone">I'm back · open today</button>
+    </div>
+    <div class="mfoot"><span id="mFirst"></span><button data-go="today">Something urgent? Skip to today</button></div>
+  </div>
+</section>
+
+<!-- FINANCES -->
+<section class="screen" id="s-finance" aria-label="Finances" hidden>
+  <div style="padding-top:28px;display:flex;flex-direction:column;gap:6px">
+    <h1 style="font-size:30px;font-weight:800;letter-spacing:-.02em">Mostly calm.</h1>
+    <p class="sub" style="font-size:15px">One thing needs you this week. Everything else is on track. Numbers stay tucked away until you tap.</p>
+  </div>
+  <div class="card needs">
+    <p class="eyebrow" style="color:var(--chip-bill-fg)">Needs you</p>
+    <strong style="font-size:17px">Xcel Energy · due Fri · [AMOUNT]</strong>
+    <p class="sub" style="font-size:14px">About [X]% above your usual for October. Worth a glance at the bill.</p>
+    <div class="btns"><button class="btn solid" data-xp="10" data-msg="Bill paid">Pay now · +10 XP</button><button class="btn">Open the email</button></div>
+  </div>
+  <div id="areas" style="display:flex;flex-direction:column;gap:10px"></div>
+  <div class="card" style="background:var(--chip-sold-bg);color:var(--chip-sold-fg)">
+    <strong>Monthly check-in · due Nov 1</strong>
+    <p style="margin:0;font-size:14px">Drop this month's account exports in your Finance Inbox folder. About 10 minutes, worth +40 XP.</p>
+  </div>
+</section>
+<!-- WIND DOWN -->
+<section class="screen" id="s-wind" aria-label="Winding down" hidden>
+  <div style="padding-top:28px;display:flex;flex-direction:column;gap:6px">
+    <h1 style="font-size:30px;font-weight:800;letter-spacing:-.02em">Winding down.</h1>
+    <p class="sub" style="font-size:15px">Close out today, line up tomorrow, then put the phone down.</p>
+  </div>
+  <section class="card" aria-label="Finish what's open">
+    <div class="row"><h2>Finish what's open</h2><span class="sub num" id="windPendN"></span></div>
+    <div id="windPending" style="display:flex;flex-direction:column;gap:8px"></div>
+  </section>
+  <section class="card" aria-label="Keep skipping these?" id="windSkipsCard" hidden>
+    <div><h2>Keep skipping these?</h2><p class="sub">You've swiped these away on 3 or more days. No pressure, just decide what they deserve.</p></div>
+    <div id="windSkips" style="display:flex;flex-direction:column;gap:10px"></div>
+  </section>
+  <section class="card" aria-label="Tomorrow">
+    <div class="row"><h2>Tomorrow</h2><span class="sub" id="windDay"></span></div>
+    <div id="windCal"></div>
+    <p class="sub" id="windSummary" style="font-size:14px"></p>
+  </section>
+  <section class="card" aria-label="Tomorrow's menu">
+    <div><h2>Tomorrow's menu</h2><p class="sub">Pick what sounds doable. You can change it in the morning.</p></div>
+    <div id="windMenu" style="display:flex;flex-direction:column;gap:16px"></div>
+    <button class="btn solid" id="windSave" style="align-self:flex-start">Save tomorrow's plan · +10 XP</button>
+    <p class="vmsg" id="windSaved" role="status" hidden></p>
+  </section>
+  <div class="night">
+    <p style="font-size:20px;font-weight:800">That's the day.</p>
+    <p style="color:#C7D1D9;font-size:14px">Read a little or listen to something calm, then lights out.</p>
+    <div class="btns">
+      <a class="btn" href="https://read.amazon.com/" style="background:#F3EFE8;color:#233243">Kindle</a>
+      <a class="btn" href="https://www.audible.com/" style="background:#F3EFE8;color:#233243">Audible</a>
+      <button class="btn" id="goodnight" style="background:#C9A548;color:#233243">Goodnight</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<nav class="tabbar" role="tablist" aria-label="Screens">
+  <button role="tab" id="t-morning" aria-selected="false" data-go="morning">Morning</button>
+  <button role="tab" id="t-today" aria-selected="true" data-go="today">Today</button>
+  <button role="tab" id="t-wind" aria-selected="false" data-go="wind">Wind down</button>
+</nav>
+
+<div class="sheet" id="picker" hidden>
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="pickerT">
+    <p class="eyebrow" id="pickerK"></p>
+    <h2 id="pickerT">Pick a different one</h2>
+    <div id="pickerList" style="display:flex;flex-direction:column;gap:8px"></div>
+    <div class="btns"><button class="btn" id="pickerClose">Keep the current one</button></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="panel" role="dialog" aria-modal="true" aria-labelledby="sheetT">
+    <p class="eyebrow" id="sheetK"></p>
+    <h2 id="sheetT"></h2>
+    <p class="sub" id="sheetDest"></p>
+    <form id="sheetForm" style="display:flex;flex-direction:column;gap:12px"></form>
+    <div class="btns">
+      <button class="btn solid" id="sheetSave" disabled>Save</button>
+      <button class="btn" id="sheetLater">Later</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const $ = (s, r=document) => r.querySelector(s);
+  const COLORS=['#C98B4E','#D19A62','#C9B98E','#B7C4A7','#97ADA0','#7E9A97','#6E8C9E','#5F87A6','#4E7894','#3D627C','#2C4A61','#1F3346'];
+  let xp = 0;
+  let done = {};
+  const Q_STYLE = {
+    s:{kind:'Pickleball',xp:25,tint:'var(--sage-deep)',soft:'var(--chip-rent-bg)'},
+    w:{kind:'Learn & Play',xp:20,tint:'var(--oak)',soft:'var(--chip-bill-bg)'},
+    x:{kind:'Productivity',xp:15,tint:'var(--slate)',soft:'var(--chip-sold-bg)'}
+  };
+  const Q_DEFAULT = {
+    s:{area:'Class series',title:'Outline week 2 of New to Pickleball',meta:'25 min'},
+    w:{area:'Disc golf',title:'10-minute putting session',meta:'Wake up a resting interest'},
+    x:{area:'Money & admin',title:'Submit Guidepoint invoice',meta:'10 min'}
+  };
+  let QUESTS = ['s','x','w'].map(id => Object.assign({ id }, Q_STYLE[id], Q_DEFAULT[id]));
+  let dbRef = null;
+  const HBT = new Map();
+  const ymdOf = d => d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  const TODAY = ymdOf(new Date());
+  let writeChain = Promise.resolve();
+  function persist(path, data){ if (!dbRef) return; writeChain = writeChain.then(() => dbRef.doc(path).set(data)).catch(() => toast('Couldn\'t save that. Check your connection.')); }
+
+  const toastEl = $('#toast'); let tt;
+  function toast(msg){ toastEl.textContent = msg; toastEl.classList.add('on'); clearTimeout(tt); tt = setTimeout(()=>toastEl.classList.remove('on'), 1800); }
+
+  function renderXP(){
+    const level = Math.floor(xp/200)+1, into = xp%200, filled = Math.round(into/200*12);
+    $('#lvl').textContent = level;
+    $('#xpt').textContent = into + ' / 200 XP to level ' + (level+1);
+    $('#reward').textContent = 'Level ' + (level+1) + ' reward: tell Claude what it should be.';
+    $('#blocks').innerHTML = COLORS.map((c,i)=>'<span style="background:'+c+';opacity:'+(i<filled?1:.18)+'"></span>').join('');
+  }
+  function gain(n, msg){ const before = Math.floor(xp/200); xp += n; renderXP(); persist('state/xp', { xp, at:new Date().toISOString() }); const up = Math.floor(xp/200) > before; toast(up ? 'Level up! +' + n + ' XP' : '+' + n + ' XP · ' + msg); }
+  function saveDay(extra){ persist('state/day-' + TODAY, Object.assign({ done }, extra || {}, dayExtra)); }
+  let dayExtra = {};
+
+  function renderQuests(){
+    const box = $('#quests'); box.innerHTML = '';
+    const E = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    QUESTS.forEach(q=>{
+      const b = document.createElement('div');
+      b.className = 'quest' + (done[q.id] ? ' done' : '');
+      if (done[q.id]) b.style.background = q.soft;
+      b.innerHTML = '<button class="pebble" aria-pressed="'+!!done[q.id]+'" aria-label="'+(done[q.id]?'Undo ':'Mark done: ')+E(q.title)+'" style="border:0;cursor:pointer;background:'+(done[q.id]?q.tint:'')+'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F8F5EF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></button>'
+        + '<button class="qbody qopen" style="border:0;background:none;padding:0;text-align:left;cursor:pointer;color:inherit;font:inherit" aria-label="See other '+q.kind+' options">'
+        + '<span class="k" style="color:'+q.tint+'">'+q.kind+' · '+E(q.area)+'</span><span class="ti">'+E(q.title)+'</span><span class="me">'+E(q.meta)+'</span></button>'
+        + '<span class="xp num" style="color:'+q.tint+'">+'+q.xp+'</span>';
+      b.querySelector('.pebble').addEventListener('click', ()=>{
+        done = Object.assign({}, done, { [q.id]: !done[q.id] });
+        if (done[q.id]) {
+          const all = QUESTS.every(x=>done[x.id]);
+          gain(q.xp + (all?50:0), all ? 'Full set! +50 bonus' : 'nice');
+        } else { xp = Math.max(0, xp - q.xp); renderXP(); persist('state/xp', { xp, at:new Date().toISOString() }); }
+        saveDay();
+        renderQuests();
+      });
+      b.querySelector('.qopen').addEventListener('click', e => { if (b.dataset.swiped) { delete b.dataset.swiped; return; } openPicker(q.id); });
+      // swipe left to swap for the next option
+      let sx = null, dx = 0;
+      b.addEventListener('pointerdown', e => { if (done[q.id] || e.target.closest('.pebble')) return; sx = e.clientX; dx = 0; b.style.transition = 'none'; });
+      b.addEventListener('pointermove', e => { if (sx === null) return; dx = Math.min(0, e.clientX - sx); if (dx < -6) b.style.transform = 'translateX(' + dx + 'px)'; b.style.opacity = String(1 + dx / 400); });
+      const end = () => {
+        if (sx === null) return; sx = null; b.style.transition = '';
+        if (dx < -80) { b.dataset.swiped = '1'; b.style.transform = 'translateX(-110%)'; b.style.opacity = '0'; setTimeout(() => swapNext(q.id), 180); }
+        else { if (dx < -6) b.dataset.swiped = '1'; b.style.transform = ''; b.style.opacity = ''; }
+        dx = 0;
+      };
+      b.addEventListener('pointerup', end); b.addEventListener('pointercancel', end); b.addEventListener('pointerleave', end);
+      box.appendChild(b);
+    });
+    const hint = document.createElement('p'); hint.className = 'sub'; hint.style.cssText = 'font-size:12px;text-align:center;margin:-4px 0 0';
+    hint.textContent = 'Swipe left to snooze one for today, or tap it to choose from more options.';
+    box.appendChild(hint);
+    const n = QUESTS.filter(q=>done[q.id]).length;
+    $('#qcount').textContent = n + ' of 3';
+    $('#bonus').textContent = n===3 ? 'Full set cleared. Go enjoy the rest of your day.' : 'Clear all three for +50 XP and the Full Set pebble';
+  }
+
+  // XP buttons anywhere
+  document.querySelectorAll('[data-xp]').forEach(b=>b.addEventListener('click', ()=>{
+    if (b.dataset.used) return; b.dataset.used = '1'; b.textContent = 'Done ✓'; b.disabled = true;
+    gain(+b.dataset.xp, b.dataset.msg);
+  }));
+
+  // 10-day
+  $('#tenBtn').addEventListener('click', e=>{ const t=$('#ten'); t.hidden=!t.hidden; e.currentTarget.textContent = t.hidden ? 'Show 10-day forecast' : 'Hide 10-day'; });
+
+  // screens
+  function go(name){
+    ['morning','today','finance','wind'].forEach(n=>{ $('#s-'+n).hidden = n!==name; const t = $('#t-'+n); if (t) t.setAttribute('aria-selected', n===name); });
+    window.scrollTo({top:0});
+    if (name === 'wind') openWind();
+  }
+  document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click', ()=>go(b.dataset.go)));
+
+  // morning
+  document.querySelectorAll('[data-pick]').forEach(b=>b.addEventListener('click', ()=>{
+    $('#mopts').hidden = true; $('#mback').hidden = false; $('#mpicked').textContent = b.dataset.pick + '. Go.';
+  }));
+  $('#mdone').addEventListener('click', ()=>{ gain(15,'morning banked'); dayExtra.morning = true; saveDay(); $('#mopts').hidden=false; $('#mback').hidden=true; go('today'); });
+
+  // finance areas
+  const AREAS=[
+    {name:'Bills & loans',status:'1 to check · rest on autopay',dot:'var(--mustard)',rows:[['Mortgage','Paid · [DATE]'],['Car loan','Paid · [DATE]'],['Student loans','Scheduled · [DATE]'],['Utilities','1 above usual']],src:'From payment and statement emails'},
+    {name:'Credit cards',status:'On track · nothing unusual',dot:'var(--sage)',rows:[['Balances','[AMOUNT]'],['Next due','[DATE]']],src:'From card alert emails'},
+    {name:'Spending',status:'On track for October',dot:'var(--sage)',rows:[['This month','[AMOUNT]'],['vs. usual','[±X%]'],['Biggest category','[CATEGORY]']],src:'From monthly exports + alerts'},
+    {name:'Savings & investing',status:'Steady · updates monthly',dot:'var(--sage)',rows:[['Cash','[AMOUNT]'],['Brokerage','[AMOUNT]'],['Retirement','[AMOUNT]']],src:'From monthly statements'},
+    {name:'Card sales income',status:'Good month so far',dot:'var(--slate)',rows:[['eBay payouts','[AMOUNT]'],['COMC','[AMOUNT]']],src:'From eBay and COMC payout emails'}
+  ];
+  const areas = $('#areas');
+  AREAS.forEach((a,i)=>{
+    const el = document.createElement('div'); el.className='area';
+    el.innerHTML = '<button class="h" aria-expanded="false" aria-controls="ar'+i+'"><span class="dot" style="background:'+a.dot+';margin:0;width:14px;height:14px"></span><span style="flex:1"><span class="nm">'+a.name+'</span><span class="st">'+a.status+'</span></span><span class="cta">Show</span></button>'
+      + '<div class="rows" id="ar'+i+'" hidden>' + a.rows.map(r=>'<div class="r"><span>'+r[0]+'</span><b class="num">'+r[1]+'</b></div>').join('') + '<p class="sub" style="font-size:12px;margin-top:4px">'+a.src+'</p></div>';
+    const h = el.querySelector('.h'), rows = el.querySelector('.rows');
+    h.addEventListener('click', ()=>{ rows.hidden = !rows.hidden; h.setAttribute('aria-expanded', !rows.hidden); h.querySelector('.cta').textContent = rows.hidden ? 'Show' : 'Hide'; });
+    areas.appendChild(el);
+  });
+
+  // video
+  const CATS=[
+    {id:'pb',name:'Pickleball',learn:true,tint:'#5E6656',main:{ch:'[Pickleball channel you name]',t:'[Newest upload title]',len:14,why:'Newest from your top pickleball channel'},alts:[['[Second channel] · [Title]',9],['[Third channel] · [Title]',21]]},
+    {id:'ai',name:'AI',learn:true,tint:'#4F7287',main:{ch:'[AI channel you name]',t:'[Newest upload title]',len:18,why:'Newest Claude / agentic AI video from your list'},alts:[['[Second channel] · [Title]',12],['[Third channel] · [Title]',25]]},
+    {id:'focus',name:'Focus',learn:false,tint:'#233243',main:{ch:'[Lo-fi / ambient channel]',t:'[Ambient mix, no lyrics]',len:60,why:'Background for a focus block · no XP'},alts:[['[Nature channel] · [Rain or river soundscape]',180],['[Nature channel] · [Forest or campfire]',120]]},
+    {id:'dg',name:'Disc golf',learn:true,tint:'#A9714A',main:{ch:'[Disc golf channel you name]',t:'[Newest upload title]',len:11,why:'Newest form or coverage video from your list'},alts:[['[Second channel] · [Title]',16],['[Third channel] · [Title]',8]]},
+    {id:'other',name:'Other interests',learn:false,tint:'#B9735E',main:{ch:'[Channel tied to a recent interest]',t:'[Title]',len:15,why:'Matched to something you brought up lately · no XP'},alts:[['[Channel] · [Title]',10],['[Channel] · [Title]',20]]}
+  ];
+  let ycat='pb', watched=0;
+  const thumbArt = t => '<i style="background:'+t+'"></i><i style="background:#C9A548;clip-path:polygon(0 100%,100% 55%,100% 100%)"></i><i style="background:#B9735E;clip-path:polygon(0 100%,100% 75%,100% 100%)"></i>';
+  function renderVideo(){
+    $('#ytabs').innerHTML = CATS.map(c=>'<button role="tab" aria-selected="'+(c.id===ycat)+'" data-y="'+c.id+'">'+c.name+'</button>').join('');
+    document.querySelectorAll('[data-y]').forEach(b=>b.addEventListener('click',()=>{ycat=b.dataset.y;renderVideo();}));
+    const c = CATS.find(x=>x.id===ycat), m=c.main;
+    const lenTxt = m.len>=60 ? (m.len/60)+' hr' : m.len+' min';
+    $('#ymain').innerHTML = '<div class="thumb">'+thumbArt(c.tint)+'<span class="play" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#233243"/></svg></span><span class="len num">'+lenTxt+'</span></div>'
+      + '<p class="vt">'+m.t+'</p><p class="vm">'+m.ch+' · '+m.why+'</p>'
+      + '<div class="btns"><button class="btn solid" id="ywatch">'+(c.learn?'Watch · +10 XP':'Play in background')+'</button><button class="btn" id="yskip">Skip for now</button></div>';
+    $('#yalts').innerHTML = c.alts.map(a=>'<div class="alt"><p>'+a[0]+'</p><span class="sub num">'+(a[1]>=60?(a[1]/60)+' hr':a[1]+' min')+'</span></div>').join('');
+    $('#ywatch').addEventListener('click',()=>{
+      if(!c.learn){ toast('Focus mode · enjoy'); return; }
+      watched = Math.min(watched + m.len, 99);
+      $('#yfill').style.width = Math.min(watched/30*100,100)+'%';
+      $('#ymin').textContent = watched+' / 30 min';
+      if (watched >= 30) $('#ynudge').hidden = false;
+      gain(10,'learning logged');
+    });
+    $('#yskip').addEventListener('click',()=>{ const a=c.alts.shift(); c.alts.push([m.ch+' · '+m.t, m.len]); c.main={ch:a[0].split(' · ')[0],t:a[0].split(' · ')[1]||a[0],len:a[1],why:'Next in line'}; renderVideo(); });
+  }
+
+  // ---- Video Analysis Roadmap (synced copy in this page's db) ----
+  const ROADMAP = 'https://claude.ai/artifact/Bw2Jb85kbNKxwGsmQA68rg';
+  const SYNC_TRIG = 'trig_012Azzk7zsyVUgpcQRv1VehR';
+  const WB_TRIG = 'trig_01GZFRrvDTPivD6BH24yyQnq';
+  const CCR = 'Claude Code Remote';
+  const VA = { tasks:new Map(), phases:new Map(), state:null, counts:null, gotT:false, gotP:false };
+  let vaDb = null, vaMcp = null, vaOwner = false, vaBooted = false;
+  const vaMsg = {}; const vaSending = {};
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const XP_BY_EFFORT = { S:10, M:20, L:30 };
+  const EFFORT = { S:'Under 30 min', M:'30–90 min', L:'2 hrs+' };
+  const byOrder = (a,b) => (a.order ?? 0) - (b.order ?? 0);
+
+  function vaShell(inner){
+    return '<div class="card"><div class="ghead"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40"><path d="M20 36V19" stroke="var(--sage-deep)" stroke-width="2.5" stroke-linecap="round"/><path d="M20 23c-7 0-10-5-10-10 6 0 10 4 10 10z" fill="var(--slate)"/><path d="M20 19c0-6 3-10 10-10 0 6-4 10-10 10z" fill="var(--sage)"/></svg>'
+      + '<div><p class="gname">Video analysis</p><p class="sub">Pickleball video review service</p></div></div>' + inner + '</div>';
+  }
+  function fmtWhen(iso){ if(!iso) return ''; const d = new Date(iso); if (isNaN(d)) return ''; return d.toLocaleString([], {month:'short', day:'numeric', hour:'numeric', minute:'2-digit'}); }
+
+  function trackHTML(track, label){
+    const phases = [...VA.phases.values()].filter(p=>p.track===track).sort(byOrder);
+    const tasks = [...VA.tasks.values()].filter(t=>t.track===track);
+    if (!phases.length) return '';
+    const cur = phases.find(p => tasks.some(t => t.phase===p.id && t.status!=='done'));
+    const doneN = tasks.filter(t=>t.status==='done').length;
+    const segs = phases.map(p => { const pt = tasks.filter(t=>t.phase===p.id); const d = pt.filter(t=>t.status==='done').length; const pct = pt.length ? Math.round(d/pt.length*100) : 0; return '<div class="seg'+(cur && p.id===cur.id?' cur':'')+'" title="'+esc(p.short||p.name)+': '+d+'/'+pt.length+'"><span style="width:'+pct+'%"></span></div>'; }).join('');
+    const labels = phases.map(p => { const pt = tasks.filter(t=>t.phase===p.id); const d = pt.filter(t=>t.status==='done').length; const name = esc(p.short||p.name); return '<span>'+(cur && p.id===cur.id ? '<b>'+name+'</b>' : name)+' <span class="num">'+d+'/'+pt.length+'</span></span>'; }).join('');
+    let body = '';
+    if (!cur) {
+      body = '<p class="left">Every step in this track is done.</p>';
+    } else {
+      const pt = tasks.filter(t=>t.phase===cur.id).sort(byOrder);
+      const next = pt.find(t=>t.status==='doing') || pt.find(t=>t.status!=='done');
+      const doneSorted = tasks.filter(t=>t.status==='done').sort((a,b)=>String(b.doneAt||'').localeCompare(String(a.doneAt||'')));
+      const prior = doneSorted[0];
+      const pd = pt.filter(t=>t.status==='done').length;
+      body += '<div class="row" style="font-size:13px"><span><strong>'+esc(cur.label)+': '+esc(cur.name)+'</strong></span><span class="sub num">'+pd+' of '+pt.length+' done</span></div>';
+      body += '<p class="sub" style="font-size:13px">Milestone: '+esc(cur.milestone)+(cur.reward ? ' → '+esc(cur.reward) : ' → [your reward]')+'</p>';
+      body += '<p class="sub" style="font-size:13px">Last done: '+(prior ? esc(prior.title) : 'nothing checked off yet')+'</p>';
+      if (next) {
+        const pending = !!next.pendingWriteBack;
+        body += '<div class="vnext"><div class="tags"><span class="tag'+(next.kind==='want'?' want':'')+'">'+(next.kind==='want'?'Optional':'Core')+'</span><span class="tag">'+esc(EFFORT[next.effort]||next.effort)+'</span>'+(next.status==='doing'?'<span class="tag doing">In progress</span>':'')+'</div>'
+          + '<p class="t">'+esc(next.title)+'</p><p class="d">'+esc(next.detail)+'</p>'
+          + (vaOwner ? '<div class="btns"><button class="btn solid" data-va-done="'+esc(next.id)+'"'+(pending?' disabled':'')+'>Mark done · +'+(XP_BY_EFFORT[next.effort]||10)+' XP</button></div>' : '')
+          + '</div>';
+      }
+      const waiting = tasks.filter(t=>t.pendingWriteBack);
+      waiting.forEach(w => { body += '<p class="vmsg">“'+esc(w.title)+'” is checked off here and on its way to the roadmap.'+(vaOwner && !vaSending[w.id] ? ' <button class="linkbtn" data-va-resend="'+esc(w.id)+'">Send again</button>' : '')+'</p>'; });
+    }
+    const m = vaMsg[track];
+    return '<div class="vtrack"><div class="row"><h3>'+label+'</h3><span class="sub num">'+doneN+'/'+tasks.length+' steps</span></div>'
+      + '<div class="vphases" aria-hidden="true">'+segs+'</div><div class="vlabels">'+labels+'</div>'
+      + body + (m ? '<p class="vmsg'+(m.err?' err':'')+'" role="status">'+esc(m.text)+'</p>' : '') + '</div>';
+  }
+
+  function renderVA(){
+    const box = $('#va');
+    if (!vaDb) {
+      box.innerHTML = vaShell('<p class="left">Your Video Analysis Roadmap shows up here when this page is open in Claude.</p><div class="btns"><a class="btn" href="'+ROADMAP+'">Full task list</a></div>');
+      return;
+    }
+    if (!VA.gotT || !VA.gotP) { box.innerHTML = vaShell('<p class="left">Loading your roadmap…</p>'); return; }
+    if (!VA.tasks.size) {
+      box.innerHTML = vaShell('<p class="left">Waiting for the first sync from your Video Analysis Roadmap. It runs every morning at 6:50.</p><div class="btns">'+(vaOwner?'<button class="btn solid" data-va-sync>Sync now</button>':'')+'<a class="btn" href="'+ROADMAP+'">Full task list</a></div>'+(vaMsg.sync?'<p class="vmsg'+(vaMsg.sync.err?' err':'')+'" role="status">'+esc(vaMsg.sync.text)+'</p>':''));
+      return;
+    }
+    const left = VA.state && VA.state.leftOff;
+    let inner = '<p class="left"><span>Left off:</span> '+(left ? esc(left) : 'no note yet. Add one in the roadmap.')+(VA.state && VA.state.leftOffAt ? ' <span class="sub">('+esc(fmtWhen(VA.state.leftOffAt))+')</span>' : '')+'</p>';
+    inner += trackHTML('service','Service');
+    inner += trackHTML('skills','Skills');
+    const c = VA.counts || {};
+    inner += '<div class="vfoot"><span class="num">AI vs. me log: '+(c.logs ?? 0)+' · Reviews: '+(c.reviews ?? 0)+'</span><span>'+(c.syncedAt ? 'Synced '+esc(fmtWhen(c.syncedAt)) : 'Not synced yet')+(vaOwner?' · <button class="linkbtn" data-va-sync>Sync now</button>':'')+'</span></div>';
+    if (vaMsg.sync) inner += '<p class="vmsg'+(vaMsg.sync.err?' err':'')+'" role="status">'+esc(vaMsg.sync.text)+'</p>';
+    inner += '<div class="btns"><a class="btn" href="'+ROADMAP+'">Full task list</a></div>';
+    box.innerHTML = vaShell(inner);
+  }
+
+  function mcpProblem(e){
+    const code = e && e.code;
+    if (code === 'needs_reauth') return 'Reconnect Claude Code Remote in claude.ai Settings → Connectors, then tap Send again.';
+    if (code === 'server_not_connected' || code === 'selection_required') return 'Add or choose the Claude Code Remote connector in claude.ai Settings → Connectors, then tap Send again.';
+    if (code === 'approval_required' || code === 'not_in_manifest' || code === 'consent_required') return 'This page needs your OK to use Claude Code Remote. Tap Send again and allow it.';
+    if (code === 'not_granted' || code === 'capability_disabled' || code === 'capability_removed') return 'This view can\'t reach your scheduled tasks. Open the page in claude.ai to send it.';
+    if (code === 'server_unavailable' || code === 'upstream_error' || code === 'cancelled') return 'Not sure it reached the roadmap. Check the roadmap before sending again.';
+    if (code === 'tool_error') return 'The roadmap update was refused: ' + (e.message || 'unknown reason') + '.';
+    return 'Couldn\'t send it to the roadmap (' + (code || 'unknown') + ').';
+  }
+
+  async function sendWriteBack(entry, track){
+    if (!vaMcp) { vaMsg[track] = { err:true, text:'Saved here. This view can\'t reach your scheduled tasks, so open the page in claude.ai to send it to the roadmap.' }; renderVA(); return; }
+    vaSending[entry.id] = true; vaMsg[track] = { text:'Sending to your roadmap…' }; renderVA();
+    try {
+      await vaMcp.callTool(CCR, 'fire_trigger', { trigger_id: WB_TRIG, text: JSON.stringify({ writeback: [entry] }) }, { cache:false });
+      vaMsg[track] = { text: entry.details ? 'Sent with your details. The roadmap updates within a few minutes.' : 'Sent. Your roadmap updates within a few minutes.' };
+    } catch (e) {
+      vaMsg[track] = { err:true, text: mcpProblem(e) };
+    } finally { vaSending[entry.id] = false; renderVA(); }
+  }
+
+  async function markDone(id){
+    const t = VA.tasks.get(id); if (!t || !vaOwner) return;
+    const now = new Date().toISOString();
+    try {
+      await vaDb.doc('va_tasks/' + id).update({ status:'done', doneAt: now, pendingWriteBack: true });
+    } catch (e) {
+      vaMsg[t.track] = { err:true, text:'Couldn\'t save that check-off here (' + (e && e.code || 'error') + '). Try again.' }; renderVA(); return;
+    }
+    const type = typeFor(id, t.track), xp = XP_BY_EFFORT[t.effort] || 10;
+    openSheet({ kicker:'Done · details earn +' + xp + ' XP', title:t.title, type,
+      onSave: f => { gain(xp, 'roadmap step done'); sendWriteBack({ id, status:'done', srcVersion:t.srcVersion, details:{ type, date: localYmd(new Date()), fields:f } }, t.track); },
+      onLater: () => { addPending('rm-' + id, { kind:'roadmap', taskId:id, type, title:t.title, xp, track:t.track }); sendWriteBack({ id, status:'done', srcVersion:t.srcVersion }, t.track); }
+    });
+  }
+
+  async function syncNow(){
+    if (!vaMcp) { vaMsg.sync = { err:true, text:'This view can\'t reach your scheduled tasks. The daily sync still runs at 6:50 am.' }; renderVA(); return; }
+    vaMsg.sync = { text:'Asking for a sync…' }; renderVA();
+    try { await vaMcp.callTool(CCR, 'fire_trigger', { trigger_id: SYNC_TRIG }, { cache:false }); vaMsg.sync = { text:'Sync started. Changes appear here within a few minutes.' }; }
+    catch (e) { vaMsg.sync = { err:true, text: mcpProblem(e).replace('tap Send again','tap Sync now again') }; }
+    renderVA();
+  }
+
+  $('#va').addEventListener('click', e => {
+    const d = e.target.closest('[data-va-done]'); if (d) { d.disabled = true; markDone(d.dataset.vaDone); return; }
+    const r = e.target.closest('[data-va-resend]'); if (r) { const t = VA.tasks.get(r.dataset.vaResend); if (t) sendWriteBack({ id:t.id, status:t.status, srcVersion:t.srcVersion }, t.track); return; }
+    if (e.target.closest('[data-va-sync]')) syncNow();
+  });
+
+  function renderSubstack(feed){
+    const box = $('#substack');
+    if (!feed || !Array.isArray(feed.posts) || !feed.posts.length) {
+      box.innerHTML = '<p class="eyebrow">New on Substack</p><p class="sub" style="font-size:14px">Your newest posts show up here after the next refresh.</p><div class="btns"><a class="btn" href="https://substack.com/inbox">Open Substack</a></div>';
+      return;
+    }
+    const read = renderSubstack.read || (renderSubstack.read = {});
+    let h = '<div class="row" style="margin-bottom:4px"><p class="eyebrow">New on Substack</p><span class="sub" style="font-size:12px">'+(feed.fetchedAt ? 'Updated '+esc(fmtWhen(feed.fetchedAt)) : '')+'</span></div>';
+    feed.posts.slice(0,5).forEach((p,i) => {
+      h += '<div style="display:flex;flex-direction:column;gap:4px;padding:10px 0;'+(i?'border-top:1px solid var(--line)':'')+'">'
+        + '<div class="tags"><span class="tag'+(p.tag==='AI'?' doing':'')+'">'+esc(p.tag)+'</span><span class="sub" style="font-size:12px">'+esc(p.pub)+' · '+esc(p.when)+' · '+esc(p.mins)+' min</span></div>'
+        + '<strong style="font-size:15px">'+esc(p.title)+'</strong><p class="sub" style="font-size:14px">'+esc(p.sum)+'</p>'
+        + '<div class="btns"><a class="btn'+(read[i]?'':' solid')+'" href="'+esc(p.url)+'" data-sub-read="'+i+'">'+(read[i]?'Read ✓':'Read · +10 XP')+'</a></div></div>';
+    });
+    if (feed.unreadNote) h += '<p class="sub" style="font-size:13px"><a href="'+esc(feed.inboxUrl||'https://substack.com/inbox')+'">'+esc(feed.unreadNote)+'</a></p>';
+    box.innerHTML = h;
+    renderSubstack.feed = feed;
+  }
+  $('#substack').addEventListener('click', e => {
+    const a = e.target.closest('[data-sub-read]'); if (!a) return;
+    const i = +a.dataset.subRead; const read = renderSubstack.read || (renderSubstack.read = {});
+    if (!read[i]) { read[i] = true; gain(10, 'deliberate reading'); setTimeout(() => renderSubstack(renderSubstack.feed), 0); }
+  });
+  renderSubstack(null);
+
+  // ---- completion details ----
+  const localYmd = d => d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  // field: [key, label, placeholder, multiline, numeric]
+  const TPL = {
+    game:     { name:'Game log', dest:'Adds an entry to your AI vs. me log in the roadmap.', f:[['game','Game','Format, opponent, court'],['mine','What you caught','Your top 2–3 observations',1],['ai','What the AI caught or missed','',1],['minutes','Minutes spent','45',0,1]] },
+    review:   { name:'Review', dest:'Adds an entry to your review tracker in the roadmap.', f:[['who','Player'],['kind','Free or paid','free'],['price','Price','$0'],['minutes','Minutes spent','50',0,1]] },
+    tool:     { name:'Tool', dest:'Saved on this roadmap step.', f:[['tool','Tool or setup'],['cost','Cost','$14.99/mo'],['verdict','Verdict','Keep, cancel, or still testing',1],['cancelBy','Cancel-by date','Only if it renews']] },
+    outreach: { name:'Outreach', dest:'Saved on this roadmap step.', f:[['who','Who'],['response','Response so far','',1],['followUp','Follow-up date']] },
+    decision: { name:'Decision', dest:'Saved on this roadmap step.', f:[['decision','Decision'],['reason','Why','',1]] },
+    build:    { name:'Build', dest:'Saved on this roadmap step.', f:[['made','What you made','',1],['link','Link (optional)'],['minutes','Minutes spent','',0,1],['nextTweak','Next tweak']] },
+    skill:    { name:'Skills practice', dest:'Saved on this roadmap step.', f:[['tool','Tool used'],['minutes','Minutes','',0,1],['hard','What was hard','',1],['link','Clip link (optional)']] },
+    garden:   { name:'Garden step', dest:'Your next step becomes this card\'s "left off".', f:[['did','What you did','',1],['next','Next tiny step','Under 15 minutes']] }
+  };
+  const TYPE_OF = { 'p1-01':'tool','p1-02':'game','p1-03':'game','p1-04':'tool','p1-05':'tool','p1-06':'game','p1-07':'game','p1-08':'tool','p2-01':'build','p2-02':'build','p2-03':'tool','p2-04':'outreach','p2-05':'review','p2-06':'outreach','p3-01':'decision','p3-02':'build','p3-03':'outreach','p3-04':'review','p3-05':'tool','p4-01':'decision','p4-02':'decision','p4-03':'build','p4-04':'build' };
+  function typeFor(id, track){ return TYPE_OF[id] || (track === 'skills' ? 'skill' : 'build'); }
+
+  let sheetCfg = null;
+  function openSheet(cfg){
+    sheetCfg = cfg; const t = TPL[cfg.type];
+    $('#sheetK').textContent = (t.name) + ' · ' + cfg.kicker;
+    $('#sheetT').textContent = cfg.title;
+    $('#sheetDest').textContent = t.dest;
+    $('#sheetForm').innerHTML = t.f.map(([k,l,ph,ml,num]) => '<div class="field"><label for="f-'+k+'">'+esc(l)+'</label>'
+      + (ml ? '<textarea id="f-'+k+'" name="'+k+'" placeholder="'+esc(ph||'')+'" maxlength="500"></textarea>' : '<input id="f-'+k+'" name="'+k+'" placeholder="'+esc(ph||'')+'" maxlength="500"'+(num?' inputmode="numeric"':'')+'>') + '</div>').join('');
+    $('#sheetSave').disabled = true;
+    $('#sheetLater').hidden = !cfg.onLater;
+    $('#sheet').hidden = false;
+    const first = $('#sheetForm').querySelector('input,textarea'); if (first) first.focus();
+  }
+  function closeSheet(){ $('#sheet').hidden = true; sheetCfg = null; }
+  $('#sheetForm').addEventListener('input', () => { const first = $('#sheetForm').querySelector('input,textarea'); $('#sheetSave').disabled = !(first && first.value.trim()); });
+  $('#sheetForm').addEventListener('submit', e => e.preventDefault());
+  $('#sheetSave').addEventListener('click', () => {
+    if (!sheetCfg) return; const f = {};
+    $('#sheetForm').querySelectorAll('input,textarea').forEach(el => { const v = el.value.trim(); if (v) f[el.name] = v.slice(0,500); });
+    const cfg = sheetCfg; closeSheet(); cfg.onSave(f);
+  });
+  $('#sheetLater').addEventListener('click', () => { const cfg = sheetCfg; closeSheet(); if (cfg && cfg.onLater) { cfg.onLater(); toast('Saved for Winding Down'); } });
+  $('#sheet').addEventListener('click', e => { if (e.target.id === 'sheet' && sheetCfg && sheetCfg.onLater) $('#sheetLater').click(); });
+
+  // pending details (kept in this page's db)
+  let PENDING = [];
+  async function addPending(key, data){
+    if (!vaDb) return;
+    try { await vaDb.doc('pending/' + key).set(Object.assign({ at: new Date().toISOString() }, data)); } catch (_) { toast('Couldn\'t save the reminder'); }
+  }
+  async function clearPending(key){ if (vaDb) { try { await vaDb.doc('pending/' + key).delete(); } catch (_) {} } }
+  function fillPending(p){
+    openSheet({ kicker:'Details earn +' + p.xp + ' XP', title:p.title, type:p.type,
+      onSave: f => {
+        gain(p.xp || 10, 'details filled in');
+        if (p.kind === 'roadmap') sendWriteBack({ id:p.taskId, details:{ type:p.type, date: (p.at||'').slice(0,10) || localYmd(new Date()), fields:f } }, p.track || 'service');
+        else saveGarden(p.area, f);
+        clearPending(p.id);
+      }
+    });
+  }
+  function pendingHTML(){
+    if (!PENDING.length) return '';
+    return PENDING.map(p => '<div class="item"><span class="chip" style="background:var(--chip-bill-bg);color:var(--chip-bill-fg)">Details</span><p>'+esc(p.title)+'<small>'+esc(TPL[p.type] ? TPL[p.type].name : '')+' · +'+esc(p.xp)+' XP when filled in</small></p><button class="btn" data-fill="'+esc(p.id)+'">Fill in</button></div>').join('');
+  }
+  function renderPending(){
+    $('#pendingWins').innerHTML = pendingHTML();
+    const w = $('#windPending');
+    w.innerHTML = PENDING.length ? pendingHTML() : '<p class="sub" style="font-size:14px">Nothing missing. Every finished task has its details.</p>';
+    $('#windPendN').textContent = PENDING.length ? PENDING.length + ' to fill in' : '';
+  }
+  document.addEventListener('click', e => { const b = e.target.closest('[data-fill]'); if (!b) return; const p = PENDING.find(x => x.id === b.dataset.fill); if (p) fillPending(p); });
+
+  // garden re-entry steps
+  async function saveGarden(area, f){
+    const text = f.next || f.did || '';
+    const el = $('#left-' + area); if (el && text) el.innerHTML = '<span>Left off:</span> ' + esc(text);
+    if (!vaDb) return;
+    try { await vaDb.doc('garden/' + area).set({ leftOff: text, did: f.did || '', next: f.next || '', at: new Date().toISOString() }); } catch (_) { toast('Couldn\'t save that note'); }
+  }
+  document.querySelectorAll('[data-garden]').forEach(b => b.addEventListener('click', () => {
+    const area = b.dataset.garden, xp = +b.dataset.gxp || 10, title = b.dataset.gtitle;
+    openSheet({ kicker:'Done · details earn +' + xp + ' XP', title, type:'garden',
+      onSave: f => { gain(xp, 'garden step done'); saveGarden(area, f); },
+      onLater: () => addPending('g-' + area + '-' + Date.now(), { kind:'garden', area, type:'garden', title, xp })
+    });
+  }));
+  renderPending();
+
+  // ---- winding down ----
+  const MENU_STATIC = {
+    focus: [['f-pb','Outline week 2 of New to Pickleball','Class series · 25 min']],
+    quick: [['q-cards','List one binder page of cards','Card selling · 20 min'],['f-script','Write the conversation script','AI consulting · 45 min'],['g-ai','List 5 owners to ask','AI consulting · 15 min'],['f-nvc','Send the NVC mentor email','Advisor path · 15 min'],['q-inno','Submit the Innosphere interest form','Advisor path · 15 min'],['q-deming','Email the Deming Center about Boulder Climate Ventures','Advisor path · 10 min'],['g-adv','Fix one line of the one-pager','Advisor path · 10 min']],
+    garden:[['g-dg','10-min putting session','Disc golf · resting'],['g-arn','Look up Clear Creek Makerspace class dates','Arnfjäll · 10 min'],['g-ail','One AI Builder Roadmap step','AI learning · 20 min']]
+  };
+  let PICKS = { focus:new Set(), quick:new Set(), garden:new Set() };
+  let calInfo = { loaded:false, count:null };
+  function menuOptions(){
+    const m = { focus:[...MENU_STATIC.focus], quick:[...MENU_STATIC.quick], garden:[...MENU_STATIC.garden] };
+    [...HBT.values()].filter(t => t.status !== 'done').sort((a,b) => (a.order||0) - (b.order||0)).reverse().forEach(t => m.quick.unshift(['hb-' + t.id, t.title, (t.area || 'Task') + (t.meta ? ' · ' + t.meta : '')]));
+    (FEED.inbox && FEED.inbox.items || []).filter(it => !QUICK_DONE.has(String(it.id))).slice(0,3).reverse().forEach(it => m.quick.unshift(['in-' + it.id, it.title, (it.kind || 'Inbox') + (it.due ? ' · due ' + it.due : '')]));
+    const an = typeof arnNext === 'function' ? arnNext('fountains') : null;
+    if (an) m.garden = m.garden.map(o => o[0] === 'g-arn' ? ['g-arn', an.title, 'Arnfjäll · ' + (EFFORT[an.effort] || '')] : o);
+    const BUCKET = { s:'focus', w:'garden', x:'quick' };
+    (dayExtra.snoozed || []).forEach(sn => {
+      const b = BUCKET[sn.slot] || 'quick', k = skipKey(sn.title);
+      m[b] = m[b].filter(o => skipKey(o[1]) !== k);
+      m[b].unshift(['carry-' + k, sn.title, 'Skipped today' + (sn.meta ? ' · ' + sn.meta : '')]);
+    });
+    const open = [...VA.tasks.values()].filter(t => t.status !== 'done' && !t.pendingWriteBack);
+    ['service','skills'].forEach(track => {
+      const phases = [...VA.phases.values()].filter(p => p.track === track).sort(byOrder);
+      const cur = phases.find(p => open.some(t => t.phase === p.id));
+      if (!cur) return;
+      open.filter(t => t.phase === cur.id).sort(byOrder).slice(0,2).forEach(t => {
+        const bucket = 'focus';
+        m[bucket].unshift(['va-' + t.id, t.title, 'Video analysis · ' + (EFFORT[t.effort] || '')]);
+      });
+    });
+    return m;
+  }
+  function renderMenu(){
+    const m = menuOptions(), labels = { focus:'Pickleball', quick:'Productivity', garden:'Learn & Play' };
+    $('#windMenu').innerHTML = ['focus','quick','garden'].map(b => '<div class="bucket"><h3>'+labels[b]+'</h3>'
+      + m[b].map(([id,t,meta]) => '<button class="opt" data-pick="'+b+'|'+esc(id)+'" aria-pressed="'+PICKS[b].has(id)+'"><span class="ck" aria-hidden="true"></span><span style="flex:1;min-width:0"><b>'+esc(t)+'</b><span class="m">'+esc(meta)+'</span></span></button>').join('') + '</div>').join('');
+    renderSummary();
+  }
+  function renderSummary(){
+    const n = b => PICKS[b].size, parts = [];
+    if (calInfo.count !== null) parts.push(calInfo.count + (calInfo.count === 1 ? ' calendar event' : ' calendar events'));
+    parts.push(n('focus') + ' pickleball', n('quick') + ' productivity', n('garden') + ' learn & play');
+    $('#windSummary').textContent = 'Planned for tomorrow: ' + parts.join(' · ') + '.';
+  }
+  $('#windMenu').addEventListener('click', e => {
+    const b = e.target.closest('[data-pick]'); if (!b) return;
+    const [bucket, id] = b.dataset.pick.split('|'); const s = PICKS[bucket];
+    s.has(id) ? s.delete(id) : s.add(id);
+    b.setAttribute('aria-pressed', s.has(id)); renderSummary();
+  });
+  $('#windSave').addEventListener('click', async () => {
+    const d = new Date(); d.setDate(d.getDate() + 1); const ymd = localYmd(d);
+    const all = menuOptions(), pick = b => all[b].filter(o => PICKS[b].has(o[0])).map(o => ({ id:o[0], title:o[1], meta:o[2] }));
+    const plan = { focus:pick('focus'), quick:pick('quick'), garden:pick('garden'), at:new Date().toISOString() };
+    const msg = $('#windSaved'); msg.hidden = false;
+    if (!plan.focus.length && !plan.quick.length && !plan.garden.length) { msg.textContent = 'Pick at least one thing first.'; return; }
+    if (vaDb) { try { await vaDb.doc('plan/' + ymd).set(plan); } catch (_) { msg.textContent = 'Couldn\'t save the plan. Try again.'; return; } }
+    if (!$('#windSave').dataset.paid) { $('#windSave').dataset.paid = '1'; gain(10, 'tomorrow planned'); }
+    msg.textContent = 'Saved. Tomorrow\'s picks will draw from these.';
+  });
+  $('#goodnight').addEventListener('click', () => { toast('Goodnight. See you outside in the morning.'); go('morning'); });
+
+  async function loadTomorrow(){
+    const box = $('#windCal');
+    const d = new Date(); d.setDate(d.getDate() + 1); const ymd = localYmd(d);
+    $('#windDay').textContent = d.toLocaleDateString([], { weekday:'long', month:'short', day:'numeric' });
+    if (!vaMcp) { box.innerHTML = '<p class="sub" style="font-size:14px">Open this page in claude.ai to see tomorrow\'s calendar here.</p>'; return; }
+    box.innerHTML = '<p class="sub" style="font-size:14px">Checking tomorrow\'s calendar…</p>';
+    try {
+      const r = await vaMcp.callTool('Google Calendar', 'list_events', { startTime: ymd + 'T00:00:00', endTime: ymd + 'T23:59:00', orderBy:'startTime', pageSize:20 }, { cache:false });
+      const ev = (r.payload && Array.isArray(r.payload.events)) ? r.payload.events.filter(x => x.status !== 'cancelled') : [];
+      calInfo = { loaded:true, count: ev.length };
+      if (!ev.length) { box.innerHTML = '<p style="margin:0;font-size:15px"><strong>Nothing on the calendar.</strong> An open day.</p>'; }
+      else {
+        const timed = ev.find(x => x.start && x.start.dateTime) || ev[0];
+        const when = timed.start && timed.start.dateTime ? new Date(timed.start.dateTime).toLocaleTimeString([], { hour:'numeric', minute:'2-digit' }) : 'All day';
+        box.innerHTML = '<p class="eyebrow">First thing</p><p style="margin:4px 0 0;font-size:17px"><strong class="num">'+esc(when)+'</strong> · '+esc(timed.summary || 'Busy')+'</p>' + (timed.location ? '<p class="sub">'+esc(timed.location)+'</p>' : '');
+      }
+    } catch (e) {
+      const c = e && e.code;
+      let t = 'Couldn\'t read tomorrow\'s calendar (' + (c || 'unknown') + ').';
+      if (c === 'needs_reauth') t = 'Reconnect Google Calendar in claude.ai Settings → Connectors to see tomorrow here.';
+      else if (c === 'server_not_connected' || c === 'selection_required') t = 'Add or choose the Google Calendar connector in claude.ai Settings → Connectors to see tomorrow here.';
+      else if (c === 'approval_required' || c === 'not_in_manifest' || c === 'consent_required') t = 'Allow this page to read Google Calendar to see tomorrow here.';
+      else if (c === 'server_unavailable' || c === 'upstream_error') t = 'Google Calendar didn\'t answer just now. Open Winding Down again in a minute.';
+      box.innerHTML = '<p class="vmsg err">'+esc(t)+'</p>';
+    }
+    renderSummary();
+  }
+  function openWind(){ renderPending(); renderSkips(); renderMenu(); loadTomorrow(); }
+  if (new Date().getHours() >= 20) $('#t-wind').classList.add('glow');
+
+  // ---- live data ----
+  const FEED = { weather:null, inbox:null, briefing:null, wildcard:null };
+  const QUICK_DONE = new Set();
+  let PLAN_TODAY = null;
+  const KIND = { bill:['Bill','var(--chip-bill-bg)','var(--chip-bill-fg)'], finance:['Money','var(--chip-bill-bg)','var(--chip-bill-fg)'], sold:['Sold','var(--chip-sold-bg)','var(--chip-sold-fg)'], rental:['Rental','var(--chip-rent-bg)','var(--chip-rent-fg)'], other:['Inbox','var(--soft)','var(--sage-deep)'] };
+  const safeUrl = u => /^https:\/\//.test(String(u || '')) ? String(u) : '';
+
+  function header(){
+    const d = new Date(), h = d.getHours();
+    $('#hDate').textContent = d.toLocaleDateString([], { weekday:'long', month:'long', day:'numeric' });
+    $('#hGreet').textContent = h < 12 ? 'Good morning.' : h < 17 ? 'Good afternoon.' : 'Good evening.';
+  }
+
+  function renderWeather(){
+    const w = FEED.weather; if (!w || !w.now) return;
+    $('#wxTemp').textContent = Math.round(w.now.temp) + '°';
+    $('#wxNote').textContent = [w.now.cond, w.now.note].filter(Boolean).join('. ');
+    $('#wxHours').innerHTML = (w.hourly || []).slice(0,9).map(x => '<div>'+esc(x.t)+'<b>'+esc(Math.round(x.temp))+'°</b></div>').join('');
+    $('#ten').innerHTML = (w.daily || []).slice(0,10).map(x => '<div>'+esc(x.day)+'<b>'+esc(Math.round(x.hi))+'°</b>'+esc(Math.round(x.lo))+'°</div>').join('');
+    const today = (w.daily || [])[0];
+    $('#mWx').textContent = new Date().toLocaleTimeString([], { hour:'numeric', minute:'2-digit' }) + ' · ' + Math.round(w.now.temp) + '° and ' + String(w.now.cond || '').toLowerCase() + (today ? ', high of ' + Math.round(today.hi) + '°' : '');
+    const n = $('#refreshNote'); if (n && w.fetchedAt) n.textContent = 'Last refreshed ' + fmtWhen(w.fetchedAt) + '. Refreshes around 6, 9, 12, 3 and 6.';
+  }
+
+  function renderInbox(){
+    const box = $('#inboxWins'), items = (FEED.inbox && FEED.inbox.items || []).filter(it => !QUICK_DONE.has(String(it.id)));
+    if (!FEED.inbox) return;
+    if (!items.length) { box.innerHTML = '<p class="sub" style="font-size:14px">Nothing in your inbox needs you right now.</p>'; return; }
+    box.innerHTML = items.map(it => { const k = KIND[it.kind] || KIND.other, url = safeUrl(it.url);
+      return '<div class="item"><span class="chip" style="background:'+k[1]+';color:'+k[2]+'">'+k[0]+'</span><p>'+esc(it.title)+'<small>'+esc(it.sub || '')+(it.due ? ' · due '+esc(it.due) : '')+'</small></p>'
+        + '<div class="btns" style="flex-wrap:nowrap">'+(url ? '<a class="btn" href="'+esc(url)+'" aria-label="Open email">Open</a>' : '')+'<button class="btn solid" data-qw="'+esc(it.id)+'" aria-label="Mark done">Done</button></div></div>'; }).join('');
+  }
+  $('#inboxWins').addEventListener('click', e => {
+    const b = e.target.closest('[data-qw]'); if (!b) return;
+    const id = b.dataset.qw; QUICK_DONE.add(id);
+    persist('quickDone/' + id.replace(/[^A-Za-z0-9_\-.~:@+]/g, '_'), { id, at:new Date().toISOString() });
+    gain(10, 'inbox item'); renderInbox();
+  });
+
+  function renderBriefing(){
+    const f = FEED.briefing; if (!f || !Array.isArray(f.items) || !f.items.length) return;
+    $('#briefing').innerHTML = f.items.map(it => { const url = safeUrl(it.url);
+      return '<div class="brief"><p class="eyebrow">'+esc(it.label)+'</p><p>'+esc(it.text)+(url ? ' <a href="'+esc(url)+'" style="font-size:13px">Source</a>' : '')+'</p></div>'; }).join('')
+      + (f.fetchedAt ? '<p class="sub" style="font-size:12px;padding-top:8px">Updated '+esc(fmtWhen(f.fetchedAt))+'</p>' : '');
+  }
+
+  function buildQuests(){
+    const p = PLAN_TODAY, wc = FEED.wildcard, picks = dayExtra.picks || {};
+    const s = picks.s || (p && p.focus && p.focus[0] ? { area:'Pickleball', title:p.focus[0].title, meta:p.focus[0].meta } : Q_DEFAULT.s);
+    const w = picks.w || (p && p.garden && p.garden[0] ? { area:'Learn & Play', title:p.garden[0].title, meta:p.garden[0].meta } : Q_DEFAULT.w);
+    const x = picks.x || (p && p.quick && p.quick[0] ? { area:'Productivity', title:p.quick[0].title, meta:p.quick[0].meta } : Q_DEFAULT.x);
+    QUESTS = [['s',s],['x',x],['w',w]].map(([id,v]) => Object.assign({ id }, Q_STYLE[id], v));
+    renderQuests();
+  }
+
+  // ---- quest alternatives ----
+  const areaOf = meta => String(meta || '').split(' · ')[0] || 'Option';
+  function altsFor(slot){
+    const m = menuOptions(), out = [], seen = new Set();
+    const add = (area, title, meta) => { const k = String(title).toLowerCase(); if (!title || seen.has(k)) return; seen.add(k); out.push({ area, title, meta: meta || '' }); };
+    const p = PLAN_TODAY || {};
+    if (slot === 's') {
+      (p.focus || []).forEach(o => add('Pickleball', o.title, o.meta));
+      m.focus.forEach(o => add(areaOf(o[2]), o[1], o[2]));
+      [...VA.tasks.values()].filter(t => t.status !== 'done').sort(byOrder).slice(0,4).forEach(t => add('Video analysis', t.title, 'Video analysis · ' + (EFFORT[t.effort] || '')));
+      add(Q_DEFAULT.s.area, Q_DEFAULT.s.title, Q_DEFAULT.s.meta);
+    } else if (slot === 'w') {
+      (p.garden || []).forEach(o => add('Learn & Play', o.title, o.meta));
+      m.garden.forEach(o => add(areaOf(o[2]), o[1], o[2]));
+      const sub = renderSubstack.feed; (sub && sub.posts || []).slice(0,3).forEach(po => add('Reading', 'Read: ' + po.title, po.pub + ' · ' + po.mins + ' min'));
+      add('Disc golf', 'Play a quick disc golf round', 'Disc golf · 60 min');
+      add(Q_DEFAULT.w.area, Q_DEFAULT.w.title, Q_DEFAULT.w.meta);
+    } else {
+      (p.quick || []).forEach(o => add('Productivity', o.title, o.meta));
+      m.quick.forEach(o => add(areaOf(o[2]), o[1], o[2]));
+      add('Outside', 'Walk Ollie somewhere new', 'Ollie · 30 min');
+      add(Q_DEFAULT.x.area, Q_DEFAULT.x.title, Q_DEFAULT.x.meta);
+    }
+    const others = new Set(QUESTS.filter(q => q.id !== slot).map(q => String(q.title).toLowerCase()));
+    return out.filter(o => !others.has(String(o.title).toLowerCase()) && !isHidden(o.title));
+  }
+
+  // ---- skips: snooze for today, carry to tomorrow's menu, ask about repeats ----
+  const SKIPS = new Map();
+  const skipKey = t => String(t || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 120) || 'item';
+  function isHidden(title){
+    const k = skipKey(title), s = SKIPS.get(k);
+    if ((dayExtra.snoozed || []).some(x => skipKey(x.title) === k)) return true;
+    if (s && (s.status === 'dropped' || (s.until && s.until > TODAY))) return true;
+    return false;
+  }
+  function recordSkip(slot, q){
+    if (!q || !q.title) return;
+    const k = skipKey(q.title);
+    const list = (dayExtra.snoozed || []).filter(x => skipKey(x.title) !== k);
+    list.push({ title:q.title, meta:q.meta || '', area:q.area || '', slot });
+    dayExtra.snoozed = list;
+    const prev = SKIPS.get(k) || {};
+    const count = prev.lastDay === TODAY ? (prev.count || 1) : (prev.count || 0) + 1;
+    const doc = { title:q.title, meta:q.meta || '', area:q.area || '', slot, count, lastDay:TODAY, status: prev.status === 'dropped' ? 'dropped' : 'active', until: prev.until || '' };
+    SKIPS.set(k, doc); persist('skips/' + k, doc);
+  }
+  function renderSkips(){
+    const due = [...SKIPS.entries()].filter(([k,s]) => s.status === 'active' && (s.count || 0) >= 3 && !(s.until && s.until > TODAY));
+    $('#windSkipsCard').hidden = !due.length;
+    $('#windSkips').innerHTML = due.map(([k,s]) => '<div style="display:flex;flex-direction:column;gap:8px;padding-bottom:10px;border-bottom:1px solid var(--line)">'
+      + '<p style="margin:0"><strong>'+esc(s.title)+'</strong><span class="sub" style="display:block;font-size:12px">Skipped on '+esc(s.count)+' days'+(s.meta ? ' · '+esc(s.meta) : '')+'</span></p>'
+      + '<div class="btns"><button class="btn" data-skip="keep|'+esc(k)+'">Keep it</button><button class="btn" data-skip="week|'+esc(k)+'">Next week</button><button class="btn" data-skip="drop|'+esc(k)+'">Drop it</button></div></div>').join('');
+  }
+  $('#windSkips').addEventListener('click', e => {
+    const b = e.target.closest('[data-skip]'); if (!b) return;
+    const [act, k] = b.dataset.skip.split('|'); const s = SKIPS.get(k); if (!s) return;
+    const doc = Object.assign({}, s);
+    if (act === 'keep') { doc.count = 0; toast('Kept. It stays in the rotation.'); }
+    if (act === 'week') { const d = new Date(); d.setDate(d.getDate() + 7); doc.until = ymdOf(d); doc.count = 0; toast('Back in a week.'); }
+    if (act === 'drop') { doc.status = 'dropped'; toast('Dropped from your options.'); }
+    SKIPS.set(k, doc); persist('skips/' + k, doc); renderSkips();
+  });
+  function choose(slot, opt){
+    dayExtra.picks = Object.assign({}, dayExtra.picks || {}, { [slot]: { area:opt.area, title:opt.title, meta:opt.meta } });
+    saveDay(); buildQuests();
+  }
+  function swapNext(slot){
+    const cur = QUESTS.find(q => q.id === slot);
+    recordSkip(slot, cur);
+    const list = altsFor(slot);
+    if (!list.length) { saveDay(); renderQuests(); toast('Snoozed for today. No other options right now.'); return; }
+    const next = list[0];
+    choose(slot, next); toast('Snoozed for today. Up next: ' + next.title);
+  }
+  let pickerSlot = null;
+  function openPicker(slot){
+    pickerSlot = slot; const st = Q_STYLE[slot], cur = QUESTS.find(q => q.id === slot);
+    $('#pickerK').textContent = st.kind + ' options · +' + st.xp + ' XP';
+    $('#pickerList').innerHTML = altsFor(slot).map((o,i) => '<button class="opt" data-alt="'+i+'" aria-pressed="'+(cur && o.title.toLowerCase() === String(cur.title).toLowerCase())+'"><span class="ck" aria-hidden="true"></span><span style="flex:1;min-width:0"><b>'+esc(o.title)+'</b><span class="m">'+esc(o.meta)+'</span></span></button>').join('');
+    $('#picker').hidden = false;
+    openPicker.list = altsFor(slot);
+    const f = $('#pickerList').querySelector('.opt'); if (f) f.focus();
+  }
+  function closePicker(){ $('#picker').hidden = true; pickerSlot = null; }
+  $('#pickerList').addEventListener('click', e => { const b = e.target.closest('[data-alt]'); if (!b || !pickerSlot) return; const o = openPicker.list[+b.dataset.alt]; const s = pickerSlot; closePicker(); if (o) { choose(s, o); toast('Pick updated'); } });
+  $('#pickerClose').addEventListener('click', closePicker);
+  $('#picker').addEventListener('click', e => { if (e.target.id === 'picker') closePicker(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !$('#picker').hidden) closePicker(); });
+
+  // calendar (live, via the viewer's Google Calendar connector)
+  async function calList(startYmd, endYmd){
+    const r = await vaMcp.callTool('Google Calendar', 'list_events', { startTime:startYmd + 'T00:00:00', endTime:endYmd + 'T23:59:00', orderBy:'startTime', pageSize:100 }, { cache:false });
+    return (r.payload && Array.isArray(r.payload.events) ? r.payload.events : []).filter(e => e.status !== 'cancelled');
+  }
+  const evDay = e => e.start && (e.start.date || (e.start.dateTime ? ymdOf(new Date(e.start.dateTime)) : ''));
+  const evTime = e => e.start && e.start.dateTime ? new Date(e.start.dateTime).toLocaleTimeString([], { hour:'numeric', minute:'2-digit' }) : 'All day';
+  async function loadCalendar(){
+    const box = $('#calToday');
+    if (!vaMcp) { box.innerHTML = '<p class="sub" style="font-size:14px">Open this page in claude.ai to see your calendar here.</p>'; return; }
+    const now = new Date(), mon = new Date(now); mon.setDate(now.getDate() - ((now.getDay() + 6) % 7)); const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
+    try {
+      const ev = await calList(ymdOf(mon), ymdOf(sun));
+      const today = ev.filter(e => evDay(e) === TODAY);
+      $('#calCount').textContent = today.length + (today.length === 1 ? ' thing' : ' things');
+      const bars = ['var(--sage)','var(--clay)','var(--slate)','var(--mustard)'];
+      box.innerHTML = today.length ? today.map((e,i) => '<div class="ev"><p class="tm num">'+esc(evTime(e))+'</p><div class="bar" style="background:'+bars[i % 4]+'"></div><p>'+esc(e.summary || 'Busy')+(e.location ? '<small class="sub" style="display:block;font-size:12px">'+esc(e.location)+'</small>' : '')+'</p></div>').join('')
+        : '<p class="sub" style="font-size:14px">Nothing on the calendar today. An open day.</p>';
+      const names = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+      $('#calWeek').innerHTML = names.map((n,i) => { const d = new Date(mon); d.setDate(mon.getDate() + i); const y = ymdOf(d), c = ev.filter(e => evDay(e) === y).length;
+        return '<div'+(y === TODAY ? ' class="today"' : '')+'>'+n+'<span'+(y === TODAY ? '' : ' style="color:var(--sage)"')+'>'+(c ? '●'.repeat(Math.min(c,3)) : '–')+'</span></div>'; }).join('');
+      const first = today.find(e => e.start && e.start.dateTime && new Date(e.start.dateTime) > now) || today[0];
+      $('#mFirst').textContent = first ? 'First on the calendar: ' + evTime(first) + ' · ' + (first.summary || 'Busy') : 'Nothing on the calendar today.';
+    } catch (e) {
+      const c = e && e.code;
+      let t = 'Couldn\'t read your calendar (' + (c || 'unknown') + ').';
+      if (c === 'needs_reauth') t = 'Reconnect Google Calendar in claude.ai Settings → Connectors.';
+      else if (c === 'server_not_connected' || c === 'selection_required') t = 'Add or choose the Google Calendar connector in claude.ai Settings → Connectors.';
+      else if (c === 'approval_required' || c === 'not_in_manifest' || c === 'consent_required') t = 'Allow this page to read Google Calendar to see today here.';
+      else if (c === 'server_unavailable' || c === 'upstream_error') t = 'Google Calendar didn\'t answer just now. Reload in a minute.';
+      box.innerHTML = '<p class="vmsg err">'+esc(t)+'</p>';
+    }
+  }
+
+  // ---- Arnfjäll Roadmap (synced copy) ----
+  const ARN = { tasks:new Map(), phases:new Map(), state:null, counts:null };
+  const ARN_URL = 'https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg';
+  const arnPhases = tr => [...ARN.phases.values()].filter(p => p.track === tr).sort(byOrder);
+  const arnTasksOf = pid => [...ARN.tasks.values()].filter(t => t.phase === pid).sort(byOrder);
+  function arnCurrent(tr){ return arnPhases(tr).find(p => arnTasksOf(p.id).some(t => t.status !== 'done')) || null; }
+  function arnNext(tr){ const p = arnCurrent(tr); if (!p) return null; const ts = arnTasksOf(p.id); return ts.find(t => t.status === 'doing') || ts.find(t => t.status !== 'done') || null; }
+  function renderArn(){
+    if (!ARN.tasks.size || !ARN.phases.size) return;
+    $('#arnStatic').hidden = true;
+    if (ARN.state && ARN.state.leftOff) $('#left-arnefjall').innerHTML = '<span>Left off:</span> ' + esc(ARN.state.leftOff);
+    const ps = arnPhases('fountains'), cur = arnCurrent('fountains'), nx = arnNext('fountains');
+    const segs = ps.map(p => { const ts = arnTasksOf(p.id), d = ts.filter(t => t.status === 'done').length, pct = ts.length ? Math.round(d / ts.length * 100) : 0;
+      return '<div class="seg'+(cur && p.id === cur.id ? ' cur' : '')+'"><span style="width:'+pct+'%"></span></div>'; }).join('');
+    const labels = ps.map(p => { const ts = arnTasksOf(p.id), d = ts.filter(t => t.status === 'done').length;
+      return '<span>'+(cur && p.id === cur.id ? '<b>'+esc(p.short)+'</b>' : esc(p.short))+' <span class="num">'+d+'/'+ts.length+'</span></span>'; }).join('');
+    let h = '<div class="vtrack" style="border-top:0;padding-top:0">';
+    if (cur) {
+      const ts = arnTasksOf(cur.id), d = ts.filter(t => t.status === 'done').length;
+      h += '<div class="row" style="font-size:13px"><strong>'+esc(cur.name)+' · '+esc(cur.label)+'</strong><span class="sub num">'+d+' of '+ts.length+' done</span></div>';
+      h += '<div class="vphases" aria-hidden="true">'+segs+'</div><div class="vlabels">'+labels+'</div>';
+      h += '<p class="sub" style="font-size:13px">Milestone: '+esc(cur.milestone)+(cur.reward ? ' → '+esc(cur.reward) : '')+'</p>';
+    } else h += '<p class="left">Every fountain step is done.</p>';
+    if (nx) h += '<div class="vnext"><div class="tags"><span class="tag'+(nx.kind==='want'?' want':'')+'">'+(nx.kind==='want'?'Optional':'Core')+'</span><span class="tag">'+esc(EFFORT[nx.effort] || nx.effort || '')+'</span>'+(nx.status==='doing'?'<span class="tag doing">In progress</span>':'')+'</div><p class="t">'+esc(nx.title)+'</p>'+(nx.detail ? '<p class="d">'+esc(nx.detail)+'</p>' : '')+'</div>';
+    const sk = arnNext('skills'), bz = arnNext('business');
+    if (sk || bz) h += '<p class="sub" style="font-size:13px">Alongside: '+[sk ? 'Skills · '+esc(sk.title) : '', bz ? 'Business · '+esc(bz.title) : ''].filter(Boolean).join(' &nbsp;|&nbsp; ')+'</p>';
+    const c = ARN.counts || {};
+    h += '<div class="vfoot"><span class="num">Builds: '+(c.builds ?? 0)+' · Sales: '+(c.sales ?? 0)+'</span><a href="'+ARN_URL+'">Full roadmap · check off steps there</a></div></div>';
+    $('#arnLive').innerHTML = h;
+  }
+
+  // ---- your own tasks (Productivity) ----
+  function renderHbTasks(){
+    const items = [...HBT.values()].filter(t => t.status !== 'done').sort((a,b) => (a.order||0) - (b.order||0));
+    $('#hbTasks').innerHTML = items.map(t => '<div class="item"><span class="chip" style="background:var(--soft);color:var(--sage-deep)">'+esc(t.area || 'Task')+'</span><p>'+esc(t.title)+'<small>'+esc(t.meta || '')+'</small></p><button class="btn solid" data-hbt="'+esc(t.id)+'">Done</button></div>').join('');
+  }
+  $('#hbTasks').addEventListener('click', e => {
+    const b = e.target.closest('[data-hbt]'); if (!b) return;
+    const t = HBT.get(b.dataset.hbt); if (!t) return;
+    const data = Object.assign({}, t, { status:'done', doneAt:new Date().toISOString() }); delete data.id;
+    HBT.set(t.id, Object.assign({ id:t.id }, data)); persist('hbtasks/' + t.id, data);
+    gain(10, 'task done'); renderHbTasks();
+  });
+
+  async function liveInit(db){
+    try {
+      const [xs, ds, ps] = await Promise.all([db.doc('state/xp').get(), db.doc('state/day-' + TODAY).get(), db.doc('plan/' + TODAY).get()]);
+      if (xs.exists && typeof xs.data().xp === 'number') xp = xs.data().xp;
+      if (ds.exists) { const d = ds.data(); done = Object.assign({}, d.done || {}); dayExtra = { morning: !!d.morning, picks: d.picks || {}, snoozed: Array.isArray(d.snoozed) ? d.snoozed : [] }; }
+      if (ps.exists) PLAN_TODAY = ps.data();
+    } catch (_) {}
+    renderXP(); buildQuests();
+    if (new Date().getHours() < 9 && !dayExtra.morning) go('morning');
+    db.doc('feeds/weather').onSnapshot(s => { FEED.weather = s.exists ? s.data() : null; renderWeather(); }, () => {});
+    db.doc('feeds/inbox').onSnapshot(s => { FEED.inbox = s.exists ? s.data() : null; renderInbox(); }, () => {});
+    db.doc('feeds/briefing').onSnapshot(s => { FEED.briefing = s.exists ? s.data() : null; renderBriefing(); }, () => {});
+    db.doc('feeds/wildcard').onSnapshot(s => { FEED.wildcard = s.exists ? s.data() : null; buildQuests(); }, () => {});
+    db.collection('arn_tasks').onSnapshot(s => { ARN.tasks = new Map(s.docs.map(d => [d.id, Object.assign({ id:d.id }, d.data())])); renderArn(); }, () => {});
+    db.collection('arn_phases').onSnapshot(s => { ARN.phases = new Map(s.docs.map(d => [d.id, Object.assign({ id:d.id }, d.data())])); renderArn(); }, () => {});
+    db.doc('arn_meta/state').onSnapshot(s => { ARN.state = s.exists ? s.data() : null; renderArn(); }, () => {});
+    db.doc('arn_meta/counts').onSnapshot(s => { ARN.counts = s.exists ? s.data() : null; renderArn(); }, () => {});
+    db.collection('hbtasks').onSnapshot(s => { HBT.clear(); s.docs.forEach(d => HBT.set(d.id, Object.assign({ id:d.id }, d.data()))); renderHbTasks(); }, () => {});
+    db.collection('skips').onSnapshot(s => { SKIPS.clear(); s.docs.forEach(d => SKIPS.set(d.id, d.data())); if (!$('#s-wind').hidden) renderSkips(); }, () => {});
+    db.collection('quickDone').onSnapshot(s => { s.docs.forEach(d => QUICK_DONE.add(String(d.data().id || d.id))); renderInbox(); }, () => {});
+  }
+  header();
+
+  renderVA();
+  (async () => {
+    const use = window.claude && window.claude.use ? n => window.claude.use(n).catch(() => null) : async () => null;
+    const [db, user, mcp] = await Promise.all([use('db'), use('user'), use('mcp')]);
+    vaMcp = mcp;
+    loadCalendar();
+    try { vaOwner = user ? !!(await user.isOwner()) : false; } catch (_) { vaOwner = false; }
+    if (!db) { renderVA(); return; }
+    vaDb = db; renderVA();
+    const onErr = () => { vaMsg.sync = { err:true, text:'Lost the live connection to your roadmap copy. Reload the page to reconnect.' }; renderVA(); };
+    db.collection('va_tasks').onSnapshot(s => { VA.tasks = new Map(s.docs.map(d => [d.id, Object.assign({ id:d.id }, d.data())])); VA.gotT = true; renderVA(); }, onErr);
+    db.collection('va_phases').onSnapshot(s => { VA.phases = new Map(s.docs.map(d => [d.id, Object.assign({ id:d.id }, d.data())])); VA.gotP = true; renderVA(); }, onErr);
+    db.doc('va_meta/state').onSnapshot(s => { VA.state = s.exists ? s.data() : null; renderVA(); }, onErr);
+    db.doc('va_meta/counts').onSnapshot(s => { VA.counts = s.exists ? s.data() : null; renderVA(); }, onErr);
+    db.doc('feeds/substack').onSnapshot(s => renderSubstack(s.exists ? s.data() : null), () => {});
+    dbRef = db;
+    liveInit(db);
+    db.collection('pending').onSnapshot(s => { PENDING = s.docs.map(d => Object.assign({ id:d.id }, d.data())).sort((a,b) => String(a.at).localeCompare(String(b.at))); renderPending(); }, () => {});
+    db.collection('garden').onSnapshot(s => { s.docs.forEach(d => { const g = d.data(), el = $('#left-' + d.id); if (el && g.leftOff) el.innerHTML = '<span>Left off:</span> ' + esc(g.leftOff); }); }, () => {});
+  })();
+
+  renderXP(); renderQuests();
+})();
+</script>
+
+</body></html>

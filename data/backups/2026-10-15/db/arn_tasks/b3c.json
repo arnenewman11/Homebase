@@ -1,0 +1,11 @@
+{
+  "detail": "A spreadsheet of money in and out is enough to start.",
+  "effort": "S",
+  "kind": "should",
+  "order": 3,
+  "phase": "b3",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Set up simple bookkeeping",
+  "track": "business"
+}

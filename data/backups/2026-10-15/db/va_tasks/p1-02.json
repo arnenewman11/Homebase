@@ -1,0 +1,11 @@
+{
+  "detail": "Camera at least 4 ft high with all four court corners in frame.",
+  "effort": "S",
+  "kind": "should",
+  "order": 2,
+  "phase": "p1",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Film game 1",
+  "track": "service"
+}

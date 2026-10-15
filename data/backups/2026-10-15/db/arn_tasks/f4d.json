@@ -1,0 +1,11 @@
+{
+  "effort": "M",
+  "followup": "sale",
+  "kind": "should",
+  "order": 4,
+  "phase": "f4",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Sell your first fountain",
+  "track": "fountains"
+}

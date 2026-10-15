@@ -1,0 +1,12 @@
+{
+  "ask": "What's the line?",
+  "effort": "S",
+  "followup": "note",
+  "kind": "should",
+  "order": 2,
+  "phase": "b1",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Write a one-line description of Arnfjäll",
+  "track": "business"
+}

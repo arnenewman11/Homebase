@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Homebase System Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --ground:#EFEBE4; --card:#F8F5EF; --card2:#F3F0E9; --line:#E2DDD3; --line-strong:#B9B3A6; --soft:#E8E3DA;
+  --ink:#262A24; --muted:#5B6157;
+  --sage:#5E6656; --sage-deep:#474E42; --oak:#A9714A; --clay:#B9735E; --mustard:#C9A548;
+  --slate:#4F7287; --slate-tint:#DCE6EC; --navy:#233243; --on-dark:#F8F5EF;
+  --good:#3E6B4A; --good-tint:#E1EBDD; --warn:#8A6A12; --warn-tint:#F1E5C6; --bad:#9B4A35; --bad-tint:#F2DED6;
+  --font:'Hanken Grotesk','Helvetica Neue',Arial,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --ground:#1C2420; --card:#252E29; --card2:#212925; --line:#34403A; --line-strong:#56635B; --soft:#2E3833;
+  --ink:#ECE8E0; --muted:#A9B0A4;
+  --sage:#8A9A7C; --sage-deep:#B7C4A7; --oak:#C99068; --clay:#D08F79; --mustard:#D9B95E;
+  --slate:#7EA2B8; --slate-tint:#22394A; --navy:#162029; --on-dark:#F3EFE8;
+  --good:#9CC7A6; --good-tint:#24382B; --warn:#E3C778; --warn-tint:#3F3519; --bad:#E3A08C; --bad-tint:#43271F;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --ground:#1C2420; --card:#252E29; --card2:#212925; --line:#34403A; --line-strong:#56635B; --soft:#2E3833;
+  --ink:#ECE8E0; --muted:#A9B0A4;
+  --sage:#8A9A7C; --sage-deep:#B7C4A7; --oak:#C99068; --clay:#D08F79; --mustard:#D9B95E;
+  --slate:#7EA2B8; --slate-tint:#22394A; --navy:#162029; --on-dark:#F3EFE8;
+  --good:#9CC7A6; --good-tint:#24382B; --warn:#E3C778; --warn-tint:#3F3519; --bad:#E3A08C; --bad-tint:#43271F;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.55}
+a{color:var(--slate)}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px 80px}
+h1,h2,h3{line-height:1.2;margin:0;text-wrap:balance}
+h2{font-size:28px;font-weight:800;letter-spacing:-.015em}
+h3{font-size:19px;font-weight:700;margin-top:28px}
+p{margin:10px 0}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em;background:var(--soft);padding:1px 6px;border-radius:6px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.lead{font-size:18px;color:var(--ink);max-width:70ch}
+.muted{color:var(--muted)}
+.small{font-size:14px}
+
+/* hero band */
+.band{position:relative;height:200px;margin:0 -20px 0;overflow:hidden}
+.band i{position:absolute;inset:0;display:block}
+.band .a{background:var(--sage);clip-path:polygon(0 0,100% 0,100% 45%,0 100%)}
+.band .b{background:var(--clay);clip-path:polygon(0 100%,100% 45%,100% 78%,52% 100%)}
+.band .c{background:var(--mustard);clip-path:polygon(52% 100%,100% 78%,100% 100%)}
+.band .t{position:absolute;left:20px;right:20px;top:28px;color:#F8F5EF;max-width:960px;margin:0 auto}
+.band .t p{margin:0;font-size:14px;font-weight:600;opacity:.92}
+.band h1{font-size:40px;font-weight:800;letter-spacing:-.02em;margin-top:4px}
+
+/* toc */
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 8px}
+.toc a{text-decoration:none;font-size:13px;font-weight:600;color:var(--sage-deep);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;min-height:32px;display:inline-flex;align-items:center}
+.toc a:hover{background:var(--soft)}
+
+section{margin-top:56px}
+.card{background:var(--card);border-radius:20px;padding:22px;border:1px solid var(--line)}
+
+/* exec summary */
+.exec{background:var(--card);border-radius:24px;padding:28px;border:1px solid var(--line);margin-top:24px}
+.exec h2{font-size:26px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0 6px}
+.stat{background:var(--ground);border-radius:16px;padding:12px 14px}
+.stat b{display:block;font-size:28px;font-weight:800;color:var(--sage-deep);line-height:1.1}
+.stat span{font-size:13px;color:var(--muted)}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+.three div{border-left:0;background:var(--ground);border-radius:14px;padding:12px 14px;font-size:14px}
+.three b{display:block;font-size:15px;margin-bottom:2px}
+
+/* tables */
+.tbl{width:100%;border-collapse:collapse;font-size:14px;margin-top:10px}
+.tbl th{text-align:left;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;padding:8px 10px;border-bottom:2px solid var(--line)}
+.tbl td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl tr:last-child td{border-bottom:0}
+.tbl .n{font-weight:800;color:var(--slate);width:28px}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.pill{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.p1{background:var(--slate-tint);color:var(--slate)}
+.p2{background:var(--good-tint);color:var(--good)}
+.p3{background:var(--warn-tint);color:var(--warn)}
+.p4{background:var(--bad-tint);color:var(--bad)}
+.eff{font-weight:700;color:var(--sage-deep)}
+
+/* explainer callout */
+.explain{display:flex;gap:14px;background:var(--slate-tint);border-radius:16px;padding:14px 16px;margin:16px 0;font-size:15px}
+.explain .ic{flex:0 0 32px;height:32px;border-radius:50%;background:var(--slate);color:var(--on-dark);display:flex;align-items:center;justify-content:center;font-weight:800}
+.explain p{margin:4px 0 0}
+.explain b.h{display:block;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate)}
+
+/* figure */
+figure{margin:18px 0;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px}
+figure svg{width:100%;height:auto;display:block}
+figcaption{font-size:13px;color:var(--muted);margin-top:8px}
+.s-box{fill:var(--card);stroke:var(--line-strong);stroke-width:1.25}
+.s-box2{fill:var(--ground);stroke:var(--line-strong);stroke-width:1.25}
+.s-acc{fill:var(--slate-tint);stroke:var(--slate);stroke-width:2}
+.s-good{fill:var(--good-tint);stroke:var(--good);stroke-width:1.5}
+.s-warn{fill:var(--warn-tint);stroke:var(--warn);stroke-width:1.5}
+.s-bad{fill:var(--bad-tint);stroke:var(--bad);stroke-width:1.5}
+.s-line{fill:none;stroke:var(--muted);stroke-width:1.25}
+.s-dash{fill:none;stroke:var(--muted);stroke-width:1.25;stroke-dasharray:4 4}
+.s-arrow{fill:var(--muted)}
+.t{fill:var(--ink);font-family:var(--font);font-size:13px}
+.tb{fill:var(--ink);font-family:var(--font);font-size:13px;font-weight:700}
+.tq{fill:var(--muted);font-family:var(--font);font-size:11.5px}
+.th{fill:var(--ink);font-family:var(--font);font-size:15px;font-weight:700}
+
+/* glossary */
+.gloss{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:14px}
+.term{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}
+.term b{font-size:16px}
+.term .like{display:block;font-size:13px;color:var(--oak);font-weight:600;margin-top:2px}
+.term p{font-size:14px;margin:6px 0 0}
+
+/* columns */
+.cols3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+.col{border-radius:18px;padding:16px;border:1px solid var(--line)}
+.col h4{margin:0 0 8px;font-size:15px;display:flex;align-items:center;gap:8px}
+.col ul{margin:0;padding-left:18px;font-size:14px}
+.col li{margin:5px 0}
+.c-good{background:var(--good-tint)} .c-good h4{color:var(--good)}
+.c-warn{background:var(--warn-tint)} .c-warn h4{color:var(--warn)}
+.c-bad{background:var(--bad-tint)} .c-bad h4{color:var(--bad)}
+
+/* model tiers */
+.tiers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+.tier{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.tier .nm{font-size:22px;font-weight:800}
+.tier .role{font-size:13px;font-weight:700;color:var(--oak);text-transform:uppercase;letter-spacing:.06em}
+.cost{display:flex;gap:4px;align-items:center;font-size:12px;color:var(--muted)}
+.cost i{width:18px;height:8px;border-radius:3px;background:var(--line)}
+.cost i.on{background:var(--clay)}
+.tier ul{margin:0;padding-left:18px;font-size:14px}
+.tier.mid{border:2px solid var(--slate)}
+
+/* security cards */
+.risks{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:14px}
+.risk{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;display:grid;grid-template-columns:1fr;gap:8px}
+.risk .r{font-size:13px;font-weight:700;color:var(--bad)}
+.risk .g{font-size:13px;font-weight:700;color:var(--good)}
+.risk p{margin:0;font-size:14px}
+
+/* sample task card */
+.taskdemo{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px;align-items:start;margin-top:14px}
+.tcard{background:var(--card);border-radius:20px;border:1px solid var(--line);padding:16px;font-size:14px}
+.tcard .row{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line)}
+.tcard .row:last-child{border-bottom:0}
+.tcard .k{color:var(--muted);font-family:ui-monospace,Menlo,monospace;font-size:12.5px}
+.tcard .v{font-weight:600;text-align:right}
+.notes{display:flex;flex-direction:column;gap:10px}
+.note{background:var(--card2);border-radius:14px;padding:12px 14px;font-size:14px;border:1px solid var(--line)}
+.note b{color:var(--slate)}
+
+/* worked example */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px;counter-reset:s}
+.step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;font-size:14px;position:relative}
+.step::before{counter-increment:s;content:counter(s);position:absolute;top:-10px;left:14px;width:24px;height:24px;border-radius:50%;background:var(--sage-deep);color:var(--card);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+.step b{display:block;margin-top:6px}
+.quote{font-style:italic;background:var(--ground);border-radius:10px;padding:8px 10px;margin-top:6px}
+
+/* checklist */
+.phases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+.phase{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}
+.phase h4{margin:0;font-size:16px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.phase ul{list-style:none;padding:0;margin:10px 0 0;font-size:14px}
+.phase li{display:flex;gap:10px;padding:6px 0;border-top:1px solid var(--line)}
+.phase li::before{content:"";flex:0 0 16px;height:16px;margin-top:3px;border:2px solid var(--line-strong);border-radius:5px}
+
+/* progress demo */
+.prog{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-top:14px}
+.bars{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;margin:10px 0 4px}
+.bars i{height:10px;border-radius:4px;background:var(--line)}
+.bars i.f{background:var(--slate)}
+.bars i.h{background:linear-gradient(90deg,var(--slate) 50%,var(--line) 50%)}
+.blabels{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;font-size:12px;color:var(--muted)}
+
+footer{margin-top:60px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+
+@media (max-width:720px){
+  .band h1{font-size:30px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .three,.cols3,.tiers,.taskdemo,.phases{grid-template-columns:1fr}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .exec{padding:20px}
+}
+@media print{
+  body{background:#fff}
+  .toc{display:none}
+  .exec{page-break-after:always;border:0;padding:0}
+  section,figure,.card,.term,.tier,.risk,.phase{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="band" aria-hidden="false"><i class="a"></i><i class="b"></i><i class="c"></i>
+  <div class="t"><p>System design · October 15, 2026</p><h1>Homebase System Blueprint</h1></div>
+</div>
+
+<nav class="toc" aria-label="Contents">
+  <a href="#summary">Executive summary</a><a href="#idea">The big idea</a><a href="#terms">Key terms</a><a href="#arch">Architecture</a><a href="#schema">Task schema</a><a href="#manifest">Manifest</a><a href="#capture">Capture</a><a href="#steward">Steward</a><a href="#models">Models</a><a href="#security">Security</a><a href="#incentives">Incentives</a><a href="#plan">Build plan</a><a href="#decisions">All decisions</a>
+</nav>
+
+<!-- ============ EXECUTIVE SUMMARY ============ -->
+<div class="exec" id="summary">
+  <p class="eyebrow">Executive summary</p>
+  <h2>Make Homebase the one place task status lives, then let cheap scheduled helpers keep it tidy.</h2>
+  <p class="lead" style="font-size:16px">Today, action items live across about a dozen roadmaps with two-way syncing. That works, but it drifts. The fix is a fixed task format, one store, one inbox, and a weekly review, built in four short phases.</p>
+
+  <div class="stats">
+    <div class="stat"><b>11</b><span>active roadmaps feeding one store</span></div>
+    <div class="stat"><b>1</b><span>inbox for every idea, from any device</span></div>
+    <div class="stat"><b>3</b><span>scheduled jobs: daily sort, weekly export, Monday review</span></div>
+    <div class="stat"><b>4</b><span>build phases, about one session each</span></div>
+  </div>
+
+  <h3 style="margin-top:20px">Key action items</h3>
+  <div class="scroll"><table class="tbl">
+    <thead><tr><th>#</th><th>Action</th><th>Phase</th><th>Effort</th><th>Your part</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td>Audit Homebase's data and how the Dakboard reads it</td><td><span class="pill p1">1 Foundation</span></td><td class="eff">S</td><td>None</td></tr>
+      <tr><td class="n">2</td><td>Move Homebase to the standard task format (schema)</td><td><span class="pill p1">1 Foundation</span></td><td class="eff">M</td><td>None</td></tr>
+      <tr><td class="n">3</td><td>Pull open items from all 11 roadmaps; roadmaps become read-only</td><td><span class="pill p1">1 Foundation</span></td><td class="eff">M</td><td>Confirm unclear areas</td></tr>
+      <tr><td class="n">4</td><td>Archive the duplicate eBay roadmap and reference-only docs</td><td><span class="pill p1">1 Foundation</span></td><td class="eff">S</td><td>None</td></tr>
+      <tr><td class="n">5</td><td>Add quick-add inbox, intake skill, Gmail label, daily sort, weekly export</td><td><span class="pill p2">2 Capture</span></td><td class="eff">M</td><td>Pick the label name</td></tr>
+      <tr><td class="n">6</td><td>Start the Monday steward review, failure alerts, model policy</td><td><span class="pill p3">3 Steward</span></td><td class="eff">M</td><td>Approve its first findings</td></tr>
+      <tr><td class="n">7</td><td>Milestone-based points, rewards list, client demo copy</td><td><span class="pill p4">4 Incentives</span></td><td class="eff">M</td><td>Write your rewards</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Decision points still open</h3>
+  <div class="scroll"><table class="tbl">
+    <thead><tr><th>Decision</th><th>Recommended default</th><th>Needed by</th></tr></thead>
+    <tbody>
+      <tr><td>How private the Dakboard view is</td><td>Private view showing only task titles and calendar</td><td>After the phase 1 audit</td></tr>
+      <tr><td>Finance wall for Portfolio Twin and Tiller</td><td>Strict: no amounts or balances in Homebase</td><td>Finance thread</td></tr>
+      <tr><td>Water-Wise Yard Studio: own area or part of Arnfjäll</td><td>Own area for now</td><td>Phase 1 migration</td></tr>
+      <tr><td>Gmail label name for to-dos</td><td><code>→homebase</code></td><td>Before phase 2</td></tr>
+      <tr><td>Rewards list and prices</td><td>You draft 5–8 rewards</td><td>Before phase 4</td></tr>
+      <tr><td>HeyPocket as a capture input</td><td>Leave out while on the free tier</td><td>Only if you upgrade</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small muted" style="margin-top:12px">Already settled: Homebase owns status · roadmaps are read-only · daily early-morning sort · Monday review · Gmail read-only, Calendar drafts allowed · Obsidian dropped for now · portable data and design.</p>
+</div>
+
+<!-- ============ THE BIG IDEA ============ -->
+<section id="idea">
+  <p class="eyebrow">1 · The big idea</p>
+  <h2>Switch from a web of syncs to a hub with spokes</h2>
+  <p class="lead">Right now several places each think they own a task's status, and syncing keeps them in step. Every extra connection is another place for a check-off to get lost. A hub puts one store in the middle; everything else either feeds it or reads from it.</p>
+
+  <figure>
+    <svg viewBox="0 0 760 270" role="img" aria-label="A web of two-way syncs compared with a single hub and spokes">
+      <defs><marker id="ar1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="s-arrow"/></marker></defs>
+      <text x="24" y="28" class="th">Today: a web</text>
+      <text x="24" y="46" class="tq">every pair can disagree</text>
+      <g>
+        <line x1="110" y1="100" x2="290" y2="100" class="s-dash"/><line x1="110" y1="100" x2="110" y2="220" class="s-dash"/><line x1="110" y1="100" x2="290" y2="220" class="s-dash"/>
+        <line x1="290" y1="100" x2="290" y2="220" class="s-dash"/><line x1="290" y1="100" x2="110" y2="220" class="s-dash"/><line x1="110" y1="220" x2="290" y2="220" class="s-dash"/>
+        <rect x="58" y="82" width="104" height="36" rx="8" class="s-box"/><text x="110" y="104" text-anchor="middle" class="t">Roadmap A</text>
+        <rect x="238" y="82" width="104" height="36" rx="8" class="s-box"/><text x="290" y="104" text-anchor="middle" class="t">Roadmap B</text>
+        <rect x="58" y="202" width="104" height="36" rx="8" class="s-box"/><text x="110" y="224" text-anchor="middle" class="t">Homebase</text>
+        <rect x="238" y="202" width="104" height="36" rx="8" class="s-box"/><text x="290" y="224" text-anchor="middle" class="t">Dakboard</text>
+        <circle cx="200" cy="160" r="15" class="s-bad"/><text x="200" y="165" text-anchor="middle" class="tb">?</text>
+      </g>
+      <line x1="380" y1="70" x2="380" y2="250" stroke="var(--line)" stroke-width="1"/>
+      <text x="410" y="28" class="th">Target: a hub</text>
+      <text x="410" y="46" class="tq">one source of truth, arrows run one way</text>
+      <g>
+        <path d="M530 118V138" class="s-line" marker-end="url(#ar1)"/>
+        <path d="M478 160H508" class="s-line" marker-end="url(#ar1)"/>
+        <path d="M640 160H654" class="s-line" marker-end="url(#ar1)"/>
+        <path d="M600 182V206" class="s-line" marker-end="url(#ar1)"/>
+        <rect x="414" y="142" width="64" height="36" rx="8" class="s-box"/><text x="446" y="164" text-anchor="middle" class="t">Inbox</text>
+        <rect x="478" y="82" width="104" height="36" rx="8" class="s-box"/><text x="530" y="104" text-anchor="middle" class="t">Roadmaps</text>
+        <rect x="510" y="138" width="130" height="44" rx="8" class="s-acc"/><text x="575" y="165" text-anchor="middle" class="tb">Homebase store</text>
+        <rect x="654" y="142" width="86" height="36" rx="8" class="s-box"/>
+        <text x="697" y="164" text-anchor="middle" class="t">Views</text>
+        <rect x="548" y="206" width="104" height="36" rx="8" class="s-box"/><text x="600" y="228" text-anchor="middle" class="t">Exports</text>
+      </g>
+    </svg>
+    <figcaption>On the left, any pair of places can hold a different answer for the same task. On the right, only the store holds status; everything else feeds it or reads it.</figcaption>
+  </figure>
+
+  <div class="explain"><div class="ic">i</div><div><b class="h">Why structure comes before the orchestrator</b><p>An AI helper working on a messy system has to rediscover where everything lives each time it runs, which is slow, expensive and inconsistent. Give it a fixed format and a written map first, and the same helper becomes a short, cheap, predictable job.</p></div></div>
+</section>
+
+<!-- ============ KEY TERMS ============ -->
+<section id="terms">
+  <p class="eyebrow">2 · Key terms</p>
+  <h2>Seven words this blueprint leans on</h2>
+  <p class="lead">Each comes with an everyday comparison. You won't need more jargon than this.</p>
+  <div class="gloss">
+    <div class="term"><b>Canonical store</b><span class="like">Like: the one master calendar on the fridge</span><p>The single place whose answer wins. Homebase's built-in database plays this role.</p></div>
+    <div class="term"><b>Schema</b><span class="like">Like: a form with fixed boxes to fill in</span><p>The list of fields every task must have. It's what lets tasks from different places line up and be sorted the same way.</p></div>
+    <div class="term"><b>Manifest</b><span class="like">Like: the label map on a breaker panel</span><p>A written inventory of every part of the system and what it's allowed to touch. Helpers read it instead of searching.</p></div>
+    <div class="term"><b>Scheduled task</b><span class="like">Like: a recurring calendar reminder that does the work itself</span><p>A Claude run that starts on a timer, such as the daily sort or the Monday review, without you being there.</p></div>
+    <div class="term"><b>Connector</b><span class="like">Like: a key to one room of your house</span><p>Claude's link to an app such as Gmail or Drive. Each key can be limited to reading only.</p></div>
+    <div class="term"><b>Skill</b><span class="like">Like: a recipe card Claude follows</span><p>Saved instructions for doing one job the same way every time, such as turning roadmap items into tasks.</p></div>
+    <div class="term"><b>Artifact</b><span class="like">Like: a private web page Claude made for you</span><p>Homebase, the Dakboard and the roadmaps are all artifacts. Private by default, one share away from anyone.</p></div>
+  </div>
+</section>
+
+<!-- ============ ARCHITECTURE ============ -->
+<section id="arch">
+  <p class="eyebrow">3 · Architecture</p>
+  <h2>How the pieces fit together</h2>
+  <p class="lead">Everything enters through one inbox, only the Homebase database holds status, and every screen reads from it.</p>
+  <figure>
+    <svg viewBox="0 0 760 428" role="img" aria-label="Every capture flows through one inbox into the Homebase database">
+      <defs><marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="s-arrow"/></marker></defs>
+      <text x="24" y="32" class="th">Every capture flows through one inbox into the Homebase database</text>
+      <text x="24" y="62" class="tq">CAPTURE</text><text x="600" y="62" class="tq">VIEWS</text>
+      <g>
+        <path d="M174 90H192M174 138H192M174 186H192M174 234H192M174 282H192M192 90V282" class="s-line"/>
+        <path d="M192 186H210" class="s-line" marker-end="url(#ar2)"/>
+        <path d="M288 210V262" class="s-line" marker-end="url(#ar2)"/>
+        <path d="M366 286H380V214H392" class="s-line" marker-end="url(#ar2)"/>
+        <path d="M568 186H584M584 138V234" class="s-line"/>
+        <path d="M584 138H600" class="s-line" marker-end="url(#ar2)"/><path d="M584 186H600" class="s-line" marker-end="url(#ar2)"/><path d="M584 234H600" class="s-line" marker-end="url(#ar2)"/>
+        <path d="M440 332V242" class="s-line" marker-end="url(#ar2)"/>
+        <path d="M548 242V300H668V340" class="s-line" marker-end="url(#ar2)"/>
+      </g>
+      <rect x="24" y="72" width="150" height="36" rx="8" class="s-box"/><text x="99" y="94" text-anchor="middle" class="t">Roadmaps</text>
+      <rect x="24" y="120" width="150" height="36" rx="8" class="s-box"/><text x="99" y="142" text-anchor="middle" class="t">Chat intake skill</text>
+      <rect x="24" y="168" width="150" height="36" rx="8" class="s-box"/><text x="99" y="190" text-anchor="middle" class="t">Gmail label</text>
+      <rect x="24" y="216" width="150" height="36" rx="8" class="s-box"/><text x="99" y="238" text-anchor="middle" class="t">Calendar</text>
+      <rect x="24" y="264" width="150" height="36" rx="8" class="s-box"/><text x="99" y="286" text-anchor="middle" class="t">Quick-add, voice</text>
+      <rect x="210" y="162" width="156" height="48" rx="8" class="s-box"/><text x="288" y="182" text-anchor="middle" class="tb">Inbox</text><text x="288" y="199" text-anchor="middle" class="tq">raw words kept</text>
+      <rect x="210" y="262" width="156" height="48" rx="8" class="s-box"/><text x="288" y="282" text-anchor="middle" class="tb">Daily sort</text><text x="288" y="299" text-anchor="middle" class="tq">early morning, Haiku</text>
+      <rect x="392" y="130" width="176" height="112" rx="8" class="s-acc"/><text x="480" y="154" text-anchor="middle" class="tb">Homebase database</text><text x="480" y="176" text-anchor="middle" class="tq" style="fill:var(--ink)">canonical task store</text><text x="480" y="194" text-anchor="middle" class="tq" style="fill:var(--ink)">status, history, points</text><text x="480" y="212" text-anchor="middle" class="tq" style="fill:var(--ink)">change log</text>
+      <rect x="600" y="120" width="136" height="36" rx="8" class="s-box"/><text x="668" y="142" text-anchor="middle" class="t">Dakboard wall</text>
+      <rect x="600" y="168" width="136" height="36" rx="8" class="s-box"/><text x="668" y="190" text-anchor="middle" class="t">Roadmap status</text>
+      <rect x="600" y="216" width="136" height="36" rx="8" class="s-box"/><text x="668" y="238" text-anchor="middle" class="t">Homebase app</text>
+      <text x="448" y="318" class="tq">fixes, findings</text>
+      <rect x="392" y="332" width="176" height="72" rx="8" class="s-box"/><text x="480" y="356" text-anchor="middle" class="tb">Steward review</text><text x="480" y="374" text-anchor="middle" class="tq">Monday, Sonnet</text><text x="480" y="390" text-anchor="middle" class="tq">reads the manifest</text>
+      <rect x="600" y="340" width="136" height="56" rx="8" class="s-box"/><text x="668" y="364" text-anchor="middle" class="tb">Weekly export</text><text x="668" y="381" text-anchor="middle" class="tq">JSON, CSV to Drive</text>
+    </svg>
+    <figcaption>Roadmaps appear twice on purpose: they feed new items in on the left, and they display status read back from the store on the right.</figcaption>
+  </figure>
+  <div class="explain"><div class="ic">i</div><div><b class="h">Read it left to right</b><p>Ideas come in on the left. The inbox holds them raw. Each morning the sort files them into the store with all their fields filled. The screens on the right only <em>read</em>; checking a box on any of them updates the store, not a separate copy. The steward and the export are the only other things that touch the store, and both run on a schedule.</p></div></div>
+</section>
+
+<!-- ============ SCHEMA ============ -->
+<section id="schema">
+  <p class="eyebrow">4 · Task schema</p>
+  <h2>Every task fills in the same form</h2>
+  <p class="lead">Here's one example task, with notes on the fields that do the most work. The full field list follows.</p>
+  <div class="taskdemo">
+    <div class="tcard" aria-label="Example task">
+      <div class="row"><span class="k">id</span><span class="v">card-sales-0007</span></div>
+      <div class="row"><span class="k">title</span><span class="v">List the 2019 Topps lot</span></div>
+      <div class="row"><span class="k">area</span><span class="v">card-sales</span></div>
+      <div class="row"><span class="k">bucket</span><span class="v">Productivity</span></div>
+      <div class="row"><span class="k">type</span><span class="v">should-do</span></div>
+      <div class="row"><span class="k">status</span><span class="v"><span class="pill p1">next</span></span></div>
+      <div class="row"><span class="k">next_step</span><span class="v">Photograph binder pages 4–6</span></div>
+      <div class="row"><span class="k">milestone</span><span class="v">Phase 2: first lot sold</span></div>
+      <div class="row"><span class="k">effort</span><span class="v">M</span></div>
+      <div class="row"><span class="k">source</span><span class="v">quick-add</span></div>
+      <div class="row"><span class="k">raw</span><span class="v">"get the topps lot listed this weekend"</span></div>
+      <div class="row"><span class="k">changed_by</span><span class="v">router</span></div>
+      <div class="row"><span class="k">demo_safe</span><span class="v">no</span></div>
+    </div>
+    <div class="notes">
+      <div class="note"><b>id</b> never changes, even if the title does. That's what keeps a check-off on the Dakboard pointed at the right task.</div>
+      <div class="note"><b>next_step</b> is required once a task is active. It's the "where I left off" line that makes picking things back up easy.</div>
+      <div class="note"><b>milestone</b> ties the task to a roadmap phase. It drives progress bars and the bigger points awards.</div>
+      <div class="note"><b>raw</b> keeps your dictated words exactly as spoken, so nothing is lost if the sort misreads you.</div>
+      <div class="note"><b>changed_by</b> records whether you, the sort, the steward or the intake skill made the last edit. That's your audit trail.</div>
+    </div>
+  </div>
+
+  <h3>How a task moves</h3>
+  <figure>
+    <svg viewBox="0 0 760 210" role="img" aria-label="Task status flow from inbox to done, with side exits">
+      <defs><marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="s-arrow"/></marker></defs>
+      <text x="24" y="28" class="th">Tasks move forward one step at a time, with three side exits</text>
+      <path d="M140 80H184" class="s-line" marker-end="url(#ar3)"/>
+      <path d="M300 80H344" class="s-line" marker-end="url(#ar3)"/>
+      <path d="M460 80H504" class="s-line" marker-end="url(#ar3)"/>
+      <path d="M402 102V136" class="s-line" marker-end="url(#ar3)"/>
+      <path d="M242 102V136" class="s-line" marker-end="url(#ar3)"/>
+      <path d="M402 102V118H562V136" class="s-dash" marker-end="url(#ar3)"/>
+      <rect x="24" y="58" width="116" height="44" rx="8" class="s-box2"/><text x="82" y="85" text-anchor="middle" class="tb">inbox</text>
+      <rect x="184" y="58" width="116" height="44" rx="8" class="s-acc"/><text x="242" y="85" text-anchor="middle" class="tb">next</text>
+      <rect x="344" y="58" width="116" height="44" rx="8" class="s-acc"/><text x="402" y="85" text-anchor="middle" class="tb">doing</text>
+      <rect x="504" y="58" width="116" height="44" rx="8" class="s-good"/><text x="562" y="85" text-anchor="middle" class="tb">done</text>
+      <rect x="167" y="136" width="150" height="44" rx="8" class="s-warn"/><text x="242" y="156" text-anchor="middle" class="tb">parked</text><text x="242" y="172" text-anchor="middle" class="tq">needs a re-entry step</text>
+      <rect x="327" y="136" width="150" height="44" rx="8" class="s-box"/><text x="402" y="156" text-anchor="middle" class="tb">waiting</text><text x="402" y="172" text-anchor="middle" class="tq">on someone else</text>
+      <rect x="487" y="136" width="150" height="44" rx="8" class="s-bad"/><text x="562" y="156" text-anchor="middle" class="tb">dropped</text><text x="562" y="172" text-anchor="middle" class="tq">kept in history</text>
+      <text x="640" y="76" class="tq">done and dropped</text><text x="640" y="92" class="tq">hide from views</text>
+    </svg>
+    <figcaption>"Parked" is your set-it-down-on-purpose state. It's not a failure, and it always carries the step to restart.</figcaption>
+  </figure>
+
+  <h3>All fields</h3>
+  <div class="scroll"><table class="tbl">
+    <thead><tr><th>Field</th><th>What goes in it</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td><code>id</code></td><td>area + number, e.g. <code>card-sales-0007</code></td><td>Never reused or changed</td></tr>
+      <tr><td><code>title</code></td><td>Plain description of the task</td><td>No hype naming</td></tr>
+      <tr><td><code>area</code></td><td>One slug per roadmap or standing area</td><td>From a fixed list</td></tr>
+      <tr><td><code>bucket</code></td><td>Pickleball, Productivity, or Learn &amp; Play</td><td>Matches the wall</td></tr>
+      <tr><td><code>type</code></td><td>should-do or want-do</td><td>Keeps the balance</td></tr>
+      <tr><td><code>status</code></td><td>inbox, next, doing, waiting, parked, done, dropped</td><td>See the flow above</td></tr>
+      <tr><td><code>next_step</code></td><td>The very next physical action</td><td>Required when active or parked</td></tr>
+      <tr><td><code>milestone</code></td><td>Roadmap phase it advances</td><td>Optional; drives points</td></tr>
+      <tr><td><code>effort</code></td><td>S, M or L</td><td>Rough size, not hours</td></tr>
+      <tr><td><code>due</code></td><td>Date</td><td>Only for real deadlines</td></tr>
+      <tr><td><code>source</code> / <code>source_ref</code></td><td>Where it came from, plus a link back</td><td>Jump back to context</td></tr>
+      <tr><td><code>raw</code></td><td>Original dictated words</td><td>For parsed captures</td></tr>
+      <tr><td><code>created</code> / <code>updated</code></td><td>Timestamps</td><td>Set automatically</td></tr>
+      <tr><td><code>changed_by</code></td><td>you, router, steward, intake</td><td>Audit trail</td></tr>
+      <tr><td><code>demo_safe</code></td><td>yes or no</td><td>Allowed in the client demo</td></tr>
+    </tbody>
+  </table></div>
+  <div class="explain"><div class="ic">!</div><div><b class="h">One firm rule</b><p>No money amounts, balances or account details ever go in a task. A finance task says what to do ("Review October spending categories"), never the numbers.</p></div></div>
+</section>
+
+<!-- ============ MANIFEST ============ -->
+<section id="manifest">
+  <p class="eyebrow">5 · Manifest</p>
+  <h2>The inventory: what exists and what it may touch</h2>
+  <p class="lead">The steward reads this list instead of searching your account, and updates it when something changes.</p>
+
+  <h3>Active task sources, by group</h3>
+  <div class="scroll"><table class="tbl">
+    <thead><tr><th>Group</th><th>Roadmaps and plans</th></tr></thead>
+    <tbody>
+      <tr><td><span class="pill p1">Pickleball</span></td><td><a href="https://claude.ai/code/artifact/58865a74-1cc7-446d-a081-e2340d3697f5">Video Analysis Roadmap</a> · <a href="https://claude.ai/code/artifact/3f3ab2a8-afc6-4820-a698-2f79359eed57">Transition Zone Class</a> · <a href="https://claude.ai/code/artifact/71f130b3-7b15-468d-873f-5eb6ecc7c788">Weekday Daytime Programming Plan</a> · <a href="https://claude.ai/code/artifact/693e7429-e042-413b-b021-6f51059d83f2">Coaching Marketing Plan</a></td></tr>
+      <tr><td><span class="pill p2">Selling</span></td><td><a href="https://claude.ai/code/artifact/e6cdf650-213b-455e-8319-341304435f67">Card Sales Roadmap</a> · <a href="https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e">eBay Lots Roadmap</a> (live copy)</td></tr>
+      <tr><td><span class="pill p3">Ventures</span></td><td><a href="https://claude.ai/code/artifact/987c518f-047a-4472-b97e-12712b2804e1">Arnfjäll Roadmap</a> · <a href="https://claude.ai/code/artifact/22c06970-73c4-4f19-bb0a-572a20cad3a1">Water-Wise Yard Studio Plan</a> · <a href="https://claude.ai/code/artifact/aa57b3ce-ef7d-4392-a943-2baa8e08639b">Startup Advisor &amp; Board Path</a></td></tr>
+      <tr><td><span class="pill p4">AI &amp; finance</span></td><td><a href="https://claude.ai/code/artifact/d34e8225-bdac-47e3-a3ba-0da4cde2c44b">AI Builder Roadmap</a> · <a href="https://claude.ai/code/artifact/0e534609-3502-4013-9807-eb49386040dc">Portfolio Twin Plan</a></td></tr>
+    </tbody>
+  </table></div>
+  <p class="small muted">Core: <a href="https://claude.ai/code/artifact/fadca305-7c93-4db1-8a1a-2d83f3d57244">Homebase</a> (the store) and the <a href="https://claude.ai/code/artifact/00a68cda-57f1-4cde-a560-249b55e89052">Living Room Dakboard</a> (a view). Reference only, no longer task sources: career exploration docs, game design guide, 101 flyer, Work Blend Planner, class survey, decision logs, market scans, glance sheet, older eBay copy.</p>
+
+  <h3>What scheduled runs may do with each connector</h3>
+  <div class="scroll"><table class="tbl">
+    <thead><tr><th>Connector</th><th>Allowed on its own</th><th>Always waits for you</th></tr></thead>
+    <tbody>
+      <tr><td><b>Gmail</b></td><td><span class="pill p2">✓ read</span> threads under one label</td><td><span class="pill p4">✕</span> send, draft, reply, forward, delete</td></tr>
+      <tr><td><b>Google Calendar</b></td><td><span class="pill p2">✓ read</span> <span class="pill p2">✓ draft events</span></td><td><span class="pill p4">✕</span> invites, deletes, edits to existing events</td></tr>
+      <tr><td><b>Google Drive</b></td><td><span class="pill p2">✓ write</span> exports to one folder; read the blueprint</td><td><span class="pill p4">✕</span> share, trash, other folders</td></tr>
+      <tr><td><b>Google Sheets</b></td><td>Reserved for Tiller</td><td><span class="pill p4">✕</span> everything until the finance thread decides</td></tr>
+      <tr><td><b>Todoist</b></td><td>Not used</td><td><span class="pill p4">✕</span> everything</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ============ CAPTURE ============ -->
+<section id="capture">
+  <p class="eyebrow">6 · Capture and routing</p>
+  <h2>Capture fast now, sort smart later</h2>
+  <p class="lead">Capturing should take seconds and no thinking. Sorting happens once a day, before your wall switches to morning mode, using each area's roadmap for context.</p>
+
+  <h3>Worked example: one idea, start to finish</h3>
+  <div class="steps">
+    <div class="step"><b>You dictate</b>On your phone, mic button in Homebase's quick-add:<div class="quote">"get the topps lot listed this weekend"</div></div>
+    <div class="step"><b>It waits in the inbox</b>Saved instantly with status <code>inbox</code> and your raw words.</div>
+    <div class="step"><b>The morning sort reads it</b>Matches it to Card Sales, fills bucket, type, effort, and a next step from that roadmap.</div>
+    <div class="step"><b>It shows up ready</b>On Homebase and the wall as <code>next</code>. If the sort wasn't sure, it asks you with one tap.</div>
+  </div>
+
+  <h3>Five ways in</h3>
+  <div class="scroll"><table class="tbl">
+    <thead><tr><th>Input</th><th>How you use it</th><th>When it's sorted</th></tr></thead>
+    <tbody>
+      <tr><td><b>Quick-add</b></td><td>Type or dictate in Homebase</td><td>Next morning</td></tr>
+      <tr><td><b>Gmail label</b></td><td>Apply <code>→homebase</code> to an email</td><td>Next morning</td></tr>
+      <tr><td><b>Calendar</b></td><td>Nothing; the sort scans the next 7 days for prep or follow-up</td><td>Proposed each morning</td></tr>
+      <tr><td><b>Chat intake skill</b></td><td>Say "add these to Homebase" in any thread</td><td>Immediately, already formatted</td></tr>
+      <tr><td><b>Roadmaps</b></td><td>New action items in a roadmap</td><td>Pulled in by the intake skill</td></tr>
+    </tbody>
+  </table></div>
+  <div class="explain"><div class="ic">i</div><div><b class="h">Why not one big chat thread?</b><p>A single thread grows long, and every new message re-sends its whole history, so it gets slower and more expensive. It also mixes every project's context together. One inbox with many destinations keeps capture light and lets context come from the right area.</p></div></div>
+</section>
+
+<!-- ============ STEWARD ============ -->
+<section id="steward">
+  <p class="eyebrow">7 · The steward</p>
+  <h2>A weekly check-up, not a robot running the house</h2>
+  <p class="lead">Every Monday morning, before your priorities review, the steward looks over the whole system and reports what it found. Findings appear in a Homebase panel and in your review.</p>
+
+  <div class="cols3">
+    <div class="col c-good"><h4>✓ Does on its own</h4><ul><li>Fixes small field drift (missing area, stale flag)</li><li>Links obvious duplicates</li><li>Adds tasks a roadmap lists but the store lacks</li><li>Keeps the manifest's facts current</li></ul></div>
+    <div class="col c-warn"><h4>? Recommends to you</h4><ul><li>New or retired areas</li><li>Changes to the schema</li><li>New connectors or scheduled jobs</li><li>Model policy changes</li><li>Anything that deletes</li></ul></div>
+    <div class="col c-bad"><h4>✕ Never</h4><ul><li>Sends email or messages</li><li>Shares or publishes anything</li><li>Touches finance data</li><li>Overrides your edits</li></ul></div>
+  </div>
+
+  <h3>What it checks</h3>
+  <div class="scroll"><table class="tbl">
+    <thead><tr><th>Check</th><th>Example finding</th></tr></thead>
+    <tbody>
+      <tr><td><b>Health</b></td><td>"3 tasks have been in <code>doing</code> for over 14 days"</td></tr>
+      <tr><td><b>Drift</b></td><td>"Arnfjäll roadmap lists 2 items the store doesn't have"</td></tr>
+      <tr><td><b>Balance</b></td><td>"Learn &amp; Play has had no activity for 3 weeks"</td></tr>
+      <tr><td><b>Operations</b></td><td>"Tuesday's sort didn't run; Sunday's export completed"</td></tr>
+      <tr><td><b>Cost</b></td><td>"All jobs ran on their assigned models"</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small muted">Phone alerts are only for real problems: a job failing twice in a row, an unexpected permission change, or Homebase data being unreachable.</p>
+</section>
+
+<!-- ============ MODELS ============ -->
+<section id="models">
+  <p class="eyebrow">8 · Model routing</p>
+  <h2>Match the model to the job</h2>
+  <p class="lead">Think of the three models as staff with different rates. You wouldn't have a senior architect file paperwork, and you wouldn't have a clerk redesign the house.</p>
+  <div class="tiers">
+    <div class="tier"><span class="role">The clerk</span><span class="nm">Haiku</span><div class="cost">cost <i class="on"></i><i></i><i></i></div><ul><li>Daily inbox sort</li><li>Weekly export</li><li>Dedupe and status fixes</li></ul><p class="small muted" style="margin:0">Fast and cheap for repeated, rule-following work.</p></div>
+    <div class="tier mid"><span class="role">The associate</span><span class="nm">Sonnet</span><div class="cost">cost <i class="on"></i><i class="on"></i><i></i></div><ul><li>Monday steward review</li><li>Roadmap and thread intake</li><li>Everyday drafting and research</li></ul><p class="small muted" style="margin:0">The default for most work that needs judgment.</p></div>
+    <div class="tier"><span class="role">The architect</span><span class="nm">Opus</span><div class="cost">cost <i class="on"></i><i class="on"></i><i class="on"></i></div><ul><li>System design sessions</li><li>Blueprint changes</li><li>Hard trade-offs</li></ul><p class="small muted" style="margin:0">Rare and high-leverage, like this planning session.</p></div>
+  </div>
+
+  <h3>Habits that save the most</h3>
+  <div class="gloss">
+    <div class="term"><b>Point helpers at the manifest</b><p>Reading one map beats searching your whole account every run.</p></div>
+    <div class="term"><b>Start a new thread per topic</b><p>Long threads re-send their entire history with each message.</p></div>
+    <div class="term"><b>Keep scheduled prompts short and fixed</b><p>Each run pays for its instructions; fixed wording also gives steady results.</p></div>
+    <div class="term"><b>Batch small asks</b><p>Five requests in one message cost less than five separate messages.</p></div>
+  </div>
+  <div class="explain"><div class="ic">i</div><div><b class="h">How the policy improves</b><p>Once a month, the Monday review includes a short check: what ran on which model, anything that felt slow or weak, and one suggested adjustment for you to accept or skip. One honest limit: Claude can't see your account's usage dashboard, so costs are estimated, not measured.</p></div></div>
+</section>
+
+<!-- ============ SECURITY ============ -->
+<section id="security">
+  <p class="eyebrow">9 · Security and durability</p>
+  <h2>Three real risks, each with a specific guard</h2>
+  <div class="risks">
+    <div class="risk"><span class="r">Risk · A link exposes personal data</span><p>Artifacts are private, but one share away from anyone. The Dakboard may read Homebase through a link.</p><span class="g">Guard</span><p>Phase 1 audits the Dakboard connection. If it's a shared link, it's replaced with a view showing only titles and calendar. The client demo is a separate copy with sample data.</p></div>
+    <div class="risk"><span class="r">Risk · An unattended run does something permanent</span><p>Connectors can send, share and delete.</p><span class="g">Guard</span><p>Scheduled runs only get the permissions in the connector table. Sending, sharing and deleting always wait for you.</p></div>
+    <div class="risk"><span class="r">Risk · A bad instruction hides in an email</span><p>Text from emails or web pages could try to tell a helper what to do.</p><span class="g">Guard</span><p>Imported content can create a task, but it's always treated as data, never as an instruction.</p></div>
+    <div class="risk"><span class="r">Risk · Silent failure</span><p>A broken sort quietly lets things go stale.</p><span class="g">Guard</span><p>Every write is logged, the steward checks run history weekly, and two failures in a row push to your phone.</p></div>
+    <div class="risk"><span class="r">Risk · Losing everything</span><p>Homebase's data lives inside one artifact.</p><span class="g">Guard</span><p>Weekly JSON and CSV export to Drive, keeping 8 weeks. The blueprint is exported monthly too.</p></div>
+    <div class="risk"><span class="r">Risk · Secrets in the wrong place</span><p>Keys or logins pasted into tasks or pages.</p><span class="g">Guard</span><p>Logins live only inside connectors; never in artifacts, tasks, memory or docs. No finance amounts in Homebase.</p></div>
+  </div>
+</section>
+
+<!-- ============ INCENTIVES ============ -->
+<section id="incentives">
+  <p class="eyebrow">10 · Incentives</p>
+  <h2>Points that buy something real</h2>
+  <p class="lead">Moving a roadmap forward earns the most. Points buy rewards you choose, and progress shows as milestone bars instead of abstract levels.</p>
+
+  <div class="cols3" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+    <div class="col" style="background:var(--card)"><h4>Earn</h4>
+      <table class="tbl" style="margin:0"><tbody>
+        <tr><td>Milestone task</td><td><b>10 / 20 / 40</b> <span class="muted small">S / M / L</span></td></tr>
+        <tr><td>Other task</td><td><b>3 / 6 / 12</b></td></tr>
+        <tr><td>Reach a milestone</td><td><b>+100</b></td></tr>
+        <tr><td>Neglected area (3+ weeks)</td><td><b>×1.5</b></td></tr>
+        <tr><td>Weekly streak: milestone work in all 3 buckets</td><td><b>+50</b></td></tr>
+      </tbody></table>
+      <p class="small muted">Starting values; the monthly review tunes them.</p>
+    </div>
+    <div class="col" style="background:var(--card)"><h4>Spend</h4>
+      <p class="small" style="margin-top:0">A rewards list you write, each with a price. Spending is one tap in Homebase.</p>
+      <table class="tbl" style="margin:0"><tbody>
+        <tr><td>Disc golf round</td><td class="muted">your price</td></tr>
+        <tr><td>Game session</td><td class="muted">your price</td></tr>
+        <tr><td>Gear purchase</td><td class="muted">your price</td></tr>
+        <tr><td>Afternoon off</td><td class="muted">your price</td></tr>
+      </tbody></table>
+    </div>
+  </div>
+
+  <div class="prog" aria-label="Example milestone progress bar">
+    <p class="eyebrow" style="margin:0">Example area card</p>
+    <b>Card Sales</b> <span class="small muted">· next milestone: first lot sold</span>
+    <div class="bars"><i class="f"></i><i class="h"></i><i></i><i></i></div>
+    <div class="blabels"><span>Phase 1 · Inventory</span><span>Phase 2 · First lot</span><span>Phase 3</span><span>Phase 4</span></div>
+  </div>
+</section>
+
+<!-- ============ PLAN ============ -->
+<section id="plan">
+  <p class="eyebrow">11 · Build plan</p>
+  <h2>Four phases, each useful on its own</h2>
+  <figure>
+    <svg viewBox="0 0 760 150" role="img" aria-label="Four build phases in order">
+      <text x="24" y="28" class="th">Foundation first; every later phase builds on it</text>
+      <path d="M24 56H186L204 88L186 120H24Z" class="s-acc"/>
+      <path d="M204 56H370L388 88L370 120H204L222 88Z" class="s-good"/>
+      <path d="M388 56H554L572 88L554 120H388L406 88Z" class="s-warn"/>
+      <path d="M572 56H736V120H572L590 88Z" class="s-bad"/>
+      <text x="40" y="84" class="tb">1 · Foundation</text><text x="40" y="102" class="tq">schema, migration</text>
+      <text x="230" y="84" class="tb">2 · Capture</text><text x="230" y="102" class="tq">inbox, sort, export</text>
+      <text x="414" y="84" class="tb">3 · Steward</text><text x="414" y="102" class="tq">review, alerts, models</text>
+      <text x="598" y="84" class="tb">4 · Incentives</text><text x="598" y="102" class="tq">points, rewards, demo</text>
+      <text x="24" y="142" class="tq">About one working session each; phase 4 may take two.</text>
+    </svg>
+  </figure>
+  <div class="phases">
+    <div class="phase"><h4>Phase 1 · Foundation <span class="pill p1">start here</span></h4><ul>
+      <li>Audit Homebase's data and the Dakboard connection</li>
+      <li>Move Homebase to the task schema, keeping existing check-offs</li>
+      <li>Migrate open items from the 11 roadmaps, with source and milestone</li>
+      <li>Switch roadmaps to read-only status</li>
+      <li>Archive the older eBay roadmap and mark reference docs</li>
+      <li>Save the manifest to Drive with this blueprint</li></ul></div>
+    <div class="phase"><h4>Phase 2 · Capture and backups</h4><ul>
+      <li>Add the inbox and quick-add box to Homebase</li>
+      <li>Build the intake skill for threads and roadmaps</li>
+      <li>Create the Gmail label and daily early-morning sort</li>
+      <li>Set up the weekly Drive export</li></ul></div>
+    <div class="phase"><h4>Phase 3 · Steward and policy</h4><ul>
+      <li>Create the Monday steward review and its panel</li>
+      <li>Add failure alerts and a change log view</li>
+      <li>Apply the model policy to every scheduled job</li></ul></div>
+    <div class="phase"><h4>Phase 4 · Incentives and demo</h4><ul>
+      <li>Replace points and levels with milestone-based points</li>
+      <li>Add your rewards list and spend flow</li>
+      <li>Generate the sanitized client demo</li></ul></div>
+  </div>
+</section>
+
+<!-- ============ DECISIONS ============ -->
+<section id="decisions">
+  <p class="eyebrow">12 · Every decision from the interview</p>
+  <h2>What was decided, and what it means</h2>
+  <div class="scroll"><table class="tbl">
+    <thead><tr><th>Topic</th><th>Decision</th><th>What it means</th></tr></thead>
+    <tbody>
+      <tr><td><b>Source of truth</b></td><td>Homebase database owns status</td><td>Roadmaps stop holding their own check-offs</td></tr>
+      <tr><td><b>Roadmaps</b></td><td>Planning docs, read-only status</td><td>Check off in Homebase or on the wall</td></tr>
+      <tr><td><b>eBay duplicate</b></td><td>The 9:39pm copy is live</td><td>Older copy archived</td></tr>
+      <tr><td><b>Unattended runs</b></td><td>Update fields, add tasks, Calendar drafts</td><td>Gmail read-only; no sends, shares or deletes</td></tr>
+      <tr><td><b>Efficiency</b></td><td>Tokens, attention, build speed weighted equally</td><td>Cheap models for routine work, few decisions for you</td></tr>
+      <tr><td><b>Capture</b></td><td>Quick-add, Gmail label, chat intake, calendar, roadmaps</td><td>All through one inbox</td></tr>
+      <tr><td><b>Voice</b></td><td>Dictate raw, parse at triage</td><td>No new build; raw words kept</td></tr>
+      <tr><td><b>Sorting</b></td><td>Daily, early morning</td><td>Filed before the wall's 7am morning mode</td></tr>
+      <tr><td><b>Store</b></td><td>Homebase database + weekly Drive export</td><td>Backups double as an exit route</td></tr>
+      <tr><td><b>Reporting</b></td><td>Homebase panel, Monday review, urgent pushes only</td><td>No daily noise</td></tr>
+      <tr><td><b>Portability</b></td><td>Portable data and design</td><td>Use Claude features freely; document the blueprint</td></tr>
+      <tr><td><b>Obsidian</b></td><td>Dropped for now</td><td>Revisit if long-form notes become a habit</td></tr>
+      <tr><td><b>Models</b></td><td>Policy set once, occasional check-ins</td><td>Refined together monthly</td></tr>
+      <tr><td><b>Plan</b></td><td>Max 5x</td><td>Scheduled jobs stay on Haiku</td></tr>
+      <tr><td><b>Scope</b></td><td>All four groups active</td><td>Older docs archived as reference</td></tr>
+      <tr><td><b>Audience</b></td><td>You, plus a sanitized client demo</td><td>Personal data kept separable</td></tr>
+      <tr><td><b>Incentives</b></td><td>Redesigned now, milestone-weighted</td><td>Treats, progress bars, balance, streaks</td></tr>
+      <tr><td><b>History</b></td><td>Keep, hidden from views</td><td>Feeds reviews and streaks</td></tr>
+      <tr><td><b>Finance wall</b></td><td>Deferred to finance thread</td><td>Interim: no amounts in Homebase</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<footer>Homebase System Blueprint · drafted October 15, 2026 · The editable working copy lives in Claude Docs; this page is a visual companion.</footer>
+</div>
+</body>
+</html>

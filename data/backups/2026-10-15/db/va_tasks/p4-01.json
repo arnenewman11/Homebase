@@ -1,0 +1,11 @@
+{
+  "detail": "Requires a current certification from a recognized organization.",
+  "effort": "S",
+  "kind": "should",
+  "order": 1,
+  "phase": "p4",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Confirm RPO qualifies for DUPR Coach",
+  "track": "service"
+}

@@ -1,0 +1,11 @@
+{
+  "detail": "Tall tripod or fence clip, elevated behind the baseline. Ask whether 3rd Shot courts have cameras.",
+  "effort": "S",
+  "kind": "should",
+  "order": 1,
+  "phase": "p1",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Set up a phone mount",
+  "track": "service"
+}

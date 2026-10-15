@@ -1,0 +1,11 @@
+{
+  "detail": "Buy the 300-minute pack ($39.99). Videos must be under 20 minutes.",
+  "effort": "S",
+  "kind": "should",
+  "order": 4,
+  "phase": "p1",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Run game 1 through PB Vision",
+  "track": "service"
+}

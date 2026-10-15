@@ -1,0 +1,11 @@
+{
+  "detail": "A short description plus how players should film their game.",
+  "effort": "M",
+  "kind": "should",
+  "order": 2,
+  "phase": "p3",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Write the offer and filming guide",
+  "track": "service"
+}

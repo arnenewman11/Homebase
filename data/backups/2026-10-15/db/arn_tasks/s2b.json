@@ -1,0 +1,13 @@
+{
+  "ask": "Which finish held up best?",
+  "detail": "Leave samples wet for a week and compare.",
+  "effort": "M",
+  "followup": "note",
+  "kind": "should",
+  "order": 2,
+  "phase": "s2",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Test waterproof finishes on offcuts",
+  "track": "skills"
+}

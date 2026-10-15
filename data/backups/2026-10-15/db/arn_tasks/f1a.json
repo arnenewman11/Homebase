@@ -1,0 +1,13 @@
+{
+  "ask": "What dimensions did you settle on?",
+  "detail": "About 14–18 in tall, 9–11 in wide. Mark shelf heights and the spill lip.",
+  "effort": "M",
+  "followup": "note",
+  "kind": "should",
+  "order": 1,
+  "phase": "f1",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Sketch the indoor cascade with real dimensions",
+  "track": "fountains"
+}

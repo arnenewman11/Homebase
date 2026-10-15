@@ -1,0 +1,69 @@
+{
+  "fetchedAt": "2026-10-15T00:05:00Z",
+  "items": [
+    {
+      "due": "",
+      "id": "1a12fa22b063848b",
+      "kind": "finance",
+      "sub": "Log in soon — your COMC cash-out is being sent there",
+      "title": "PayPal account set to close",
+      "url": "https://mail.google.com/mail/u/0/#all/1a12fa22b063848b"
+    },
+    {
+      "due": "",
+      "id": "1a13c16ddcd41d81",
+      "kind": "other",
+      "sub": "Time-sensitive engineering-industry consult request awaiting your reply",
+      "title": "Guidepoint project: accept or decline",
+      "url": "https://mail.google.com/mail/u/0/#all/1a13c16ddcd41d81"
+    },
+    {
+      "due": "",
+      "id": "1a12e0e0a473cd21",
+      "kind": "rental",
+      "sub": "Tenant re-sent his October request; pay or follow up",
+      "title": "Oliver's Venmo request still open",
+      "url": "https://mail.google.com/mail/u/0/#all/1a12e0e0a473cd21"
+    },
+    {
+      "due": "",
+      "id": "1a1287a7d11eb494",
+      "kind": "finance",
+      "sub": "Oct 10 ride didn't go through; check the payment method in Lyft",
+      "title": "Lyft ride charge failed",
+      "url": "https://mail.google.com/mail/u/0/#all/1a1287a7d11eb494"
+    },
+    {
+      "due": "",
+      "id": "1a138374ec63b3fc",
+      "kind": "finance",
+      "sub": "Retry failed again; update the card to keep the subscription",
+      "title": "ADHD Weasel card payment declined",
+      "url": "https://mail.google.com/mail/u/0/#all/1a138374ec63b3fc"
+    },
+    {
+      "due": "",
+      "id": "1a136bed6805a709",
+      "kind": "other",
+      "sub": "Invoice Tuesday's expert call so you get paid",
+      "title": "Submit Guidepoint consultation invoice",
+      "url": "https://mail.google.com/mail/u/0/#all/1a136bed6805a709"
+    },
+    {
+      "due": "2026-11-02",
+      "id": "1a1102dcb1066821",
+      "kind": "bill",
+      "sub": "$1,333.68 statement, $70.22 minimum; no autopay on this card",
+      "title": "Chase card (…5083) due Nov 2",
+      "url": "https://mail.google.com/mail/u/0/#all/1a1102dcb1066821"
+    },
+    {
+      "due": "",
+      "id": "1a139904e432508a",
+      "kind": "sold",
+      "sub": "Tuesday sales; COMC ships them, nothing to mail",
+      "title": "2 cards sold on COMC",
+      "url": "https://mail.google.com/mail/u/0/#all/1a139904e432508a"
+    }
+  ]
+}

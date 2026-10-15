@@ -1,0 +1,11 @@
+{
+  "detail": "Pull from your drill library so each priority has a ready drill.",
+  "effort": "M",
+  "kind": "want",
+  "order": 2,
+  "phase": "p2",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Map common faults to drills",
+  "track": "service"
+}

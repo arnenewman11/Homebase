@@ -1,0 +1,11 @@
+{
+  "goal": "Tools and space without buying everything up front.",
+  "label": "Start anytime",
+  "milestone": "Working in a woodshop, with lapidary help nearby",
+  "name": "Shop access",
+  "order": 1,
+  "reward": "",
+  "short": "Shop",
+  "srcVersion": 1,
+  "track": "skills"
+}

@@ -1,0 +1,13 @@
+{
+  "ask": "What spacing or angle sounded best?",
+  "detail": "Small angle changes change the sound a lot.",
+  "effort": "M",
+  "followup": "note",
+  "kind": "want",
+  "order": 3,
+  "phase": "f2",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Tune the spill lip and shelf spacing",
+  "track": "fountains"
+}

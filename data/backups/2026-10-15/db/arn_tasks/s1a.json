@@ -1,0 +1,13 @@
+{
+  "ask": "Did you join? Anything to know about the shop?",
+  "detail": "9110 W 44th Ave, Wheat Ridge. $60/mo; intro classes mostly free.",
+  "effort": "S",
+  "followup": "note",
+  "kind": "should",
+  "order": 1,
+  "phase": "s1",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Visit Clear Creek Makerspace",
+  "track": "skills"
+}

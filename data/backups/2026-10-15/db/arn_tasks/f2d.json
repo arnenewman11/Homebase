@@ -1,0 +1,12 @@
+{
+  "effort": "L",
+  "followup": "build",
+  "kind": "should",
+  "order": 4,
+  "phase": "f2",
+  "pieceHint": "Indoor cascade #2",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Build prototype 2 with the fixes",
+  "track": "fountains"
+}

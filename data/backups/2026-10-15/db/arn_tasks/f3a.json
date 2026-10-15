@@ -1,0 +1,13 @@
+{
+  "detail": "Log each one. Try one variation: size or wood.",
+  "effort": "L",
+  "followup": "build",
+  "kind": "should",
+  "order": 1,
+  "phase": "f3",
+  "pieceHint": "Indoor cascade",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Build three more pieces",
+  "track": "fountains"
+}

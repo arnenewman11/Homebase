@@ -1,0 +1,11 @@
+{
+  "goal": "Film your own games and see what the AI tools catch versus what you catch.",
+  "label": "Phase 1",
+  "milestone": "4 games filmed and logged, AI vs. me",
+  "name": "Test the tools",
+  "order": 1,
+  "reward": "",
+  "short": "Test the tools",
+  "srcVersion": 1,
+  "track": "service"
+}

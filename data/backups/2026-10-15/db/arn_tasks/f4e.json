@@ -1,0 +1,13 @@
+{
+  "ask": "What will you change for summer?",
+  "detail": "What sold, what people asked about, what took longest.",
+  "effort": "S",
+  "followup": "note",
+  "kind": "should",
+  "order": 5,
+  "phase": "f4",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Look back at both logs",
+  "track": "fountains"
+}

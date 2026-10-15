@@ -1,0 +1,11 @@
+{
+  "detail": "Make the pump easy to lift out for cleaning.",
+  "effort": "M",
+  "kind": "should",
+  "order": 2,
+  "phase": "s3",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Plumb a hidden tub, pump and tubing",
+  "track": "skills"
+}

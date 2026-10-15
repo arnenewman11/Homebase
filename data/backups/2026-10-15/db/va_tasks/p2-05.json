@@ -1,0 +1,11 @@
+{
+  "detail": "Time each one and add it to the review tracker.",
+  "effort": "L",
+  "kind": "should",
+  "order": 5,
+  "phase": "p2",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Deliver the free reviews",
+  "track": "service"
+}

@@ -1,0 +1,11 @@
+{
+  "detail": "Your read first, then the tools, then the log.",
+  "effort": "L",
+  "kind": "should",
+  "order": 7,
+  "phase": "p1",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Repeat for games 2–4",
+  "track": "service"
+}

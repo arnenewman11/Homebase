@@ -1,0 +1,13 @@
+{
+  "ask": "What price did you set, and why?",
+  "detail": "Use average hours and materials below. Range to test: $175–300.",
+  "effort": "M",
+  "followup": "note",
+  "kind": "should",
+  "order": 3,
+  "phase": "f3",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Set your price from the build log",
+  "track": "fountains"
+}

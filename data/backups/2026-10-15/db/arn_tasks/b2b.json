@@ -1,0 +1,13 @@
+{
+  "ask": "Which policy, and what does it cost?",
+  "detail": "Markets usually require $1M coverage; about $200–400 a year.",
+  "effort": "S",
+  "followup": "note",
+  "kind": "should",
+  "order": 2,
+  "phase": "b2",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Get liability insurance quotes",
+  "track": "business"
+}

@@ -1,0 +1,11 @@
+{
+  "detail": "Before opening any AI stats. Patterns, technique, decisions.",
+  "effort": "M",
+  "kind": "should",
+  "order": 3,
+  "phase": "p1",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Write your own read of game 1",
+  "track": "service"
+}

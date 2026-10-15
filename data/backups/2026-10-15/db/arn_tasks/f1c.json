@@ -1,0 +1,13 @@
+{
+  "ask": "Which pump and flow rate?",
+  "detail": "Size the flow to the spill-lip width; check reviews for noise.",
+  "effort": "M",
+  "followup": "note",
+  "kind": "should",
+  "order": 3,
+  "phase": "f1",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Pick a 12 V UL-listed pump for about 18 in of lift",
+  "track": "fountains"
+}

@@ -1,0 +1,11 @@
+{
+  "detail": "Keep the request short.",
+  "effort": "S",
+  "kind": "should",
+  "order": 3,
+  "phase": "p3",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Ask about offering it at 3rd Shot",
+  "track": "service"
+}

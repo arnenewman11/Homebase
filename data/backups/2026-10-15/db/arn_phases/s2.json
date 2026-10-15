@@ -1,0 +1,11 @@
+{
+  "goal": "A frame that doesn't mind living next to water.",
+  "label": "Before prototype 1",
+  "milestone": "A finish that survives a week of water",
+  "name": "Wood and finish",
+  "order": 2,
+  "reward": "",
+  "short": "Wood",
+  "srcVersion": 1,
+  "track": "skills"
+}

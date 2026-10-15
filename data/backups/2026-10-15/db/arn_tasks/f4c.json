@@ -1,0 +1,13 @@
+{
+  "ask": "What did the shop say?",
+  "detail": "For example Jolly Goods on Tennyson, or I Heart Denver (artist keeps 70%).",
+  "effort": "M",
+  "followup": "note",
+  "kind": "want",
+  "order": 3,
+  "phase": "f4",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Show a piece to one local shop",
+  "track": "fountains"
+}

@@ -1,0 +1,13 @@
+{
+  "ask": "What did you find, and where did you save it?",
+  "detail": "Master files and brand guide are still missing from 2025.",
+  "effort": "S",
+  "followup": "note",
+  "kind": "should",
+  "order": 1,
+  "phase": "b1",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Recover the logo files from ChatGPT",
+  "track": "business"
+}

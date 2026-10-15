@@ -1,0 +1,11 @@
+{
+  "detail": "What you caught, what the AI caught, what it missed.",
+  "effort": "S",
+  "kind": "should",
+  "order": 6,
+  "phase": "p1",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Log game 1 in the AI vs. me log",
+  "track": "service"
+}

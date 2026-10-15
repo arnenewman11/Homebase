@@ -1,0 +1,11 @@
+{
+  "detail": "e.g. monthly review or a 3-review progress pack.",
+  "effort": "M",
+  "kind": "want",
+  "order": 4,
+  "phase": "p4",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Create a repeat package",
+  "track": "service"
+}

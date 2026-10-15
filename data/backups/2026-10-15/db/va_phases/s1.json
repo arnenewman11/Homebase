@@ -1,0 +1,11 @@
+{
+  "goal": "Draw on video and talk over it from your phone.",
+  "label": "Level 1",
+  "milestone": "One clip with drawing and voiceover",
+  "name": "Markup basics",
+  "order": 1,
+  "reward": "",
+  "short": "Markup",
+  "srcVersion": 1,
+  "track": "skills"
+}

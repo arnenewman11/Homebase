@@ -1,0 +1,11 @@
+{
+  "detail": "Free. Screen plus your voice; check audio levels.",
+  "effort": "M",
+  "kind": "want",
+  "order": 2,
+  "phase": "s2",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Record a test with OBS",
+  "track": "skills"
+}

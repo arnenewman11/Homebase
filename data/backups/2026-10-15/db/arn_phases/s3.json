@@ -1,0 +1,11 @@
+{
+  "goal": "Drill stone, plumb a hidden tub, light it safely.",
+  "label": "Before prototype 1",
+  "milestone": "A test rig with pump, tub and LEDs running",
+  "name": "Stone and water",
+  "order": 3,
+  "reward": "",
+  "short": "Water",
+  "srcVersion": 1,
+  "track": "skills"
+}

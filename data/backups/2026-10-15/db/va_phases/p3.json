@@ -1,0 +1,11 @@
+{
+  "goal": "Set a price, package the offer and deliver the first paid review.",
+  "label": "Phase 3",
+  "milestone": "First paid review delivered",
+  "name": "Launch",
+  "order": 3,
+  "reward": "",
+  "short": "Launch",
+  "srcVersion": 1,
+  "track": "service"
+}

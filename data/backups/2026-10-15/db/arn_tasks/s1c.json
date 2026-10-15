@@ -1,0 +1,13 @@
+{
+  "ask": "What did you learn?",
+  "detail": "Meets in Wheat Ridge on 2nd Fridays, Sep–May. Ask about lapidary equipment.",
+  "effort": "S",
+  "followup": "note",
+  "kind": "want",
+  "order": 3,
+  "phase": "s1",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Visit the Denver Gem & Mineral Guild",
+  "track": "skills"
+}

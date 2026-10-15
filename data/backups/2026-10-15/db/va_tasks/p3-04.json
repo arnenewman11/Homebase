@@ -1,0 +1,11 @@
+{
+  "detail": "Log it in the review tracker.",
+  "effort": "M",
+  "kind": "should",
+  "order": 4,
+  "phase": "p3",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Deliver your first paid review",
+  "track": "service"
+}

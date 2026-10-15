@@ -1,0 +1,10 @@
+{
+  "effort": "M",
+  "kind": "want",
+  "order": 3,
+  "phase": "s3",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Wire a 12 V LED strip to share one plug with the pump",
+  "track": "skills"
+}

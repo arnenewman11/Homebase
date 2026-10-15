@@ -1,0 +1,102 @@
+{
+  "daily": [
+    {
+      "cond": "Rain likely",
+      "day": "Thu",
+      "hi": 51,
+      "lo": 33
+    },
+    {
+      "cond": "Mostly sunny",
+      "day": "Fri",
+      "hi": 53,
+      "lo": 33
+    },
+    {
+      "cond": "Mostly sunny",
+      "day": "Sat",
+      "hi": 68,
+      "lo": 38
+    },
+    {
+      "cond": "Partly cloudy",
+      "day": "Sun",
+      "hi": 67,
+      "lo": 46
+    },
+    {
+      "cond": "Sunny",
+      "day": "Mon",
+      "hi": 65,
+      "lo": 39
+    },
+    {
+      "cond": "Mostly sunny",
+      "day": "Tue",
+      "hi": 67,
+      "lo": 40
+    },
+    {
+      "cond": "Mostly sunny",
+      "day": "Wed",
+      "hi": 73,
+      "lo": 42
+    },
+    {
+      "cond": "Mostly cloudy",
+      "day": "Thu",
+      "hi": 67,
+      "lo": 45
+    },
+    {
+      "cond": "Mostly sunny",
+      "day": "Fri",
+      "hi": 61,
+      "lo": 35
+    }
+  ],
+  "fetchedAt": "2026-10-15T00:05:00Z",
+  "hourly": [
+    {
+      "t": "6p",
+      "temp": 47
+    },
+    {
+      "t": "7p",
+      "temp": 47
+    },
+    {
+      "t": "8p",
+      "temp": 46
+    },
+    {
+      "t": "9p",
+      "temp": 46
+    },
+    {
+      "t": "10p",
+      "temp": 45
+    },
+    {
+      "t": "11p",
+      "temp": 45
+    },
+    {
+      "t": "12a",
+      "temp": 45
+    },
+    {
+      "t": "1a",
+      "temp": 45
+    },
+    {
+      "t": "2a",
+      "temp": 44
+    }
+  ],
+  "now": {
+    "cond": "Cloudy, showers ending",
+    "note": "Damp and chilly tonight; bring plants in before Thursday night's freeze",
+    "temp": 47
+  }
+}

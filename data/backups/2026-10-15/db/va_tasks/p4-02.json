@@ -1,0 +1,11 @@
+{
+  "detail": "$250/year. Adds video ratings and a listing on the DUPR Coach Map.",
+  "effort": "S",
+  "kind": "should",
+  "order": 2,
+  "phase": "p4",
+  "srcVersion": 1,
+  "status": "todo",
+  "title": "Decide on DUPR Coach",
+  "track": "service"
+}
