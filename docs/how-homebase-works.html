@@ -1,0 +1,367 @@
+<title>How Homebase Works</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: one reading column in Homebase's own palette; diagrams first, then how-to cards, reference tables, ideas. */
+:root{
+  --ground:#EFEBE4; --card:#F8F5EF; --card2:#F3F0E9; --line:#E2DDD3; --line-strong:#B9B3A6; --soft:#E8E3DA;
+  --ink:#262A24; --muted:#5B6157;
+  --sage:#5E6656; --sage-deep:#474E42; --oak:#A9714A; --clay:#B9735E; --mustard:#C9A548;
+  --slate:#4F7287; --slate-tint:#DCE6EC; --on-band:#F8F5EF;
+  --good:#3E6B4A; --good-tint:#E1EBDD; --warn:#8A6A12; --warn-tint:#F1E5C6; --bad:#9B4A35; --bad-tint:#F2DED6;
+  --font:'Hanken Grotesk','Helvetica Neue',Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --ground:#1C2420; --card:#252E29; --card2:#212925; --line:#34403A; --line-strong:#56635B; --soft:#2E3833;
+  --ink:#ECE8E0; --muted:#A9B0A4;
+  --sage:#6F7D66; --sage-deep:#B7C4A7; --oak:#C99068; --clay:#B77A65; --mustard:#B89A4E;
+  --slate:#7EA2B8; --slate-tint:#22394A; --on-band:#F8F5EF;
+  --good:#9CC7A6; --good-tint:#24382B; --warn:#E3C778; --warn-tint:#3F3519; --bad:#E3A08C; --bad-tint:#43271F;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --ground:#1C2420; --card:#252E29; --card2:#212925; --line:#34403A; --line-strong:#56635B; --soft:#2E3833;
+  --ink:#ECE8E0; --muted:#A9B0A4;
+  --sage:#6F7D66; --sage-deep:#B7C4A7; --oak:#C99068; --clay:#B77A65; --mustard:#B89A4E;
+  --slate:#7EA2B8; --slate-tint:#22394A; --on-band:#F8F5EF;
+  --good:#9CC7A6; --good-tint:#24382B; --warn:#E3C778; --warn-tint:#3F3519; --bad:#E3A08C; --bad-tint:#43271F;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.55}
+a{color:var(--slate)}
+:focus-visible{outline:3px solid var(--slate);outline-offset:2px}
+.wrap{max-width:920px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:0 72px}
+h1,h2,h3{margin:0;line-height:1.2;text-wrap:balance}
+h2{font-size:27px;font-weight:800;letter-spacing:-.015em}
+h3{font-size:18px;font-weight:700}
+p{margin:0}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.lead{font-size:18px;max-width:66ch}
+.muted{color:var(--muted)}
+.small{font-size:14px}
+code{font-family:ui-monospace,Menlo,monospace;font-size:.86em;background:var(--soft);padding:1px 6px;border-radius:6px}
+section{margin-top:56px;display:flex;flex-direction:column;gap:14px}
+
+.band{position:relative;height:190px;margin-left:calc(-1 * max(16px, env(safe-area-inset-left, 0px)));margin-right:calc(-1 * max(16px, env(safe-area-inset-right, 0px)));overflow:hidden}
+.band i{position:absolute;inset:0;display:block}
+.band .a{background:var(--sage);clip-path:polygon(0 0,100% 0,100% 45%,0 100%)}
+.band .b{background:var(--clay);clip-path:polygon(0 100%,100% 45%,100% 78%,52% 100%)}
+.band .c{background:var(--mustard);clip-path:polygon(52% 100%,100% 78%,100% 100%)}
+.band .t{position:absolute;left:max(16px, env(safe-area-inset-left, 0px));right:16px;top:28px;color:var(--on-band)}
+.band .t p{font-size:14px;font-weight:600;opacity:.92}
+.band h1{font-size:40px;font-weight:800;letter-spacing:-.02em;margin-top:4px}
+
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.toc a{text-decoration:none;font-size:13px;font-weight:600;color:var(--sage-deep);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;min-height:34px;display:inline-flex;align-items:center}
+
+.intro{margin-top:24px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:16px;align-items:start}
+.facts{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px}
+.facts b{font-variant-numeric:tabular-nums;color:var(--sage-deep);font-size:15px}
+
+figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;overflow-x:auto}
+figure svg{width:100%;min-width:620px;height:auto;display:block}
+figcaption{font-size:13px;color:var(--muted);margin-top:8px}
+.s-box{fill:var(--card);stroke:var(--line-strong);stroke-width:1.25}
+.s-box2{fill:var(--card2);stroke:var(--line-strong);stroke-width:1.25}
+.s-acc{fill:var(--slate-tint);stroke:var(--slate);stroke-width:2}
+.s-good{fill:var(--good-tint);stroke:var(--good);stroke-width:1.5}
+.s-warn{fill:var(--warn-tint);stroke:var(--warn);stroke-width:1.5}
+.s-bad{fill:var(--bad-tint);stroke:var(--bad);stroke-width:1.5}
+.s-line{fill:none;stroke:var(--muted);stroke-width:1.25}
+.s-grid{fill:none;stroke:var(--line);stroke-width:1}
+.s-arrow{fill:var(--muted)}
+.dot-wall{fill:var(--sage)} .dot-feed{fill:var(--oak)} .dot-sort{fill:var(--slate)}
+.t{fill:var(--ink);font-family:var(--font);font-size:13px}
+.tb{fill:var(--ink);font-family:var(--font);font-size:13px;font-weight:700}
+.tq{fill:var(--muted);font-family:var(--font);font-size:11.5px}
+.th{fill:var(--ink);font-family:var(--font);font-size:15px;font-weight:700}
+
+.howto{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.how{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:6px}
+.how .q{font-size:13px;font-weight:700;color:var(--oak);text-transform:uppercase;letter-spacing:.06em}
+.how b{font-size:16px}
+.how p{font-size:14px;color:var(--muted)}
+
+.scroll{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);border-radius:16px;overflow:hidden}
+.tbl th{text-align:left;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;padding:10px 12px;border-bottom:2px solid var(--line)}
+.tbl td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl tr:last-child td{border-bottom:0}
+.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.pill{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.p-h{background:var(--good-tint);color:var(--good)}
+.p-s{background:var(--slate-tint);color:var(--slate)}
+.p-w{background:var(--warn-tint);color:var(--warn)}
+
+.cols3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.col{border-radius:18px;padding:16px;border:1px solid var(--line)}
+.col h3{font-size:15px;margin-bottom:8px}
+.col ul{margin:0;padding-left:18px;font-size:14px}
+.col li{margin:4px 0}
+.c-good{background:var(--good-tint)} .c-good h3{color:var(--good)}
+.c-warn{background:var(--warn-tint)} .c-warn h3{color:var(--warn)}
+.c-bad{background:var(--bad-tint)} .c-bad h3{color:var(--bad)}
+
+.todo{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:6px 16px}
+.todo div{display:flex;gap:12px;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line);font-size:14px}
+.todo div:first-child{border-top:0}
+.todo span.when{color:var(--muted);white-space:nowrap}
+
+.ideas{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.idea{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.idea .top{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.idea h3{font-size:17px}
+.idea p{font-size:14px}
+.idea .why{color:var(--muted)}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--soft);color:var(--sage-deep)}
+.ideagroup{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:6px}
+
+.explain{display:flex;gap:12px;background:var(--slate-tint);border-radius:16px;padding:14px 16px;font-size:15px}
+.explain .ic{flex:0 0 28px;height:28px;border-radius:50%;background:var(--slate);color:var(--card);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px}
+
+footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+
+@media (max-width:760px){
+  .band h1{font-size:30px}
+  .intro,.howto,.cols3,.ideas{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto}}
+</style>
+
+<div class="wrap">
+<div class="band"><i class="a"></i><i class="b"></i><i class="c"></i>
+  <div class="t"><p>Your system · as of October 15, 2026</p><h1>How Homebase Works</h1></div>
+</div>
+
+<nav class="toc" aria-label="Contents">
+  <a href="#map">The map</a><a href="#rhythm">Daily rhythm</a><a href="#use">How you use it</a><a href="#life">A task's life</a><a href="#jobs">Jobs and models</a><a href="#guard">Guardrails</a><a href="#open">Open items</a><a href="#ideas">Ideas for next</a>
+</nav>
+
+<div class="intro">
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <p class="lead">Homebase is the one place your tasks live. Ideas come in from anywhere, a cheap morning helper files them, and every screen you look at reads from the same list. A weekly check-up keeps it tidy and tells you only what needs your call.</p>
+    <p class="muted small">No points or levels. Progress shows as bars on each roadmap and done counts.</p>
+  </div>
+  <div class="facts" aria-label="At a glance">
+    <b>12</b><span>areas, from Video Analysis to AI Builder</span>
+    <b>200+</b><span>tracked tasks, every one in the same format</span>
+    <b>9</b><span>scheduled helpers, all on the cheaper models</span>
+    <b>2</b><span>backups: weekly to Drive, every change to GitHub</span>
+  </div>
+</div>
+
+<!-- MAP -->
+<section id="map">
+  <p class="eyebrow">The map</p>
+  <h2>Everything flows into one list, and every screen reads from it</h2>
+  <figure>
+    <svg viewBox="0 0 760 432" role="img" aria-label="Captures flow through an inbox into the Homebase store, which feeds Homebase, the wall and the roadmap pages">
+      <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="s-arrow"/></marker></defs>
+      <text x="24" y="30" class="th">One list in the middle; helpers around it run on a schedule</text>
+      <text x="24" y="60" class="tq">WAYS IN</text><text x="600" y="60" class="tq">WHERE YOU SEE IT</text>
+      <path d="M174 90H192M174 138H192M174 186H192M174 234H192M192 90V234" class="s-line"/>
+      <path d="M192 162H210" class="s-line" marker-end="url(#ar)"/>
+      <path d="M99 300V318H410V246" class="s-line" marker-end="url(#ar)"/>
+      <path d="M288 186V262" class="s-line" marker-end="url(#ar)"/>
+            <path d="M568 186H584M584 134V238" class="s-line"/>
+      <path d="M584 134H600" class="s-line" marker-end="url(#ar)"/><path d="M584 186H600" class="s-line" marker-end="url(#ar)"/><path d="M584 238H600" class="s-line" marker-end="url(#ar)"/>
+      <path d="M440 336V246" class="s-line" marker-end="url(#ar)"/>
+      <path d="M548 246V304H668V340" class="s-line" marker-end="url(#ar)"/>
+      <rect x="24" y="72" width="150" height="36" rx="8" class="s-box"/><text x="99" y="94" text-anchor="middle" class="t">Quick add or voice</text>
+      <rect x="24" y="120" width="150" height="36" rx="8" class="s-box"/><text x="99" y="142" text-anchor="middle" class="t">Gmail label</text>
+      <rect x="24" y="168" width="150" height="36" rx="8" class="s-box"/><text x="99" y="190" text-anchor="middle" class="t">Calendar prep</text>
+      <rect x="24" y="216" width="150" height="36" rx="8" class="s-box"/><text x="99" y="238" text-anchor="middle" class="t">Your roadmaps</text>
+      <rect x="24" y="264" width="150" height="36" rx="8" class="s-box"/><text x="99" y="286" text-anchor="middle" class="t">"Add to Homebase"</text>
+      <text x="200" y="334" class="tq">files directly, no inbox</text>
+      <rect x="210" y="138" width="156" height="48" rx="8" class="s-box"/><text x="288" y="158" text-anchor="middle" class="tb">Inbox</text><text x="288" y="175" text-anchor="middle" class="tq">your words kept as said</text>
+      <rect x="210" y="262" width="156" height="48" rx="8" class="s-box"/><text x="288" y="282" text-anchor="middle" class="tb">Morning sort</text><text x="288" y="299" text-anchor="middle" class="tq">6:26 am · files or asks</text>
+      <path d="M366 270H380V206H392" class="s-line" marker-end="url(#ar)"/>
+      <rect x="392" y="126" width="176" height="120" rx="8" class="s-acc"/><text x="480" y="152" text-anchor="middle" class="tb">Homebase store</text><text x="480" y="174" text-anchor="middle" class="tq" style="fill:var(--ink)">every task, one format</text><text x="480" y="192" text-anchor="middle" class="tq" style="fill:var(--ink)">status and history</text><text x="480" y="210" text-anchor="middle" class="tq" style="fill:var(--ink)">who changed what</text>
+      <rect x="600" y="112" width="136" height="44" rx="8" class="s-box"/><text x="668" y="131" text-anchor="middle" class="tb">Homebase app</text><text x="668" y="147" text-anchor="middle" class="tq">check off here</text>
+      <rect x="600" y="164" width="136" height="44" rx="8" class="s-box"/><text x="668" y="183" text-anchor="middle" class="tb">Living room wall</text><text x="668" y="199" text-anchor="middle" class="tq">updates hourly</text>
+      <rect x="600" y="216" width="136" height="44" rx="8" class="s-box"/><text x="668" y="235" text-anchor="middle" class="tb">Roadmap pages</text><text x="668" y="251" text-anchor="middle" class="tq">read-only, 6:47 am</text>
+      <text x="448" y="322" class="tq">small fixes, suggestions</text>
+      <rect x="392" y="336" width="176" height="72" rx="8" class="s-box"/><text x="480" y="360" text-anchor="middle" class="tb">Monday check-up</text><text x="480" y="378" text-anchor="middle" class="tq">the steward, 8:29 am</text><text x="480" y="394" text-anchor="middle" class="tq">shown in the System panel</text>
+      <rect x="600" y="340" width="136" height="60" rx="8" class="s-box"/><text x="668" y="363" text-anchor="middle" class="tb">Backups</text><text x="668" y="380" text-anchor="middle" class="tq">Drive weekly</text><text x="668" y="394" text-anchor="middle" class="tq">GitHub per change</text>
+    </svg>
+    <figcaption>Read it left to right. The only things that write to the store are you, the morning sort, the chat skill and the Monday check-up. Everything on the right only reads.</figcaption>
+  </figure>
+</section>
+
+<!-- RHYTHM -->
+<section id="rhythm">
+  <p class="eyebrow">Daily rhythm</p>
+  <h2>Most of the work happens before you're up</h2>
+  <figure>
+    <svg viewBox="0 0 760 236" role="img" aria-label="A day of scheduled helpers from 4 am to 8 pm">
+      <text x="16" y="28" class="th">What runs on a normal day</text>
+      <g>
+        <line x1="130" y1="190" x2="740" y2="190" class="s-line"/>
+        <line x1="130" y1="48" x2="130" y2="190" class="s-grid"/><line x1="282.5" y1="48" x2="282.5" y2="190" class="s-grid"/><line x1="435" y1="48" x2="435" y2="190" class="s-grid"/><line x1="587.5" y1="48" x2="587.5" y2="190" class="s-grid"/><line x1="740" y1="48" x2="740" y2="190" class="s-grid"/>
+        <text x="130" y="210" text-anchor="middle" class="tq">4 am</text><text x="282.5" y="210" text-anchor="middle" class="tq">8 am</text><text x="435" y="210" text-anchor="middle" class="tq">noon</text><text x="587.5" y="210" text-anchor="middle" class="tq">4 pm</text><text x="740" y="210" text-anchor="middle" class="tq">8 pm</text>
+      </g>
+      <text x="16" y="78" class="tb">Wall sync</text><text x="16" y="94" class="tq">every hour, :35</text>
+      <g class="dot-wall">
+        <circle cx="152.2" cy="80" r="5"/><circle cx="190.3" cy="80" r="5"/><circle cx="228.5" cy="80" r="5"/><circle cx="266.6" cy="80" r="5"/><circle cx="304.7" cy="80" r="5"/><circle cx="342.8" cy="80" r="5"/><circle cx="380.9" cy="80" r="5"/><circle cx="419.1" cy="80" r="5"/><circle cx="457.2" cy="80" r="5"/><circle cx="495.3" cy="80" r="5"/><circle cx="533.4" cy="80" r="5"/><circle cx="571.6" cy="80" r="5"/><circle cx="609.7" cy="80" r="5"/><circle cx="647.8" cy="80" r="5"/><circle cx="685.9" cy="80" r="5"/><circle cx="724" cy="80" r="5"/>
+      </g>
+      <text x="16" y="122" class="tb">Feeds refresh</text><text x="16" y="138" class="tq">5 times a day</text>
+      <g class="dot-feed">
+        <circle cx="205.6" cy="124" r="6"/><circle cx="320" cy="124" r="6"/><circle cx="434.4" cy="124" r="6"/><circle cx="548.8" cy="124" r="6"/><circle cx="663.1" cy="124" r="6"/>
+      </g>
+      <text x="205.6" y="110" text-anchor="middle" class="tq">5:59</text><text x="320" y="110" text-anchor="middle" class="tq">8:59</text><text x="434.4" y="110" text-anchor="middle" class="tq">11:59</text><text x="548.8" y="110" text-anchor="middle" class="tq">2:59</text><text x="663.1" y="110" text-anchor="middle" class="tq">5:59</text>
+      <text x="16" y="166" class="tb">Sort and copy</text><text x="16" y="182" class="tq">once each morning</text>
+      <g class="dot-sort"><rect x="216.8" y="162" width="12" height="12" rx="2"/><rect x="230.1" y="162" width="12" height="12" rx="2"/></g>
+      <text x="250" y="166" class="tq" style="fill:var(--ink)">6:26 morning sort</text><text x="250" y="181" class="tq" style="fill:var(--ink)">6:47 roadmap status copy</text>
+      <line x1="244.4" y1="186" x2="244.4" y2="194" class="s-line"/><text x="244.4" y="230" text-anchor="middle" class="tq">7 am · wall switches to morning mode</text>
+    </svg>
+    <figcaption>By the time the wall switches to morning mode at 7, yesterday's ideas are filed and the roadmaps show current status.</figcaption>
+  </figure>
+  <div class="scroll"><table class="tbl" aria-label="Weekly schedule">
+    <thead><tr><th>Weekly</th><th>When</th><th>What you get</th></tr></thead>
+    <tbody>
+      <tr><td><b>Backup</b></td><td class="num">Sun 9:46 pm</td><td>Every task saved to Drive › Homebase › Backups (last 8 weeks kept)</td></tr>
+      <tr><td><b>Finance tool review</b></td><td class="num">Mon 7:51 am</td><td>Email: is Tiller working, keep or reconsider</td></tr>
+      <tr><td><b>Opportunity search</b></td><td class="num">Mon 8:00 am</td><td>Email: consulting and role leads worth a look</td></tr>
+      <tr><td><b>Monday check-up</b></td><td class="num">Mon 8:29 am</td><td>Small fixes made, suggestions waiting in the System panel</td></tr>
+      <tr><td><b>Priorities review</b></td><td class="num">Mon 8:50 am</td><td>Message: what moved, what's stuck, the check-up's suggestions, rank changes to consider</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- USE -->
+<section id="use">
+  <p class="eyebrow">How you use it</p>
+  <h2>Six things you'll actually do</h2>
+  <div class="howto">
+    <div class="how"><span class="q">Got an idea</span><b>Quick add</b><p>Type it, or tap your keyboard's mic, in Homebase's Quick add box. It's filed by morning.</p></div>
+    <div class="how"><span class="q">An email is a to-do</span><b>Label it</b><p>Apply the Gmail label <code>Homebase/To-do</code>. The morning sort turns it into a task. Email is only read.</p></div>
+    <div class="how"><span class="q">A chat made a plan</span><b>"Add to Homebase"</b><p>Say it in any thread. The steps arrive in the right area, duplicates skipped.</p></div>
+    <div class="how"><span class="q">Finished something</span><b>Check it off in Homebase</b><p>On the phone. The wall catches up within the hour, the roadmap the next morning.</p></div>
+    <div class="how"><span class="q">Sort asked you</span><b>One tap in the inbox</b><p>Items the sort wasn't sure about show "File under …". Tap it, pick another area, or drop it.</p></div>
+    <div class="how"><span class="q">Change what the wall shows</span><b>Edit the ranks</b><p>The <code>priorities</code> tab of the wall's sheet sets which areas show first. Or tell the Monday review.</p></div>
+  </div>
+</section>
+
+<!-- LIFE -->
+<section id="life">
+  <p class="eyebrow">A task's life</p>
+  <h2>One step at a time, with three side exits</h2>
+  <figure>
+    <svg viewBox="0 0 760 214" role="img" aria-label="Task status flow from inbox to done">
+      <defs><marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="s-arrow"/></marker></defs>
+      <path d="M140 74H184" class="s-line" marker-end="url(#ar2)"/><path d="M300 74H344" class="s-line" marker-end="url(#ar2)"/><path d="M460 74H504" class="s-line" marker-end="url(#ar2)"/>
+      <path d="M242 96V132" class="s-line" marker-end="url(#ar2)"/><path d="M402 96V132" class="s-line" marker-end="url(#ar2)"/><path d="M402 96V112H562V132" class="s-line" marker-end="url(#ar2)"/>
+      <rect x="24" y="52" width="116" height="44" rx="8" class="s-box2"/><text x="82" y="79" text-anchor="middle" class="tb">inbox</text>
+      <rect x="184" y="52" width="116" height="44" rx="8" class="s-acc"/><text x="242" y="79" text-anchor="middle" class="tb">to do</text>
+      <rect x="344" y="52" width="116" height="44" rx="8" class="s-acc"/><text x="402" y="79" text-anchor="middle" class="tb">doing</text>
+      <rect x="504" y="52" width="116" height="44" rx="8" class="s-good"/><text x="562" y="79" text-anchor="middle" class="tb">done</text>
+      <rect x="167" y="132" width="150" height="48" rx="8" class="s-warn"/><text x="242" y="153" text-anchor="middle" class="tb">parked</text><text x="242" y="170" text-anchor="middle" class="tq">set down on purpose</text>
+      <rect x="327" y="132" width="150" height="48" rx="8" class="s-box"/><text x="402" y="153" text-anchor="middle" class="tb">waiting</text><text x="402" y="170" text-anchor="middle" class="tq">on someone else</text>
+      <rect x="487" y="132" width="150" height="48" rx="8" class="s-bad"/><text x="562" y="153" text-anchor="middle" class="tb">dropped</text><text x="562" y="170" text-anchor="middle" class="tq">kept in history</text>
+      <text x="636" y="70" class="tq">done and dropped</text><text x="636" y="86" class="tq">leave your lists</text>
+      <text x="24" y="30" class="th">Nothing is ever deleted; finished work just stops showing</text>
+    </svg>
+  </figure>
+  <div class="explain"><div class="ic">i</div><p>Every task carries the same fields: what it is, which area, how big (S, M, L), its status, where it came from and who touched it last. That sameness is what lets the wall, the sort and the check-up all work off one list.</p></div>
+</section>
+
+<!-- JOBS -->
+<section id="jobs">
+  <p class="eyebrow">Jobs and models</p>
+  <h2>Routine work runs on the cheap model</h2>
+  <div class="scroll"><table class="tbl">
+    <thead><tr><th>Helper</th><th>Model</th><th>Reads</th><th>Writes</th></tr></thead>
+    <tbody>
+      <tr><td><b>Wall sync</b></td><td><span class="pill p-h">Haiku</span></td><td>Calendar, Homebase</td><td>The wall's sheet</td></tr>
+      <tr><td><b>Feeds refresh</b></td><td><span class="pill p-h">Haiku</span></td><td>Weather, Gmail, news</td><td>Homebase feeds, Gmail labels</td></tr>
+      <tr><td><b>Morning sort</b></td><td><span class="pill p-h">Haiku</span></td><td>Inbox, Gmail label, calendar</td><td>Inbox items only</td></tr>
+      <tr><td><b>Roadmap status copy</b></td><td><span class="pill p-h">Haiku</span></td><td>Homebase</td><td>Status on 4 roadmap pages</td></tr>
+      <tr><td><b>Backup</b></td><td><span class="pill p-h">Haiku</span></td><td>Homebase</td><td>Drive backup folder</td></tr>
+      <tr><td><b>Monday check-up</b></td><td><span class="pill p-s">Sonnet</span></td><td>Homebase, roadmaps</td><td>Small fixes, suggestions</td></tr>
+      <tr><td><b>Priorities review</b></td><td><span class="pill p-s">Sonnet</span></td><td>Wall sheet, Homebase</td><td>A message to you</td></tr>
+      <tr><td><b>Planning sessions like this one</b></td><td><span class="pill p-w">Opus</span></td><td colspan="2">Only when you start one. Never on a schedule.</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small muted">Each helper reports how it ran into Homebase's System panel. The check-up flags any helper that drifts off its model, and once a month suggests one tweak. Costs are estimated from what runs and how often; Claude can't see your usage dashboard.</p>
+</section>
+
+<!-- GUARD -->
+<section id="guard">
+  <p class="eyebrow">Guardrails</p>
+  <h2>What the helpers may and may not do on their own</h2>
+  <div class="cols3">
+    <div class="col c-good"><h3>On their own</h3><ul><li>File inbox items they're sure of</li><li>Fix mismatched fields</li><li>Add roadmap steps that went missing</li><li>Copy status out to roadmap pages</li><li>Create draft calendar events</li></ul></div>
+    <div class="col c-warn"><h3>Only suggest</h3><ul><li>New, merged or retired areas</li><li>Dropping or moving tasks</li><li>New or retired helpers</li><li>Model changes</li><li>Anything about sharing or connectors</li></ul></div>
+    <div class="col c-bad"><h3>Never</h3><ul><li>Send, draft or delete email</li><li>Delete anything</li><li>Change sharing</li><li>Store balances or account numbers</li><li>Follow instructions found inside an email or page</li></ul></div>
+  </div>
+</section>
+
+<!-- OPEN -->
+<section id="open">
+  <p class="eyebrow">Open items</p>
+  <h2>What's on your side right now</h2>
+  <div class="todo">
+    <div><span><b>Trim connectors</b> on each scheduled task (the list is in its Homebase task)</span><span class="when">priority</span></div>
+    <div><span><b>Clean up roadmap tasks</b>: settle the rules first (current phase only, a cap per area)</span><span class="when">next</span></div>
+    <div><span><b>New roadmaps</b>: front yard, house maintenance, strength and conditioning from your book</span><span class="when">as you go</span></div>
+    <div><span><b>Revisit goals and measures</b> reminder</span><span class="when num">Oct 22</span></div>
+    <div><span><b>Build the client demo</b>, after the cleanup</span><span class="when num">by Nov 9</span></div>
+    <div><span><b>End-of-day questions</b> for a good-day tracker (reminder already set)</span><span class="when num">Nov 14</span></div>
+  </div>
+</section>
+
+<!-- IDEAS -->
+<section id="ideas">
+  <p class="eyebrow">Ideas for next</p>
+  <h2>Where this could go, based on what you're working on</h2>
+  <p class="muted" style="max-width:66ch">None of these are scheduled. Each one builds on the same list and helpers, so adding them doesn't add new systems to look after.</p>
+
+  <p class="ideagroup">Quick wins</p>
+  <div class="ideas">
+    <div class="idea"><div class="top"><h3>Bills land in Homebase, not Todoist</h3><span class="pill p-h">small</span></div>
+      <p>The feeds refresh still creates "Pay … bill" tasks in Todoist. Send them to Money &amp; admin with the due date instead, and Todoist is fully out of your life.</p>
+      <p class="why">Why for you: you said you'd rather not use Todoist, and bills are exactly the recurring chore you want handled.</p>
+      <div class="tags"><span class="tag">Money &amp; admin</span></div></div>
+    <div class="idea"><div class="top"><h3>Sold cards become ship-by tasks</h3><span class="pill p-h">small</span></div>
+      <p>When an eBay or COMC "sold" email arrives, the morning sort adds "Pack and ship lot B-14 by Tue" to Card Sales, lined up with your Monday and Thursday pack nights.</p>
+      <p class="why">Why for you: the inbox feed already spots these emails; today they only show as notices.</p>
+      <div class="tags"><span class="tag">Card Sales</span></div></div>
+    <div class="idea"><div class="top"><h3>Show only the current phase</h3><span class="pill p-h">small</span></div>
+      <p>Each area shows the phase you're in, with later phases tucked away until the current one wraps up. Card Sales drops from 46 visible items to under 10.</p>
+      <p class="why">Why for you: the check-up's first two suggestions, and the backbone of your planned cleanup.</p>
+      <div class="tags"><span class="tag">All areas</span></div></div>
+  </div>
+
+  <p class="ideagroup">Bigger builds</p>
+  <div class="ideas">
+    <div class="idea"><div class="top"><h3>Training plan that works around your court hours</h3><span class="pill p-s">medium</span></div>
+      <p>Built from your book: strength, mobility and injury-prevention sessions laid out by week, made lighter on heavy coaching days from your CourtReserve calendar. Today's session shows on the wall in morning mode, with a one-tap log.</p>
+      <p class="why">Why for you: you coach most days, so a plan that ignores court load either gets skipped or overloads you.</p>
+      <div class="tags"><span class="tag">New area</span><span class="tag">Pickleball</span></div></div>
+    <div class="idea"><div class="top"><h3>Seasonal home and rental autopilot</h3><span class="pill p-s">medium</span></div>
+      <p>A yearly list of house, yard and rental upkeep that surfaces each item when it's due: sprinkler blowout before the first Front Range freeze, furnace filters, gutters, smoke detectors, lease dates.</p>
+      <p class="why">Why for you: recurring, uninteresting tasks are your biggest friction, and this removes the remembering entirely.</p>
+      <div class="tags"><span class="tag">New area</span><span class="tag">Home &amp; rental</span></div></div>
+    <div class="idea"><div class="top"><h3>Coaching follow-ups from the calendar</h3><span class="pill p-s">medium</span></div>
+      <p>After a private lesson or video review on your coaching calendar, a small "send notes to the player" task appears. Class-series outlines queue up one week ahead of each session.</p>
+      <p class="why">Why for you: follow-through is what turns lessons into repeat clients and the video service into revenue.</p>
+      <div class="tags"><span class="tag">Video Analysis</span><span class="tag">Class series</span></div></div>
+    <div class="idea"><div class="top"><h3>Gentle re-entry for resting interests</h3><span class="pill p-s">medium</span></div>
+      <p>When an area like disc golf or Arnfjäll has been quiet for three weeks, the check-up suggests one 10-minute step to pick it back up, written from where you left off. You approve it or let it rest.</p>
+      <p class="why">Why for you: this is the "pick interests back up" idea your homepage started with, done without streaks or scores.</p>
+      <div class="tags"><span class="tag">Learn &amp; Play</span></div></div>
+    <div class="idea"><div class="top"><h3>Picks sized to your free time</h3><span class="pill p-s">medium</span></div>
+      <p>Today's picks look at the gaps between calendar events: a 20-minute gap offers a small task, an open afternoon offers a large one.</p>
+      <p class="why">Why for you: a pick that doesn't fit the time you have gets skipped, and skipped picks feel like failure.</p>
+      <div class="tags"><span class="tag">Homebase</span></div></div>
+    <div class="idea"><div class="top"><h3>Turn this into a consulting offer</h3><span class="pill p-w">large</span></div>
+      <p>Package the blueprint, the "add to Homebase" skill and the Monday check-up as a personal operations system for solo owners and small sustainability nonprofits, with this repo as the case study.</p>
+      <p class="why">Why for you: it's a concrete, demonstrable offer for the AI consulting test, and an ADHD-friendly design is a real differentiator.</p>
+      <div class="tags"><span class="tag">AI consulting</span></div></div>
+  </div>
+</section>
+
+<footer>Homebase, October 15, 2026. The editable blueprint lives in Claude Docs, the manifest in Drive › Homebase, and the full history on GitHub (arnenewman11/homebase).</footer>
+</div>
