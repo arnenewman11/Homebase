@@ -1,0 +1,23 @@
+{
+ "title": "Rate each income track on pay rate, speed, reliability, enjoyment, long-term value",
+ "detail": "Owner: you",
+ "area": "portfolio-twin",
+ "bucket": "Productivity",
+ "track": "main",
+ "phase": "pt-p6",
+ "order": 16,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "M",
+ "due": "",
+ "nextStep": "",
+ "milestone": "Monday's to-do list reflects your money situation without you thinking about it.",
+ "source": "roadmap:portfolio-twin",
+ "sourceRef": "https://claude.ai/code/artifact/0e534609-3502-4013-9807-eb49386040dc",
+ "srcId": "pt-16",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

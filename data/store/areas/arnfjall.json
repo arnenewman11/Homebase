@@ -1,0 +1,13 @@
+{
+ "name": "Arnfjäll",
+ "bucket": "Learn & Play",
+ "prefix": "arn",
+ "sourceUrls": [
+  "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg"
+ ],
+ "dbBacked": true,
+ "order": 11,
+ "active": true,
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z"
+}

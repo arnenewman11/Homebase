@@ -1,0 +1,23 @@
+{
+ "title": "Propose changes for repriced cards that have not sold",
+ "detail": "Uses real sell-through; nothing changes without your OK.",
+ "area": "card-sales",
+ "bucket": "Productivity",
+ "track": "comc",
+ "phase": "cs-p2",
+ "order": 11,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "M",
+ "due": "2026-11-21",
+ "nextStep": "",
+ "milestone": "Rollout batch submitted or a fixed-price plan confirmed.",
+ "source": "roadmap:card-sales",
+ "sourceRef": "https://claude.ai/code/artifact/e6cdf650-213b-455e-8319-341304435f67",
+ "srcId": "cs-11",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

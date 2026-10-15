@@ -1,0 +1,23 @@
+{
+ "title": "Set a spring reminder for Cleantech Open mentor recruitment",
+ "detail": "Program runs June-Oct; recruit in spring.",
+ "area": "advisor-path",
+ "bucket": "Productivity",
+ "track": "main",
+ "phase": "ad-p1",
+ "order": 6,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "S",
+ "due": "",
+ "nextStep": "",
+ "milestone": "",
+ "source": "roadmap:advisor-path",
+ "sourceRef": "https://claude.ai/code/artifact/aa57b3ce-ef7d-4392-a943-2baa8e08639b",
+ "srcId": "ad-06",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

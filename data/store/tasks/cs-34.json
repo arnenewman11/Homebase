@@ -1,0 +1,23 @@
+{
+ "title": "Comp the hits one by one",
+ "detail": "Exact parallel first; label proxies.",
+ "area": "card-sales",
+ "bucket": "Productivity",
+ "track": "football",
+ "phase": "cs-p10",
+ "order": 34,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "M",
+ "due": "2026-11-07",
+ "nextStep": "",
+ "milestone": "Every football lot and hit has a comp-based price that passes the guardrails.",
+ "source": "roadmap:card-sales",
+ "sourceRef": "https://claude.ai/code/artifact/e6cdf650-213b-455e-8319-341304435f67",
+ "srcId": "cs-34",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

@@ -1,0 +1,23 @@
+{
+ "title": "Repeat for games 2–4",
+ "detail": "Your read first, then the tools, then the log.",
+ "area": "video-analysis",
+ "bucket": "Pickleball",
+ "track": "service",
+ "phase": "va-p1",
+ "order": 7,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "L",
+ "due": "",
+ "nextStep": "",
+ "milestone": "4 games filmed and logged, AI vs. me",
+ "source": "roadmap:video-analysis",
+ "sourceRef": "https://claude.ai/artifact/Bw2Jb85kbNKxwGsmQA68rg",
+ "srcId": "va-p1-07",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

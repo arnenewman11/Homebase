@@ -1,0 +1,23 @@
+{
+ "title": "Visit the Denver Gem & Mineral Guild",
+ "detail": "Meets in Wheat Ridge on 2nd Fridays, Sep–May. Ask about lapidary equipment.",
+ "area": "arnfjall",
+ "bucket": "Learn & Play",
+ "track": "skills",
+ "phase": "arn-s1",
+ "order": 3,
+ "type": "want-do",
+ "status": "todo",
+ "effort": "S",
+ "due": "",
+ "nextStep": "",
+ "milestone": "Working in a woodshop, with lapidary help nearby",
+ "source": "roadmap:arnfjall",
+ "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+ "srcId": "arn-s1c",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

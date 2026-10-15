@@ -1,0 +1,23 @@
+{
+ "title": "Set your price and bundle",
+ "detail": "Review alone at $40–75, plus a review + private lesson bundle.",
+ "area": "video-analysis",
+ "bucket": "Pickleball",
+ "track": "service",
+ "phase": "va-p3",
+ "order": 1,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "S",
+ "due": "",
+ "nextStep": "",
+ "milestone": "First paid review delivered",
+ "source": "roadmap:video-analysis",
+ "sourceRef": "https://claude.ai/artifact/Bw2Jb85kbNKxwGsmQA68rg",
+ "srcId": "va-p3-01",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

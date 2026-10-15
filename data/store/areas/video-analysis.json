@@ -1,0 +1,13 @@
+{
+ "name": "Video Analysis",
+ "bucket": "Pickleball",
+ "prefix": "va",
+ "sourceUrls": [
+  "https://claude.ai/artifact/Bw2Jb85kbNKxwGsmQA68rg"
+ ],
+ "dbBacked": true,
+ "order": 1,
+ "active": true,
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z"
+}

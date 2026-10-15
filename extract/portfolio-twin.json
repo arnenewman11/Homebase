@@ -1,0 +1,308 @@
+{
+ "area": "portfolio-twin",
+ "areaName": "Portfolio Twin",
+ "bucket": "Productivity",
+ "source_url": "https://claude.ai/code/artifact/0e534609-3502-4013-9807-eb49386040dc",
+ "db_backed": false,
+ "phases": [
+  {
+   "id": "pt-p1",
+   "name": "Answer the questions",
+   "label": "Phase 0 \u00b7 Wk 1",
+   "order": 1,
+   "milestone": "I have your rough picture and red lines.",
+   "track": "main"
+  },
+  {
+   "id": "pt-p2",
+   "name": "Snapshot",
+   "label": "Phase 1 \u00b7 Wk 1-2",
+   "order": 2,
+   "milestone": "You can see your true monthly burn and your mortgage safety buffer.",
+   "track": "main"
+  },
+  {
+   "id": "pt-p3",
+   "name": "Runway model",
+   "label": "Phase 2 \u00b7 Wk 2-3",
+   "order": 3,
+   "milestone": "You know your runway in the base and bad-month cases.",
+   "track": "main"
+  },
+  {
+   "id": "pt-p4",
+   "name": "Guardrails & a second opinion",
+   "label": "Phase 3 \u00b7 Wk 3-4",
+   "order": 4,
+   "milestone": "You'd know exactly what to do if a number turned yellow tomorrow.",
+   "track": "main"
+  },
+  {
+   "id": "pt-p5",
+   "name": "Live dashboard",
+   "label": "Phase 4 \u00b7 Wk 4-5",
+   "order": 5,
+   "milestone": "A monthly update takes under 30 minutes.",
+   "track": "main"
+  },
+  {
+   "id": "pt-p6",
+   "name": "Time scoring & weekly tasks",
+   "label": "Phase 5 \u00b7 Wk 5-6",
+   "order": 6,
+   "milestone": "Monday's to-do list reflects your money situation without you thinking about it.",
+   "track": "main"
+  },
+  {
+   "id": "pt-p7",
+   "name": "Automate inputs (later)",
+   "label": "Phase 6 \u00b7 Later",
+   "order": 7,
+   "milestone": "The twin mostly runs itself.",
+   "track": "main"
+  }
+ ],
+ "tasks": [
+  {
+   "id": "pt-01",
+   "title": "Fill in the 7 questions, ballpark is fine",
+   "detail": "Owner: you",
+   "phase": "pt-p1",
+   "track": "main",
+   "kind": "should",
+   "effort": "S",
+   "status": "todo",
+   "order": 1,
+   "due": ""
+  },
+  {
+   "id": "pt-02",
+   "title": "Copy answers and paste them into the chat",
+   "detail": "Owner: you",
+   "phase": "pt-p1",
+   "track": "main",
+   "kind": "should",
+   "effort": "S",
+   "status": "todo",
+   "order": 2,
+   "due": ""
+  },
+  {
+   "id": "pt-03",
+   "title": "Write down each account's balance and type",
+   "detail": "Owner: you",
+   "phase": "pt-p2",
+   "track": "main",
+   "kind": "should",
+   "effort": "M",
+   "status": "todo",
+   "order": 3,
+   "due": ""
+  },
+  {
+   "id": "pt-04",
+   "title": "Grab the latest mortgage statement",
+   "detail": "Owner: you",
+   "phase": "pt-p2",
+   "track": "main",
+   "kind": "should",
+   "effort": "S",
+   "status": "todo",
+   "order": 4,
+   "due": ""
+  },
+  {
+   "id": "pt-05",
+   "title": "Export 3 months of transactions as CSV",
+   "detail": "Owner: you",
+   "phase": "pt-p2",
+   "track": "main",
+   "kind": "should",
+   "effort": "S",
+   "status": "todo",
+   "order": 5,
+   "due": ""
+  },
+  {
+   "id": "pt-06",
+   "title": "Build the bucket snapshot and categorize spending",
+   "detail": "Owner: Claude",
+   "phase": "pt-p2",
+   "track": "main",
+   "kind": "should",
+   "effort": "M",
+   "status": "todo",
+   "order": 6,
+   "due": ""
+  },
+  {
+   "id": "pt-07",
+   "title": "Build the month-by-month runway model with 4 scenarios",
+   "detail": "Owner: Claude",
+   "phase": "pt-p3",
+   "track": "main",
+   "kind": "should",
+   "effort": "M",
+   "status": "todo",
+   "order": 7,
+   "due": ""
+  },
+  {
+   "id": "pt-08",
+   "title": "Draft a withdrawal order, cheapest bucket first",
+   "detail": "Owner: Claude",
+   "phase": "pt-p3",
+   "track": "main",
+   "kind": "should",
+   "effort": "M",
+   "status": "todo",
+   "order": 8,
+   "due": ""
+  },
+  {
+   "id": "pt-09",
+   "title": "Review whether the scenarios match how life feels",
+   "detail": "Owner: you",
+   "phase": "pt-p3",
+   "track": "main",
+   "kind": "should",
+   "effort": "M",
+   "status": "todo",
+   "order": 9,
+   "due": ""
+  },
+  {
+   "id": "pt-10",
+   "title": "Pick your green / yellow / red thresholds",
+   "detail": "Owner: you",
+   "phase": "pt-p4",
+   "track": "main",
+   "kind": "should",
+   "effort": "M",
+   "status": "todo",
+   "order": 10,
+   "due": ""
+  },
+  {
+   "id": "pt-11",
+   "title": "Write 'if yellow, do X' playbooks for each number",
+   "detail": "Owner: Claude",
+   "phase": "pt-p4",
+   "track": "main",
+   "kind": "should",
+   "effort": "M",
+   "status": "todo",
+   "order": 11,
+   "due": ""
+  },
+  {
+   "id": "pt-12",
+   "title": "Optional: session with a fee-only planner or CPA on withdrawal order",
+   "detail": "Owner: you",
+   "phase": "pt-p4",
+   "track": "main",
+   "kind": "want",
+   "effort": "M",
+   "status": "todo",
+   "order": 12,
+   "due": ""
+  },
+  {
+   "id": "pt-13",
+   "title": "Publish the dashboard page with the 4 numbers",
+   "detail": "Owner: Claude",
+   "phase": "pt-p5",
+   "track": "main",
+   "kind": "should",
+   "effort": "M",
+   "status": "todo",
+   "order": 13,
+   "due": ""
+  },
+  {
+   "id": "pt-14",
+   "title": "Add a link to the dashboard from your life dashboard",
+   "detail": "Owner: you",
+   "phase": "pt-p5",
+   "track": "main",
+   "kind": "should",
+   "effort": "S",
+   "status": "todo",
+   "order": 14,
+   "due": ""
+  },
+  {
+   "id": "pt-15",
+   "title": "Do the first monthly update together",
+   "detail": "Owner: you + Claude",
+   "phase": "pt-p5",
+   "track": "main",
+   "kind": "should",
+   "effort": "M",
+   "status": "todo",
+   "order": 15,
+   "due": ""
+  },
+  {
+   "id": "pt-16",
+   "title": "Rate each income track on pay rate, speed, reliability, enjoyment, long-term value",
+   "detail": "Owner: you",
+   "phase": "pt-p6",
+   "track": "main",
+   "kind": "should",
+   "effort": "M",
+   "status": "todo",
+   "order": 16,
+   "due": ""
+  },
+  {
+   "id": "pt-17",
+   "title": "Set up weekly review that sends 3-5 tasks to Todoist",
+   "detail": "Owner: Claude",
+   "phase": "pt-p6",
+   "track": "main",
+   "kind": "should",
+   "effort": "M",
+   "status": "todo",
+   "order": 17,
+   "due": ""
+  },
+  {
+   "id": "pt-18",
+   "title": "Put a recurring 20-minute review on your calendar",
+   "detail": "Owner: you",
+   "phase": "pt-p6",
+   "track": "main",
+   "kind": "should",
+   "effort": "S",
+   "status": "todo",
+   "order": 18,
+   "due": ""
+  },
+  {
+   "id": "pt-19",
+   "title": "Optional: connect a budgeting app's CSV export for auto updates",
+   "detail": "Owner: you + Claude",
+   "phase": "pt-p7",
+   "track": "main",
+   "kind": "want",
+   "effort": "L",
+   "status": "todo",
+   "order": 19,
+   "due": ""
+  },
+  {
+   "id": "pt-20",
+   "title": "Optional: add alerts when a number changes zone",
+   "detail": "Owner: Claude",
+   "phase": "pt-p7",
+   "track": "main",
+   "kind": "want",
+   "effort": "M",
+   "status": "todo",
+   "order": 20,
+   "due": ""
+  }
+ ],
+ "notes": "Static HTML page; db capability not declared so no database. Roadmap checkboxes are stored only in the viewer's browser localStorage, so status unknown; all todo. Items = the 20 roadmap checkboxes (Phases 0-6); the 7 questions and the 4 gauges are not tasks. Phase 6 'Later' items and the planner/CPA session marked want (optional). Owner (you/Claude) put in detail. No money figures copied."
+}

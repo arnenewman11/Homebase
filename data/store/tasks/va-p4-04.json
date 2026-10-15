@@ -1,0 +1,23 @@
+{
+ "title": "Create a repeat package",
+ "detail": "e.g. monthly review or a 3-review progress pack.",
+ "area": "video-analysis",
+ "bucket": "Pickleball",
+ "track": "service",
+ "phase": "va-p4",
+ "order": 4,
+ "type": "want-do",
+ "status": "todo",
+ "effort": "M",
+ "due": "",
+ "nextStep": "",
+ "milestone": "Steady demand, defined by you",
+ "source": "roadmap:video-analysis",
+ "sourceRef": "https://claude.ai/artifact/Bw2Jb85kbNKxwGsmQA68rg",
+ "srcId": "va-p4-04",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

@@ -1,0 +1,23 @@
+{
+ "title": "Optional: connect a budgeting app's CSV export for auto updates",
+ "detail": "Owner: you + Claude",
+ "area": "portfolio-twin",
+ "bucket": "Productivity",
+ "track": "main",
+ "phase": "pt-p7",
+ "order": 19,
+ "type": "want-do",
+ "status": "todo",
+ "effort": "L",
+ "due": "",
+ "nextStep": "",
+ "milestone": "The twin mostly runs itself.",
+ "source": "roadmap:portfolio-twin",
+ "sourceRef": "https://claude.ai/code/artifact/0e534609-3502-4013-9807-eb49386040dc",
+ "srcId": "pt-19",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

@@ -1,0 +1,26 @@
+{
+ "title": "Sort NBA pages into stacks",
+ "detail": "Use the lot tracker below. Sticky-note each stack, e.g. \"Nets A – pp 1, 2, 6, 7, 10\".",
+ "area": "card-sales",
+ "bucket": "Productivity",
+ "track": "ebay",
+ "phase": "eb-p3",
+ "order": 8,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "M",
+ "due": "2026-10-18",
+ "nextStep": "",
+ "milestone": "All 75 stacks labeled",
+ "source": "roadmap:card-sales",
+ "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+ "srcId": "eb-08",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false,
+ "mergedFrom": [
+  "cs-22"
+ ]
+}

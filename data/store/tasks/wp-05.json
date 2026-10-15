@@ -1,0 +1,23 @@
+{
+ "title": "Trim slot list and settle formats and lengths",
+ "detail": "Candidate list exceeds the 1-2 hrs/day target; marked current step",
+ "area": "weekday-programming",
+ "bucket": "Pickleball",
+ "track": "main",
+ "phase": "wp-p1",
+ "order": 5,
+ "type": "should-do",
+ "status": "doing",
+ "effort": "M",
+ "due": "",
+ "nextStep": "",
+ "milestone": "Short slot-and-format email sent to boss",
+ "source": "roadmap:weekday-programming",
+ "sourceRef": "https://claude.ai/code/artifact/71f130b3-7b15-468d-873f-5eb6ecc7c788",
+ "srcId": "wp-05",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

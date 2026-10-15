@@ -1,0 +1,13 @@
+{
+ "name": "Water-Wise Yard Studio",
+ "bucket": "Productivity",
+ "prefix": "ww",
+ "sourceUrls": [
+  "https://claude.ai/code/artifact/22c06970-73c4-4f19-bb0a-572a20cad3a1"
+ ],
+ "dbBacked": false,
+ "order": 7,
+ "active": true,
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z"
+}

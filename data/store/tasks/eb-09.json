@@ -1,0 +1,26 @@
+{
+ "title": "Sort MLB pages into stacks",
+ "detail": "Same method. Store stacks in tracker order.",
+ "area": "card-sales",
+ "bucket": "Productivity",
+ "track": "ebay",
+ "phase": "eb-p3",
+ "order": 9,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "M",
+ "due": "2026-10-18",
+ "nextStep": "",
+ "milestone": "All 75 stacks labeled",
+ "source": "roadmap:card-sales",
+ "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+ "srcId": "eb-09",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false,
+ "mergedFrom": [
+  "cs-22"
+ ]
+}

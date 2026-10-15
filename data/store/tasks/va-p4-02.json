@@ -1,0 +1,23 @@
+{
+ "title": "Decide on DUPR Coach",
+ "detail": "$250/year. Adds video ratings and a listing on the DUPR Coach Map.",
+ "area": "video-analysis",
+ "bucket": "Pickleball",
+ "track": "service",
+ "phase": "va-p4",
+ "order": 2,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "S",
+ "due": "",
+ "nextStep": "",
+ "milestone": "Steady demand, defined by you",
+ "source": "roadmap:video-analysis",
+ "sourceRef": "https://claude.ai/artifact/Bw2Jb85kbNKxwGsmQA68rg",
+ "srcId": "va-p4-02",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

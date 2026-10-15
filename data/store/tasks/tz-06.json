@@ -1,0 +1,23 @@
+{
+ "title": "Brief shadow instructor to stand sideline, ready to demo",
+ "detail": "Players' side sideline",
+ "area": "transition-zone",
+ "bucket": "Pickleball",
+ "track": "main",
+ "phase": "tz-p1",
+ "order": 6,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "S",
+ "due": "",
+ "nextStep": "",
+ "milestone": "Court ready for the 60-min class",
+ "source": "roadmap:transition-zone",
+ "sourceRef": "https://claude.ai/code/artifact/3f3ab2a8-afc6-4820-a698-2f79359eed57",
+ "srcId": "tz-06",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

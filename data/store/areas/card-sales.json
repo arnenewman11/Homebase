@@ -1,0 +1,14 @@
+{
+ "name": "Card Sales",
+ "bucket": "Productivity",
+ "prefix": "cs",
+ "sourceUrls": [
+  "https://claude.ai/code/artifact/e6cdf650-213b-455e-8319-341304435f67",
+  "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e"
+ ],
+ "dbBacked": true,
+ "order": 5,
+ "active": true,
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z"
+}

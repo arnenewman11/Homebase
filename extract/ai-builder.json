@@ -1,0 +1,172 @@
+{
+ "area": "ai-builder",
+ "areaName": "AI Builder",
+ "bucket": "Learn & Play",
+ "source_url": "https://claude.ai/code/artifact/d34e8225-bdac-47e3-a3ba-0da4cde2c44b",
+ "db_backed": false,
+ "phases": [
+  {
+   "id": "ai-p1",
+   "name": "Foundations",
+   "label": "Phase 1 \u00b7 Weeks 1-8 \u00b7 Oct-Dec 2026",
+   "order": 1,
+   "milestone": "You can ship a small change end to end and explain every file it touched.",
+   "track": "main"
+  },
+  {
+   "id": "ai-p2",
+   "name": "Build agents",
+   "label": "Phase 2 \u00b7 Weeks 9-20 \u00b7 Dec 2026-Mar 2027",
+   "order": 2,
+   "milestone": "The agent runs on its own and you can trace every tool call it made.",
+   "track": "main"
+  },
+  {
+   "id": "ai-p3",
+   "name": "Production-ready",
+   "label": "Phase 3 \u00b7 Weeks 21-30 \u00b7 Mar-May 2027",
+   "order": 3,
+   "milestone": "A live link, a monthly cost estimate, and an eval score you have improved.",
+   "track": "main"
+  },
+  {
+   "id": "ai-p4",
+   "name": "Consulting & niche",
+   "label": "Phase 4 \u00b7 Weeks 31-42 \u00b7 May-Aug 2027",
+   "order": 4,
+   "milestone": "A pilot with before/after numbers the client will vouch for.",
+   "track": "main"
+  },
+  {
+   "id": "ai-p5",
+   "name": "Portfolio & launch",
+   "label": "Phase 5 \u00b7 Weeks 43-54 \u00b7 Aug-Oct 2027",
+   "order": 5,
+   "milestone": "Your first paying engagement.",
+   "track": "main"
+  }
+ ],
+ "tasks": [
+  {
+   "id": "ai-01",
+   "title": "Learn Claude Code setup, CLAUDE.md, plan mode, Git basics",
+   "detail": "Also Python refresh and prompt fundamentals; ~48 h phase",
+   "phase": "ai-p1",
+   "track": "main",
+   "kind": "should",
+   "effort": "L",
+   "status": "todo",
+   "order": 1,
+   "due": ""
+  },
+  {
+   "id": "ai-02",
+   "title": "Turn Pickle Drill Library & Class Planner into a real repo",
+   "detail": "Build it with Claude Code",
+   "phase": "ai-p1",
+   "track": "main",
+   "kind": "should",
+   "effort": "L",
+   "status": "todo",
+   "order": 2,
+   "due": ""
+  },
+  {
+   "id": "ai-03",
+   "title": "Learn Claude API tool use, Agent SDK, subagents, skills",
+   "detail": "Plus writing a small MCP server",
+   "phase": "ai-p2",
+   "track": "main",
+   "kind": "should",
+   "effort": "L",
+   "status": "todo",
+   "order": 3,
+   "due": ""
+  },
+  {
+   "id": "ai-04",
+   "title": "Rebuild Card Sales Optimizer as an agent with real tools",
+   "detail": "Sold-comp lookup, pricing, listing drafts",
+   "phase": "ai-p2",
+   "track": "main",
+   "kind": "should",
+   "effort": "L",
+   "status": "todo",
+   "order": 4,
+   "due": ""
+  },
+  {
+   "id": "ai-05",
+   "title": "Learn evals, retrieval basics, deployment, secrets, logging",
+   "detail": "Plus cost estimates",
+   "phase": "ai-p3",
+   "track": "main",
+   "kind": "should",
+   "effort": "L",
+   "status": "todo",
+   "order": 5,
+   "due": ""
+  },
+  {
+   "id": "ai-06",
+   "title": "Host Part-Time Work Finder or dashboard as a live tool with evals",
+   "detail": "Needs live link, monthly cost estimate, eval score",
+   "phase": "ai-p3",
+   "track": "main",
+   "kind": "should",
+   "effort": "L",
+   "status": "todo",
+   "order": 6,
+   "due": ""
+  },
+  {
+   "id": "ai-07",
+   "title": "Build discovery script, audit template, ROI model, AI-policy checklist",
+   "detail": "Choose your lead niche (sustainability or ADHD tools)",
+   "phase": "ai-p4",
+   "track": "main",
+   "kind": "should",
+   "effort": "L",
+   "status": "todo",
+   "order": 7,
+   "due": ""
+  },
+  {
+   "id": "ai-08",
+   "title": "Run an AI pilot for a real organization",
+   "detail": "Club, local sustainability nonprofit, or ADHD coach",
+   "phase": "ai-p4",
+   "track": "main",
+   "kind": "should",
+   "effort": "L",
+   "status": "todo",
+   "order": 8,
+   "due": ""
+  },
+  {
+   "id": "ai-09",
+   "title": "Learn case-study writing, offer design, workshop packaging, outreach",
+   "detail": "",
+   "phase": "ai-p5",
+   "track": "main",
+   "kind": "should",
+   "effort": "L",
+   "status": "todo",
+   "order": 9,
+   "due": ""
+  },
+  {
+   "id": "ai-10",
+   "title": "Publish three case studies, an offer page and an AI workshop",
+   "detail": "Workshop: 'AI for your team'",
+   "phase": "ai-p5",
+   "track": "main",
+   "kind": "should",
+   "effort": "L",
+   "status": "todo",
+   "order": 10,
+   "due": ""
+  }
+ ],
+ "notes": "Page is a Design canvas (project/Main.dc.html); tasks/phases collections empty. No checklist exists; items derived from each phase's Learn and Build blocks (2 per phase). Phase weeks assume ~6 h/week. No status info on page; all todo. Due dates left blank."
+}

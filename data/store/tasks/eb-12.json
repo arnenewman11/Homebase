@@ -1,0 +1,27 @@
+{
+ "title": "Split teams into new drafts with mixed page photos",
+ "detail": "Existing draft becomes lot A; new drafts for B–D. Every front and back pictured.",
+ "area": "card-sales",
+ "bucket": "Productivity",
+ "track": "ebay",
+ "phase": "eb-p4",
+ "order": 12,
+ "type": "should-do",
+ "status": "done",
+ "effort": "L",
+ "due": "2026-10-17",
+ "nextStep": "",
+ "milestone": "75 drafts ready to list",
+ "source": "roadmap:card-sales",
+ "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+ "srcId": "eb-12",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false,
+ "doneAt": "2026-10-15T10:30:00Z",
+ "mergedFrom": [
+  "cs-18"
+ ]
+}

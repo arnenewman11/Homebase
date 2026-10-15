@@ -1,0 +1,23 @@
+{
+ "title": "Mock up a booth table at home",
+ "detail": "Fountains running, small items in front, price tags visible.",
+ "area": "arnfjall",
+ "bucket": "Learn & Play",
+ "track": "skills",
+ "phase": "arn-s4",
+ "order": 2,
+ "type": "want-do",
+ "status": "todo",
+ "effort": "M",
+ "due": "",
+ "nextStep": "",
+ "milestone": "A repeatable photo setup",
+ "source": "roadmap:arnfjall",
+ "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+ "srcId": "arn-s4b",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

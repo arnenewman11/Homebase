@@ -1,0 +1,23 @@
+{
+ "title": "Cash out store credit",
+ "detail": "Fixed-price sales net 85.5% after the 10% cash-out. Log the payout.",
+ "area": "card-sales",
+ "bucket": "Productivity",
+ "track": "comc",
+ "phase": "cs-p4",
+ "order": 15,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "S",
+ "due": "2027-01-15",
+ "nextStep": "",
+ "milestone": "Cash received across all channels, look-backs done",
+ "source": "roadmap:card-sales",
+ "sourceRef": "https://claude.ai/code/artifact/e6cdf650-213b-455e-8319-341304435f67",
+ "srcId": "cs-15",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

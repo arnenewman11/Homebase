@@ -1,0 +1,23 @@
+{
+ "title": "Pick a 12 V UL-listed pump for about 18 in of lift",
+ "detail": "Size the flow to the spill-lip width; check reviews for noise.",
+ "area": "arnfjall",
+ "bucket": "Learn & Play",
+ "track": "fountains",
+ "phase": "arn-f1",
+ "order": 3,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "M",
+ "due": "",
+ "nextStep": "",
+ "milestone": "Parts in hand for prototype 1",
+ "source": "roadmap:arnfjall",
+ "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+ "srcId": "arn-f1c",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

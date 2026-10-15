@@ -1,0 +1,23 @@
+{
+ "title": "Record a test with OBS",
+ "detail": "Free. Screen plus your voice; check audio levels.",
+ "area": "video-analysis",
+ "bucket": "Pickleball",
+ "track": "skills",
+ "phase": "va-s2",
+ "order": 2,
+ "type": "want-do",
+ "status": "todo",
+ "effort": "M",
+ "due": "",
+ "nextStep": "",
+ "milestone": "A 2-minute recorded breakdown",
+ "source": "roadmap:video-analysis",
+ "sourceRef": "https://claude.ai/artifact/Bw2Jb85kbNKxwGsmQA68rg",
+ "srcId": "va-sk-03",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

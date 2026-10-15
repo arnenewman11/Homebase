@@ -1,0 +1,23 @@
+{
+ "title": "Pick your green / yellow / red thresholds",
+ "detail": "Owner: you",
+ "area": "portfolio-twin",
+ "bucket": "Productivity",
+ "track": "main",
+ "phase": "pt-p4",
+ "order": 10,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "M",
+ "due": "",
+ "nextStep": "",
+ "milestone": "You'd know exactly what to do if a number turned yellow tomorrow.",
+ "source": "roadmap:portfolio-twin",
+ "sourceRef": "https://claude.ai/code/artifact/0e534609-3502-4013-9807-eb49386040dc",
+ "srcId": "pt-10",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

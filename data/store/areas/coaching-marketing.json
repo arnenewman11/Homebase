@@ -1,0 +1,13 @@
+{
+ "name": "Coaching Marketing",
+ "bucket": "Pickleball",
+ "prefix": "cm",
+ "sourceUrls": [
+  "https://claude.ai/code/artifact/693e7429-e042-413b-b021-6f51059d83f2"
+ ],
+ "dbBacked": false,
+ "order": 4,
+ "active": true,
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z"
+}

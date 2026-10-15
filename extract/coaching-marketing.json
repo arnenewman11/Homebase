@@ -1,0 +1,156 @@
+{
+  "area": "coaching-marketing",
+  "areaName": "Coaching Marketing",
+  "bucket": "Pickleball",
+  "source_url": "https://claude.ai/code/artifact/693e7429-e042-413b-b021-6f51059d83f2",
+  "db_backed": false,
+  "phases": [
+    {
+      "id": "cm-p1",
+      "name": "Do once",
+      "label": "Next 1-2 weeks",
+      "order": 1,
+      "milestone": "Foundations in place: slots, coach page, cards, profile",
+      "track": "main"
+    },
+    {
+      "id": "cm-p2",
+      "name": "Do every week",
+      "label": "Weekly",
+      "order": 2,
+      "milestone": "Meet players, post classes, convert to privates",
+      "track": "main"
+    },
+    {
+      "id": "cm-p3",
+      "name": "If hours stall",
+      "label": "After one month, only if hours stall",
+      "order": 3,
+      "milestone": "Extra channels to pitch",
+      "track": "main"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "cm-01",
+      "title": "Finish the student survey",
+      "detail": "Daytime availability plus interests",
+      "phase": "cm-p1",
+      "track": "main",
+      "kind": "should",
+      "effort": "M",
+      "status": "todo",
+      "order": 1,
+      "due": ""
+    },
+    {
+      "id": "cm-02",
+      "title": "Pick daytime slots (1-2 hrs/day) and send to 3rd Shot",
+      "detail": "",
+      "phase": "cm-p1",
+      "track": "main",
+      "kind": "should",
+      "effort": "M",
+      "status": "todo",
+      "order": 2,
+      "due": ""
+    },
+    {
+      "id": "cm-03",
+      "title": "Make coach page with schedule and how to book",
+      "detail": "",
+      "phase": "cm-p1",
+      "track": "main",
+      "kind": "should",
+      "effort": "L",
+      "status": "todo",
+      "order": 3,
+      "due": ""
+    },
+    {
+      "id": "cm-04",
+      "title": "Order referral cards with QR code to coach page",
+      "detail": "Depends on the coach page existing",
+      "phase": "cm-p1",
+      "track": "main",
+      "kind": "should",
+      "effort": "M",
+      "status": "todo",
+      "order": 4,
+      "due": ""
+    },
+    {
+      "id": "cm-05",
+      "title": "Make a TeachMe.To profile with 3rd Shot as location",
+      "detail": "Reported 20% commission",
+      "phase": "cm-p1",
+      "track": "main",
+      "kind": "should",
+      "effort": "M",
+      "status": "todo",
+      "order": 5,
+      "due": ""
+    },
+    {
+      "id": "cm-06",
+      "title": "Play 2 daytime drop-ins and hand out 5 cards",
+      "detail": "Wheat Ridge Rec Center Tue-Thu noon-2:30; Prospect Park weekday mornings",
+      "phase": "cm-p2",
+      "track": "main",
+      "kind": "should",
+      "effort": "L",
+      "status": "todo",
+      "order": 6,
+      "due": ""
+    },
+    {
+      "id": "cm-07",
+      "title": "Post week's classes in 1 local Facebook/Nextdoor group",
+      "detail": "",
+      "phase": "cm-p2",
+      "track": "main",
+      "kind": "should",
+      "effort": "S",
+      "status": "todo",
+      "order": 7,
+      "due": ""
+    },
+    {
+      "id": "cm-08",
+      "title": "Offer privates to every student finishing a series",
+      "detail": "",
+      "phase": "cm-p2",
+      "track": "main",
+      "kind": "should",
+      "effort": "S",
+      "status": "todo",
+      "order": 8,
+      "due": ""
+    },
+    {
+      "id": "cm-09",
+      "title": "Ask 1 student for a review",
+      "detail": "",
+      "phase": "cm-p2",
+      "track": "main",
+      "kind": "should",
+      "effort": "S",
+      "status": "todo",
+      "order": 9,
+      "due": ""
+    },
+    {
+      "id": "cm-10",
+      "title": "Pitch daytime workshops to Hyland Hills or Apex PRD",
+      "detail": "Or apply at The Picklr or Life Time",
+      "phase": "cm-p3",
+      "track": "main",
+      "kind": "want",
+      "effort": "M",
+      "status": "todo",
+      "order": 10,
+      "due": ""
+    }
+  ],
+  "notes": "Source is a Claude Docs document (read via Docs connector, doc dated 2026-10-07, rev 22), not a db; db_backed false. Checklist items showed no checked state, so all todo. Weekly items (cm-06..09) are recurring, not one-off. 'Next 1-2 weeks' is relative to 2026-10-07 so due left blank. cm-10 is conditional so kind=want. cm-02 overlaps weekday-programming (wp-05/06). Rate and venue reference tables not extracted."
+}

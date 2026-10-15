@@ -1,0 +1,8 @@
+{
+ "area": "card-sales",
+ "track": "ebay",
+ "name": "Order shipping supplies",
+ "label": "Phase 2",
+ "order": 6,
+ "milestone": "Supplies on hand"
+}

@@ -1,0 +1,23 @@
+{
+ "title": "Mark up one clip in OnForm",
+ "detail": "Draw lines, add a voiceover, share it to yourself.",
+ "area": "video-analysis",
+ "bucket": "Pickleball",
+ "track": "skills",
+ "phase": "va-s1",
+ "order": 1,
+ "type": "want-do",
+ "status": "todo",
+ "effort": "S",
+ "due": "",
+ "nextStep": "",
+ "milestone": "One clip with drawing and voiceover",
+ "source": "roadmap:video-analysis",
+ "sourceRef": "https://claude.ai/artifact/Bw2Jb85kbNKxwGsmQA68rg",
+ "srcId": "va-sk-01",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

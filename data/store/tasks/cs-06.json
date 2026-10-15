@@ -1,0 +1,23 @@
+{
+ "title": "Judge the trial against the success test",
+ "detail": "Hammers at 70%+ of market? Wemby auction nets 75%+ of the fixed-price copy? Repriced cards sold within ~3 weeks?",
+ "area": "card-sales",
+ "bucket": "Productivity",
+ "track": "comc",
+ "phase": "cs-p1",
+ "order": 6,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "M",
+ "due": "2026-11-07",
+ "nextStep": "",
+ "milestone": "Trial hammers and repriced controls judged against the success test.",
+ "source": "roadmap:card-sales",
+ "sourceRef": "https://claude.ai/code/artifact/e6cdf650-213b-455e-8319-341304435f67",
+ "srcId": "cs-06",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

@@ -1,0 +1,26 @@
+{
+ "title": "Pack nights: Monday and Thursday",
+ "detail": "Seller Hub → Awaiting shipment → pull stack, pack, weigh, print the eBay label. ~20–45 min.",
+ "area": "card-sales",
+ "bucket": "Productivity",
+ "track": "ebay",
+ "phase": "eb-p6",
+ "order": 20,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "M",
+ "due": "",
+ "nextStep": "",
+ "milestone": "Steady weekly rhythm, no post office trips",
+ "source": "roadmap:card-sales",
+ "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+ "srcId": "eb-20",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false,
+ "mergedFrom": [
+  "cs-26"
+ ]
+}

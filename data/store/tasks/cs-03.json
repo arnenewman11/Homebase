@@ -1,0 +1,23 @@
+{
+ "title": "Check 130point for Vince Carter /10 and Jeter /20",
+ "detail": "Both prices rest on thin data. One manual search each before anyone buys at the current ask.",
+ "area": "card-sales",
+ "bucket": "Productivity",
+ "track": "comc",
+ "phase": "cs-p1",
+ "order": 3,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "S",
+ "due": "2026-10-21",
+ "nextStep": "",
+ "milestone": "Trial hammers and repriced controls judged against the success test.",
+ "source": "roadmap:card-sales",
+ "sourceRef": "https://claude.ai/code/artifact/e6cdf650-213b-455e-8319-341304435f67",
+ "srcId": "cs-03",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

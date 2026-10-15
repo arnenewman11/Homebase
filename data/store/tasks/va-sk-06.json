@@ -1,0 +1,23 @@
+{
+ "title": "Build a reusable template",
+ "detail": "Intro, name strip, outro you can drop any clip into.",
+ "area": "video-analysis",
+ "bucket": "Pickleball",
+ "track": "skills",
+ "phase": "va-s3",
+ "order": 2,
+ "type": "want-do",
+ "status": "todo",
+ "effort": "M",
+ "due": "",
+ "nextStep": "",
+ "milestone": "A reusable edit template",
+ "source": "roadmap:video-analysis",
+ "sourceRef": "https://claude.ai/artifact/Bw2Jb85kbNKxwGsmQA68rg",
+ "srcId": "va-sk-06",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

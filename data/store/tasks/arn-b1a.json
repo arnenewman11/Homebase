@@ -1,0 +1,23 @@
+{
+ "title": "Recover the logo files from ChatGPT",
+ "detail": "Master files and brand guide are still missing from 2025.",
+ "area": "arnfjall",
+ "bucket": "Learn & Play",
+ "track": "business",
+ "phase": "arn-b1",
+ "order": 1,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "S",
+ "due": "",
+ "nextStep": "",
+ "milestone": "Logo files and a one-line description ready",
+ "source": "roadmap:arnfjall",
+ "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+ "srcId": "arn-b1a",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

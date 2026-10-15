@@ -1,0 +1,13 @@
+{
+ "name": "Transition Zone Class",
+ "bucket": "Pickleball",
+ "prefix": "tz",
+ "sourceUrls": [
+  "https://claude.ai/code/artifact/3f3ab2a8-afc6-4820-a698-2f79359eed57"
+ ],
+ "dbBacked": false,
+ "order": 2,
+ "active": true,
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z"
+}

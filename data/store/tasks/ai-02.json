@@ -1,0 +1,23 @@
+{
+ "title": "Turn Pickle Drill Library & Class Planner into a real repo",
+ "detail": "Build it with Claude Code",
+ "area": "ai-builder",
+ "bucket": "Learn & Play",
+ "track": "main",
+ "phase": "ai-p1",
+ "order": 2,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "L",
+ "due": "",
+ "nextStep": "",
+ "milestone": "You can ship a small change end to end and explain every file it touched.",
+ "source": "roadmap:ai-builder",
+ "sourceRef": "https://claude.ai/code/artifact/d34e8225-bdac-47e3-a3ba-0da4cde2c44b",
+ "srcId": "ai-02",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

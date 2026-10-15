@@ -1,0 +1,23 @@
+{
+ "title": "Run it for a week and listen",
+ "detail": "Quiet-room sound, splash, and water lost.",
+ "area": "arnfjall",
+ "bucket": "Learn & Play",
+ "track": "fountains",
+ "phase": "arn-f2",
+ "order": 2,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "M",
+ "due": "",
+ "nextStep": "",
+ "milestone": "Prototype 2 runs a full week, quiet, with little water loss",
+ "source": "roadmap:arnfjall",
+ "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+ "srcId": "arn-f2b",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

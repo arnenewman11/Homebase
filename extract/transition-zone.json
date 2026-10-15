@@ -1,0 +1,92 @@
+{
+  "area": "transition-zone",
+  "areaName": "Transition Zone Class",
+  "bucket": "Pickleball",
+  "source_url": "https://claude.ai/code/artifact/3f3ab2a8-afc6-4820-a698-2f79359eed57",
+  "db_backed": false,
+  "phases": [
+    {
+      "id": "tz-p1",
+      "name": "Next steps",
+      "label": "Before players arrive",
+      "order": 1,
+      "milestone": "Court ready for the 60-min class",
+      "track": "main"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "tz-01",
+      "title": "Set up ball basket at kitchen line, center",
+      "detail": "About 50-60 balls, net side; feed from here all class",
+      "phase": "tz-p1",
+      "track": "main",
+      "kind": "should",
+      "effort": "S",
+      "status": "todo",
+      "order": 1,
+      "due": ""
+    },
+    {
+      "id": "tz-02",
+      "title": "Place pickup bucket at net post, players' side",
+      "detail": "On-deck players collect and refill between turns",
+      "phase": "tz-p1",
+      "track": "main",
+      "kind": "should",
+      "effort": "S",
+      "status": "todo",
+      "order": 2,
+      "due": ""
+    },
+    {
+      "id": "tz-03",
+      "title": "Mark zone back edge with cones or lines",
+      "detail": "2 ft inside players' baseline, both sidelines",
+      "phase": "tz-p1",
+      "track": "main",
+      "kind": "should",
+      "effort": "S",
+      "status": "todo",
+      "order": 3,
+      "due": ""
+    },
+    {
+      "id": "tz-04",
+      "title": "Place 4 halfway markers across the zone",
+      "detail": "About 6-7 ft behind kitchen line, for four-across drills",
+      "phase": "tz-p1",
+      "track": "main",
+      "kind": "should",
+      "effort": "S",
+      "status": "todo",
+      "order": 4,
+      "due": ""
+    },
+    {
+      "id": "tz-05",
+      "title": "Set up on-deck spot behind players' baseline",
+      "detail": "",
+      "phase": "tz-p1",
+      "track": "main",
+      "kind": "should",
+      "effort": "S",
+      "status": "todo",
+      "order": 5,
+      "due": ""
+    },
+    {
+      "id": "tz-06",
+      "title": "Brief shadow instructor to stand sideline, ready to demo",
+      "detail": "Players' side sideline",
+      "phase": "tz-p1",
+      "track": "main",
+      "kind": "should",
+      "effort": "S",
+      "status": "todo",
+      "order": 6,
+      "due": ""
+    }
+  ],
+  "notes": "Page is a run-of-show lesson plan (9 timed drills, no checkboxes, no dates, no database). Only the 'Court setup / Before players arrive' list was treated as action items; drills are class content, not to-dos. Last item (shadow instructor) is phrased as a setup line, so brief-the-instructor is a mild interpretation. No scheduled class date given. May relate to the New to Pickleball class series project in memory."
+}

@@ -1,0 +1,23 @@
+{
+ "title": "Pitch daytime workshops to Hyland Hills or Apex PRD",
+ "detail": "Or apply at The Picklr or Life Time",
+ "area": "coaching-marketing",
+ "bucket": "Pickleball",
+ "track": "main",
+ "phase": "cm-p3",
+ "order": 10,
+ "type": "want-do",
+ "status": "todo",
+ "effort": "M",
+ "due": "",
+ "nextStep": "",
+ "milestone": "Extra channels to pitch",
+ "source": "roadmap:coaching-marketing",
+ "sourceRef": "https://claude.ai/code/artifact/693e7429-e042-413b-b021-6f51059d83f2",
+ "srcId": "cm-10",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

@@ -1,0 +1,23 @@
+{
+ "title": "Build discovery script, audit template, ROI model, AI-policy checklist",
+ "detail": "Choose your lead niche (sustainability or ADHD tools)",
+ "area": "ai-builder",
+ "bucket": "Learn & Play",
+ "track": "main",
+ "phase": "ai-p4",
+ "order": 7,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "L",
+ "due": "",
+ "nextStep": "",
+ "milestone": "A pilot with before/after numbers the client will vouch for.",
+ "source": "roadmap:ai-builder",
+ "sourceRef": "https://claude.ai/code/artifact/d34e8225-bdac-47e3-a3ba-0da4cde2c44b",
+ "srcId": "ai-07",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

@@ -1,0 +1,23 @@
+{
+ "title": "Edit the one-pager until it sounds like you",
+ "detail": "Draft advisor one-pager to attach to mentor applications.",
+ "area": "advisor-path",
+ "bucket": "Productivity",
+ "track": "main",
+ "phase": "ad-p1",
+ "order": 1,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "M",
+ "due": "",
+ "nextStep": "",
+ "milestone": "",
+ "source": "roadmap:advisor-path",
+ "sourceRef": "https://claude.ai/code/artifact/aa57b3ce-ef7d-4392-a943-2baa8e08639b",
+ "srcId": "ad-01",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

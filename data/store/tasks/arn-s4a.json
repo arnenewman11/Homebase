@@ -1,0 +1,23 @@
+{
+ "title": "Set up a simple photo corner",
+ "detail": "Window light, a plain backdrop, a phone tripod.",
+ "area": "arnfjall",
+ "bucket": "Learn & Play",
+ "track": "skills",
+ "phase": "arn-s4",
+ "order": 1,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "M",
+ "due": "",
+ "nextStep": "",
+ "milestone": "A repeatable photo setup",
+ "source": "roadmap:arnfjall",
+ "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+ "srcId": "arn-s4a",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

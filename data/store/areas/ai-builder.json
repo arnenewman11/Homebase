@@ -1,0 +1,13 @@
+{
+ "name": "AI Builder",
+ "bucket": "Learn & Play",
+ "prefix": "ai",
+ "sourceUrls": [
+  "https://claude.ai/code/artifact/d34e8225-bdac-47e3-a3ba-0da4cde2c44b"
+ ],
+ "dbBacked": false,
+ "order": 12,
+ "active": true,
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z"
+}

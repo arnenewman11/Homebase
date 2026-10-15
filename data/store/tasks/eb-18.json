@@ -1,0 +1,26 @@
+{
+ "title": "Verify all 75 are live with the right prices",
+ "detail": "Tell Claude when you're done listing.",
+ "area": "card-sales",
+ "bucket": "Productivity",
+ "track": "ebay",
+ "phase": "eb-p5",
+ "order": 18,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "S",
+ "due": "2026-10-19",
+ "nextStep": "",
+ "milestone": "All 75 live",
+ "source": "roadmap:card-sales",
+ "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+ "srcId": "eb-18",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false,
+ "mergedFrom": [
+  "cs-25"
+ ]
+}

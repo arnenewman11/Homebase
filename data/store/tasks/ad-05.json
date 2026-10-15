@@ -1,0 +1,23 @@
+{
+ "title": "Pick 2-3 Colorado climate nonprofits and check for committee openings",
+ "detail": "Aim for one committee seat first.",
+ "area": "advisor-path",
+ "bucket": "Productivity",
+ "track": "main",
+ "phase": "ad-p1",
+ "order": 5,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "M",
+ "due": "",
+ "nextStep": "",
+ "milestone": "",
+ "source": "roadmap:advisor-path",
+ "sourceRef": "https://claude.ai/code/artifact/aa57b3ce-ef7d-4392-a943-2baa8e08639b",
+ "srcId": "ad-05",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

@@ -1,0 +1,8 @@
+{
+ "area": "card-sales",
+ "track": "ebay",
+ "name": "Account & shipping settings",
+ "label": "Phase 1",
+ "order": 5,
+ "milestone": "ZIP 80214 and shipping policy saved"
+}

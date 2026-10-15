@@ -1,0 +1,26 @@
+{
+ "title": "Decide on Best Offer auto-accept at 90% of ask",
+ "detail": "Cuts buyer messages. Declines below 75% happen either way.",
+ "area": "card-sales",
+ "bucket": "Productivity",
+ "track": "ebay",
+ "phase": "eb-p4",
+ "order": 14,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "S",
+ "due": "2026-10-17",
+ "nextStep": "",
+ "milestone": "75 drafts ready to list",
+ "source": "roadmap:card-sales",
+ "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+ "srcId": "eb-14",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false,
+ "mergedFrom": [
+  "cs-23"
+ ]
+}

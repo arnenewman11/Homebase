@@ -1,0 +1,23 @@
+{
+ "title": "Get a Colorado sales tax license",
+ "detail": "$16 for two years.",
+ "area": "arnfjall",
+ "bucket": "Learn & Play",
+ "track": "business",
+ "phase": "arn-b2",
+ "order": 1,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "S",
+ "due": "",
+ "nextStep": "",
+ "milestone": "Licensed and insured",
+ "source": "roadmap:arnfjall",
+ "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+ "srcId": "arn-b2a",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

@@ -1,0 +1,27 @@
+{
+ "title": "Rewrite titles, descriptions, condition and prices",
+ "detail": "Accurate RC/serial/auto wording, pages listed, Excellent for 1990s lots, ask and 75% floor.",
+ "area": "card-sales",
+ "bucket": "Productivity",
+ "track": "ebay",
+ "phase": "eb-p4",
+ "order": 13,
+ "type": "should-do",
+ "status": "done",
+ "effort": "L",
+ "due": "2026-10-17",
+ "nextStep": "",
+ "milestone": "75 drafts ready to list",
+ "source": "roadmap:card-sales",
+ "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+ "srcId": "eb-13",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false,
+ "doneAt": "2026-10-15T10:30:00Z",
+ "mergedFrom": [
+  "cs-18"
+ ]
+}

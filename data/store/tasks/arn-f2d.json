@@ -1,0 +1,23 @@
+{
+ "title": "Build prototype 2 with the fixes",
+ "detail": "",
+ "area": "arnfjall",
+ "bucket": "Learn & Play",
+ "track": "fountains",
+ "phase": "arn-f2",
+ "order": 4,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "L",
+ "due": "",
+ "nextStep": "",
+ "milestone": "Prototype 2 runs a full week, quiet, with little water loss",
+ "source": "roadmap:arnfjall",
+ "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+ "srcId": "arn-f2d",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

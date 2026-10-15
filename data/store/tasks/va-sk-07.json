@@ -1,0 +1,23 @@
+{
+ "title": "Export and post a vertical clip",
+ "detail": "9:16 for Instagram or TikTok.",
+ "area": "video-analysis",
+ "bucket": "Pickleball",
+ "track": "skills",
+ "phase": "va-s4",
+ "order": 1,
+ "type": "want-do",
+ "status": "todo",
+ "effort": "S",
+ "due": "",
+ "nextStep": "",
+ "milestone": "One vertical clip posted",
+ "source": "roadmap:video-analysis",
+ "sourceRef": "https://claude.ai/artifact/Bw2Jb85kbNKxwGsmQA68rg",
+ "srcId": "va-sk-07",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

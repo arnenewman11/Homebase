@@ -1,0 +1,104 @@
+{
+  "area": "weekday-programming",
+  "areaName": "Weekday Daytime Programming",
+  "bucket": "Pickleball",
+  "source_url": "https://claude.ai/code/artifact/71f130b3-7b15-468d-873f-5eb6ecc7c788",
+  "db_backed": false,
+  "phases": [
+    {
+      "id": "wp-p1",
+      "name": "Next steps",
+      "label": "Process, as of Oct 14, 2026",
+      "order": 1,
+      "milestone": "Short slot-and-format email sent to boss",
+      "track": "main"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "wp-01",
+      "title": "Interview on intent, outcomes and constraints",
+      "detail": "",
+      "phase": "wp-p1",
+      "track": "main",
+      "kind": "should",
+      "effort": "M",
+      "status": "done",
+      "order": 1,
+      "due": ""
+    },
+    {
+      "id": "wp-02",
+      "title": "Review CourtReserve calendar: 3 weeks back, 2+ ahead",
+      "detail": "",
+      "phase": "wp-p1",
+      "track": "main",
+      "kind": "should",
+      "effort": "L",
+      "status": "done",
+      "order": 2,
+      "due": ""
+    },
+    {
+      "id": "wp-03",
+      "title": "List candidate slots, including 2-5 pm",
+      "detail": "",
+      "phase": "wp-p1",
+      "track": "main",
+      "kind": "should",
+      "effort": "M",
+      "status": "done",
+      "order": 3,
+      "due": ""
+    },
+    {
+      "id": "wp-04",
+      "title": "Run local market scan of other clubs",
+      "detail": "4 of 5 clubs done; Relish Food Hall pending a waiver",
+      "phase": "wp-p1",
+      "track": "main",
+      "kind": "should",
+      "effort": "L",
+      "status": "done",
+      "order": 4,
+      "due": ""
+    },
+    {
+      "id": "wp-05",
+      "title": "Trim slot list and settle formats and lengths",
+      "detail": "Candidate list exceeds the 1-2 hrs/day target; marked current step",
+      "phase": "wp-p1",
+      "track": "main",
+      "kind": "should",
+      "effort": "M",
+      "status": "doing",
+      "order": 5,
+      "due": ""
+    },
+    {
+      "id": "wp-06",
+      "title": "Draft short email to boss with proposed slots",
+      "detail": "Times and class types, at most one sentence of justification",
+      "phase": "wp-p1",
+      "track": "main",
+      "kind": "should",
+      "effort": "M",
+      "status": "todo",
+      "order": 6,
+      "due": ""
+    },
+    {
+      "id": "wp-07",
+      "title": "Ask boss to route corporate intro lessons to me",
+      "detail": "Side opportunity, no slot needed; could go in the same email",
+      "phase": "wp-p1",
+      "track": "main",
+      "kind": "want",
+      "effort": "S",
+      "status": "todo",
+      "order": 7,
+      "due": ""
+    }
+  ],
+  "notes": "Not db-backed. Steps 1-4 are marked done (green check styling) and step 5 is the 'now' item (status doing). Item 7 is labeled a 'side opportunity' so kind=want. Overlaps with Coaching Marketing cm-02 (pick daytime slots and send to 3rd Shot) - wp-05/06 are the detailed version. Relish Food Hall scan remains pending a waiver but is not a separate item. The slot candidate table was not extracted as tasks (options, not decided). No dates given."
+}

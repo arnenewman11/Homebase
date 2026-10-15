@@ -1,0 +1,23 @@
+{
+ "title": "Drill a test stone wet with diamond bits",
+ "detail": "Practice on cheap stones before good ones.",
+ "area": "arnfjall",
+ "bucket": "Learn & Play",
+ "track": "skills",
+ "phase": "arn-s3",
+ "order": 1,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "M",
+ "due": "",
+ "nextStep": "",
+ "milestone": "A test rig with pump, tub and LEDs running",
+ "source": "roadmap:arnfjall",
+ "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+ "srcId": "arn-s3a",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

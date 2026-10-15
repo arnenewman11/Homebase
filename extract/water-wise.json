@@ -1,0 +1,104 @@
+{
+ "area": "water-wise",
+ "areaName": "Water-Wise Yard Studio",
+ "bucket": "Productivity",
+ "source_url": "https://claude.ai/code/artifact/22c06970-73c4-4f19-bb0a-572a20cad3a1",
+ "db_backed": false,
+ "phases": [
+  {
+   "id": "ww-p1",
+   "name": "First 90 days",
+   "label": "Now to mid-January",
+   "order": 1,
+   "milestone": "Signs of progress by summer 2027: 10+ paid designs, 2 referral clients, one reliable install crew",
+   "track": "main"
+  }
+ ],
+ "tasks": [
+  {
+   "id": "ww-01",
+   "title": "Scan 10-15 local competitors",
+   "detail": "Services, prices and reviews; the plan notes private firms are unverified.",
+   "phase": "ww-p1",
+   "track": "main",
+   "kind": "should",
+   "effort": "M",
+   "status": "todo",
+   "order": 1,
+   "due": ""
+  },
+  {
+   "id": "ww-02",
+   "title": "Learn 40-60 core Front Range xeric plants",
+   "detail": "Include visits to Plant Select demonstration gardens.",
+   "phase": "ww-p1",
+   "track": "main",
+   "kind": "should",
+   "effort": "L",
+   "status": "todo",
+   "order": 2,
+   "due": ""
+  },
+  {
+   "id": "ww-03",
+   "title": "Design own yard and two friends' yards",
+   "detail": "Three portfolio pieces.",
+   "phase": "ww-p1",
+   "track": "main",
+   "kind": "should",
+   "effort": "L",
+   "status": "todo",
+   "order": 3,
+   "due": ""
+  },
+  {
+   "id": "ww-04",
+   "title": "Form an LLC, get insurance, draft contract",
+   "detail": "General liability insurance and a contract template.",
+   "phase": "ww-p1",
+   "track": "main",
+   "kind": "should",
+   "effort": "M",
+   "status": "todo",
+   "order": 4,
+   "due": ""
+  },
+  {
+   "id": "ww-05",
+   "title": "Register for the spring QWEL course",
+   "detail": "4-day course plus exam at Red Rocks Community College.",
+   "phase": "ww-p1",
+   "track": "main",
+   "kind": "should",
+   "effort": "S",
+   "status": "todo",
+   "order": 5,
+   "due": ""
+  },
+  {
+   "id": "ww-06",
+   "title": "Interview 3-4 install crews",
+   "detail": "Agree on rates and quality before taking clients.",
+   "phase": "ww-p1",
+   "track": "main",
+   "kind": "should",
+   "effort": "M",
+   "status": "todo",
+   "order": 6,
+   "due": ""
+  },
+  {
+   "id": "ww-07",
+   "title": "Launch Google Business Profile and one-page site",
+   "detail": "Include a February rebate guide, ready before programs open in March.",
+   "phase": "ww-p1",
+   "track": "main",
+   "kind": "should",
+   "effort": "L",
+   "status": "todo",
+   "order": 7,
+   "due": ""
+  }
+ ],
+ "notes": "Business-plan doc (Claude Docs), not db-backed. Items are the 'First 90 days (now to mid-January)' checklist; none shown checked (checked state not visible in the doc read, so all todo). Single phase named from that heading. No item due dates given (window ends mid-January 2027, no exact day). Rest of the doc is plan, pricing, risk and market background. Efforts are my estimates; the page gives none. Admin setup line (811 locates, change-order template) and marketing ideas are background, not extracted."
+}

@@ -1,0 +1,23 @@
+{
+ "title": "Pick rewards: Level 8, Major reward, TechDisc target",
+ "detail": "10 min",
+ "area": "homebase",
+ "bucket": "Productivity",
+ "track": "main",
+ "phase": "",
+ "order": 2,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "S",
+ "due": "",
+ "nextStep": "",
+ "milestone": "",
+ "source": "homebase",
+ "sourceRef": "",
+ "srcId": "rewards",
+ "raw": "",
+ "createdAt": "2026-10-15T09:14:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

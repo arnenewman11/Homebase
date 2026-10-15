@@ -1,0 +1,23 @@
+{
+ "title": "Offer privates to every student finishing a series",
+ "detail": "",
+ "area": "coaching-marketing",
+ "bucket": "Pickleball",
+ "track": "main",
+ "phase": "cm-p2",
+ "order": 8,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "S",
+ "due": "",
+ "nextStep": "",
+ "milestone": "Meet players, post classes, convert to privates",
+ "source": "roadmap:coaching-marketing",
+ "sourceRef": "https://claude.ai/code/artifact/693e7429-e042-413b-b021-6f51059d83f2",
+ "srcId": "cm-08",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

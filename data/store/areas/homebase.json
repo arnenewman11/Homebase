@@ -1,0 +1,13 @@
+{
+ "name": "Homebase system",
+ "bucket": "Productivity",
+ "prefix": "hb",
+ "sourceUrls": [
+  "https://claude.ai/code/artifact/ac02e93d-14ae-474e-9704-66f6b5392107"
+ ],
+ "dbBacked": false,
+ "order": 9,
+ "active": true,
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z"
+}

@@ -1,0 +1,23 @@
+{
+ "title": "Review whether the scenarios match how life feels",
+ "detail": "Owner: you",
+ "area": "portfolio-twin",
+ "bucket": "Productivity",
+ "track": "main",
+ "phase": "pt-p3",
+ "order": 9,
+ "type": "should-do",
+ "status": "todo",
+ "effort": "M",
+ "due": "",
+ "nextStep": "",
+ "milestone": "You know your runway in the base and bad-month cases.",
+ "source": "roadmap:portfolio-twin",
+ "sourceRef": "https://claude.ai/code/artifact/0e534609-3502-4013-9807-eb49386040dc",
+ "srcId": "pt-09",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}

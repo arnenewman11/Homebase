@@ -1,0 +1,23 @@
+{
+ "title": "Check the November Marquee auction",
+ "detail": "Needs $1,000+ of value; transfer deadline Nov 12. Only worth it if the rollout list is big enough.",
+ "area": "card-sales",
+ "bucket": "Productivity",
+ "track": "comc",
+ "phase": "cs-p2",
+ "order": 9,
+ "type": "want-do",
+ "status": "todo",
+ "effort": "S",
+ "due": "2026-11-11",
+ "nextStep": "",
+ "milestone": "Rollout batch submitted or a fixed-price plan confirmed.",
+ "source": "roadmap:card-sales",
+ "sourceRef": "https://claude.ai/code/artifact/e6cdf650-213b-455e-8319-341304435f67",
+ "srcId": "cs-09",
+ "raw": "",
+ "createdAt": "2026-10-15T10:30:00Z",
+ "updatedAt": "2026-10-15T10:30:00Z",
+ "changedBy": "migration",
+ "demoSafe": false
+}
