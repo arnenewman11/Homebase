@@ -183,6 +183,13 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
 .meter{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted)}
 .meter .track{flex:1;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
 .meter .fill{height:100%;background:var(--slate);width:0;transition:width .4s}
+.qa{display:flex;gap:8px}
+.qa input{flex:1;min-width:0;font:inherit;font-size:16px;padding:10px 12px;border-radius:12px;border:1px solid var(--line);background:var(--ground);color:var(--ink);min-height:44px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.inb{display:flex;flex-direction:column;gap:6px;padding:10px 0;border-top:1px solid var(--line)}
+.inb p{margin:0;font-size:14px}
+.inb .btns{gap:6px}
+.inb select{font:inherit;font-size:14px;min-height:40px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:0 12px}
 .area-row{display:flex;flex-direction:column;gap:6px;padding:12px 0;border-bottom:1px solid var(--line)}
 .area-row:last-child{border-bottom:0}
 .area-row .linkbtn{align-self:flex-start}
@@ -252,6 +259,17 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
     <div class="row"><h2>Today's picks</h2><span class="sub num" id="qcount">0 of 3</span></div>
     <div id="quests" style="display:flex;flex-direction:column;gap:12px"></div>
     <p class="sub" id="bonus" style="text-align:center"></p>
+  </section>
+
+  <section class="card" aria-label="Quick add" style="gap:8px">
+    <div class="row"><h2>Quick add</h2><span class="sub num" id="inboxCount"></span></div>
+    <form id="qaForm" class="qa" autocomplete="off">
+      <label for="qaText" class="sr">New idea or to-do</label>
+      <input id="qaText" maxlength="300" placeholder="Type or dictate an idea" enterkeyhint="done">
+      <button class="btn solid" id="qaAdd" type="submit">Add</button>
+    </form>
+    <p class="sub" style="font-size:12px;margin:0">Tap the mic on your keyboard to dictate. Items land in your inbox and get sorted each morning.</p>
+    <div id="inboxList"></div>
   </section>
 
   <section class="card" aria-label="Your level">
@@ -673,7 +691,7 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
     const lg = STORE.logs, n = (a, ty) => lg.filter(l => l.area === a && l.type === ty).length;
     VA.counts = { logs: n('video-analysis','game'), reviews: n('video-analysis','review') };
     ARN.counts = { builds: n('arnfjall','build'), sales: n('arnfjall','sale') };
-    renderVA(); renderArn(); renderHbTasks(); renderAreas();
+    renderVA(); renderArn(); renderHbTasks(); renderAreas(); renderInbox2();
   }
   async function setTask(id, patch){
     if (!dbRef) throw { code:'offline' };
@@ -703,6 +721,43 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
         + '</div>';
     }).join('');
   }
+  // ---- inbox: quick-add lands here with status "inbox"; the morning sort files it ----
+  function renderInbox2(){
+    const box = $('#inboxList'); if (!box || !STORE.gotT) return;
+    const items = [...STORE.tasks.values()].filter(t => t.status === 'inbox').sort((a,b) => String(a.createdAt).localeCompare(String(b.createdAt)));
+    $('#inboxCount').textContent = items.length ? items.length + ' in inbox' : '';
+    const areas = [...STORE.areas.entries()].map(([id,a]) => Object.assign({ id }, a)).filter(a => a.active !== false).sort(byOrder);
+    const opts = '<option value="">Pick an area…</option>' + areas.map(a => '<option value="'+esc(a.id)+'">'+esc(a.name)+'</option>').join('');
+    box.innerHTML = items.map(t => {
+      const sug = t.suggestedArea && STORE.areas.get(t.suggestedArea);
+      return '<div class="inb"><p>'+esc(t.title)+(t.detail ? '<small class="sub" style="display:block">'+esc(t.detail)+'</small>' : '')+'</p><div class="btns">'
+        + (sug ? '<button class="btn solid" data-inb-ok="'+esc(t.id)+'" data-area="'+esc(t.suggestedArea)+'">File under '+esc(sug.name)+'</button>' : '')
+        + '<select data-inb-area="'+esc(t.id)+'" aria-label="Choose an area">'+opts+'</select>'
+        + '<button class="btn" data-inb-drop="'+esc(t.id)+'">Drop</button></div></div>';
+    }).join('');
+  }
+  async function fileInbox(id, area){
+    const a = STORE.areas.get(area); if (!a) return;
+    try { await setTask(id, { area, bucket: a.bucket, status:'todo' }); toast('Filed under ' + a.name); } catch (_) { toast('Couldn\'t file that. Try again.'); }
+  }
+  $('#qaForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const inp = $('#qaText'), text = inp.value.trim(); if (!text) return;
+    if (!dbRef) { toast('Open Homebase in Claude to add items'); return; }
+    const now = new Date(), iso = now.toISOString(), id = 'in-' + iso.replace(/[^0-9]/g,'').slice(0,14) + Math.random().toString(36).slice(2,5);
+    $('#qaAdd').disabled = true;
+    try {
+      await dbRef.doc('tasks/' + id).set({ title: text.slice(0,140), raw: text, detail:'', area:'', bucket:'', track:'main', phase:'', order:0, type:'should-do', status:'inbox', effort:'', due:'', nextStep:'', milestone:'', source:'quick-add', sourceRef:'', srcId:'', createdAt: iso, updatedAt: iso, changedBy:'you', demoSafe:false });
+      inp.value = ''; toast('Added to inbox');
+    } catch (_) { toast('Couldn\'t add that. Try again.'); }
+    $('#qaAdd').disabled = false;
+  });
+  $('#inboxList').addEventListener('click', e => {
+    const ok = e.target.closest('[data-inb-ok]'); if (ok) { ok.disabled = true; fileInbox(ok.dataset.inbOk, ok.dataset.area); return; }
+    const dr = e.target.closest('[data-inb-drop]'); if (dr) { dr.disabled = true; setTask(dr.dataset.inbDrop, { status:'dropped' }).then(() => toast('Dropped')).catch(() => { dr.disabled = false; }); }
+  });
+  $('#inboxList').addEventListener('change', e => { const sel = e.target.closest('[data-inb-area]'); if (sel && sel.value) fileInbox(sel.dataset.inbArea, sel.value); });
+
   document.addEventListener('click', async e => {
     const b = e.target.closest('[data-task-done]'); if (!b) return;
     const t = STORE.tasks.get(b.dataset.taskDone); if (!t) return;

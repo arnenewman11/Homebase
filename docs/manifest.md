@@ -1,7 +1,7 @@
 # Homebase manifest
 
 Inventory of every part of the Homebase task system and what each part may touch.
-Last updated: 2026-10-15 (Phase 1 migration). Helpers read this file instead of searching.
+Last updated: 2026-10-15 (Phase 2: inbox, daily sort, intake skill, backups). Helpers read this file instead of searching.
 
 ## Core
 
@@ -42,11 +42,13 @@ Rules: no money amounts, balances or account details in tasks. `changedBy` is se
 | homebase | Homebase system | Productivity | Blueprint | no |
 | money-admin | Money & admin | Productivity | — | no |
 | arnfjall | Arnfjäll | Learn & Play | [Arnfjäll Roadmap](https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg) | yes (status mirrored) |
-| ai-builder | AI Builder | Learn & Play | [canvas](https://claude.ai/code/artifact/d34e8225-bdac-47e3-a3ba-0da4cde2c44b) | no |
+| ai-builder | AI Builder (28 steps; the 10 coarse ai-* items are dropped) | Learn & Play | [canvas](https://claude.ai/code/artifact/d34e8225-bdac-47e3-a3ba-0da4cde2c44b) | no |
+| class-series | Class series (New to Pickleball) | Pickleball | — | no |
+| ai-consulting | AI consulting (90-day test) | Productivity | — | no |
 
 Archived as task sources (reference only): older eBay Lots copy (marked archived), career exploration docs, Top 20 Career Paths, Game Design Taste Test, Next Steps After 101 Flyer, Work Blend Planner, Weekday Class Survey, Card Decision Log, Finance App Decision, Arnfjäll Market Landscape, Pickleball Video Analysis Landscape, Daytime Market Scan, Transition Zone Glance Sheet.
 
-Known gap: the AI consulting roadmap linked from Homebase (claude.ai/artifact/T6Q1xGbQoY5bwtia4LXNDY) is not yet in the store.
+The link claude.ai/artifact/T6Q1xGbQoY5bwtia4LXNDY is the same AI Builder Roadmap under a short URL.
 
 ## Scheduled tasks
 
@@ -54,10 +56,12 @@ Known gap: the AI consulting roadmap linked from Homebase (claude.ai/artifact/T6
 |---|---|---|---|---|
 | Living Room Dakboard sync | hourly at :35 | Haiku | Calendar, Homebase db, Dakboard sheet `priorities` | Dakboard sheet `events`, `tasks`, `meta` |
 | Homebase refresh | 5:59, 8:59, 11:59, 14:59, 17:59 | Haiku | Weather, Gmail, web | Homebase `feeds/*`; Gmail labels; Todoist bill tasks |
+| Homebase daily sort | daily 6:26 | Haiku | Homebase inbox, Gmail label Homebase/To-do, personal calendar (read) | Homebase `tasks` (inbox items only), `sort/state` |
 | Roadmap status mirror | daily 6:47 | Haiku | Homebase `tasks` | Status fields in the 4 database roadmaps |
 | Weekly priorities review | Mon 8:50 | Sonnet | Dakboard sheet, Homebase db | Message to you |
 | Weekly finance tool review | Mon 7:51 | Sonnet | Drive, Gmail, Todoist (read) | "Finance Tool Review Log" doc |
 | Weekly Part-Time Opportunity Search | Mon 8:00 | Sonnet | Job boards, web | Project log |
+| Homebase weekly backup | Sun 21:46 | Haiku | Homebase db | Drive Homebase/Backups (JSON + CSV, keeps 8) |
 | Arnfjäll Roadmap sync | — | Haiku | — | **Paused** (replaced by the mirror) |
 | Roadmap write-back from Homebase | — | Haiku | — | **Paused** (Homebase writes its own store now) |
 | Reminders (goals & measuring sticks ×3, day-tracking questions) | one-time | — | — | Message to you |
@@ -78,3 +82,18 @@ Open item: every scheduled task currently has all connectors attached. Trim each
 
 - The Dakboard feed sheet is "anyone with the link can view" because DAKboard can only display published sheets. It holds calendar event titles and task titles; no locations, attendees or amounts.
 - Artifacts are private to you.
+
+## Capture
+
+| Input | How | Lands as |
+|---|---|---|
+| Quick add (Homebase, Today screen) | Type, or dictate with the keyboard mic | `status: inbox`, `source: quick-add` |
+| Gmail | Apply label **Homebase/To-do** | `em-<thread id>`, inbox, via the daily sort |
+| Calendar | Automatic, conservative (max 2 per day) | `cal-<event id>`, inbox, always needs your tap |
+| Any chat | "Add these to Homebase" (skill `add-to-homebase`) | Filed directly, or inbox when unsure |
+
+The daily sort files confident items (`changedBy: router`) and leaves unsure ones in the inbox with `suggestedArea` for a one-tap confirm.
+
+## Decisions log
+
+- 2026-10-15: Todoist wall bridge dropped. The Dakboard stays sheet-based; check-offs happen in Homebase. Revisit if a touch add-on is bought.
