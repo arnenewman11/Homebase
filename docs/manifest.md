@@ -100,6 +100,8 @@ The daily sort files confident items (`changedBy: router`) and leaves unsure one
 
 ## Decisions log
 
+- 2026-10-15: Points, levels and rewards cut. Homebase shows progress bars and done counts only. One reminder kept (Oct 22) to revisit goals and measures; the Oct 29 and Nov 5 reminders are paused.
+
 - 2026-10-15: Todoist wall bridge dropped. The Dakboard stays sheet-based; check-offs happen in Homebase. Revisit if a touch add-on is bought.
 
 ## Monitoring
