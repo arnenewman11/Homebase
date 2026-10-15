@@ -190,6 +190,15 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
 .inb p{margin:0;font-size:14px}
 .inb .btns{gap:6px}
 .inb select{font:inherit;font-size:14px;min-height:40px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:0 12px}
+.sysd summary{cursor:pointer;font-weight:700;font-size:14px;min-height:40px;display:flex;align-items:center;color:var(--sage-deep)}
+.sysrow{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+.sysrow p{margin:0;min-width:0}
+.sysrow small{display:block;color:var(--muted);font-size:12px}
+.st-ok{background:var(--chip-rent-bg);color:var(--chip-rent-fg)}
+.st-late{background:var(--chip-bill-bg);color:var(--chip-bill-fg)}
+.st-bad{background:#F2DED6;color:#8A3A26}
+.finding{display:flex;flex-direction:column;gap:6px;padding:10px 0;border-top:1px solid var(--line);font-size:14px}
+.finding p{margin:0}
 .area-row{display:flex;flex-direction:column;gap:6px;padding:12px 0;border-bottom:1px solid var(--line)}
 .area-row:last-child{border-bottom:0}
 .area-row .linkbtn{align-self:flex-start}
@@ -398,6 +407,12 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
   <section aria-label="The usual places" style="display:flex;flex-direction:column;gap:6px">
     <p class="eyebrow">The usual places</p>
     <p class="usual"><a href="https://www.on3.com/teams/north-carolina-tar-heels/">Inside Carolina</a> · <a href="https://247sports.com/college/north-carolina/">247 UNC</a> · <a href="https://www.pinstripealley.com/">Pinstripe Alley</a> · <a href="https://www.reddit.com/">Reddit</a> · <a href="https://www.youtube.com/">YouTube</a> · <a href="https://www.comc.com/">COMC</a> · <a href="https://www.ebay.com/">eBay</a></p>
+  </section>
+  <section class="card" aria-label="System" style="gap:8px">
+    <div class="row"><h2>System</h2><span class="sub" id="sysSummary">Checking…</span></div>
+    <div id="sysFindings"></div>
+    <details class="sysd"><summary>Scheduled jobs</summary><div id="sysJobs"></div></details>
+    <details class="sysd"><summary>Recent changes</summary><div id="sysLog"></div></details>
   </section>
   <p class="sample" id="refreshNote">Refreshes around 6, 9, 12, 3 and 6.</p>
 </section>
@@ -691,7 +706,7 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
     const lg = STORE.logs, n = (a, ty) => lg.filter(l => l.area === a && l.type === ty).length;
     VA.counts = { logs: n('video-analysis','game'), reviews: n('video-analysis','review') };
     ARN.counts = { builds: n('arnfjall','build'), sales: n('arnfjall','sale') };
-    renderVA(); renderArn(); renderHbTasks(); renderAreas(); renderInbox2();
+    renderVA(); renderArn(); renderHbTasks(); renderAreas(); renderInbox2(); renderSystem();
   }
   async function setTask(id, patch){
     if (!dbRef) throw { code:'offline' };
@@ -757,6 +772,53 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
     const dr = e.target.closest('[data-inb-drop]'); if (dr) { dr.disabled = true; setTask(dr.dataset.inbDrop, { status:'dropped' }).then(() => toast('Dropped')).catch(() => { dr.disabled = false; }); }
   });
   $('#inboxList').addEventListener('change', e => { const sel = e.target.closest('[data-inb-area]'); if (sel && sel.value) fileInbox(sel.dataset.inbArea, sel.value); });
+
+  // ---- System panel: job health (ops/*), steward findings (steward/latest), recent changes ----
+  const JOBS = [
+    ['dakboard-sync','Wall sync',3,'hourly'], ['homebase-refresh','Homebase refresh',14,'5× a day'], ['daily-sort','Daily sort',30,'daily 6:26'],
+    ['roadmap-mirror','Roadmap status copy',30,'daily 6:47'], ['priorities-review','Monday review',8*24+2,'Mon 8:50'],
+    ['steward','Steward check-up',8*24+2,'Mon 8:29'], ['weekly-backup','Weekly backup',8*24+2,'Sun 9:46 pm']
+  ];
+  const SYS = { ops:new Map(), steward:null, gotOps:false };
+  function ago(iso){ const d = Date.parse(iso); if (isNaN(d)) return 'never'; const h = (Date.now()-d)/36e5; if (h < 1) return Math.max(1,Math.round(h*60))+' min ago'; if (h < 48) return Math.round(h)+' h ago'; return Math.round(h/24)+' days ago'; }
+  function renderSystem(){
+    if (!SYS.gotOps) return;
+    let late = 0, bad = 0;
+    $('#sysJobs').innerHTML = JOBS.map(([id,name,maxH,when]) => {
+      const o = SYS.ops.get(id); let cls = 'st-ok', lab = 'On time';
+      if (!o) { cls = 'st-late'; lab = 'No report yet'; }
+      else if (o.ok === false) { cls = 'st-bad'; lab = 'Failed'; bad++; }
+      else if ((Date.now() - Date.parse(o.lastRun)) / 36e5 > maxH) { cls = 'st-late'; lab = 'Late'; late++; }
+      return '<div class="sysrow"><p>'+esc(name)+'<small>'+esc(when)+(o ? ' · ran '+esc(ago(o.lastRun))+(o.model ? ' · '+esc(o.model) : '') : '')+(o && o.summary ? '<br>'+esc(o.summary) : '')+'</small></p><span class="chip '+cls+'">'+lab+'</span></div>';
+    }).join('');
+    const st = SYS.steward, pend = st && Array.isArray(st.findings) ? st.findings.filter(f => f.kind === 'recommend' && !f.status) : [];
+    $('#sysSummary').textContent = bad ? bad + ' job failed' : late ? late + ' job' + (late > 1 ? 's' : '') + ' late' : pend.length ? pend.length + ' to review' : 'All good';
+    let h = '';
+    if (st) {
+      h += '<p class="sub" style="font-size:13px;margin:0">Steward check-up · '+esc(ago(st.runAt))+(st.summary ? ' · '+esc(st.summary) : '')+'</p>';
+      h += pend.map(f => '<div class="finding"><p>'+esc(f.text)+'</p><div class="btns"><button class="btn solid" data-st-ok="'+esc(f.id)+'">Approve</button><button class="btn" data-st-no="'+esc(f.id)+'">Dismiss</button></div></div>').join('');
+      const fixed = (st.findings || []).filter(f => f.kind === 'fixed');
+      if (fixed.length) h += '<details class="sysd"><summary>Fixed automatically ('+fixed.length+')</summary>'+fixed.map(f => '<div class="sysrow"><p>'+esc(f.text)+'</p></div>').join('')+'</details>';
+    } else h = '<p class="sub" style="font-size:13px;margin:0">The steward\'s first check-up hasn\'t run yet.</p>';
+    $('#sysFindings').innerHTML = h;
+    const recent = [...STORE.tasks.values()].filter(t => t.updatedAt).sort((a,b) => String(b.updatedAt).localeCompare(String(a.updatedAt))).slice(0,12);
+    $('#sysLog').innerHTML = recent.map(t => '<div class="sysrow"><p>'+esc(t.title)+'<small>'+esc(t.status)+' · by '+esc(t.changedBy || '?')+' · '+esc(ago(t.updatedAt))+'</small></p></div>').join('');
+  }
+  async function decideFinding(id, ok){
+    const st = SYS.steward; if (!st || !dbRef) return;
+    const f = (st.findings || []).find(x => x.id === id); if (!f) return;
+    const now = new Date().toISOString();
+    const findings = st.findings.map(x => x.id === id ? Object.assign({}, x, { status: ok ? 'approved' : 'dismissed', decidedAt: now }) : x);
+    try {
+      if (ok) await dbRef.doc('tasks/hb-st-' + id).set({ title: String(f.text).slice(0,140), detail: 'Approved steward recommendation', area:'homebase', bucket:'Productivity', track:'main', phase:'', order:1, type:'should-do', status:'todo', effort:'M', due:'', nextStep:'', milestone:'', source:'steward', sourceRef:'', srcId:id, raw:'', createdAt: now, updatedAt: now, changedBy:'you', demoSafe:true });
+      await dbRef.doc('steward/latest').update({ findings });
+      toast(ok ? 'Approved · added to Homebase tasks' : 'Dismissed');
+    } catch (_) { toast('Couldn\'t save that. Try again.'); }
+  }
+  document.addEventListener('click', e => {
+    const a = e.target.closest('[data-st-ok]'); if (a) { a.disabled = true; decideFinding(a.dataset.stOk, true); return; }
+    const d = e.target.closest('[data-st-no]'); if (d) { d.disabled = true; decideFinding(d.dataset.stNo, false); }
+  });
 
   document.addEventListener('click', async e => {
     const b = e.target.closest('[data-task-done]'); if (!b) return;
@@ -1335,6 +1397,8 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
     db.collection('phases').onSnapshot(s => { STORE.phases = asMap(s); STORE.gotP = true; deriveFromStore(); }, onErr);
     db.collection('areas').onSnapshot(s => { STORE.areas = asMap(s); STORE.gotA = true; deriveFromStore(); }, onErr);
     db.collection('logs').onSnapshot(s => { STORE.logs = s.docs.map(d => d.data()); deriveFromStore(); }, () => {});
+    db.collection('ops').onSnapshot(s => { SYS.ops = new Map(s.docs.map(d => [d.id, d.data()])); SYS.gotOps = true; renderSystem(); }, () => {});
+    db.doc('steward/latest').onSnapshot(s => { SYS.steward = s.exists ? s.data() : null; renderSystem(); }, () => {});
     db.doc('feeds/substack').onSnapshot(s => renderSubstack(s.exists ? s.data() : null), () => {});
     dbRef = db;
     liveInit(db);

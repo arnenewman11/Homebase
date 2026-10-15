@@ -1,7 +1,7 @@
 # Homebase manifest
 
 Inventory of every part of the Homebase task system and what each part may touch.
-Last updated: 2026-10-15 (Phase 2: inbox, daily sort, intake skill, backups). Helpers read this file instead of searching.
+Last updated: 2026-10-15 (Phase 3: steward, job status reports, System panel, model policy). Helpers read this file instead of searching.
 
 ## Core
 
@@ -22,6 +22,9 @@ Last updated: 2026-10-15 (Phase 2: inbox, daily sort, intake skill, backups). He
 | `areas` | slug e.g. `card-sales` | name, bucket, prefix, sourceUrls, dbBacked, order, active |
 | `logs` | `<taskId>-<yyyymmddhhmm>` | area, taskId, type (game, review, build, sale), date, fields |
 | `garden` | area slug | leftOff, did, next, at |
+| `ops` | job slug | lastRun, ok, summary, model (written at the end of every job run) |
+| `steward` | `latest`, `history-YYYY-MM-DD` | runAt, summary, stats, findings[{id, kind fixed/recommend/info, text, status approved/dismissed}] |
+| `sort` | `state` | lastRun, processedEmails, processedEvents |
 | `feeds/*`, `state/*`, `plan/*`, `pending/*`, `quickDone/*`, `skips/*` | — | Unchanged page features |
 | `va_*`, `arn_*`, `hbtasks` | — | **Retired** (kept for rollback; no longer read) |
 
@@ -58,6 +61,7 @@ The link claude.ai/artifact/T6Q1xGbQoY5bwtia4LXNDY is the same AI Builder Roadma
 | Homebase refresh | 5:59, 8:59, 11:59, 14:59, 17:59 | Haiku | Weather, Gmail, web | Homebase `feeds/*`; Gmail labels; Todoist bill tasks |
 | Homebase daily sort | daily 6:26 | Haiku | Homebase inbox, Gmail label Homebase/To-do, personal calendar (read) | Homebase `tasks` (inbox items only), `sort/state` |
 | Roadmap status mirror | daily 6:47 | Haiku | Homebase `tasks` | Status fields in the 4 database roadmaps |
+| Homebase steward | Mon 8:29 | Sonnet | Homebase db, 4 database roadmaps (read) | Small task fixes, `steward/*` |
 | Weekly priorities review | Mon 8:50 | Sonnet | Dakboard sheet, Homebase db | Message to you |
 | Weekly finance tool review | Mon 7:51 | Sonnet | Drive, Gmail, Todoist (read) | "Finance Tool Review Log" doc |
 | Weekly Part-Time Opportunity Search | Mon 8:00 | Sonnet | Job boards, web | Project log |
@@ -97,3 +101,11 @@ The daily sort files confident items (`changedBy: router`) and leaves unsure one
 ## Decisions log
 
 - 2026-10-15: Todoist wall bridge dropped. The Dakboard stays sheet-based; check-offs happen in Homebase. Revisit if a touch add-on is bought.
+
+## Monitoring
+
+- Every Homebase job writes `ops/<job>` at the end of each run (lastRun, ok, summary, model).
+- Homebase's **System** panel (bottom of Today) shows each job as On time / Late / Failed, the steward's findings with Approve / Dismiss (approve = becomes a Homebase task), and the last 12 changes with who made them.
+- Jobs message you directly only when a run fails. The steward messages only for urgent problems.
+- Model policy: see `docs/model-policy.md`.
+- No Homebase job needs the Claude Code Remote connector.
