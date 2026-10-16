@@ -58,7 +58,7 @@ The link claude.ai/artifact/T6Q1xGbQoY5bwtia4LXNDY is the same AI Builder Roadma
 | Name | When (Denver) | Model | Reads | Writes |
 |---|---|---|---|---|
 | Living Room Dakboard sync | hourly at :35 | Haiku | Calendar, Homebase db, Dakboard sheet `priorities` | Dakboard sheet `events`, `tasks`, `meta` |
-| Homebase refresh | 5:59, 8:59, 11:59, 14:59, 17:59 | Haiku | Weather, Gmail, web | Homebase `feeds/*`; Gmail labels; Todoist bill tasks |
+| Homebase refresh | 5:59, 8:59, 11:59, 14:59, 17:59 | Haiku | Gmail, web search (no WebFetch: unattended runs can't get approval) | Homebase `feeds/*`; Gmail labels; `bill-*` tasks in Money & admin |
 | Homebase daily sort | daily 6:26 | Haiku | Homebase inbox, Gmail label Homebase/To-do, personal calendar (read) | Homebase `tasks` (inbox items only), `sort/state` |
 | Roadmap status mirror | daily 6:47 | Haiku | Homebase `tasks` | Status fields in the 4 database roadmaps |
 | Homebase steward | Mon 8:29 | Sonnet | Homebase db, 4 database roadmaps (read) | Small task fixes, `steward/*` |
