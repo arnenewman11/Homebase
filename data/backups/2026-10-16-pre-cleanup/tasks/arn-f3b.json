@@ -1,0 +1,29 @@
+{
+  "area": "arnfjall",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Natural light, water running, one shot in a styled setting.",
+  "due": "",
+  "effort": "M",
+  "milestone": "3–5 finished pieces and 4+ strong photos",
+  "mirror": [
+    {
+      "doc": "arn-f3b",
+      "roadmap": "arnfjall"
+    }
+  ],
+  "nextStep": "",
+  "order": 2,
+  "phase": "arn-f3",
+  "raw": "",
+  "source": "roadmap:arnfjall",
+  "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+  "srcId": "arn-f3b",
+  "status": "todo",
+  "title": "Photograph the pieces",
+  "track": "fountains",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

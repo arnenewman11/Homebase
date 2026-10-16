@@ -1,0 +1,23 @@
+{
+  "area": "homebase",
+  "bucket": "Productivity",
+  "changedBy": "intake",
+  "createdAt": "2026-10-15T20:17:00Z",
+  "demoSafe": true,
+  "detail": "New area; seasonal upkeep plus project list",
+  "due": "",
+  "effort": "M",
+  "milestone": "",
+  "nextStep": "List known repairs and wish-list projects",
+  "order": 6,
+  "phase": "",
+  "raw": "",
+  "source": "chat",
+  "sourceRef": "",
+  "srcId": "",
+  "status": "todo",
+  "title": "Build a roadmap: house maintenance and improvements",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T20:17:00Z"
+}

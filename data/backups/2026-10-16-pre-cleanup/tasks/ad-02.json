@@ -1,0 +1,23 @@
+{
+  "area": "advisor-path",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Rolling; coordinator replies in 8-10 business days.",
+  "due": "",
+  "effort": "S",
+  "milestone": "",
+  "nextStep": "",
+  "order": 2,
+  "phase": "ad-p1",
+  "raw": "",
+  "source": "roadmap:advisor-path",
+  "sourceRef": "https://claude.ai/code/artifact/aa57b3ce-ef7d-4392-a943-2baa8e08639b",
+  "srcId": "ad-02",
+  "status": "todo",
+  "title": "Submit the Innosphere Advisor and SAGE interest form",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

@@ -1,0 +1,23 @@
+{
+  "area": "weekday-programming",
+  "bucket": "Pickleball",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Times and class types, at most one sentence of justification",
+  "due": "",
+  "effort": "M",
+  "milestone": "Short slot-and-format email sent to boss",
+  "nextStep": "",
+  "order": 6,
+  "phase": "wp-p1",
+  "raw": "",
+  "source": "roadmap:weekday-programming",
+  "sourceRef": "https://claude.ai/code/artifact/71f130b3-7b15-468d-873f-5eb6ecc7c788",
+  "srcId": "wp-06",
+  "status": "todo",
+  "title": "Draft short email to boss with proposed slots",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

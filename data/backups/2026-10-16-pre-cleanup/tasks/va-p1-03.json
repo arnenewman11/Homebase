@@ -1,0 +1,29 @@
+{
+  "area": "video-analysis",
+  "bucket": "Pickleball",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Before opening any AI stats. Patterns, technique, decisions.",
+  "due": "",
+  "effort": "M",
+  "milestone": "4 games filmed and logged, AI vs. me",
+  "mirror": [
+    {
+      "doc": "va-p1-03",
+      "roadmap": "video-analysis"
+    }
+  ],
+  "nextStep": "",
+  "order": 3,
+  "phase": "va-p1",
+  "raw": "",
+  "source": "roadmap:video-analysis",
+  "sourceRef": "https://claude.ai/artifact/Bw2Jb85kbNKxwGsmQA68rg",
+  "srcId": "va-p1-03",
+  "status": "todo",
+  "title": "Write your own read of game 1",
+  "track": "service",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

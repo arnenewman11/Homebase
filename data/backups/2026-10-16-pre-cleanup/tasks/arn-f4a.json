@@ -1,0 +1,29 @@
+{
+  "area": "arnfjall",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "A local market, a consignment shop, or directly to people you know.",
+  "due": "",
+  "effort": "S",
+  "milestone": "First fountain sold",
+  "mirror": [
+    {
+      "doc": "arn-f4a",
+      "roadmap": "arnfjall"
+    }
+  ],
+  "nextStep": "",
+  "order": 1,
+  "phase": "arn-f4",
+  "raw": "",
+  "source": "roadmap:arnfjall",
+  "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+  "srcId": "arn-f4a",
+  "status": "todo",
+  "title": "Choose the first place to sell",
+  "track": "fountains",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

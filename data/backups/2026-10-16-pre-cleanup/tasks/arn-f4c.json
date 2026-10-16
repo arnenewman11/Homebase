@@ -1,0 +1,29 @@
+{
+  "area": "arnfjall",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "For example Jolly Goods on Tennyson, or I Heart Denver (artist keeps 70%).",
+  "due": "",
+  "effort": "M",
+  "milestone": "First fountain sold",
+  "mirror": [
+    {
+      "doc": "arn-f4c",
+      "roadmap": "arnfjall"
+    }
+  ],
+  "nextStep": "",
+  "order": 3,
+  "phase": "arn-f4",
+  "raw": "",
+  "source": "roadmap:arnfjall",
+  "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+  "srcId": "arn-f4c",
+  "status": "todo",
+  "title": "Show a piece to one local shop",
+  "track": "fountains",
+  "type": "want-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

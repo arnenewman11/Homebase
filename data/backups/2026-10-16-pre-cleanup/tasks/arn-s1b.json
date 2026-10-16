@@ -1,0 +1,29 @@
+{
+  "area": "arnfjall",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "",
+  "due": "",
+  "effort": "M",
+  "milestone": "Working in a woodshop, with lapidary help nearby",
+  "mirror": [
+    {
+      "doc": "arn-s1b",
+      "roadmap": "arnfjall"
+    }
+  ],
+  "nextStep": "",
+  "order": 2,
+  "phase": "arn-s1",
+  "raw": "",
+  "source": "roadmap:arnfjall",
+  "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+  "srcId": "arn-s1b",
+  "status": "todo",
+  "title": "Take the intro woodshop class",
+  "track": "skills",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

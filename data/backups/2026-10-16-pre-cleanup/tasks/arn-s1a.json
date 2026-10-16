@@ -1,0 +1,29 @@
+{
+  "area": "arnfjall",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "9110 W 44th Ave, Wheat Ridge. $60/mo; intro classes mostly free.",
+  "due": "",
+  "effort": "S",
+  "milestone": "Working in a woodshop, with lapidary help nearby",
+  "mirror": [
+    {
+      "doc": "arn-s1a",
+      "roadmap": "arnfjall"
+    }
+  ],
+  "nextStep": "",
+  "order": 1,
+  "phase": "arn-s1",
+  "raw": "",
+  "source": "roadmap:arnfjall",
+  "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+  "srcId": "arn-s1a",
+  "status": "todo",
+  "title": "Visit Clear Creek Makerspace",
+  "track": "skills",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

@@ -1,0 +1,23 @@
+{
+  "area": "coaching-marketing",
+  "bucket": "Pickleball",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Daytime availability plus interests",
+  "due": "",
+  "effort": "M",
+  "milestone": "Foundations in place: slots, coach page, cards, profile",
+  "nextStep": "",
+  "order": 1,
+  "phase": "cm-p1",
+  "raw": "",
+  "source": "roadmap:coaching-marketing",
+  "sourceRef": "https://claude.ai/code/artifact/693e7429-e042-413b-b021-6f51059d83f2",
+  "srcId": "cm-01",
+  "status": "todo",
+  "title": "Finish the student survey",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

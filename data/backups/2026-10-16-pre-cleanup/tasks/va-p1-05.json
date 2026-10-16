@@ -1,0 +1,29 @@
+{
+  "area": "video-analysis",
+  "bucket": "Pickleball",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "One month at $14.99. Same video, side by side.",
+  "due": "",
+  "effort": "S",
+  "milestone": "4 games filmed and logged, AI vs. me",
+  "mirror": [
+    {
+      "doc": "va-p1-05",
+      "roadmap": "video-analysis"
+    }
+  ],
+  "nextStep": "",
+  "order": 5,
+  "phase": "va-p1",
+  "raw": "",
+  "source": "roadmap:video-analysis",
+  "sourceRef": "https://claude.ai/artifact/Bw2Jb85kbNKxwGsmQA68rg",
+  "srcId": "va-p1-05",
+  "status": "todo",
+  "title": "Run game 1 through SwingVision",
+  "track": "service",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

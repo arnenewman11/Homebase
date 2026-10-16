@@ -1,0 +1,23 @@
+{
+  "area": "homebase",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T09:14:00Z",
+  "demoSafe": false,
+  "detail": "10 min · turns on Watch next",
+  "due": "",
+  "effort": "S",
+  "milestone": "",
+  "nextStep": "",
+  "order": 1,
+  "phase": "",
+  "raw": "",
+  "source": "homebase",
+  "sourceRef": "",
+  "srcId": "yt-channels",
+  "status": "todo",
+  "title": "List favorite YouTube channels per category",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

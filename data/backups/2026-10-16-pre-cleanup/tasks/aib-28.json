@@ -1,0 +1,23 @@
+{
+  "area": "ai-builder",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:50:00Z",
+  "demoSafe": true,
+  "detail": "",
+  "due": "",
+  "effort": "L",
+  "milestone": "Your first paying engagement.",
+  "nextStep": "",
+  "order": 28,
+  "phase": "ai-p5",
+  "raw": "",
+  "source": "roadmap:ai-builder",
+  "sourceRef": "https://claude.ai/code/artifact/d34e8225-bdac-47e3-a3ba-0da4cde2c44b",
+  "srcId": "ac-28",
+  "status": "todo",
+  "title": "Do outreach to land the first paying engagement",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:50:00Z"
+}

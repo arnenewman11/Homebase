@@ -1,0 +1,29 @@
+{
+  "area": "arnfjall",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "",
+  "due": "",
+  "effort": "M",
+  "milestone": "A test rig with pump, tub and LEDs running",
+  "mirror": [
+    {
+      "doc": "arn-s3c",
+      "roadmap": "arnfjall"
+    }
+  ],
+  "nextStep": "",
+  "order": 3,
+  "phase": "arn-s3",
+  "raw": "",
+  "source": "roadmap:arnfjall",
+  "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+  "srcId": "arn-s3c",
+  "status": "todo",
+  "title": "Wire a 12 V LED strip to share one plug with the pump",
+  "track": "skills",
+  "type": "want-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

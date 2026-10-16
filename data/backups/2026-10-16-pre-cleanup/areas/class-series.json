@@ -1,0 +1,11 @@
+{
+  "active": true,
+  "bucket": "Pickleball",
+  "createdAt": "2026-10-15T10:50:00Z",
+  "dbBacked": false,
+  "name": "Class series",
+  "order": 1.5,
+  "prefix": "cls",
+  "sourceUrls": [],
+  "updatedAt": "2026-10-15T10:50:00Z"
+}

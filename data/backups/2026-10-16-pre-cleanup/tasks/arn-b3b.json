@@ -1,0 +1,29 @@
+{
+  "area": "arnfjall",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "",
+  "due": "",
+  "effort": "M",
+  "milestone": "Can take a card and point people to your work online",
+  "mirror": [
+    {
+      "doc": "arn-b3b",
+      "roadmap": "arnfjall"
+    }
+  ],
+  "nextStep": "",
+  "order": 2,
+  "phase": "arn-b3",
+  "raw": "",
+  "source": "roadmap:arnfjall",
+  "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+  "srcId": "arn-b3b",
+  "status": "todo",
+  "title": "Pick one place to show your work online",
+  "track": "business",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

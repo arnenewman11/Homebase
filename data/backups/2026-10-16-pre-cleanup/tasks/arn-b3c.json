@@ -1,0 +1,29 @@
+{
+  "area": "arnfjall",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "A spreadsheet of money in and out is enough to start.",
+  "due": "",
+  "effort": "S",
+  "milestone": "Can take a card and point people to your work online",
+  "mirror": [
+    {
+      "doc": "arn-b3c",
+      "roadmap": "arnfjall"
+    }
+  ],
+  "nextStep": "",
+  "order": 3,
+  "phase": "arn-b3",
+  "raw": "",
+  "source": "roadmap:arnfjall",
+  "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+  "srcId": "arn-b3c",
+  "status": "todo",
+  "title": "Set up simple bookkeeping",
+  "track": "business",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

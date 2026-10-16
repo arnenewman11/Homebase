@@ -1,0 +1,8 @@
+{
+  "area": "ai-builder",
+  "label": "Phase 1 · Weeks 1-8 · Oct-Dec 2026",
+  "milestone": "You can ship a small change end to end and explain every file it touched.",
+  "name": "Foundations",
+  "order": 1,
+  "track": "main"
+}

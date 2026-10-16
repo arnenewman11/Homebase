@@ -1,0 +1,29 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Needed for recurring pickups.",
+  "due": "2026-10-15",
+  "effort": "S",
+  "milestone": "ZIP 80214 and shipping policy saved",
+  "mirror": [
+    {
+      "doc": "t03",
+      "roadmap": "ebay-lots"
+    }
+  ],
+  "nextStep": "",
+  "order": 3,
+  "phase": "eb-p1",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+  "srcId": "eb-03",
+  "status": "todo",
+  "title": "Create a USPS.com account",
+  "track": "ebay",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

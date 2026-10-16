@@ -1,0 +1,23 @@
+{
+  "area": "ai-consulting",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:50:00Z",
+  "demoSafe": true,
+  "detail": "45 min · for owner conversations in the 90-day test",
+  "due": "",
+  "effort": "M",
+  "milestone": "",
+  "nextStep": "",
+  "order": 1,
+  "phase": "",
+  "raw": "",
+  "source": "homebase",
+  "sourceRef": "",
+  "srcId": "acn-script",
+  "status": "todo",
+  "title": "Write the conversation script",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:50:00Z"
+}

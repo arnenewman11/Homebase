@@ -1,0 +1,29 @@
+{
+  "area": "video-analysis",
+  "bucket": "Pickleball",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "What you caught, what the AI caught, what it missed.",
+  "due": "",
+  "effort": "S",
+  "milestone": "4 games filmed and logged, AI vs. me",
+  "mirror": [
+    {
+      "doc": "va-p1-06",
+      "roadmap": "video-analysis"
+    }
+  ],
+  "nextStep": "",
+  "order": 6,
+  "phase": "va-p1",
+  "raw": "",
+  "source": "roadmap:video-analysis",
+  "sourceRef": "https://claude.ai/artifact/Bw2Jb85kbNKxwGsmQA68rg",
+  "srcId": "va-p1-06",
+  "status": "todo",
+  "title": "Log game 1 in the AI vs. me log",
+  "track": "service",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

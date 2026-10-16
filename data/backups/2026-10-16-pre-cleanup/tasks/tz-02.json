@@ -1,0 +1,23 @@
+{
+  "area": "transition-zone",
+  "bucket": "Pickleball",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "On-deck players collect and refill between turns",
+  "due": "",
+  "effort": "S",
+  "milestone": "Court ready for the 60-min class",
+  "nextStep": "",
+  "order": 2,
+  "phase": "tz-p1",
+  "raw": "",
+  "source": "roadmap:transition-zone",
+  "sourceRef": "https://claude.ai/code/artifact/3f3ab2a8-afc6-4820-a698-2f79359eed57",
+  "srcId": "tz-02",
+  "status": "todo",
+  "title": "Place pickup bucket at net post, players' side",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

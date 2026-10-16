@@ -1,0 +1,23 @@
+{
+  "area": "portfolio-twin",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Owner: Claude",
+  "due": "",
+  "effort": "M",
+  "milestone": "The twin mostly runs itself.",
+  "nextStep": "",
+  "order": 20,
+  "phase": "pt-p7",
+  "raw": "",
+  "source": "roadmap:portfolio-twin",
+  "sourceRef": "https://claude.ai/code/artifact/0e534609-3502-4013-9807-eb49386040dc",
+  "srcId": "pt-20",
+  "status": "todo",
+  "title": "Optional: add alerts when a number changes zone",
+  "track": "main",
+  "type": "want-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

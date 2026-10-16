@@ -1,0 +1,23 @@
+{
+  "area": "portfolio-twin",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Owner: Claude",
+  "due": "",
+  "effort": "M",
+  "milestone": "Monday's to-do list reflects your money situation without you thinking about it.",
+  "nextStep": "",
+  "order": 17,
+  "phase": "pt-p6",
+  "raw": "",
+  "source": "roadmap:portfolio-twin",
+  "sourceRef": "https://claude.ai/code/artifact/0e534609-3502-4013-9807-eb49386040dc",
+  "srcId": "pt-17",
+  "status": "todo",
+  "title": "Set up weekly review that sends 3-5 tasks to Todoist",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

@@ -1,0 +1,29 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Same specifics, pricing guardrails and Best Offer floor as the other lots.",
+  "due": "2026-11-14",
+  "effort": "L",
+  "milestone": "Football lots live and hits on their chosen channel.",
+  "mirror": [
+    {
+      "doc": "f3-2",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 38,
+  "phase": "cs-p11",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/e6cdf650-213b-455e-8319-341304435f67",
+  "srcId": "cs-38",
+  "status": "todo",
+  "title": "Draft the football lots on eBay",
+  "track": "football",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

@@ -1,0 +1,29 @@
+{
+  "area": "arnfjall",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "What sold, what people asked about, what took longest.",
+  "due": "",
+  "effort": "S",
+  "milestone": "First fountain sold",
+  "mirror": [
+    {
+      "doc": "arn-f4e",
+      "roadmap": "arnfjall"
+    }
+  ],
+  "nextStep": "",
+  "order": 5,
+  "phase": "arn-f4",
+  "raw": "",
+  "source": "roadmap:arnfjall",
+  "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+  "srcId": "arn-f4e",
+  "status": "todo",
+  "title": "Look back at both logs",
+  "track": "fountains",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

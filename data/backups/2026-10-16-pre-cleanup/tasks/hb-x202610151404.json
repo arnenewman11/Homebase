@@ -1,0 +1,23 @@
+{
+  "area": "homebase",
+  "bucket": "Productivity",
+  "changedBy": "intake",
+  "createdAt": "2026-10-15T20:17:00Z",
+  "demoSafe": true,
+  "detail": "Systematic pass on structure, content and action-item types",
+  "due": "",
+  "effort": "L",
+  "milestone": "",
+  "nextStep": "Decide the rules first: current phase only? max open per area? item types?",
+  "order": 8,
+  "phase": "",
+  "raw": "",
+  "source": "chat",
+  "sourceRef": "",
+  "srcId": "",
+  "status": "todo",
+  "title": "Clean up roadmap tasks and restructure roadmaps",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T20:17:00Z"
+}

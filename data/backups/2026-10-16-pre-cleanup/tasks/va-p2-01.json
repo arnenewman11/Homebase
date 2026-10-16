@@ -1,0 +1,29 @@
+{
+  "area": "video-analysis",
+  "bucket": "Pickleball",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "5 key rallies → 3 priorities → matching drills.",
+  "due": "",
+  "effort": "M",
+  "milestone": "3 free reviews delivered, each under about 60 minutes",
+  "mirror": [
+    {
+      "doc": "va-p2-01",
+      "roadmap": "video-analysis"
+    }
+  ],
+  "nextStep": "",
+  "order": 1,
+  "phase": "va-p2",
+  "raw": "",
+  "source": "roadmap:video-analysis",
+  "sourceRef": "https://claude.ai/artifact/Bw2Jb85kbNKxwGsmQA68rg",
+  "srcId": "va-p2-01",
+  "status": "todo",
+  "title": "Draft your review template",
+  "track": "service",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

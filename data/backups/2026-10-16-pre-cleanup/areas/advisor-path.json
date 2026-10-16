@@ -1,0 +1,13 @@
+{
+  "active": true,
+  "bucket": "Productivity",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "dbBacked": false,
+  "name": "Advisor path",
+  "order": 6,
+  "prefix": "ad",
+  "sourceUrls": [
+    "https://claude.ai/code/artifact/aa57b3ce-ef7d-4392-a943-2baa8e08639b"
+  ],
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

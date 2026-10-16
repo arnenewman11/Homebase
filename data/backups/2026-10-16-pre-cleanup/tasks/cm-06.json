@@ -1,0 +1,23 @@
+{
+  "area": "coaching-marketing",
+  "bucket": "Pickleball",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Wheat Ridge Rec Center Tue-Thu noon-2:30; Prospect Park weekday mornings",
+  "due": "",
+  "effort": "L",
+  "milestone": "Meet players, post classes, convert to privates",
+  "nextStep": "",
+  "order": 6,
+  "phase": "cm-p2",
+  "raw": "",
+  "source": "roadmap:coaching-marketing",
+  "sourceRef": "https://claude.ai/code/artifact/693e7429-e042-413b-b021-6f51059d83f2",
+  "srcId": "cm-06",
+  "status": "todo",
+  "title": "Play 2 daytime drop-ins and hand out 5 cards",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

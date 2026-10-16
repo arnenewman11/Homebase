@@ -1,0 +1,23 @@
+{
+  "area": "homebase",
+  "bucket": "Productivity",
+  "changedBy": "intake",
+  "createdAt": "2026-10-15T20:17:00Z",
+  "demoSafe": true,
+  "detail": "Based on your pickleball training book",
+  "due": "",
+  "effort": "L",
+  "milestone": "",
+  "nextStep": "Get the ebook version (PDF or EPUB), or photograph the workout chapters",
+  "order": 7,
+  "phase": "",
+  "raw": "",
+  "source": "chat",
+  "sourceRef": "",
+  "srcId": "",
+  "status": "todo",
+  "title": "Build a roadmap: pickleball strength, conditioning and injury prevention",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T20:17:00Z"
+}

@@ -1,0 +1,29 @@
+{
+  "area": "arnfjall",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Small angle changes change the sound a lot.",
+  "due": "",
+  "effort": "M",
+  "milestone": "Prototype 2 runs a full week, quiet, with little water loss",
+  "mirror": [
+    {
+      "doc": "arn-f2c",
+      "roadmap": "arnfjall"
+    }
+  ],
+  "nextStep": "",
+  "order": 3,
+  "phase": "arn-f2",
+  "raw": "",
+  "source": "roadmap:arnfjall",
+  "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+  "srcId": "arn-f2c",
+  "status": "todo",
+  "title": "Tune the spill lip and shelf spacing",
+  "track": "fountains",
+  "type": "want-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

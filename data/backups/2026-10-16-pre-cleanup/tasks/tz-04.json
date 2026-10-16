@@ -1,0 +1,23 @@
+{
+  "area": "transition-zone",
+  "bucket": "Pickleball",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "About 6-7 ft behind kitchen line, for four-across drills",
+  "due": "",
+  "effort": "S",
+  "milestone": "Court ready for the 60-min class",
+  "nextStep": "",
+  "order": 4,
+  "phase": "tz-p1",
+  "raw": "",
+  "source": "roadmap:transition-zone",
+  "sourceRef": "https://claude.ai/code/artifact/3f3ab2a8-afc6-4820-a698-2f79359eed57",
+  "srcId": "tz-04",
+  "status": "todo",
+  "title": "Place 4 halfway markers across the zone",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

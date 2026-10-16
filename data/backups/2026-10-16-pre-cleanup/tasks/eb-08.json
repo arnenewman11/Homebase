@@ -1,0 +1,36 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Use the lot tracker below. Sticky-note each stack, e.g. \"Nets A – pp 1, 2, 6, 7, 10\".",
+  "due": "2026-10-18",
+  "effort": "M",
+  "mergedFrom": [
+    "cs-22"
+  ],
+  "milestone": "All 75 stacks labeled",
+  "mirror": [
+    {
+      "doc": "t08",
+      "roadmap": "ebay-lots"
+    },
+    {
+      "doc": "e2-2",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 8,
+  "phase": "eb-p3",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+  "srcId": "eb-08",
+  "status": "todo",
+  "title": "Sort NBA pages into stacks",
+  "track": "ebay",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

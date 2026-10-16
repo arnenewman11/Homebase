@@ -1,0 +1,29 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "One cash-log entry per payout.",
+  "due": "",
+  "effort": "S",
+  "milestone": "Steady weekly rhythm, no post office trips",
+  "mirror": [
+    {
+      "doc": "e3-3",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 38,
+  "phase": "eb-p6",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/e6cdf650-213b-455e-8319-341304435f67",
+  "srcId": "cs-28",
+  "status": "todo",
+  "title": "Log eBay payouts",
+  "track": "ebay",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

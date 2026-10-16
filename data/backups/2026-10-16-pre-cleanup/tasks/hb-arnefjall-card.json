@@ -1,0 +1,23 @@
+{
+  "area": "homebase",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T09:14:00Z",
+  "demoSafe": false,
+  "detail": "10 min · paste the result into the Homebase chat",
+  "due": "",
+  "effort": "S",
+  "milestone": "",
+  "nextStep": "",
+  "order": 3,
+  "phase": "",
+  "raw": "",
+  "source": "homebase",
+  "sourceRef": "",
+  "srcId": "arnefjall-card",
+  "status": "todo",
+  "title": "Run the garden-card prompt in the Arnefjall thread",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

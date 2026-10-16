@@ -1,0 +1,23 @@
+{
+  "area": "homebase",
+  "bucket": "Productivity",
+  "changedBy": "intake",
+  "createdAt": "2026-10-15T20:17:00Z",
+  "demoSafe": true,
+  "detail": "New area; run it through add-to-Homebase when done",
+  "due": "",
+  "effort": "M",
+  "milestone": "",
+  "nextStep": "Start a thread: goals, budget range, photos of the yard",
+  "order": 5,
+  "phase": "",
+  "raw": "",
+  "source": "chat",
+  "sourceRef": "",
+  "srcId": "",
+  "status": "todo",
+  "title": "Build a roadmap: front yard redesign",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T20:17:00Z"
+}

@@ -306,9 +306,14 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
   </section>
 
   <section class="card" aria-label="Roadmaps" style="gap:4px">
-    <div class="row" style="margin-bottom:2px"><h2>Roadmaps</h2><span class="sub">next step in each</span></div>
-    <p class="sub" style="font-size:12px;margin:0">Video analysis and Arnfjäll have their own cards below.</p>
+    <div class="row" style="margin-bottom:2px"><h2>Roadmaps</h2><span class="sub">current phase only</span></div>
+    <p class="sub" style="font-size:12px;margin:0">Later phases open when this one is done. Video analysis and Arnfjäll have their own cards below.</p>
     <div id="roadmapAreas"><p class="sub" style="font-size:14px">Loading your roadmaps…</p></div>
+  </section>
+
+  <section class="card" aria-label="Routines" style="gap:4px">
+    <div class="row" style="margin-bottom:2px"><h2>Routines</h2><span class="sub">repeat, don't count</span></div>
+    <div id="routineList"><p class="sub" style="font-size:14px">Loading…</p></div>
   </section>
 
   <section aria-label="Learn &amp; Play" style="display:flex;flex-direction:column;gap:12px">
@@ -684,6 +689,37 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
   const STORE = { tasks:new Map(), phases:new Map(), areas:new Map(), logs:[], gotT:false, gotP:false, gotA:false };
   const DEDICATED = new Set(['video-analysis','arnfjall','homebase','money-admin']);
   const kindOf = t => t.type === 'want-do' ? 'want' : 'should';
+  // Visibility rules (Oct 16 cleanup): only the current phase of each area/track shows; paused areas and routine-tracked tasks are hidden.
+  const OPEN = new Set(['todo','doing']);
+  const areaLive = id => { const a = STORE.areas.get(id); return !a || (a.active !== false && !a.paused); };
+  const phaseLive = t => { if (!t.phase) return true; const p = STORE.phases.get(t.phase); return !p || !p.state || p.state === 'current'; };
+  const isVisible = t => OPEN.has(t.status) && !t.routine && areaLive(t.area) && phaseLive(t);
+  const pOrdOf = id => { const p = STORE.phases.get(id); return p && typeof p.order === 'number' ? p.order : -1; };
+  const byNext = (x,y) => (y.status === 'doing') - (x.status === 'doing') || String(x.due || '9999').localeCompare(String(y.due || '9999')) || pOrdOf(x.phase) - pOrdOf(y.phase) || (x.order||0) - (y.order||0);
+  let advancing = false;
+  async function advancePhases(){
+    if (advancing || !vaOwner || !dbRef || !STORE.gotT || !STORE.gotP) return;
+    const groups = new Map();
+    STORE.phases.forEach((p, id) => { if (!p.state || p.state === 'routine') return; const k = p.area + '|' + (p.track || 'main'); if (!groups.has(k)) groups.set(k, []); groups.get(k).push(Object.assign({ id }, p)); });
+    const tasks = [...STORE.tasks.values()];
+    const hasOpen = id => tasks.some(t => t.phase === id && t.status !== 'done' && t.status !== 'dropped' && !t.routine);
+    const writes = [];
+    groups.forEach(ps => {
+      ps.sort(byOrder);
+      const cur = ps.find(p => p.state === 'current');
+      if (cur && hasOpen(cur.id)) return;
+      if (cur) writes.push([cur.id, 'done']);
+      const nx = ps.find(p => p.state === 'later' && (!cur || (p.order ?? 0) > (cur.order ?? 0)));
+      if (nx) writes.push([nx.id, 'current']);
+    });
+    if (!writes.length) return;
+    advancing = true;
+    try {
+      for (const [id, state] of writes) await dbRef.doc('phases/' + id).update({ state, updatedAt: new Date().toISOString(), changedBy: 'you' });
+      const opened = writes.filter(w => w[1] === 'current').map(w => (STORE.phases.get(w[0]) || {}).name).filter(Boolean);
+      if (opened.length) toast('Next up: ' + opened.join(', '));
+    } catch (_) {} finally { advancing = false; }
+  }
   function deriveFromStore(){
     const pick = area => new Map([...STORE.tasks.values()].filter(t => t.area === area && t.status !== 'dropped').map(t => [t.id, Object.assign({}, t, { kind: kindOf(t) })]));
     const pickP = area => new Map([...STORE.phases.values()].filter(p => p.area === area).map(p => [p.id, Object.assign({ short: p.name }, p)]));
@@ -694,7 +730,8 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
     const lg = STORE.logs, n = (a, ty) => lg.filter(l => l.area === a && l.type === ty).length;
     VA.counts = { logs: n('video-analysis','game'), reviews: n('video-analysis','review') };
     ARN.counts = { builds: n('arnfjall','build'), sales: n('arnfjall','sale') };
-    renderVA(); renderArn(); renderHbTasks(); renderAreas(); renderInbox2(); renderSystem();
+    renderVA(); renderArn(); renderHbTasks(); renderAreas(); renderRoutines(); renderInbox2(); renderSystem();
+    advancePhases();
   }
   async function setTask(id, patch){
     if (!dbRef) throw { code:'offline' };
@@ -710,20 +747,60 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
   }
   function renderAreas(){
     const box = $('#roadmapAreas'); if (!box || !STORE.gotT || !STORE.gotA) return;
-    const pOrd = id => { const p = STORE.phases.get(id); return p && typeof p.order === 'number' ? p.order : 99; };
-    const areas = [...STORE.areas.entries()].map(([id,a]) => Object.assign({ id }, a)).filter(a => a.active !== false && !DEDICATED.has(a.id)).sort(byOrder);
-    box.innerHTML = areas.map(a => {
-      const ts = [...STORE.tasks.values()].filter(t => t.area === a.id && t.status !== 'dropped');
+    const all = [...STORE.areas.entries()].map(([id,a]) => Object.assign({ id }, a)).filter(a => a.active !== false && !DEDICATED.has(a.id)).sort(byOrder);
+    const live = all.filter(a => !a.paused), paused = all.filter(a => a.paused);
+    box.innerHTML = live.map(a => {
+      const ts = [...STORE.tasks.values()].filter(t => t.area === a.id && t.status !== 'dropped' && !t.routine);
       const d = ts.filter(t => t.status === 'done').length, pct = ts.length ? Math.round(d / ts.length * 100) : 0;
-      const open = ts.filter(t => t.status !== 'done').sort((x,y) => (y.status === 'doing') - (x.status === 'doing') || pOrd(x.phase) - pOrd(y.phase) || (x.order||0) - (y.order||0));
-      const nx = open[0], ph = nx && STORE.phases.get(nx.phase), src = (a.sourceUrls || [])[0];
+      const now = ts.filter(isVisible).sort(byNext), later = ts.filter(t => t.status !== 'done' && !isVisible(t)).length;
+      const src = (a.sourceUrls || [])[0];
+      const row = t => { const ph = STORE.phases.get(t.phase); return '<div class="item" style="border-bottom:0;padding:2px 0 0"><p>'+esc(t.title)+'<small>'+esc((ph ? ph.name + ' · ' : '') + (EFFORT[t.effort] || '') + (t.due ? ' · due ' + t.due : ''))+'</small></p>'+(vaOwner ? '<button class="btn solid" data-task-done="'+esc(t.id)+'">Done</button>' : '')+'</div>'; };
+      const more = [now.length > 3 ? (now.length - 3) + ' more now' : '', later ? later + ' later' : ''].filter(Boolean).join(' · ');
       return '<div class="area-row"><div class="row"><strong>'+esc(a.name)+'</strong><span class="sub num">'+d+' of '+ts.length+' done</span></div>'
         + '<div class="meter" aria-hidden="true"><div class="track"><div class="fill" style="width:'+pct+'%"></div></div></div>'
-        + (nx ? '<div class="item" style="border-bottom:0;padding:2px 0 0"><p>'+esc(nx.title)+'<small>'+esc((ph ? ph.name + ' · ' : '') + (EFFORT[nx.effort] || ''))+'</small></p>'+(vaOwner ? '<button class="btn solid" data-task-done="'+esc(nx.id)+'">Done</button>' : '')+'</div>' : '<p class="sub" style="font-size:13px">Every step is done.</p>')
+        + (now.length ? now.slice(0,3).map(row).join('') : '<p class="sub" style="font-size:13px">'+(later ? 'Nothing open in this phase.' : 'Every step is done.')+'</p>')
+        + '<div class="row" style="gap:10px;justify-content:flex-start;flex-wrap:wrap">'
+        + (more ? '<span class="sub" style="font-size:12px">'+esc(more)+'</span>' : '')
         + (src ? '<a class="linkbtn" href="'+esc(src)+'">Open the plan</a>' : '')
-        + '</div>';
-    }).join('');
+        + (vaOwner ? '<button class="linkbtn" style="background:none;border:0;padding:0;cursor:pointer" data-area-pause="'+esc(a.id)+'" data-to="1">Pause</button>' : '')
+        + '</div></div>';
+    }).join('')
+    + (paused.length ? '<div class="area-row"><div class="row"><strong>Paused</strong><span class="sub">hidden from Today and the wall</span></div>'
+      + paused.map(a => '<div class="item" style="border-bottom:0;padding:2px 0 0"><p>'+esc(a.name)+'</p>'+(vaOwner ? '<button class="btn" data-area-pause="'+esc(a.id)+'" data-to="0">Resume</button>' : '')+'</div>').join('') + '</div>' : '');
   }
+  document.addEventListener('click', async e => {
+    const b = e.target.closest('[data-area-pause]'); if (!b || !dbRef) return;
+    b.disabled = true; const id = b.dataset.areaPause, to = b.dataset.to === '1', a = STORE.areas.get(id);
+    try { await dbRef.doc('areas/' + id).update({ paused: to, updatedAt: new Date().toISOString(), changedBy: 'you' }); toast((a ? a.name : 'Area') + (to ? ' paused' : ' is back')); }
+    catch (_) { b.disabled = false; toast('Couldn\'t save that. Try again.'); }
+  });
+  // ---- routines: repeating habits and checklists (not counted as open tasks) ----
+  const ROUT = { list:[], got:false };
+  function routineDue(r){
+    if (!r.lastDone) return true;
+    const days = (Date.now() - new Date(r.lastDone + 'T12:00:00').getTime()) / 864e5;
+    if (/mon & thu|twice/i.test(r.cadence)) return days >= 3;
+    if (/weekly/i.test(r.cadence)) return days >= 7;
+    return false;
+  }
+  function renderRoutines(){
+    const box = $('#routineList'); if (!box || !ROUT.got) return;
+    const rs = ROUT.list.filter(r => r.active !== false && areaLive(r.area)).sort(byOrder);
+    const fmt = s => s ? new Date(s + 'T12:00:00').toLocaleDateString([], { month:'short', day:'numeric' }) : '';
+    box.innerHTML = rs.length ? rs.map(r => {
+      const a = STORE.areas.get(r.area), due = routineDue(r) && /weekly|mon & thu|twice/i.test(r.cadence);
+      const meta = [r.cadence, a ? a.name : '', r.lastDone ? 'last ' + fmt(r.lastDone) : ''].filter(Boolean).join(' · ');
+      const list = (r.items || []).length ? '<details style="margin-top:2px"><summary class="sub" style="font-size:12px;cursor:pointer">Checklist ('+r.items.length+')</summary><ul style="margin:4px 0 0 18px;padding:0;font-size:13px">'+r.items.map(i => '<li>'+esc(i)+'</li>').join('')+'</ul></details>' : '';
+      return '<div class="item" style="padding:6px 0"><div style="flex:1;min-width:0"><p style="margin:0">'+esc(r.title)+'<small>'+esc(meta)+(due ? ' · <b>due</b>' : '')+'</small></p>'+list+'</div>'
+        + (vaOwner ? '<button class="btn'+(due ? ' solid' : '')+'" data-rt-done="'+esc(r.id)+'">Did it</button>' : '') + '</div>';
+    }).join('') : '<p class="sub" style="font-size:13px">No routines yet.</p>';
+  }
+  document.addEventListener('click', async e => {
+    const b = e.target.closest('[data-rt-done]'); if (!b || !dbRef) return;
+    b.disabled = true;
+    try { await dbRef.doc('routines/' + b.dataset.rtDone).update({ lastDone: localYmd(new Date()), updatedAt: new Date().toISOString(), changedBy: 'you' }); toast('Logged'); }
+    catch (_) { b.disabled = false; toast('Couldn\'t save that. Try again.'); }
+  });
   // ---- inbox: quick-add lands here with status "inbox"; the morning sort files it ----
   function renderInbox2(){
     const box = $('#inboxList'); if (!box || !STORE.gotT) return;
@@ -1046,11 +1123,24 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
   };
   let PICKS = { focus:new Set(), quick:new Set(), garden:new Set() };
   let calInfo = { loaded:false, count:null };
+  const BUCKET_SLOT = { 'Pickleball':'focus', 'Productivity':'quick', 'Learn & Play':'garden' };
+  function storeMenu(){
+    const m = { focus:[], quick:[], garden:[] };
+    const areas = [...STORE.areas.entries()].map(([id,a]) => Object.assign({ id }, a)).filter(a => a.active !== false && !a.paused).sort(byOrder);
+    areas.forEach(a => {
+      const b = BUCKET_SLOT[a.bucket]; if (!b) return;
+      const cap = (a.id === 'homebase' || a.id === 'money-admin') ? 6 : 2;
+      [...STORE.tasks.values()].filter(t => t.area === a.id && isVisible(t)).sort(byNext).slice(0, cap)
+        .forEach(t => m[b].push(['t-' + t.id, t.title, a.name + ' · ' + (EFFORT[t.effort] || '')]));
+    });
+    return m;
+  }
   function menuOptions(){
-    const m = { focus:[...MENU_STATIC.focus], quick:[...MENU_STATIC.quick], garden:[...MENU_STATIC.garden] };
-    [...HBT.values()].filter(t => t.status !== 'done').sort((a,b) => (a.order||0) - (b.order||0)).reverse().forEach(t => m.quick.unshift(['hb-' + t.id, t.title, (t.area || 'Task') + (t.meta ? ' · ' + t.meta : '')]));
+    const fromStore = STORE.gotT && STORE.gotA && STORE.gotP;
+    const m = fromStore ? storeMenu() : { focus:[...MENU_STATIC.focus], quick:[...MENU_STATIC.quick], garden:[...MENU_STATIC.garden] };
+    if (fromStore) m.garden.push(...MENU_STATIC.garden.filter(o => o[0] === 'g-dg'));
     (FEED.inbox && FEED.inbox.items || []).filter(it => !QUICK_DONE.has(String(it.id))).slice(0,3).reverse().forEach(it => m.quick.unshift(['in-' + it.id, it.title, (it.kind || 'Inbox') + (it.due ? ' · due ' + it.due : '')]));
-    const an = typeof arnNext === 'function' ? arnNext('fountains') : null;
+    const an = !fromStore && typeof arnNext === 'function' ? arnNext('fountains') : null;
     if (an) m.garden = m.garden.map(o => o[0] === 'g-arn' ? ['g-arn', an.title, 'Arnfjäll · ' + (EFFORT[an.effort] || '')] : o);
     const BUCKET = { s:'focus', w:'garden', x:'quick' };
     (dayExtra.snoozed || []).forEach(sn => {
@@ -1058,7 +1148,7 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
       m[b] = m[b].filter(o => skipKey(o[1]) !== k);
       m[b].unshift(['carry-' + k, sn.title, 'Skipped today' + (sn.meta ? ' · ' + sn.meta : '')]);
     });
-    const open = [...VA.tasks.values()].filter(t => t.status !== 'done' && !t.pendingWriteBack);
+    const open = fromStore ? [] : [...VA.tasks.values()].filter(t => t.status !== 'done' && !t.pendingWriteBack);
     ['service','skills'].forEach(track => {
       const phases = [...VA.phases.values()].filter(p => p.track === track).sort(byOrder);
       const cur = phases.find(p => open.some(t => t.phase === p.id));
@@ -1194,7 +1284,7 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
     if (slot === 's') {
       (p.focus || []).forEach(o => add('Pickleball', o.title, o.meta));
       m.focus.forEach(o => add(areaOf(o[2]), o[1], o[2]));
-      [...VA.tasks.values()].filter(t => t.status !== 'done').sort(byOrder).slice(0,4).forEach(t => add('Video analysis', t.title, 'Video analysis · ' + (EFFORT[t.effort] || '')));
+      [...VA.tasks.values()].filter(t => isVisible(t)).sort(byNext).slice(0,4).forEach(t => add('Video analysis', t.title, 'Video analysis · ' + (EFFORT[t.effort] || '')));
       add(Q_DEFAULT.s.area, Q_DEFAULT.s.title, Q_DEFAULT.s.meta);
     } else if (slot === 'w') {
       (p.garden || []).forEach(o => add('Learn & Play', o.title, o.meta));
@@ -1385,6 +1475,7 @@ h2{font-size:20px;font-weight:700;letter-spacing:-.01em}
     db.collection('phases').onSnapshot(s => { STORE.phases = asMap(s); STORE.gotP = true; deriveFromStore(); }, onErr);
     db.collection('areas').onSnapshot(s => { STORE.areas = asMap(s); STORE.gotA = true; deriveFromStore(); }, onErr);
     db.collection('logs').onSnapshot(s => { STORE.logs = s.docs.map(d => d.data()); deriveFromStore(); }, () => {});
+    db.collection('routines').onSnapshot(s => { ROUT.list = s.docs.map(d => Object.assign({ id:d.id }, d.data())); ROUT.got = true; renderRoutines(); }, () => {});
     db.collection('ops').onSnapshot(s => { SYS.ops = new Map(s.docs.map(d => [d.id, d.data()])); SYS.gotOps = true; renderSystem(); }, () => {});
     db.doc('steward/latest').onSnapshot(s => { SYS.steward = s.exists ? s.data() : null; renderSystem(); }, () => {});
     db.doc('feeds/substack').onSnapshot(s => renderSubstack(s.exists ? s.data() : null), () => {});

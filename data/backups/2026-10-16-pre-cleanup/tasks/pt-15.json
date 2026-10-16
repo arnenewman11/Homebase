@@ -1,0 +1,23 @@
+{
+  "area": "portfolio-twin",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Owner: you + Claude",
+  "due": "",
+  "effort": "M",
+  "milestone": "A monthly update takes under 30 minutes.",
+  "nextStep": "",
+  "order": 15,
+  "phase": "pt-p5",
+  "raw": "",
+  "source": "roadmap:portfolio-twin",
+  "sourceRef": "https://claude.ai/code/artifact/0e534609-3502-4013-9807-eb49386040dc",
+  "srcId": "pt-15",
+  "status": "todo",
+  "title": "Do the first monthly update together",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

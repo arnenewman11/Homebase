@@ -1,0 +1,8 @@
+{
+  "area": "ai-builder",
+  "label": "Phase 2 · Weeks 9-20 · Dec 2026-Mar 2027",
+  "milestone": "The agent runs on its own and you can trace every tool call it made.",
+  "name": "Build agents",
+  "order": 2,
+  "track": "main"
+}

@@ -1,0 +1,29 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Corrects every listing's shipping weight.",
+  "due": "2026-10-18",
+  "effort": "S",
+  "milestone": "Supplies on hand",
+  "mirror": [
+    {
+      "doc": "t07",
+      "roadmap": "ebay-lots"
+    }
+  ],
+  "nextStep": "",
+  "order": 7,
+  "phase": "eb-p2",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+  "srcId": "eb-07",
+  "status": "todo",
+  "title": "Weigh 3–4 packed lots and send Claude the weights",
+  "track": "ebay",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

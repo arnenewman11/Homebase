@@ -1,0 +1,29 @@
+{
+  "area": "video-analysis",
+  "bucket": "Pickleball",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Keep the request short.",
+  "due": "",
+  "effort": "S",
+  "milestone": "First paid review delivered",
+  "mirror": [
+    {
+      "doc": "va-p3-03",
+      "roadmap": "video-analysis"
+    }
+  ],
+  "nextStep": "",
+  "order": 3,
+  "phase": "va-p3",
+  "raw": "",
+  "source": "roadmap:video-analysis",
+  "sourceRef": "https://claude.ai/artifact/Bw2Jb85kbNKxwGsmQA68rg",
+  "srcId": "va-p3-03",
+  "status": "todo",
+  "title": "Ask about offering it at 3rd Shot",
+  "track": "service",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

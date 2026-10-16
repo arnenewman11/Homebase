@@ -1,0 +1,23 @@
+{
+  "area": "money-admin",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T09:14:00Z",
+  "demoSafe": false,
+  "detail": "20 min · unlocks the Finances screen",
+  "due": "",
+  "effort": "S",
+  "milestone": "",
+  "nextStep": "",
+  "order": 5,
+  "phase": "",
+  "raw": "",
+  "source": "homebase",
+  "sourceRef": "",
+  "srcId": "finance-thread",
+  "status": "todo",
+  "title": "Start the finance accounts thread",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

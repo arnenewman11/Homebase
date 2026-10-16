@@ -1,0 +1,23 @@
+{
+  "area": "coaching-marketing",
+  "bucket": "Pickleball",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "",
+  "due": "",
+  "effort": "S",
+  "milestone": "Meet players, post classes, convert to privates",
+  "nextStep": "",
+  "order": 9,
+  "phase": "cm-p2",
+  "raw": "",
+  "source": "roadmap:coaching-marketing",
+  "sourceRef": "https://claude.ai/code/artifact/693e7429-e042-413b-b021-6f51059d83f2",
+  "srcId": "cm-09",
+  "status": "todo",
+  "title": "Ask 1 student for a review",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

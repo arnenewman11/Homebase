@@ -1,0 +1,29 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "COMC (needs $50 processing minimum per submission), CardMaster consignment, or eBay.",
+  "due": "2026-11-10",
+  "effort": "S",
+  "milestone": "Football lots live and hits on their chosen channel.",
+  "mirror": [
+    {
+      "doc": "f3-1",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 37,
+  "phase": "cs-p11",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/e6cdf650-213b-455e-8319-341304435f67",
+  "srcId": "cs-37",
+  "status": "todo",
+  "title": "Choose a channel for the hits",
+  "track": "football",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

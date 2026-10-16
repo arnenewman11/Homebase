@@ -1,0 +1,36 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Compare against the stacks.",
+  "due": "2026-10-18",
+  "effort": "M",
+  "mergedFrom": [
+    "cs-19"
+  ],
+  "milestone": "75 drafts ready to list",
+  "mirror": [
+    {
+      "doc": "t15",
+      "roadmap": "ebay-lots"
+    },
+    {
+      "doc": "e1-2",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 15,
+  "phase": "eb-p4",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+  "srcId": "eb-15",
+  "status": "todo",
+  "title": "Review the summary and spot-check 4–5 drafts",
+  "track": "ebay",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

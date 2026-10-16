@@ -1,0 +1,30 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "29-card group plus the remaining 78, with six repriced controls for the trial.",
+  "doneAt": "2026-10-15T10:30:00Z",
+  "due": "",
+  "effort": "L",
+  "milestone": "Trial hammers and repriced controls judged against the success test.",
+  "mirror": [
+    {
+      "doc": "c1-2",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 2,
+  "phase": "cs-p1",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/e6cdf650-213b-455e-8319-341304435f67",
+  "srcId": "cs-02",
+  "status": "done",
+  "title": "Reprice the live cards to comp-based asks",
+  "track": "comc",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

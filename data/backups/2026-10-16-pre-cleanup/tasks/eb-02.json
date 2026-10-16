@@ -1,0 +1,29 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Calculated, buyer pays, USPS Ground Advantage only, 3 business days handling, domestic, no combined shipping discount.",
+  "due": "2026-10-15",
+  "effort": "S",
+  "milestone": "ZIP 80214 and shipping policy saved",
+  "mirror": [
+    {
+      "doc": "t02",
+      "roadmap": "ebay-lots"
+    }
+  ],
+  "nextStep": "",
+  "order": 2,
+  "phase": "eb-p1",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+  "srcId": "eb-02",
+  "status": "todo",
+  "title": "Create shipping policy \"Card lots – Ground Advantage\"",
+  "track": "ebay",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

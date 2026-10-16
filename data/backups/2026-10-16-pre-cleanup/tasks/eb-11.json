@@ -1,0 +1,37 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Category 261329; sport, team, season, manufacturer, card count.",
+  "doneAt": "2026-10-15T10:30:00Z",
+  "due": "2026-10-17",
+  "effort": "L",
+  "mergedFrom": [
+    "cs-18"
+  ],
+  "milestone": "75 drafts ready to list",
+  "mirror": [
+    {
+      "doc": "t11",
+      "roadmap": "ebay-lots"
+    },
+    {
+      "doc": "e1-1",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 11,
+  "phase": "eb-p4",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+  "srcId": "eb-11",
+  "status": "done",
+  "title": "Switch drafts to the Lots category and fill lot specifics",
+  "track": "ebay",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

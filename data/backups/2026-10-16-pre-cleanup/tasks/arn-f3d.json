@@ -1,0 +1,29 @@
+{
+  "area": "arnfjall",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "A real home trial before strangers see it.",
+  "due": "",
+  "effort": "S",
+  "milestone": "3–5 finished pieces and 4+ strong photos",
+  "mirror": [
+    {
+      "doc": "arn-f3d",
+      "roadmap": "arnfjall"
+    }
+  ],
+  "nextStep": "",
+  "order": 4,
+  "phase": "arn-f3",
+  "raw": "",
+  "source": "roadmap:arnfjall",
+  "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+  "srcId": "arn-f3d",
+  "status": "todo",
+  "title": "Lend one to a friend for two weeks",
+  "track": "fountains",
+  "type": "want-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

@@ -1,0 +1,29 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "The common 8.5×12 is too narrow for a binder page.",
+  "due": "2026-10-15",
+  "effort": "S",
+  "milestone": "Supplies on hand",
+  "mirror": [
+    {
+      "doc": "t04",
+      "roadmap": "ebay-lots"
+    }
+  ],
+  "nextStep": "",
+  "order": 4,
+  "phase": "eb-p2",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+  "srcId": "eb-04",
+  "status": "todo",
+  "title": "Order 100 #4 bubble mailers (9.5×14.5)",
+  "track": "ebay",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

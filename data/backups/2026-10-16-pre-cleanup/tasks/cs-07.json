@@ -1,0 +1,29 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "From Ben Rice Purple /250, Willits auto, Wemby ROY Contenders, Flagg Holiday, the Kim/Mayo/Meidroth/Harvey/Wrobleski/Simpson autos, Joe Carter, Mahomes Impeccable and the small ones.",
+  "due": "2026-11-10",
+  "effort": "M",
+  "milestone": "Rollout batch submitted or a fixed-price plan confirmed.",
+  "mirror": [
+    {
+      "doc": "c2-1",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 7,
+  "phase": "cs-p2",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/e6cdf650-213b-455e-8319-341304435f67",
+  "srcId": "cs-07",
+  "status": "todo",
+  "title": "Pick the rollout list",
+  "track": "comc",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

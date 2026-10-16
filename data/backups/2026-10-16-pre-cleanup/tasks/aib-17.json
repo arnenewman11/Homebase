@@ -1,0 +1,23 @@
+{
+  "area": "ai-builder",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:50:00Z",
+  "demoSafe": true,
+  "detail": "",
+  "due": "",
+  "effort": "M",
+  "milestone": "A pilot with before/after numbers the client will vouch for.",
+  "nextStep": "",
+  "order": 17,
+  "phase": "ai-p4",
+  "raw": "",
+  "source": "roadmap:ai-builder",
+  "sourceRef": "https://claude.ai/code/artifact/d34e8225-bdac-47e3-a3ba-0da4cde2c44b",
+  "srcId": "ac-17",
+  "status": "todo",
+  "title": "Write a discovery script",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:50:00Z"
+}

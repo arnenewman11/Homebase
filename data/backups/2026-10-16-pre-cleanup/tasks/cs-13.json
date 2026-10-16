@@ -1,0 +1,29 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Grade only if it clears $150–200 expected gain; show the scenarios when the spread is wide.",
+  "due": "",
+  "effort": "M",
+  "milestone": "Every new card has a comp-based ask or a hold/grade call.",
+  "mirror": [
+    {
+      "doc": "c3-2",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 13,
+  "phase": "cs-p3",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/e6cdf650-213b-455e-8319-341304435f67",
+  "srcId": "cs-13",
+  "status": "todo",
+  "title": "Flag hold and grade candidates for your call",
+  "track": "comc",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

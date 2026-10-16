@@ -1,0 +1,29 @@
+{
+  "area": "arnfjall",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "",
+  "due": "",
+  "effort": "S",
+  "milestone": "Can take a card and point people to your work online",
+  "mirror": [
+    {
+      "doc": "arn-b3a",
+      "roadmap": "arnfjall"
+    }
+  ],
+  "nextStep": "",
+  "order": 1,
+  "phase": "arn-b3",
+  "raw": "",
+  "source": "roadmap:arnfjall",
+  "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+  "srcId": "arn-b3a",
+  "status": "todo",
+  "title": "Set up a way to take card payments",
+  "track": "business",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

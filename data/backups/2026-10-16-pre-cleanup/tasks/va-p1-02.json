@@ -1,0 +1,29 @@
+{
+  "area": "video-analysis",
+  "bucket": "Pickleball",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Camera at least 4 ft high with all four court corners in frame.",
+  "due": "",
+  "effort": "S",
+  "milestone": "4 games filmed and logged, AI vs. me",
+  "mirror": [
+    {
+      "doc": "va-p1-02",
+      "roadmap": "video-analysis"
+    }
+  ],
+  "nextStep": "",
+  "order": 2,
+  "phase": "va-p1",
+  "raw": "",
+  "source": "roadmap:video-analysis",
+  "sourceRef": "https://claude.ai/artifact/Bw2Jb85kbNKxwGsmQA68rg",
+  "srcId": "va-p1-02",
+  "status": "todo",
+  "title": "Film game 1",
+  "track": "service",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

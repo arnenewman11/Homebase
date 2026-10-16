@@ -1,0 +1,29 @@
+{
+  "area": "video-analysis",
+  "bucket": "Pickleball",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Requires a current certification from a recognized organization.",
+  "due": "",
+  "effort": "S",
+  "milestone": "Steady demand, defined by you",
+  "mirror": [
+    {
+      "doc": "va-p4-01",
+      "roadmap": "video-analysis"
+    }
+  ],
+  "nextStep": "",
+  "order": 1,
+  "phase": "va-p4",
+  "raw": "",
+  "source": "roadmap:video-analysis",
+  "sourceRef": "https://claude.ai/artifact/Bw2Jb85kbNKxwGsmQA68rg",
+  "srcId": "va-p4-01",
+  "status": "todo",
+  "title": "Confirm RPO qualifies for DUPR Coach",
+  "track": "service",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

@@ -1,0 +1,30 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Flagg X-Fractor, Crews Gold auto /50, De Paula, Donald, Sullivan, Loveland, Knueppel, Wemby copy 1. Store-credit payout.",
+  "doneAt": "2026-10-15T10:30:00Z",
+  "due": "",
+  "effort": "M",
+  "milestone": "Trial hammers and repriced controls judged against the success test.",
+  "mirror": [
+    {
+      "doc": "c1-1",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 1,
+  "phase": "cs-p1",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/e6cdf650-213b-455e-8319-341304435f67",
+  "srcId": "cs-01",
+  "status": "done",
+  "title": "Submit the 8-card auction trial",
+  "track": "comc",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

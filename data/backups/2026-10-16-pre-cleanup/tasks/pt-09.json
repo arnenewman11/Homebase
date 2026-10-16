@@ -1,0 +1,23 @@
+{
+  "area": "portfolio-twin",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Owner: you",
+  "due": "",
+  "effort": "M",
+  "milestone": "You know your runway in the base and bad-month cases.",
+  "nextStep": "",
+  "order": 9,
+  "phase": "pt-p3",
+  "raw": "",
+  "source": "roadmap:portfolio-twin",
+  "sourceRef": "https://claude.ai/code/artifact/0e534609-3502-4013-9807-eb49386040dc",
+  "srcId": "pt-09",
+  "status": "todo",
+  "title": "Review whether the scenarios match how life feels",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

@@ -1,0 +1,23 @@
+{
+  "area": "homebase",
+  "bucket": "Productivity",
+  "changedBy": "you",
+  "createdAt": "2026-10-15T09:14:00Z",
+  "demoSafe": false,
+  "detail": "Rewards system cut Oct 15",
+  "due": "",
+  "effort": "S",
+  "milestone": "",
+  "nextStep": "",
+  "order": 2,
+  "phase": "",
+  "raw": "",
+  "source": "homebase",
+  "sourceRef": "",
+  "srcId": "rewards",
+  "status": "dropped",
+  "title": "Pick rewards: Level 8, Major reward, TechDisc target",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T20:21:00Z"
+}

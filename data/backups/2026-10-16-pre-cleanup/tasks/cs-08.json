@@ -1,0 +1,29 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Sell raw ~$230–310, auction, or grade for a long-shot PSA 10. Scenarios are in the Card Decision Log.",
+  "due": "2026-11-11",
+  "effort": "S",
+  "milestone": "Rollout batch submitted or a fixed-price plan confirmed.",
+  "mirror": [
+    {
+      "doc": "c2-2",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 8,
+  "phase": "cs-p2",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/e6cdf650-213b-455e-8319-341304435f67",
+  "srcId": "cs-08",
+  "status": "todo",
+  "title": "Decide on Ben Rice Purple /250",
+  "track": "comc",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

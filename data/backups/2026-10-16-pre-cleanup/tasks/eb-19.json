@@ -1,0 +1,36 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "USPS.com → Package Pickup → recurring.",
+  "due": "2026-10-19",
+  "effort": "S",
+  "mergedFrom": [
+    "cs-26"
+  ],
+  "milestone": "Steady weekly rhythm, no post office trips",
+  "mirror": [
+    {
+      "doc": "t19",
+      "roadmap": "ebay-lots"
+    },
+    {
+      "doc": "e3-1",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 19,
+  "phase": "eb-p6",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+  "srcId": "eb-19",
+  "status": "todo",
+  "title": "Set up recurring USPS pickup for Tue and Fri",
+  "track": "ebay",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

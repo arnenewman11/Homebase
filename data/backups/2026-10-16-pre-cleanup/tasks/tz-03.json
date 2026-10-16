@@ -1,0 +1,23 @@
+{
+  "area": "transition-zone",
+  "bucket": "Pickleball",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "2 ft inside players' baseline, both sidelines",
+  "due": "",
+  "effort": "S",
+  "milestone": "Court ready for the 60-min class",
+  "nextStep": "",
+  "order": 3,
+  "phase": "tz-p1",
+  "raw": "",
+  "source": "roadmap:transition-zone",
+  "sourceRef": "https://claude.ai/code/artifact/3f3ab2a8-afc6-4820-a698-2f79359eed57",
+  "srcId": "tz-03",
+  "status": "todo",
+  "title": "Mark zone back edge with cones or lines",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

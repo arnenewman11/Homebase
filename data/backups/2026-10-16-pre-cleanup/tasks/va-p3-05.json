@@ -1,0 +1,29 @@
+{
+  "area": "video-analysis",
+  "bucket": "Pickleball",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "$29.99/month, or switch to the free desktop tools.",
+  "due": "",
+  "effort": "S",
+  "milestone": "First paid review delivered",
+  "mirror": [
+    {
+      "doc": "va-p3-05",
+      "roadmap": "video-analysis"
+    }
+  ],
+  "nextStep": "",
+  "order": 5,
+  "phase": "va-p3",
+  "raw": "",
+  "source": "roadmap:video-analysis",
+  "sourceRef": "https://claude.ai/artifact/Bw2Jb85kbNKxwGsmQA68rg",
+  "srcId": "va-p3-05",
+  "status": "todo",
+  "title": "Decide on the OnForm paid plan",
+  "track": "service",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

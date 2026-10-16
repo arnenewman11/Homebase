@@ -1,0 +1,29 @@
+{
+  "area": "arnfjall",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Use average hours and materials below. Range to test: $175–300.",
+  "due": "",
+  "effort": "M",
+  "milestone": "3–5 finished pieces and 4+ strong photos",
+  "mirror": [
+    {
+      "doc": "arn-f3c",
+      "roadmap": "arnfjall"
+    }
+  ],
+  "nextStep": "",
+  "order": 3,
+  "phase": "arn-f3",
+  "raw": "",
+  "source": "roadmap:arnfjall",
+  "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+  "srcId": "arn-f3c",
+  "status": "todo",
+  "title": "Set your price from the build log",
+  "track": "fountains",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

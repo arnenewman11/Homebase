@@ -1,0 +1,23 @@
+{
+  "area": "money-admin",
+  "bucket": "Productivity",
+  "changedBy": "intake",
+  "createdAt": "2026-10-15T20:38:00Z",
+  "demoSafe": false,
+  "detail": "Not on autopay",
+  "due": "2026-11-02",
+  "effort": "S",
+  "milestone": "",
+  "nextStep": "",
+  "order": 0,
+  "phase": "",
+  "raw": "",
+  "source": "gmail",
+  "sourceRef": "https://mail.google.com/mail/u/0/#all/1a1102dcb1066821",
+  "srcId": "1a1102dcb1066821",
+  "status": "todo",
+  "title": "Pay the Chase card by Nov 2",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T20:38:00Z"
+}

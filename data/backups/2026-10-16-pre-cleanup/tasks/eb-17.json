@@ -1,0 +1,36 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Seller Hub → Drafts → List it. Buy It Now, Good 'Til Cancelled, Best Offer on, no promoted listings.",
+  "due": "2026-10-18",
+  "effort": "M",
+  "mergedFrom": [
+    "cs-24"
+  ],
+  "milestone": "All 75 live",
+  "mirror": [
+    {
+      "doc": "t17",
+      "roadmap": "ebay-lots"
+    },
+    {
+      "doc": "e2-4",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 17,
+  "phase": "eb-p5",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+  "srcId": "eb-17",
+  "status": "todo",
+  "title": "List all 75 drafts",
+  "track": "ebay",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

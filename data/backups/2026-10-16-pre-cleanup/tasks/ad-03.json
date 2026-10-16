@@ -1,0 +1,23 @@
+{
+  "area": "advisor-path",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Reach out Oct-Nov for the 2027 cycle.",
+  "due": "",
+  "effort": "S",
+  "milestone": "",
+  "nextStep": "",
+  "order": 3,
+  "phase": "ad-p1",
+  "raw": "",
+  "source": "roadmap:advisor-path",
+  "sourceRef": "https://claude.ai/code/artifact/aa57b3ce-ef7d-4392-a943-2baa8e08639b",
+  "srcId": "ad-03",
+  "status": "todo",
+  "title": "Email the CU NVC mentor contact about the 2027 cycle",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

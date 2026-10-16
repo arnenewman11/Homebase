@@ -1,0 +1,36 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Celtics page 9 front, and Blue Jays C page 10",
+  "due": "2026-10-18",
+  "effort": "S",
+  "mergedFrom": [
+    "cs-20"
+  ],
+  "milestone": "All 75 stacks labeled",
+  "mirror": [
+    {
+      "doc": "t10",
+      "roadmap": "ebay-lots"
+    },
+    {
+      "doc": "e1-3",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 10,
+  "phase": "eb-p3",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+  "srcId": "eb-10",
+  "status": "todo",
+  "title": "Retake the two missing photos",
+  "track": "ebay",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

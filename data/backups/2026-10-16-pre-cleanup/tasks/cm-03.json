@@ -1,0 +1,23 @@
+{
+  "area": "coaching-marketing",
+  "bucket": "Pickleball",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "",
+  "due": "",
+  "effort": "L",
+  "milestone": "Foundations in place: slots, coach page, cards, profile",
+  "nextStep": "",
+  "order": 3,
+  "phase": "cm-p1",
+  "raw": "",
+  "source": "roadmap:coaching-marketing",
+  "sourceRef": "https://claude.ai/code/artifact/693e7429-e042-413b-b021-6f51059d83f2",
+  "srcId": "cm-03",
+  "status": "todo",
+  "title": "Make coach page with schedule and how to book",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

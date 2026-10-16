@@ -1,0 +1,29 @@
+{
+  "area": "arnfjall",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Wood, slate pieces, small tub, pump, LED strip, sealer, stones.",
+  "due": "",
+  "effort": "M",
+  "milestone": "Parts in hand for prototype 1",
+  "mirror": [
+    {
+      "doc": "arn-f1d",
+      "roadmap": "arnfjall"
+    }
+  ],
+  "nextStep": "",
+  "order": 4,
+  "phase": "arn-f1",
+  "raw": "",
+  "source": "roadmap:arnfjall",
+  "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+  "srcId": "arn-f1d",
+  "status": "todo",
+  "title": "Buy materials for two prototypes",
+  "track": "fountains",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

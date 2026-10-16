@@ -1,0 +1,23 @@
+{
+  "area": "class-series",
+  "bucket": "Pickleball",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:50:00Z",
+  "demoSafe": true,
+  "detail": "25 min · RPO framework",
+  "due": "",
+  "effort": "S",
+  "milestone": "",
+  "nextStep": "",
+  "order": 1,
+  "phase": "",
+  "raw": "",
+  "source": "homebase",
+  "sourceRef": "",
+  "srcId": "cls-week2",
+  "status": "todo",
+  "title": "Outline week 2 of New to Pickleball",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:50:00Z"
+}

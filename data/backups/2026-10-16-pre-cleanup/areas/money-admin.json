@@ -1,0 +1,11 @@
+{
+  "active": true,
+  "bucket": "Productivity",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "dbBacked": false,
+  "name": "Money & admin",
+  "order": 10,
+  "prefix": "ma",
+  "sourceUrls": [],
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

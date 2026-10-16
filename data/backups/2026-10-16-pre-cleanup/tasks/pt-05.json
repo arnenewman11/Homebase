@@ -1,0 +1,23 @@
+{
+  "area": "portfolio-twin",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Owner: you",
+  "due": "",
+  "effort": "S",
+  "milestone": "You can see your true monthly burn and your mortgage safety buffer.",
+  "nextStep": "",
+  "order": 5,
+  "phase": "pt-p2",
+  "raw": "",
+  "source": "roadmap:portfolio-twin",
+  "sourceRef": "https://claude.ai/code/artifact/0e534609-3502-4013-9807-eb49386040dc",
+  "srcId": "pt-05",
+  "status": "todo",
+  "title": "Export 3 months of transactions as CSV",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

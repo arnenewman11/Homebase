@@ -1,0 +1,23 @@
+{
+  "area": "coaching-marketing",
+  "bucket": "Pickleball",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Reported 20% commission",
+  "due": "",
+  "effort": "M",
+  "milestone": "Foundations in place: slots, coach page, cards, profile",
+  "nextStep": "",
+  "order": 5,
+  "phase": "cm-p1",
+  "raw": "",
+  "source": "roadmap:coaching-marketing",
+  "sourceRef": "https://claude.ai/code/artifact/693e7429-e042-413b-b021-6f51059d83f2",
+  "srcId": "cm-05",
+  "status": "todo",
+  "title": "Make a TeachMe.To profile with 3rd Shot as location",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

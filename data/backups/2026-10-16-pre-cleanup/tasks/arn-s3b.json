@@ -1,0 +1,29 @@
+{
+  "area": "arnfjall",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Make the pump easy to lift out for cleaning.",
+  "due": "",
+  "effort": "M",
+  "milestone": "A test rig with pump, tub and LEDs running",
+  "mirror": [
+    {
+      "doc": "arn-s3b",
+      "roadmap": "arnfjall"
+    }
+  ],
+  "nextStep": "",
+  "order": 2,
+  "phase": "arn-s3",
+  "raw": "",
+  "source": "roadmap:arnfjall",
+  "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+  "srcId": "arn-s3b",
+  "status": "todo",
+  "title": "Plumb a hidden tub, pump and tubing",
+  "track": "skills",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

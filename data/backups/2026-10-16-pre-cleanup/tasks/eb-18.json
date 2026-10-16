@@ -1,0 +1,36 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Tell Claude when you're done listing.",
+  "due": "2026-10-19",
+  "effort": "S",
+  "mergedFrom": [
+    "cs-25"
+  ],
+  "milestone": "All 75 live",
+  "mirror": [
+    {
+      "doc": "t18",
+      "roadmap": "ebay-lots"
+    },
+    {
+      "doc": "e2-5",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 18,
+  "phase": "eb-p5",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+  "srcId": "eb-18",
+  "status": "todo",
+  "title": "Verify all 75 are live with the right prices",
+  "track": "ebay",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

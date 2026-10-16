@@ -1,0 +1,36 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Options checked against your pricing guardrails. No changes without your OK.",
+  "due": "2026-11-09",
+  "effort": "S",
+  "mergedFrom": [
+    "cs-30"
+  ],
+  "milestone": "Next-step decisions approved",
+  "mirror": [
+    {
+      "doc": "t23",
+      "roadmap": "ebay-lots"
+    },
+    {
+      "doc": "e4-2",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 23,
+  "phase": "eb-p7",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+  "srcId": "eb-23",
+  "status": "todo",
+  "title": "Decide next steps for unsold lots",
+  "track": "ebay",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

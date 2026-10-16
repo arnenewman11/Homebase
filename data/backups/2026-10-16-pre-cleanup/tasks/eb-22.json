@@ -1,0 +1,36 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Sell-through by lot size and sport, prices vs. asks, offers, your real hourly rate.",
+  "due": "2026-11-08",
+  "effort": "M",
+  "mergedFrom": [
+    "cs-29"
+  ],
+  "milestone": "Next-step decisions approved",
+  "mirror": [
+    {
+      "doc": "t22",
+      "roadmap": "ebay-lots"
+    },
+    {
+      "doc": "e4-1",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 22,
+  "phase": "eb-p7",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+  "srcId": "eb-22",
+  "status": "todo",
+  "title": "Pull sales data and time per package",
+  "track": "ebay",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

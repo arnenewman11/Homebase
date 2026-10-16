@@ -1,0 +1,29 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Into their own small lots of 25–50 cards, which get the best price per card.",
+  "due": "2026-10-31",
+  "effort": "L",
+  "milestone": "Rookie/parallel stacks, hits pile and team stacks separated.",
+  "mirror": [
+    {
+      "doc": "f1-1",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 31,
+  "phase": "cs-p9",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/e6cdf650-213b-455e-8319-341304435f67",
+  "srcId": "cs-31",
+  "status": "todo",
+  "title": "Pull 2025 rookies and color parallels from the team boxes",
+  "track": "football",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

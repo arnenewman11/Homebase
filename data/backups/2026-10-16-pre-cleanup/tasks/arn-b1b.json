@@ -1,0 +1,29 @@
+{
+  "area": "arnfjall",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "",
+  "due": "",
+  "effort": "S",
+  "milestone": "Logo files and a one-line description ready",
+  "mirror": [
+    {
+      "doc": "arn-b1b",
+      "roadmap": "arnfjall"
+    }
+  ],
+  "nextStep": "",
+  "order": 2,
+  "phase": "arn-b1",
+  "raw": "",
+  "source": "roadmap:arnfjall",
+  "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+  "srcId": "arn-b1b",
+  "status": "todo",
+  "title": "Write a one-line description of Arnfjäll",
+  "track": "business",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

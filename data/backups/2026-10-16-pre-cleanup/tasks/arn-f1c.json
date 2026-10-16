@@ -1,0 +1,29 @@
+{
+  "area": "arnfjall",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Size the flow to the spill-lip width; check reviews for noise.",
+  "due": "",
+  "effort": "M",
+  "milestone": "Parts in hand for prototype 1",
+  "mirror": [
+    {
+      "doc": "arn-f1c",
+      "roadmap": "arnfjall"
+    }
+  ],
+  "nextStep": "",
+  "order": 3,
+  "phase": "arn-f1",
+  "raw": "",
+  "source": "roadmap:arnfjall",
+  "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+  "srcId": "arn-f1c",
+  "status": "todo",
+  "title": "Pick a 12 V UL-listed pump for about 18 in of lift",
+  "track": "fountains",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

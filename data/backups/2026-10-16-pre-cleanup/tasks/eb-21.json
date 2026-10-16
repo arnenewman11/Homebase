@@ -1,0 +1,29 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Add the sale price so the review has real numbers.",
+  "due": "",
+  "effort": "S",
+  "milestone": "Steady weekly rhythm, no post office trips",
+  "mirror": [
+    {
+      "doc": "t21",
+      "roadmap": "ebay-lots"
+    }
+  ],
+  "nextStep": "",
+  "order": 21,
+  "phase": "eb-p6",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+  "srcId": "eb-21",
+  "status": "todo",
+  "title": "Mark lots Sold and Shipped in the tracker",
+  "track": "ebay",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

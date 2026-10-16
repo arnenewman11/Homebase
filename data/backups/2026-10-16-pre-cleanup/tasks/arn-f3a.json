@@ -1,0 +1,29 @@
+{
+  "area": "arnfjall",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Log each one. Try one variation: size or wood.",
+  "due": "",
+  "effort": "L",
+  "milestone": "3–5 finished pieces and 4+ strong photos",
+  "mirror": [
+    {
+      "doc": "arn-f3a",
+      "roadmap": "arnfjall"
+    }
+  ],
+  "nextStep": "",
+  "order": 1,
+  "phase": "arn-f3",
+  "raw": "",
+  "source": "roadmap:arnfjall",
+  "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+  "srcId": "arn-f3a",
+  "status": "todo",
+  "title": "Build three more pieces",
+  "track": "fountains",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

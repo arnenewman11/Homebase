@@ -1,0 +1,29 @@
+{
+  "area": "video-analysis",
+  "bucket": "Pickleball",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Free, Windows. Lines, angles, slow motion, frame-by-frame.",
+  "due": "",
+  "effort": "M",
+  "milestone": "A 2-minute recorded breakdown",
+  "mirror": [
+    {
+      "doc": "va-sk-02",
+      "roadmap": "video-analysis"
+    }
+  ],
+  "nextStep": "",
+  "order": 1,
+  "phase": "va-s2",
+  "raw": "",
+  "source": "roadmap:video-analysis",
+  "sourceRef": "https://claude.ai/artifact/Bw2Jb85kbNKxwGsmQA68rg",
+  "srcId": "va-sk-02",
+  "status": "todo",
+  "title": "Practice markup in Kinovea",
+  "track": "skills",
+  "type": "want-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

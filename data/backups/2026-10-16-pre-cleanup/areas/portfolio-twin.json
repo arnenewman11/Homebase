@@ -1,0 +1,13 @@
+{
+  "active": true,
+  "bucket": "Productivity",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "dbBacked": false,
+  "name": "Portfolio Twin",
+  "order": 8,
+  "prefix": "pt",
+  "sourceUrls": [
+    "https://claude.ai/code/artifact/0e534609-3502-4013-9807-eb49386040dc"
+  ],
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

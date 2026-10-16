@@ -1,0 +1,23 @@
+{
+  "area": "ai-consulting",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:50:00Z",
+  "demoSafe": true,
+  "detail": "15 min",
+  "due": "",
+  "effort": "S",
+  "milestone": "",
+  "nextStep": "",
+  "order": 0,
+  "phase": "",
+  "raw": "",
+  "source": "homebase",
+  "sourceRef": "",
+  "srcId": "acn-owners",
+  "status": "todo",
+  "title": "List 5 owners to ask",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:50:00Z"
+}

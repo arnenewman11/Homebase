@@ -1,0 +1,29 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Autos, low-numbered parallels and star rookies get individual comps.",
+  "due": "2026-10-31",
+  "effort": "M",
+  "milestone": "Rookie/parallel stacks, hits pile and team stacks separated.",
+  "mirror": [
+    {
+      "doc": "f1-2",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 32,
+  "phase": "cs-p9",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/e6cdf650-213b-455e-8319-341304435f67",
+  "srcId": "cs-32",
+  "status": "todo",
+  "title": "Set aside the hits",
+  "track": "football",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

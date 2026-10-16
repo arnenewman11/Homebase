@@ -1,0 +1,29 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Large mixed lots sell for pennies a card; skip any lot that fails your hourly test.",
+  "due": "2026-11-08",
+  "effort": "M",
+  "milestone": "Every football lot and hit has a comp-based price that passes the guardrails.",
+  "mirror": [
+    {
+      "doc": "f2-3",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 36,
+  "phase": "cs-p10",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/e6cdf650-213b-455e-8319-341304435f67",
+  "srcId": "cs-36",
+  "status": "todo",
+  "title": "Price the remaining team lots and check the effort",
+  "track": "football",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

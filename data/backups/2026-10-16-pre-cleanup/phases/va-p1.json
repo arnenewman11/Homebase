@@ -1,0 +1,8 @@
+{
+  "area": "video-analysis",
+  "label": "Phase 1",
+  "milestone": "4 games filmed and logged, AI vs. me",
+  "name": "Test the tools",
+  "order": 1,
+  "track": "service"
+}

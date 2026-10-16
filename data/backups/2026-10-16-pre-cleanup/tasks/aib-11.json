@@ -1,0 +1,23 @@
+{
+  "area": "ai-builder",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:50:00Z",
+  "demoSafe": true,
+  "detail": "Phase check",
+  "due": "",
+  "effort": "S",
+  "milestone": "The agent runs on its own and you can trace every tool call it made.",
+  "nextStep": "",
+  "order": 11,
+  "phase": "ai-p2",
+  "raw": "",
+  "source": "roadmap:ai-builder",
+  "sourceRef": "https://claude.ai/code/artifact/d34e8225-bdac-47e3-a3ba-0da4cde2c44b",
+  "srcId": "ac-11",
+  "status": "todo",
+  "title": "Trace every tool call the agent makes",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:50:00Z"
+}

@@ -1,0 +1,29 @@
+{
+  "area": "video-analysis",
+  "bucket": "Pickleball",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Students or friends who'll film a game and give honest feedback.",
+  "due": "",
+  "effort": "S",
+  "milestone": "3 free reviews delivered, each under about 60 minutes",
+  "mirror": [
+    {
+      "doc": "va-p2-04",
+      "roadmap": "video-analysis"
+    }
+  ],
+  "nextStep": "",
+  "order": 4,
+  "phase": "va-p2",
+  "raw": "",
+  "source": "roadmap:video-analysis",
+  "sourceRef": "https://claude.ai/artifact/Bw2Jb85kbNKxwGsmQA68rg",
+  "srcId": "va-p2-04",
+  "status": "todo",
+  "title": "Recruit 2–3 players for free reviews",
+  "track": "service",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

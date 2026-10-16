@@ -1,0 +1,23 @@
+{
+  "area": "water-wise",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Include a February rebate guide, ready before programs open in March.",
+  "due": "",
+  "effort": "L",
+  "milestone": "Signs of progress by summer 2027: 10+ paid designs, 2 referral clients, one reliable install crew",
+  "nextStep": "",
+  "order": 7,
+  "phase": "ww-p1",
+  "raw": "",
+  "source": "roadmap:water-wise",
+  "sourceRef": "https://claude.ai/code/artifact/22c06970-73c4-4f19-bb0a-572a20cad3a1",
+  "srcId": "ww-07",
+  "status": "todo",
+  "title": "Launch Google Business Profile and one-page site",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

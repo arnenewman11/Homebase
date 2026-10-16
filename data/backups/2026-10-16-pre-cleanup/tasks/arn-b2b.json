@@ -1,0 +1,29 @@
+{
+  "area": "arnfjall",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Markets usually require $1M coverage; about $200–400 a year.",
+  "due": "",
+  "effort": "S",
+  "milestone": "Licensed and insured",
+  "mirror": [
+    {
+      "doc": "arn-b2b",
+      "roadmap": "arnfjall"
+    }
+  ],
+  "nextStep": "",
+  "order": 2,
+  "phase": "arn-b2",
+  "raw": "",
+  "source": "roadmap:arnfjall",
+  "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+  "srcId": "arn-b2b",
+  "status": "todo",
+  "title": "Get liability insurance quotes",
+  "track": "business",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

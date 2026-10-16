@@ -1,0 +1,29 @@
+{
+  "area": "arnfjall",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Distilled water, clean every 1–2 weeks, never run dry, keep moss dry.",
+  "due": "",
+  "effort": "S",
+  "milestone": "Prototype 2 runs a full week, quiet, with little water loss",
+  "mirror": [
+    {
+      "doc": "arn-f2e",
+      "roadmap": "arnfjall"
+    }
+  ],
+  "nextStep": "",
+  "order": 5,
+  "phase": "arn-f2",
+  "raw": "",
+  "source": "roadmap:arnfjall",
+  "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+  "srcId": "arn-f2e",
+  "status": "todo",
+  "title": "Write the care card",
+  "track": "fountains",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

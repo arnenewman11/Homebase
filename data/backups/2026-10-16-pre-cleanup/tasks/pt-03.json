@@ -1,0 +1,23 @@
+{
+  "area": "portfolio-twin",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Owner: you",
+  "due": "",
+  "effort": "M",
+  "milestone": "You can see your true monthly burn and your mortgage safety buffer.",
+  "nextStep": "",
+  "order": 3,
+  "phase": "pt-p2",
+  "raw": "",
+  "source": "roadmap:portfolio-twin",
+  "sourceRef": "https://claude.ai/code/artifact/0e534609-3502-4013-9807-eb49386040dc",
+  "srcId": "pt-03",
+  "status": "todo",
+  "title": "Write down each account's balance and type",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

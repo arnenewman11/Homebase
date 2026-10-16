@@ -1,0 +1,29 @@
+{
+  "area": "video-analysis",
+  "bucket": "Pickleball",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "DaVinci Resolve or CapCut: titles, arrows, freeze-frames, picture-in-picture.",
+  "due": "",
+  "effort": "L",
+  "milestone": "A reusable edit template",
+  "mirror": [
+    {
+      "doc": "va-sk-05",
+      "roadmap": "video-analysis"
+    }
+  ],
+  "nextStep": "",
+  "order": 1,
+  "phase": "va-s3",
+  "raw": "",
+  "source": "roadmap:video-analysis",
+  "sourceRef": "https://claude.ai/artifact/Bw2Jb85kbNKxwGsmQA68rg",
+  "srcId": "va-sk-05",
+  "status": "todo",
+  "title": "Learn edit basics",
+  "track": "skills",
+  "type": "want-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

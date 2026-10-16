@@ -1,0 +1,29 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Show both anchors: single-card comp total and upper-quartile sold-lot comps.",
+  "due": "2026-11-07",
+  "effort": "M",
+  "milestone": "Every football lot and hit has a comp-based price that passes the guardrails.",
+  "mirror": [
+    {
+      "doc": "f2-2",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 35,
+  "phase": "cs-p10",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/e6cdf650-213b-455e-8319-341304435f67",
+  "srcId": "cs-35",
+  "status": "todo",
+  "title": "Price the rookie and parallel lots",
+  "track": "football",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

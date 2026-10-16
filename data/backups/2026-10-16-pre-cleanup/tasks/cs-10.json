@@ -1,0 +1,29 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Submissions cannot be cancelled and list 1–2 weeks later.",
+  "due": "2026-11-14",
+  "effort": "S",
+  "milestone": "Rollout batch submitted or a fixed-price plan confirmed.",
+  "mirror": [
+    {
+      "doc": "c2-4",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 10,
+  "phase": "cs-p2",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/e6cdf650-213b-455e-8319-341304435f67",
+  "srcId": "cs-10",
+  "status": "todo",
+  "title": "Submit the rollout batch",
+  "track": "comc",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

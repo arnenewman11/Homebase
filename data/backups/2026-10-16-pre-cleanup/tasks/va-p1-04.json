@@ -1,0 +1,29 @@
+{
+  "area": "video-analysis",
+  "bucket": "Pickleball",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Buy the 300-minute pack ($39.99). Videos must be under 20 minutes.",
+  "due": "",
+  "effort": "S",
+  "milestone": "4 games filmed and logged, AI vs. me",
+  "mirror": [
+    {
+      "doc": "va-p1-04",
+      "roadmap": "video-analysis"
+    }
+  ],
+  "nextStep": "",
+  "order": 4,
+  "phase": "va-p1",
+  "raw": "",
+  "source": "roadmap:video-analysis",
+  "sourceRef": "https://claude.ai/artifact/Bw2Jb85kbNKxwGsmQA68rg",
+  "srcId": "va-p1-04",
+  "status": "todo",
+  "title": "Run game 1 through PB Vision",
+  "track": "service",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

@@ -1,0 +1,29 @@
+{
+  "area": "video-analysis",
+  "bucket": "Pickleball",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "e.g. monthly review or a 3-review progress pack.",
+  "due": "",
+  "effort": "M",
+  "milestone": "Steady demand, defined by you",
+  "mirror": [
+    {
+      "doc": "va-p4-04",
+      "roadmap": "video-analysis"
+    }
+  ],
+  "nextStep": "",
+  "order": 4,
+  "phase": "va-p4",
+  "raw": "",
+  "source": "roadmap:video-analysis",
+  "sourceRef": "https://claude.ai/artifact/Bw2Jb85kbNKxwGsmQA68rg",
+  "srcId": "va-p4-04",
+  "status": "todo",
+  "title": "Create a repeat package",
+  "track": "service",
+  "type": "want-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

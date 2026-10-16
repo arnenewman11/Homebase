@@ -1,0 +1,29 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Fronts before backs, same naming as the other lots.",
+  "due": "2026-11-03",
+  "effort": "M",
+  "milestone": "Rookie/parallel stacks, hits pile and team stacks separated.",
+  "mirror": [
+    {
+      "doc": "f1-3",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 33,
+  "phase": "cs-p9",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/e6cdf650-213b-455e-8319-341304435f67",
+  "srcId": "cs-33",
+  "status": "todo",
+  "title": "Page and photograph the rookie and parallel lots",
+  "track": "football",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

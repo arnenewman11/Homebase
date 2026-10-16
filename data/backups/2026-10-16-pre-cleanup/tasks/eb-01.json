@@ -1,0 +1,36 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Seller Hub → account settings. Replaces the default 22201 (Arlington, VA).",
+  "due": "2026-10-15",
+  "effort": "S",
+  "mergedFrom": [
+    "cs-21"
+  ],
+  "milestone": "ZIP 80214 and shipping policy saved",
+  "mirror": [
+    {
+      "doc": "t01",
+      "roadmap": "ebay-lots"
+    },
+    {
+      "doc": "e2-1",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 1,
+  "phase": "eb-p1",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+  "srcId": "eb-01",
+  "status": "todo",
+  "title": "Change item location to ZIP 80214",
+  "track": "ebay",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

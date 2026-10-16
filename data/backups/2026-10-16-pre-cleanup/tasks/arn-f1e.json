@@ -1,0 +1,29 @@
+{
+  "area": "arnfjall",
+  "bucket": "Learn & Play",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Keep one batch running from here on.",
+  "due": "",
+  "effort": "S",
+  "milestone": "Parts in hand for prototype 1",
+  "mirror": [
+    {
+      "doc": "arn-f1e",
+      "roadmap": "arnfjall"
+    }
+  ],
+  "nextStep": "",
+  "order": 5,
+  "phase": "arn-f1",
+  "raw": "",
+  "source": "roadmap:arnfjall",
+  "sourceRef": "https://claude.ai/artifact/Kq7gv6mhnQ532qSfV5p2Cg",
+  "srcId": "arn-f1e",
+  "status": "todo",
+  "title": "Start a tumbler batch for the base stones",
+  "track": "fountains",
+  "type": "want-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

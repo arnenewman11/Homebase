@@ -1,0 +1,36 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "you",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Seller Hub → Awaiting shipment → pull stack, pack, weigh, print the eBay label. ~20–45 min.",
+  "due": "",
+  "effort": "M",
+  "mergedFrom": [
+    "cs-26"
+  ],
+  "milestone": "Steady weekly rhythm, no post office trips",
+  "mirror": [
+    {
+      "doc": "t20",
+      "roadmap": "ebay-lots"
+    },
+    {
+      "doc": "e3-1",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 20,
+  "phase": "eb-p6",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+  "srcId": "eb-20",
+  "status": "todo",
+  "title": "Pack sold lots on Monday and Thursday nights",
+  "track": "ebay",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T20:36:00Z"
+}

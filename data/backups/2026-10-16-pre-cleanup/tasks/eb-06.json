@@ -1,0 +1,29 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Boxes are for Spurs and Mavericks. Half-sheet labels optional; skip a thermal printer.",
+  "due": "2026-10-15",
+  "effort": "S",
+  "milestone": "Supplies on hand",
+  "mirror": [
+    {
+      "doc": "t06",
+      "roadmap": "ebay-lots"
+    }
+  ],
+  "nextStep": "",
+  "order": 6,
+  "phase": "eb-p2",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+  "srcId": "eb-06",
+  "status": "todo",
+  "title": "Order gallon zip bags, 5 small boxes (12×9×2), postal scale, tape",
+  "track": "ebay",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

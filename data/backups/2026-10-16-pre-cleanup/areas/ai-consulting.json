@@ -1,0 +1,11 @@
+{
+  "active": true,
+  "bucket": "Productivity",
+  "createdAt": "2026-10-15T10:50:00Z",
+  "dbBacked": false,
+  "name": "AI consulting",
+  "order": 5.5,
+  "prefix": "acn",
+  "sourceUrls": [],
+  "updatedAt": "2026-10-15T10:50:00Z"
+}

@@ -1,0 +1,36 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Cuts buyer messages. Declines below 75% happen either way.",
+  "due": "2026-10-17",
+  "effort": "S",
+  "mergedFrom": [
+    "cs-23"
+  ],
+  "milestone": "75 drafts ready to list",
+  "mirror": [
+    {
+      "doc": "t14",
+      "roadmap": "ebay-lots"
+    },
+    {
+      "doc": "e2-3",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 14,
+  "phase": "eb-p4",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+  "srcId": "eb-14",
+  "status": "todo",
+  "title": "Decide on Best Offer auto-accept at 90% of ask",
+  "track": "ebay",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

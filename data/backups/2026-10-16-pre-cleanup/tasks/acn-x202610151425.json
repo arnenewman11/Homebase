@@ -1,0 +1,23 @@
+{
+  "area": "ai-consulting",
+  "bucket": "Productivity",
+  "changedBy": "intake",
+  "createdAt": "2026-10-15T20:25:00Z",
+  "demoSafe": true,
+  "detail": "Sanitized demo with sample data. Build before your first owner conversation is booked, or by Nov 9, whichever comes first. Do the roadmap cleanup first.",
+  "due": "2026-11-09",
+  "effort": "L",
+  "milestone": "",
+  "nextStep": "Pick the 3 to 4 moments to show (capture, morning sort, wall, steward check-up)",
+  "order": 3,
+  "phase": "",
+  "raw": "",
+  "source": "chat",
+  "sourceRef": "https://claude.ai/code/artifact/ac02e93d-14ae-474e-9704-66f6b5392107",
+  "srcId": "",
+  "status": "todo",
+  "title": "Build the Homebase client demo",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T20:25:00Z"
+}

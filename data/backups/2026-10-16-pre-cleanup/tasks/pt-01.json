@@ -1,0 +1,23 @@
+{
+  "area": "portfolio-twin",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Owner: you",
+  "due": "",
+  "effort": "S",
+  "milestone": "I have your rough picture and red lines.",
+  "nextStep": "",
+  "order": 1,
+  "phase": "pt-p1",
+  "raw": "",
+  "source": "roadmap:portfolio-twin",
+  "sourceRef": "https://claude.ai/code/artifact/0e534609-3502-4013-9807-eb49386040dc",
+  "srcId": "pt-01",
+  "status": "todo",
+  "title": "Fill in the 7 questions, ballpark is fine",
+  "track": "main",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

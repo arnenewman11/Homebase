@@ -1,0 +1,29 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "ZIP 80214, shipping policy, all stacks labeled.",
+  "due": "2026-10-18",
+  "effort": "S",
+  "milestone": "All 75 live",
+  "mirror": [
+    {
+      "doc": "t16",
+      "roadmap": "ebay-lots"
+    }
+  ],
+  "nextStep": "",
+  "order": 16,
+  "phase": "eb-p5",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/3826c132-1940-4ff5-96f3-8beadefa4e9e",
+  "srcId": "eb-16",
+  "status": "todo",
+  "title": "Confirm settings and stacks are done",
+  "track": "ebay",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}

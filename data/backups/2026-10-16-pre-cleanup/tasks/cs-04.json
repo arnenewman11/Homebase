@@ -1,0 +1,29 @@
+{
+  "area": "card-sales",
+  "bucket": "Productivity",
+  "changedBy": "migration",
+  "createdAt": "2026-10-15T10:30:00Z",
+  "demoSafe": false,
+  "detail": "Hold for the 2027 World Cup or auction now. The current ask is unsupported either way.",
+  "due": "2026-10-24",
+  "effort": "S",
+  "milestone": "Trial hammers and repriced controls judged against the success test.",
+  "mirror": [
+    {
+      "doc": "c1-4",
+      "roadmap": "card-sales"
+    }
+  ],
+  "nextStep": "",
+  "order": 4,
+  "phase": "cs-p1",
+  "raw": "",
+  "source": "roadmap:card-sales",
+  "sourceRef": "https://claude.ai/code/artifact/e6cdf650-213b-455e-8319-341304435f67",
+  "srcId": "cs-04",
+  "status": "todo",
+  "title": "Decide on the Trinity Rodman 1/1",
+  "track": "comc",
+  "type": "should-do",
+  "updatedAt": "2026-10-15T10:30:00Z"
+}
